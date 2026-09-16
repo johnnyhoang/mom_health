@@ -2,6 +2,8 @@ import React, { useState, useMemo } from 'react';
 import { tamoxifenQADataset } from '../data/tamoxifenQAData';
 import { cervicalSpineQAList } from '../data/cervicalSpineQAData';
 import { ankleFractureQAList } from '../data/ankleFractureQAData';
+import { chronicBackPainQAItems } from '../data/chronicBackPainQAData';
+import { ReadAloudButton } from './ReadAloudButton';
 import { 
   HelpCircle, 
   Search, 
@@ -14,20 +16,31 @@ import {
   Ribbon, 
   ShieldCheck, 
   Award,
-  Footprints
+  Footprints,
+  Activity,
+  Tag
 } from 'lucide-react';
 
 interface QAPageProps {
   onBackToBook: () => void;
-  defaultTopic?: 'ankle' | 'spine' | 'gynecology';
+  defaultTopic?: 'ankle' | 'spine' | 'gynecology' | 'back_pain';
 }
 
 export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'ankle' }) => {
-  const [activeTopic, setActiveTopic] = useState<'ankle' | 'spine' | 'gynecology'>(defaultTopic);
+  const [activeTopic, setActiveTopic] = useState<'ankle' | 'spine' | 'gynecology' | 'back_pain'>(defaultTopic);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedAnkleCategory, setSelectedAnkleCategory] = useState<string>('all');
   const [selectedSpineCategory, setSelectedSpineCategory] = useState<string>('all');
   const [selectedGynCategory, setSelectedGynCategory] = useState<string>('all');
+  const [selectedBackPainCategory, setSelectedBackPainCategory] = useState<string>('all');
+  
+  const [expandedBackPainIds, setExpandedBackPainIds] = useState<Record<string, boolean>>({
+    'bp-qa-01': true,
+    'bp-qa-02': true,
+    'bp-qa-04': true,
+    'bp-qa-06': true,
+    'bp-qa-08': true
+  });
   
   const [expandedAnkleIds, setExpandedAnkleIds] = useState<Record<string, boolean>>({
     'qa-ankle-surgery-necessity': true,
@@ -77,6 +90,32 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
     { id: 'surgery_reassurance', label: 'Phẫu Thuật Nội Soi' },
     { id: 'lifestyle_followup', label: 'Lối Sống & Tái Khám' }
   ];
+
+  const backPainCategories = [
+    { id: 'all', label: 'Tất Cả (15 Câu Hỏi)' },
+    { id: 'Cơ Chế & Triệu Chứng', label: 'Cơ Chế & Ngứa Ran' },
+    { id: 'Tương Quan Tử Cung & K Vú', label: 'Tương Quan Tử Cung & K Vú' },
+    { id: 'Tư Thế & Giấc Ngủ', label: 'Tư Thế & Kê Gối Ngủ' },
+    { id: 'Phục Hồi & Điều Trị', label: 'Phục Hồi & Dinh Dưỡng' }
+  ];
+
+  // Filter Back Pain QA
+  const filteredBackPainQA = useMemo(() => {
+    return chronicBackPainQAItems.filter((item) => {
+      const matchCat = selectedBackPainCategory === 'all' || item.category === selectedBackPainCategory;
+      if (!matchCat) return false;
+
+      if (!searchQuery.trim()) return true;
+      const q = searchQuery.toLowerCase();
+      return (
+        item.question.toLowerCase().includes(q) ||
+        item.shortAnswer.toLowerCase().includes(q) ||
+        item.detailedAnswer.toLowerCase().includes(q) ||
+        item.tags.some(t => t.toLowerCase().includes(q)) ||
+        item.clinicalPearls.some(p => p.toLowerCase().includes(q))
+      );
+    });
+  }, [selectedBackPainCategory, searchQuery]);
 
   // Filter Ankle QA
   const filteredAnkleQA = useMemo(() => {
@@ -129,6 +168,10 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
     });
   }, [selectedGynCategory, searchQuery]);
 
+  const toggleBackPainExpand = (id: string) => {
+    setExpandedBackPainIds(prev => ({ ...prev, [id]: !prev[id] }));
+  };
+
   const toggleAnkleExpand = (id: string) => {
     setExpandedAnkleIds(prev => ({ ...prev, [id]: !prev[id] }));
   };
@@ -152,15 +195,15 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
       {/* Header Banner */}
       <div className="w-full max-w-4xl mx-auto pt-8 pb-6 px-4 sm:px-6 space-y-6">
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-rose-400">
+          <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-indigo-400">
             <HelpCircle className="w-4 h-4" />
-            <span>Tập Q&A Chuyên Gia Y Khoa Toàn Diện (53 Câu Hỏi)</span>
+            <span>Tập Q&A Chuyên Gia Y Khoa Toàn Diện (68 Câu Hỏi)</span>
           </div>
           <button
             onClick={onBackToBook}
             className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition-colors px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 cursor-pointer"
           >
-            <BookOpen className="w-3.5 h-3.5 text-rose-400" />
+            <BookOpen className="w-3.5 h-3.5 text-indigo-400" />
             <span>Xem Sách Chuyên Khảo</span>
           </button>
         </div>
@@ -174,21 +217,21 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
           </p>
         </div>
 
-        {/* 3 Topic Switcher Pills */}
-        <div className="grid grid-cols-3 gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+        {/* 4 Topic Switcher Pills */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
           <button
             onClick={() => {
               setActiveTopic('ankle');
               setSearchQuery('');
             }}
-            className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTopic === 'ankle'
                 ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Footprints className="w-4 h-4" />
-            <span className="truncate">Mắt Cá Chân (12)</span>
+            <Footprints className="w-4 h-4 shrink-0" />
+            <span className="truncate">Mắt Cá (12)</span>
           </button>
 
           <button
@@ -196,14 +239,14 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
               setActiveTopic('spine');
               setSearchQuery('');
             }}
-            className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTopic === 'spine'
                 ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Bone className="w-4 h-4" />
-            <span className="truncate">Cột Sống Cổ (15)</span>
+            <Bone className="w-4 h-4 shrink-0" />
+            <span className="truncate">Cổ ACDF (15)</span>
           </button>
 
           <button
@@ -211,14 +254,29 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
               setActiveTopic('gynecology');
               setSearchQuery('');
             }}
-            className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
               activeTopic === 'gynecology'
                 ? 'bg-teal-500 text-slate-950 shadow-md shadow-teal-500/20'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <Ribbon className="w-4 h-4" />
+            <Ribbon className="w-4 h-4 shrink-0" />
             <span className="truncate">Tử Cung (26)</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTopic('back_pain');
+              setSearchQuery('');
+            }}
+            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTopic === 'back_pain'
+                ? 'bg-indigo-500 text-white shadow-md shadow-indigo-500/20'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Activity className="w-4 h-4 shrink-0" />
+            <span className="truncate">Đau Lưng (15)</span>
           </button>
         </div>
 
@@ -234,9 +292,11 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                 ? "Tìm kiếm về nẹp vít mắt cá, đứt dây chằng ATFL, giày CAM boot, loãng xương, tiêm chống đông DVT..."
                 : activeTopic === 'spine' 
                 ? "Tìm kiếm về mổ ACDF, chèn ép tủy, loãng xương, tê tay, BV ĐHYD..." 
-                : "Tìm kiếm về u xơ, rong kinh, sinh thiết Hùng Vương, phẫu thuật nội soi..."
+                : activeTopic === 'gynecology'
+                ? "Tìm kiếm về u xơ, rong kinh, sinh thiết Hùng Vương, phẫu thuật nội soi..."
+                : "Tìm kiếm về ngứa ran khi đấm lưng, đau tăng trước kỳ kinh, kê gối ngủ, di căn xương, bài tập McGill..."
             }
-            className="w-full pl-11 pr-4 py-3 bg-slate-900/90 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-hidden focus:border-rose-500 transition-colors"
+            className="w-full pl-11 pr-4 py-3 bg-slate-900/90 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-hidden focus:border-indigo-500 transition-colors"
           />
         </div>
 
@@ -270,7 +330,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                 {cat.label}
               </button>
             ))
-          ) : (
+          ) : activeTopic === 'gynecology' ? (
             gynCategories.map((cat) => (
               <button
                 key={cat.id}
@@ -278,6 +338,20 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                 className={`px-3 py-1.5 rounded-lg whitespace-nowrap font-medium transition-all cursor-pointer ${
                   selectedGynCategory === cat.id
                     ? 'bg-teal-500/20 text-teal-300 border border-teal-500/50'
+                    : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))
+          ) : (
+            backPainCategories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedBackPainCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-lg whitespace-nowrap font-medium transition-all cursor-pointer ${
+                  selectedBackPainCategory === cat.id
+                    ? 'bg-indigo-500/20 text-indigo-300 border border-indigo-500/50'
                     : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800'
                 }`}
               >
@@ -334,9 +408,18 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                   {isExpanded && (
                     <div className="p-4 sm:p-5 pt-0 border-t border-slate-800 space-y-4">
                       {/* Short summary callout */}
-                      <div className="p-3.5 bg-rose-950/30 border border-rose-800/40 rounded-xl space-y-1">
-                        <div className="text-xs font-bold text-rose-300 uppercase tracking-wide">
-                          Tóm Tắt Nhanh (Dễ Nhớ):
+                      <div className="p-3.5 bg-rose-950/30 border border-rose-800/40 rounded-xl space-y-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-bold text-rose-300 uppercase tracking-wide">
+                            Tóm Tắt Nhanh (Dễ Nhớ):
+                          </div>
+                          <ReadAloudButton
+                            id={`qa-ankle-${item.id}`}
+                            title={item.question}
+                            text={`${item.question}. ${item.shortAnswer}. Phân tích chi tiết: ${item.detailedAnswer.join(' ')}. ${item.patientTips ? `Lời khuyên: ${item.patientTips}` : ''}`}
+                            variant="card"
+                            label="Nghe trả lời"
+                          />
                         </div>
                         <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
                           {item.shortAnswer}
@@ -427,9 +510,18 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                   {isExpanded && (
                     <div className="p-4 sm:p-5 pt-0 border-t border-slate-800 space-y-4">
                       {/* Short summary callout */}
-                      <div className="p-3.5 bg-amber-950/30 border border-amber-800/40 rounded-xl space-y-1">
-                        <div className="text-xs font-bold text-amber-300 uppercase tracking-wide">
-                          Tóm Tắt Nhanh (Dễ Nhớ):
+                      <div className="p-3.5 bg-amber-950/30 border border-amber-800/40 rounded-xl space-y-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-bold text-amber-300 uppercase tracking-wide">
+                            Tóm Tắt Nhanh (Dễ Nhớ):
+                          </div>
+                          <ReadAloudButton
+                            id={`qa-spine-${item.id}`}
+                            title={item.question}
+                            text={`${item.question}. ${item.shortAnswer}. Phân tích chi tiết: ${item.detailedAnswer.join(' ')}. ${item.patientTips ? `Lời khuyên: ${item.patientTips}` : ''}`}
+                            variant="card"
+                            label="Nghe trả lời"
+                          />
                         </div>
                         <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
                           {item.shortAnswer}
@@ -476,7 +568,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
               <p>Không tìm thấy câu hỏi phù hợp với từ khóa "{searchQuery}"</p>
             </div>
           )
-        ) : (
+        ) : activeTopic === 'gynecology' ? (
           // ==================== GYNECOLOGY QA LIST ====================
           filteredGynQA.length > 0 ? (
             filteredGynQA.map((item, idx) => {
@@ -520,9 +612,18 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                   {isExpanded && (
                     <div className="p-4 sm:p-5 pt-0 border-t border-slate-800 space-y-4">
                       {/* Short summary callout */}
-                      <div className="p-3.5 bg-teal-950/30 border border-teal-800/40 rounded-xl space-y-1">
-                        <div className="text-xs font-bold text-teal-300 uppercase tracking-wide">
-                          Tóm Tắt Nhanh (Dễ Hiểu):
+                      <div className="p-3.5 bg-teal-950/30 border border-teal-800/40 rounded-xl space-y-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-bold text-teal-300 uppercase tracking-wide">
+                            Tóm Tắt Nhanh (Dễ Hiểu):
+                          </div>
+                          <ReadAloudButton
+                            id={`qa-gyn-${item.id}`}
+                            title={item.question}
+                            text={`${item.question}. ${item.shortSummary}. Phân tích chi tiết: ${item.detailedAnswer.join(' ')}. ${item.clinicalHighlight ? `Điểm nhấn lâm sàng: ${item.clinicalHighlight}` : ''}`}
+                            variant="card"
+                            label="Nghe trả lời"
+                          />
                         </div>
                         <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
                           {item.shortSummary}
@@ -567,6 +668,116 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                           </button>
                         </div>
                       )}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <div className="p-12 text-center text-slate-500 bg-slate-900/30 border border-slate-800 rounded-2xl space-y-2">
+              <HelpCircle className="w-8 h-8 mx-auto text-slate-600" />
+              <p>Không tìm thấy câu hỏi phù hợp với từ khóa "{searchQuery}"</p>
+            </div>
+          )
+        ) : (
+          // ==================== BACK PAIN QA LIST ====================
+          filteredBackPainQA.length > 0 ? (
+            filteredBackPainQA.map((item, idx) => {
+              const isExpanded = expandedBackPainIds[item.id] || false;
+              return (
+                <div
+                  key={item.id}
+                  className={`border rounded-2xl transition-all duration-200 overflow-hidden ${
+                    isExpanded 
+                      ? 'bg-slate-900/90 border-indigo-500/40 shadow-lg' 
+                      : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'
+                  }`}
+                >
+                  <button
+                    onClick={() => toggleBackPainExpand(item.id)}
+                    className="w-full p-4 sm:p-5 text-left flex items-start justify-between gap-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-indigo-500/20 text-indigo-300 text-xs font-bold shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div className="space-y-1">
+                        <span className="text-[11px] font-mono text-indigo-400/90 uppercase font-semibold">
+                          {item.category}
+                        </span>
+                        <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
+                          {item.question}
+                        </h3>
+                        {!isExpanded && (
+                          <p className="text-xs text-slate-400 line-clamp-2 pt-1">
+                            {item.shortAnswer}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="shrink-0 p-1 rounded-lg bg-slate-800/80 text-slate-400">
+                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                    </div>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="p-4 sm:p-5 pt-0 border-t border-slate-800 space-y-4">
+                      {/* Short summary callout */}
+                      <div className="p-3.5 bg-indigo-950/30 border border-indigo-800/40 rounded-xl space-y-2">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-bold text-indigo-300 uppercase tracking-wide">
+                            Tóm Tắt Nhanh (Dễ Hiểu):
+                          </div>
+                          <ReadAloudButton
+                            id={`qa-bp-${item.id}`}
+                            title={item.question}
+                            text={`${item.question}. ${item.shortAnswer}. Phân tích chi tiết: ${item.detailedAnswer}. Lời khuyên lâm sàng: ${item.clinicalPearls.join(' ')}`}
+                            variant="card"
+                            label="Nghe trả lời"
+                          />
+                        </div>
+                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                          {item.shortAnswer}
+                        </p>
+                      </div>
+
+                      {/* Detailed Answer */}
+                      <div className="space-y-2">
+                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                          Phân Tích Chi Tiết:
+                        </div>
+                        <div className="text-xs sm:text-sm text-slate-300 leading-relaxed whitespace-pre-line">
+                          {item.detailedAnswer}
+                        </div>
+                      </div>
+
+                      {/* Clinical Pearls */}
+                      {item.clinicalPearls.length > 0 && (
+                        <div className="p-3.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl space-y-1.5 text-xs text-emerald-200">
+                          <div className="font-bold text-emerald-300 flex items-center gap-1.5 uppercase">
+                            <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
+                            <span>Lời Khuyên Cốt Lõi Từ Chuyên Gia:</span>
+                          </div>
+                          <ul className="space-y-1 pl-2">
+                            {item.clinicalPearls.map((pearl, i) => (
+                              <li key={i} className="flex items-start gap-1.5">
+                                <span className="text-emerald-400 font-bold shrink-0">•</span>
+                                <span>{pearl}</span>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap items-center gap-1.5 pt-1">
+                        <Tag className="w-3.5 h-3.5 text-slate-500" />
+                        {item.tags.map((tag, i) => (
+                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>

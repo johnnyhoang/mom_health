@@ -4,6 +4,7 @@ import { cervicalSpineMediaItems } from '../data/cervicalSpineMediaData';
 import { cervicalSpineDecisionTree } from '../data/cervicalSpineDecisionData';
 import { CervicalSpineCaseViewer } from './CervicalSpineCaseViewer';
 import { CervicalSpineComorbiditiesSection } from './CervicalSpineComorbiditiesSection';
+import { ReadAloudButton } from './ReadAloudButton';
 import type { MediaItem } from '../types/medical';
 import { 
   Activity, 
@@ -91,6 +92,18 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
             Nghiên cứu chuyên sâu phân tích 3 bệnh án thực tế (MRI Cột sống cổ CIH, MRI Thắt lưng Saigon Medic, Giấy giới thiệu Lầu 8A BV ĐHYD), giải pháp phẫu thuật vi phẫu ACDF lối trước và ma trận an toàn chu phẫu cho cụ bà 74 tuổi.
           </p>
+
+          {/* Read Aloud Full Article Button */}
+          <div className="pt-2">
+            <ReadAloudButton
+              id="spine-monograph-full"
+              title="Thoát Vị Cột Sống Cổ Chèn Ép Tủy & Phẫu Thuật ACDF"
+              text="Chuyên khảo: Thoát vị đĩa đệm cột sống cổ chèn ép tủy và phẫu thuật hàn xương liên thân đốt lối trước ACDF. Phân tích 3 bệnh án thực tế tại bệnh viện CIH, Saigon Medic và bệnh viện Đại học Y Dược thành phố Hồ Chí Minh. Phẫu thuật vi phẫu ACDF giúp giải ép tủy sống khẩn cấp, ngăn chặn nguy cơ yếu liệt tứ chi, kết hợp nẹp khóa góc và thuốc chống đông an toàn cho người cao tuổi."
+              variant="hero"
+              label="Bấm để nghe đọc chuyên khảo"
+              durationEstimate="~15 phút"
+            />
+          </div>
         </div>
 
         {/* Evidence & Guidelines Meta Banner */}

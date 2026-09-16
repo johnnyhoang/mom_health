@@ -4,6 +4,7 @@ import { advancedBreastTherapies } from '../data/breastCancerTreatmentData';
 import { breastCancerMediaItems } from '../data/breastCancerMediaData';
 import { breastCancerClinicalDecisionTree } from '../data/breastCancerDecisionData';
 import type { MediaItem } from '../types/medical';
+import { ReadAloudButton } from './ReadAloudButton';
 import { 
   Ribbon, 
   Sparkles, 
@@ -92,6 +93,18 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
             Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua 5 năm, thử nghiệm kéo dài (EET) và toàn cảnh các vũ khí điều trị mới (CDK4/6i, Oral SERD, PROTAC, ADCs).
           </p>
+
+          {/* Read Aloud Full Monograph */}
+          <div className="pt-2">
+            <ReadAloudButton
+              id="bc-hero"
+              title="Chuyên Khảo Ung Thư Vú Thể Nội Tiết"
+              text="Ung thư vú thể nội tiết: từ Tamoxifen đến các đột phá mới nhất. Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua năm năm, thử nghiệm kéo dài và toàn cảnh các vũ khí điều trị mới như thuốc ức chế CDK4/6, SERD đường uống, PROTAC và kháng thể liên hợp thuốc ADCs. Hơn bảy mươi phần trăm bệnh nhân ung thư vú thuộc nhóm thụ thể nội tiết dương tính. Bước sang giai đoạn 2024 đến 2026, các liệu pháp nhắm trúng đích thế hệ mới mở ra kỷ nguyên kiểm soát triệt để và nâng cao chất lượng cuộc sống cho người bệnh."
+              variant="hero"
+              label="Bấm để nghe đọc cẩm nang K vú"
+              durationEstimate="~15 phút"
+            />
+          </div>
         </div>
 
         {/* Evidence & Guidelines Meta Banner */}
@@ -154,6 +167,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <p className="text-xs sm:text-sm text-slate-400">
             Ung thư vú không phải là một bệnh duy nhất mà gồm 4 phân nhóm sinh học khác nhau, quyết định độ nhạy với Tamoxifen và tiên lượng điều trị:
           </p>
+          <ReadAloudButton
+            id="bc-chap-1"
+            title="Chương 1: Toàn Cảnh 4 Phân Nhóm Phân Tử K Vú"
+            text="Chương 1: Toàn cảnh bốn phân nhóm phân tử ung thư vú và vai trò thụ thể nội tiết. Ung thư vú gồm bốn phân nhóm sinh học: Luminal A, Luminal B HER2 âm tính, Luminal B HER2 dương tính, HER2 làm giàu và Thể bộ ba âm tính. Các chỉ số thụ thể bao gồm ER và PR là ăng ten bắt sóng dinh dưỡng estrogen; HER2 là động cơ tăng áp; và Ki-67 là đồng hồ đo tốc độ phân chia tế bào. Với Luminal A, tế bào tăng sinh chậm, đáp ứng rất tốt với nội tiết như Tamoxifen và có tiên lượng thuận lợi nhất."
+            variant="chapter"
+            label="Nghe đọc Chương 1"
+          />
         </div>
 
         {/* Subtype Selector Tabs */}
@@ -309,6 +329,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <p className="text-xs sm:text-sm text-slate-400">
             Tại sao 5 năm là mốc chuẩn vàng? Khi nào nên dừng (như trường hợp của chị) và khi nào cần kéo dài?
           </p>
+          <ReadAloudButton
+            id="bc-chap-2"
+            title="Chương 2: Giải Mã 5 Năm Tamoxifen & Thử Nghiệm Kéo Dài 10 Năm"
+            text="Chương 2: Giải mã năm năm Tamoxifen và thử nghiệm kéo dài mười năm ATLAS và aTTom. Việc hoàn thành năm năm Tamoxifen mang lại hiệu ứng kế thừa bảo vệ thêm mười đến mười lăm năm, giảm 47% nguy cơ tái phát và giảm 50% nguy cơ ung thư vú đối bên. Thử nghiệm ATLAS và aTTom chỉ ra rằng kéo dài lên mười năm chỉ tăng thêm lợi ích nhỏ nhưng làm tăng gấp đôi tác dụng phụ lên nội mạc tử cung. Do đó, với trường hợp đã hoàn thành năm năm và có biến chứng phụ khoa như rong kinh hoặc u xơ, việc dừng Tamoxifen là hoàn toàn chính xác và khoa học."
+            variant="chapter"
+            label="Nghe đọc Chương 2"
+          />
         </div>
 
         <div className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
@@ -373,6 +400,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <p className="text-xs sm:text-sm text-slate-400">
             Khám phá 7 nhóm thuốc tiên tiến nhất thế giới hiện nay được FDA và NCCN phê duyệt:
           </p>
+          <ReadAloudButton
+            id="bc-chap-3"
+            title="Chương 3: Kho Vũ Khí Nhắm Trúng Đích Mới Nhất"
+            text="Chương 3: Kho vũ khí nhắm trúng đích mới nhất cho ung thư vú thể nội tiết. Bao gồm bảy nhóm thuốc đột phá: Thuốc ức chế CDK4/6 như Ribociclib vừa được FDA phê duyệt tháng chín năm 2024; Thuốc ức chế PARP như Olaparib; Kháng thể liên hợp thuốc ADCs như Trastuzumab deruxtecan Enhertu; Thuốc ức chế PI3K và AKT như Capivasertib; Thuốc SERD đường uống như Elacestrant; Liệu pháp giáng hóa PROTAC như Vepdegestrant; và Liệu pháp miễn dịch Pembrolizumab."
+            variant="chapter"
+            label="Nghe đọc Chương 3"
+          />
         </div>
 
         {/* Therapy Tabs */}
@@ -686,6 +720,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
             Chế Độ Dinh Dưỡng Giảm Viêm & Quy Trình Tầm Soát Kép Trọn Đời
           </h2>
+          <ReadAloudButton
+            id="bc-chap-6"
+            title="Chương 6: Dinh Dưỡng Giảm Viêm & Tầm Soát Kép Trọn Đời"
+            text="Chương 6: Chế độ dinh dưỡng giảm viêm và quy trình tầm soát kép trọn đời. Duy trì cân nặng hợp lý là chìa khóa vì mô mỡ chuyển đổi hormone estrogen qua men Aromatase. Khuyến nghị áp dụng chế độ ăn Địa Trung Hải giàu Omega 3, dầu ô liu và rau xanh quả mọng; tập thể dục 150 phút mỗi tuần; khám lâm sàng định kỳ sáu đến mười hai tháng và chụp nhũ ảnh kết hợp siêu âm Doppler vú mỗi mười hai tháng một lần."
+            variant="chapter"
+            label="Nghe đọc Chương 6"
+          />
         </div>
 
         <div className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">

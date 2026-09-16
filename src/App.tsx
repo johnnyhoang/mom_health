@@ -3,16 +3,19 @@ import { AnkleFractureArticle } from './components/AnkleFractureArticle';
 import { CervicalSpineArticle } from './components/CervicalSpineArticle';
 import { BreastCancerArticle } from './components/BreastCancerArticle';
 import { BookLayoutArticle } from './components/BookLayoutArticle';
+import { ChronicBackPainArticle } from './components/ChronicBackPainArticle';
 import { QAPage } from './components/QAPage';
 import { DoctorsDirectoryPage } from './components/DoctorsDirectoryPage';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { VideoModal } from './components/VideoModal';
+import { AudioPlayerBar } from './components/AudioPlayerBar';
+import { AudioReaderProvider } from './context/AudioReaderContext';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
-import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints } from 'lucide-react';
+import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'qa' | 'doctors'>('ankle_trauma');
+  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors'>('ankle_trauma');
   const [selectedVideo, setSelectedVideo] = useState<MediaItem | null>(null);
   const [activeSection, setActiveSection] = useState<string>('ankle-ch-1');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -104,6 +107,26 @@ export function App() {
             }
           }
         }
+      } else if (currentView === 'chronic_back_pain') {
+        const bpChapters = [
+          'bp-ch-1',
+          'bp-ch-2',
+          'bp-ch-3',
+          'bp-ch-4',
+          'bp-ch-5',
+          'bp-ch-6',
+          'bp-ch-7'
+        ];
+        for (const chId of bpChapters) {
+          const el = document.getElementById(chId);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 250 && rect.bottom >= 250) {
+              setActiveSection(chId);
+              break;
+            }
+          }
+        }
       }
     };
 
@@ -128,17 +151,18 @@ export function App() {
     }
   };
 
-  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'qa' | 'doctors') => {
+  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors') => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
-    <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-rose-500 selection:text-white">
-      {/* Top Sticky Header */}
+    <AudioReaderProvider>
+      <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-rose-500 selection:text-white">
+        {/* Top Sticky Header */}
       <header className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 transition-all">
         {/* Reading Progress Line */}
-        {(currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'monograph' || currentView === 'breast_cancer') && (
+        {(currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'monograph' || currentView === 'breast_cancer' || currentView === 'chronic_back_pain') && (
           <div 
             className="h-1 bg-gradient-to-r from-rose-500 via-amber-500 to-teal-400 transition-all duration-150"
             style={{ width: `${scrollProgress}%` }}
@@ -159,9 +183,9 @@ export function App() {
             </span>
           </div>
 
-          {/* View Mode Toggle Pill (6 Navigation Tabs) */}
+          {/* View Mode Toggle Pill (7 Navigation Tabs) */}
           <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-[11px] sm:text-xs font-bold overflow-x-auto max-w-full">
-            {/* Mắt Cá Chân (MỚI) */}
+            {/* Mắt Cá Chân */}
             <button
               onClick={() => handleSwitchView('ankle_trauma')}
               className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
@@ -171,7 +195,7 @@ export function App() {
               }`}
             >
               <Footprints className="w-3.5 h-3.5 shrink-0" />
-              <span>Mắt Cá & Phục Hồi (Mới)</span>
+              <span>Mắt Cá</span>
             </button>
 
             {/* Cột Sống Cổ */}
@@ -184,7 +208,20 @@ export function App() {
               }`}
             >
               <Bone className="w-3.5 h-3.5 shrink-0" />
-              <span>Cột Sống Cổ</span>
+              <span>Cổ ACDF</span>
+            </button>
+
+            {/* Đau Lưng Kinh Niên (MỚI) */}
+            <button
+              onClick={() => handleSwitchView('chronic_back_pain')}
+              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
+                currentView === 'chronic_back_pain'
+                  ? 'bg-indigo-500 text-white shadow-sm shadow-indigo-500/30 ring-1 ring-indigo-400'
+                  : 'text-indigo-400 hover:text-indigo-200 bg-indigo-950/30'
+              }`}
+            >
+              <Activity className="w-3.5 h-3.5 shrink-0" />
+              <span>Đau Lưng (Mới)</span>
             </button>
 
             {/* K Vú */}
@@ -197,7 +234,7 @@ export function App() {
               }`}
             >
               <Ribbon className="w-3.5 h-3.5 shrink-0" />
-              <span>K Vú & Thuốc Mới</span>
+              <span>K Vú</span>
             </button>
 
             {/* Tử Cung */}
@@ -223,7 +260,7 @@ export function App() {
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5 shrink-0" />
-              <span>Tập Q&A (53)</span>
+              <span>Tập Q&A (68)</span>
             </button>
 
             {/* Bác Sĩ */}
@@ -260,6 +297,15 @@ export function App() {
           />
         )}
 
+        {currentView === 'chronic_back_pain' && (
+          <ChronicBackPainArticle
+            onOpenVideoModal={(video) => setSelectedVideo(video)}
+            onSwitchToGynecologyModule={() => handleSwitchView('monograph')}
+            onSwitchToBreastCancerModule={() => handleSwitchView('breast_cancer')}
+            onSwitchToCervicalSpineModule={() => handleSwitchView('cervical_spine')}
+          />
+        )}
+
         {currentView === 'breast_cancer' && (
           <BreastCancerArticle
             onOpenVideoModal={(video) => setSelectedVideo(video)}
@@ -275,8 +321,8 @@ export function App() {
         
         {currentView === 'qa' && (
           <QAPage 
-            onBackToBook={() => handleSwitchView('ankle_trauma')}
-            defaultTopic="ankle"
+            onBackToBook={() => handleSwitchView('chronic_back_pain')}
+            defaultTopic="back_pain"
           />
         )}
 
@@ -297,6 +343,9 @@ export function App() {
         onJumpToSection={handleJumpToSection}
       />
 
+      {/* Global Audio Speech Reader Player Bar */}
+      <AudioPlayerBar />
+
       {/* Video Modal Player */}
       <VideoModal
         media={selectedVideo}
@@ -306,6 +355,7 @@ export function App() {
       {/* Footer */}
       <Footer />
     </div>
+  </AudioReaderProvider>
   );
 }
 

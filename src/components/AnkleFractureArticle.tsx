@@ -5,6 +5,7 @@ import { ankleFractureDecisionTree } from '../data/ankleFractureDecisionData';
 import { AnkleFractureCaseViewer } from './AnkleFractureCaseViewer';
 import { AnkleFractureRehabTimeline } from './AnkleFractureRehabTimeline';
 import { AnkleFractureSafetySection } from './AnkleFractureSafetySection';
+import { ReadAloudButton } from './ReadAloudButton';
 import type { MediaItem } from '../types/medical';
 import { 
   Activity, 
@@ -93,6 +94,18 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
             Cẩm nang y khoa thực chứng giải mã chấn thương gãy 2 mắt cá (Bimalleolar), đứt phức hợp dây chằng ATFL và toác khớp chày mác; kỹ thuật phẫu thuật nẹp vít Titanium (ORIF), ma trận chống huyết khối DVT và cẩm nang phục hồi 4 giai đoạn chi tiết cho người cao tuổi.
           </p>
+
+          {/* Read Aloud Full Article Button */}
+          <div className="pt-2">
+            <ReadAloudButton
+              id="ankle-monograph-full"
+              title="Té Ngã Gãy Mắt Cá Chân & Phục Hồi Toàn Diện"
+              text="Chuyên khảo: Té ngã gãy mắt cá chân, đứt dây chằng và phục hồi toàn diện từ A đến Z. Cẩm nang giải mã chấn thương gãy hai mắt cá, đứt dây chằng mác sên trước ATFL và toác khớp chày mác. Phẫu thuật kết hợp xương nẹp vít ORIF là chuẩn vàng giúp phục hồi giải phẫu vững chắc. Lộ trình phục hồi 4 giai đoạn cùng giày bảo hộ CAM Boot giúp người bệnh tự tin đi lại bình thường."
+              variant="hero"
+              label="Bấm để nghe đọc chuyên khảo"
+              durationEstimate="~18 phút"
+            />
+          </div>
         </div>
 
         {/* Privacy Shield Banner */}

@@ -8,14 +8,15 @@ import {
   Ribbon,
   Stethoscope,
   Bone,
-  Footprints
+  Footprints,
+  Activity
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
   onJumpToSection: (sectionId: string) => void;
   activeSection: string;
-  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'qa' | 'doctors';
-  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'qa' | 'doctors') => void;
+  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors';
+  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors') => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
@@ -25,6 +26,16 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onSwitchView
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const backPainChapters = [
+    { id: 'bp-ch-1', title: 'Chương 1: Giải Mã Hiện Tượng Ngứa Ran & Bệnh Sử Tuổi 25', desc: 'Thuyết cổng kiểm soát, nhánh thần kinh bì lưng sau (Notalgia Paresthetica)' },
+    { id: 'bp-ch-2', title: 'Chương 2: Tương Quan Tam Giác: Đau Lưng – Tử Cung – K Vú', desc: 'Đau quy chiếu từ Adenomyosis/U xơ 45mm, Prostaglandin F2a, không di căn xương' },
+    { id: 'bp-ch-3', title: 'Chương 3: Chuỗi Động Lực Cột Sống & Bí Mật Kê Gối Khi Ngủ', desc: 'Bù trừ cơ học từ cổ vai gáy & giải mã kê gối ngủ đỡ nhưng không khỏi' },
+    { id: 'bp-ch-4', title: 'Chương 4: Lộ Trình Phục Hồi 3 Giai Đoạn & Bộ 3 McGill Big 3', desc: 'Giải phóng màng cân cơ (MFR), củng cố cơ lõi sâu & gác chân lên tường' },
+    { id: 'bp-ch-5', title: 'Chương 5: Atlas Video 3D & Mô Phỏng Giải Phẫu', desc: 'Mô phỏng 3D cơ dựng sống, đường đau tử cung & bài tập cột sống' },
+    { id: 'bp-ch-6', title: 'Chương 6: Cây Quyết Định Lâm Sàng Cá Thể Hóa', desc: 'Tự đánh giá phân loại cơn đau & câu hỏi chuẩn bị cho Bác sĩ' },
+    { id: 'bp-ch-7', title: 'Chương 7: Kỹ Thuật Kê Gối Kép & Dinh Dưỡng Giảm Viêm', desc: 'Gối thắt lưng + gối khoeo chân, Magie Glycinate, B6, Omega-3' }
+  ];
 
   const ankleChapters = [
     { id: 'ankle-ch-1', title: 'Chương 1: Giải Mã Hồ Sơ Chấn Thương X-quang & MRI', desc: 'Gãy 2 mắt cá, lệch mộng chày sên & đứt dây chằng ATFL' },
@@ -65,7 +76,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     { id: 'chapter-7', title: 'Chương 7: Chăm Sóc Sức Khỏe & Tái Khám', desc: 'Dinh dưỡng bổ máu, bảo vệ xương khớp & tầm soát kép định kỳ' }
   ];
 
-  const handleJump = (id: string, targetModule: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph') => {
+  const handleJump = (id: string, targetModule: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain') => {
     setIsDrawerOpen(false);
     if (currentView !== targetModule && onSwitchView) {
       onSwitchView(targetModule);
@@ -120,7 +131,22 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             }`}
           >
             <Bone className={`w-4 h-4 ${currentView === 'cervical_spine' ? 'text-slate-950' : 'text-amber-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5 truncate">Cột Sống</span>
+            <span className="text-[10px] font-bold mt-0.5 truncate">Cổ ACDF</span>
+          </button>
+
+          {/* Đau Lưng Kinh Niên (MỚI) */}
+          <button
+            onClick={() => {
+              if (onSwitchView) onSwitchView('chronic_back_pain');
+            }}
+            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
+              currentView === 'chronic_back_pain' 
+                ? 'bg-indigo-500 text-white font-bold shadow-md shadow-indigo-500/30 ring-1 ring-indigo-400' 
+                : 'text-indigo-400 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <Activity className={`w-4 h-4 ${currentView === 'chronic_back_pain' ? 'text-white' : 'text-indigo-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5 truncate">Đau Lưng</span>
           </button>
 
           {/* K Vú Module */}
@@ -150,7 +176,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             }`}
           >
             <HelpCircle className={`w-4 h-4 ${currentView === 'qa' ? 'text-slate-950' : 'text-amber-300'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Q&A (53)</span>
+            <span className="text-[10px] font-bold mt-0.5">Q&A (68)</span>
           </button>
 
           {/* Doctors Button */}
@@ -177,8 +203,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             {/* Drawer Header */}
             <div className="p-4 border-b border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-2 text-white font-black text-base">
-                <ListOrdered className="w-5 h-5 text-rose-400" />
-                <span>Mục Lục 4 Chuyên Khảo</span>
+                <ListOrdered className="w-5 h-5 text-indigo-400" />
+                <span>Mục Lục 5 Chuyên Khảo</span>
               </div>
               <button 
                 onClick={() => setIsDrawerOpen(false)}
@@ -190,8 +216,48 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
             {/* Chapters List */}
             <div className="flex-1 overflow-y-auto p-4 space-y-6">
-              {/* Ankle Chapters */}
+              {/* Back Pain Chapters (MỚI) */}
               <div className="space-y-2">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 px-2">
+                  <Activity className="w-3.5 h-3.5" />
+                  <span>Chuyên Khảo Đau Lưng Kinh Niên (7 Chương)</span>
+                </div>
+                <div className="space-y-1">
+                  {backPainChapters.map((ch, idx) => {
+                    const isActive = activeSection === ch.id;
+                    return (
+                      <button
+                        key={ch.id}
+                        onClick={() => handleJump(ch.id, 'chronic_back_pain')}
+                        className={`w-full text-left p-2.5 rounded-xl transition-all group flex items-start gap-2.5 cursor-pointer ${
+                          isActive 
+                            ? 'bg-indigo-500/20 border border-indigo-500/40 text-indigo-300' 
+                            : 'hover:bg-slate-800/80 border border-transparent'
+                        }`}
+                      >
+                        <span className={`flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold shrink-0 mt-0.5 ${
+                          isActive ? 'bg-indigo-500 text-white' : 'bg-indigo-500/20 text-indigo-300'
+                        }`}>
+                          {idx + 1}
+                        </span>
+                        <div>
+                          <div className={`text-xs font-bold transition-colors ${
+                            isActive ? 'text-indigo-300' : 'text-slate-200 group-hover:text-indigo-300'
+                          }`}>
+                            {ch.title}
+                          </div>
+                          <div className="text-[11px] text-slate-400 line-clamp-1">
+                            {ch.desc}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Ankle Chapters */}
+              <div className="space-y-2 pt-2 border-t border-slate-800">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-rose-400 px-2">
                   <Footprints className="w-3.5 h-3.5" />
                   <span>Chuyên Khảo Mắt Cá & Phục Hồi (7 Chương)</span>

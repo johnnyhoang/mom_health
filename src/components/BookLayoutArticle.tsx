@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { InteractiveCaseViewer } from './InteractiveCaseViewer';
 import { BreastCancerSafetySection } from './BreastCancerSafetySection';
+import { MenstrualCycleTrackerSection } from './MenstrualCycleTrackerSection';
+import { ReadAloudButton } from './ReadAloudButton';
 import { tamoxifenTreatmentOptions, tamoxifenMechanisms } from '../data/tamoxifenTreatmentData';
 import { tamoxifenMediaItems } from '../data/tamoxifenMediaData';
 import { tamoxifenClinicalDecisionTree } from '../data/tamoxifenDecisionData';
@@ -86,6 +88,18 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
             Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế "Nghịch lý Tamoxifen", căn nguyên gây rong kinh & 4 phác đồ tối ưu hóa sức khỏe cho phụ nữ sau điều trị ung thư vú.
           </p>
+
+          {/* Read Aloud Full Article Button */}
+          <div className="pt-2">
+            <ReadAloudButton
+              id="monograph-full"
+              title="Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen"
+              text="Bảo vệ nội mạc tử cung sau 5 năm Tamoxifen. Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế nghịch lý Tamoxifen, căn nguyên gây rong kinh và 4 phác đồ điều trị tối ưu. Kết quả giải phẫu bệnh tại bệnh viện Hùng Vương ngày 15 tháng 9 năm 2026 kết luận tăng sản điển hình khu trú, đây là thương tổn hoàn toàn lành tính, nguy cơ ung thư dưới một phần trăm, tuyệt đối không phải ung thư vú di căn và không phải ung thư nội mạc tử cung."
+              variant="hero"
+              label="Bấm để nghe đọc cẩm nang"
+              durationEstimate="~12 phút"
+            />
+          </div>
         </div>
 
         {/* Meta & Case Context Banner */}
@@ -129,13 +143,21 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       <section id="chapter-1" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
         
-        <div className="space-y-2">
-          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 1 • Nền Tảng Y Học
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
+            <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Chương 1 • Nền Tảng Y Học
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Giải Mã "Nghịch Lý Tamoxifen": Tại Sao Chặn Ở Vú Lại Tác Động Tử Cung?
+            </h2>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Giải Mã "Nghịch Lý Tamoxifen": Tại Sao Chặn Ở Vú Lại Tác Động Tử Cung?
-          </h2>
+          <ReadAloudButton
+            id="chapter-1-audio"
+            title="Chương 1: Nghịch Lý Tamoxifen"
+            text="Chương 1: Giải mã Nghịch lý Tamoxifen. Tại sao chặn ở vú lại tác động đến tử cung? Tamoxifen thuộc nhóm SERM, chất điều hòa thụ thể estrogen chọn lọc. Tại mô tuyến vú, thuốc khóa chặt ổ khóa ngăn tế bào ung thư phát triển. Tại lòng tử cung, thuốc lại kích thích nhẹ gây phù nề niêm mạc và giãn các ống tuyến."
+            variant="chapter"
+          />
         </div>
 
         {/* Storytelling & Scientific Mechanism */}
@@ -198,16 +220,24 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       <section id="chapter-2" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
         
-        <div className="space-y-2">
-          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 2 • Phân Tích Thực Tế
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
+            <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Chương 2 • Phân Tích Thực Tế
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Giải Mã Trực Tiếp 4 Hồ Sơ Bệnh Án & Kết Quả Giải Phẫu Bệnh
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Dưới đây là công cụ phân tích tương tác trực quan giải thích cặn kẽ từng dòng chữ, thuật ngữ trong phiếu kết quả của chị.
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Giải Mã Trực Tiếp 4 Hồ Sơ Bệnh Án & Kết Quả Giải Phẫu Bệnh
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
-            Dưới đây là công cụ phân tích tương tác trực quan giải thích cặn kẽ từng dòng chữ, thuật ngữ trong phiếu kết quả của chị.
-          </p>
+          <ReadAloudButton
+            id="chapter-2-audio"
+            title="Chương 2: Giải Mã Hồ Sơ Bệnh Án & GPB"
+            text="Chương 2: Giải mã trực tiếp 4 hồ sơ bệnh án và kết quả giải phẫu bệnh. Kết quả giải phẫu bệnh tại bệnh viện Hùng Vương ngày 15 tháng 9 năm 2026 xác nhận tăng sản điển hình khu trú nội mạc tử cung, hoàn toàn lành tính. Thủ thuật Pipelle được thực hiện vào ngày 17 của chu kỳ khi niêm mạc dày sinh lý tối đa."
+            variant="chapter"
+          />
         </div>
 
         {/* Interactive Case Viewer Component */}
@@ -258,6 +288,9 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           </div>
         </div>
 
+        {/* Deep Dive: Menstrual Cycle Tracker & Clinical Correlation Section */}
+        <MenstrualCycleTrackerSection />
+
       </section>
 
       {/* ========================================================================= */}
@@ -265,16 +298,24 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       <section id="chapter-3" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
         
-        <div className="space-y-2">
-          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 3 • Căn Nguyên Bệnh Lý
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-2">
+            <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Chương 3 • Căn Nguyên Bệnh Lý
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+              Đi Tìm Thủ Phạm Gây Rong Kinh Kéo Dài: "Bộ Tứ Tác Động"
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Rong kinh nhiều tháng qua không đơn thuần chỉ do một yếu tố duy nhất, mà là sự cộng hưởng của 4 yếu tố cùng lúc:
+            </p>
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Đi Tìm Thủ Phạm Gây Rong Kinh Kéo Dài: "Bộ Tứ Tác Động"
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
-            Rong kinh nhiều tháng qua không đơn thuần chỉ do một yếu tố duy nhất, mà là sự cộng hưởng của 4 yếu tố cùng lúc:
-          </p>
+          <ReadAloudButton
+            id="chapter-3-audio"
+            title="Chương 3: Căn Nguyên Gây Rong Kinh"
+            text="Chương 3: Đi tìm thủ phạm gây rong kinh kéo dài. Bộ tứ tác động bao gồm: Một là mảng tăng sản tuyến do Tamoxifen. Hai là Lạc tuyến trong cơ tử cung Adenomyosis làm cơ không co bóp cầm máu được. Ba là khối u cơ thành sau 45 mi-li-mét. Bốn là giai đoạn tiền mãn kinh ở độ tuổi 45."
+            variant="chapter"
+          />
         </div>
 
         {/* 4 Contributing Factors Cards */}

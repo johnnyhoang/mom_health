@@ -372,5 +372,66 @@ export const tamoxifenQADataset: QAItem[] = [
       '  3. Giá trị cho người thân: Giúp con gái và chị em gái trong gia đình có kế hoạch tầm soát sớm chủ động.'
     ],
     doctorQuestionToAsk: '"Thưa bác sĩ Ung bướu, với bệnh án của tôi, tôi có thuộc nhóm chỉ định làm xét nghiệm gen di truyền BRCA1/2 không?"'
+  },
+  {
+    id: 'qa-27',
+    category: 'case_results',
+    categoryLabel: 'Giải Mã Bệnh Án',
+    question: 'Tôi làm thủ thuật sinh thiết Pipelle vào Ngày 17 của chu kỳ kinh nguyệt, độ dày nội mạc tử cung có bị ảnh hưởng bởi chu kỳ kinh không?',
+    shortSummary: 'ẢNH HƯỞNG RẤT LỚN VÀ HOÀN TOÀN TỰ NHIÊN. Ngày 17 chu kỳ là thời điểm niêm mạc tử cung đạt độ dày sinh lý tối đa (Pha phân tiết hoàng thể).',
+    detailedAnswer: [
+      '• Tương quan chu kỳ sinh lý: Ngày đầu tiên của kỳ kinh nguyệt gần nhất là 24/08/2026. Đến ngày làm thủ thuật sinh thiết Pipelle (09/09/2026) chính là Ngày 17 của chu kỳ.',
+      '• Đặc điểm mô học của Ngày 17 (Pha phân tiết / Secretory phase): Dưới tác động của Progesterone do hoàng thể tiết ra, niêm mạc tử cung sinh lý bình thường luôn dày lên từ 10 - 16mm, các ống tuyến cuộn xoắn và phình to chứa đầy chất nhầy dinh dưỡng.',
+      '• Kết luận lâm sàng: Hình ảnh siêu âm thấy nội mạc dày và mô tả vi thể BV Hùng Vương "ống tuyến giãn rộng dạng bọc, lót biểu mô trụ cao" là sự kết hợp hoàn toàn tự nhiên giữa Pha phân tiết của Ngày 17 chu kỳ và dư âm tích tụ 5 năm Tamoxifen. Đây là hiện tượng sinh lý lành tính, tuyệt đối KHÔNG PHẢI là dấu hiệu ung thư hay bệnh lý ác tính!'
+    ],
+    clinicalHighlight: 'Đo độ dày niêm mạc tử cung vào pha phân tiết/hoàng thể (sau rụng trứng) luôn có giá trị sinh lý dày hơn nhiều so với pha đầu chu kỳ.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, tôi làm sinh thiết vào ngày 17 của chu kỳ (pha hoàng thể), vậy hình ảnh tuyến giãn rộng trên GPB có phải là phản ánh sinh lý pha phân tiết kết hợp Tamoxifen không?"'
+  },
+  {
+    id: 'qa-28',
+    category: 'lifestyle_followup',
+    categoryLabel: 'Giải Mã Triệu Chứng',
+    question: 'Huyết trắng màu cam nhạt hoặc đốm cam rải rác sau quan hệ / tập aerobic là gì, có nguy hiểm không?',
+    shortSummary: 'ĐÂY LÀ HIỆN TƯỢNG RỈ MÁU VI THỂ HOÀN TOÀN LÀNH TÍNH do máu cực ít bị oxy hóa trong môi trường axit âm đạo hoặc rỉ máu quanh rụng trứng.',
+    detailedAnswer: [
+      '• Cơ chế đổi màu cam: Khi chỉ có vài giọt máu vi thể (< 0.5ml) rỉ ra, lượng hồng cầu này hòa lẫn với dịch nhầy âm đạo có tính axit (pH 3.8 - 4.5). Hemoglobin (Fe2+) bị oxy hóa thành Methemoglobin (Fe3+), tạo nên sắc tố màu vàng cam hoặc cam nhạt thay vì màu đỏ tươi.',
+      '• 3 nguyên nhân xuất hiện đốm cam trong nhật ký:',
+      '  1. Rỉ máu quanh ngày rụng trứng (Periovulatory spotting - ngày 03-08/09): Do nồng độ Estrogen giảm tạm thời khi nang trứng phóng noãn.',
+      '  2. Sau sinh hoạt vợ chồng (ngày 07/09) hoặc tập aerobic (31/08): Cọ sát cơ học và tăng áp lực ổ bụng làm rỉ vài giọt dịch từ các mao mạch mỏng manh ở cổ tử cung / đáy tử cung.',
+      '  3. Hồi phục sau sinh thiết Pipelle (ngày 10-14/09): Diện cắt sinh thiết đang liền sẹo đào thải nốt huyết tương lẫn ít hồng cầu.',
+      '• Vì sao an tâm: Đốm cam chỉ dính nhẹ băng vệ sinh hàng ngày rồi tự ngưng, không kèm mùi hôi, không sốt, không phải xuất huyết ồ ạt bệnh lý.'
+    ],
+    clinicalHighlight: 'Đốm cam rải rác quanh ngày rụng trứng hoặc sau vận động là hiện tượng sinh lý - cơ học vô hại, không có yếu tố ác tính.'
+  },
+  {
+    id: 'qa-29',
+    category: 'tamoxifen_mechanism',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Vào ngày 15/09/2026 tôi bị căng đau tức vú phải nhiều và vú trái ít hơn, kèm đau bụng dưới và đau lưng, có phải ung thư vú tái phát không?',
+    shortSummary: 'TUYỆT ĐỐI KHÔNG PHẢI K VÚ TÁI PHÁT. Đây là triệu chứng Căng đau ngực tiền kinh nguyệt (PMS Mastalgia) điển hình ở pha hoàng thể.',
+    detailedAnswer: [
+      '• Bản chất y học: Ngày 15/09 là Ngày 23 của chu kỳ kinh nguyệt (khoảng 5-7 ngày trước khi kỳ kinh tiếp theo bắt đầu).',
+      '• Cơ chế gây đau ngực (PMS): Ở pha hoàng thể muộn, nồng độ Progesterone và Estrogen đang ở mức cao kích thích các ống tuyến và tiểu thùy vú giữ nước, gây cương tức và căng đau cả 2 bầu ngực (vú phải và vú trái). Đồng thời, hormone này gây giữ nước nhẹ vùng chậu và co thắt cơ trơn gây đau âm ỉ bụng dưới và đau mỏi thắt lưng.',
+      '• Phân biệt với K vú: Khối u ung thư vú là tổn thương khu trú cố định, tiến triển âm thầm và hầu như không gây đau theo chu kỳ. Triệu chứng đau căng vú xuất hiện đồng thời cả 2 bên theo chu kỳ kinh nguyệt là biểu hiện sinh lý nội tiết của tuyến vú bình thường.',
+      '• Chăm sóc: Mặc áo ngực nâng đỡ êm ái không gọng, chườm ấm nhẹ, hạn chế muối ăn và cà phê. Triệu chứng sẽ tự biến mất sau khi hành kinh.'
+    ],
+    clinicalHighlight: 'Căng đau vú 2 bên vào ngày 23 chu kỳ kèm đau lưng là hội chứng tiền kinh nguyệt (PMS) 100%, khẳng định hệ trục nội tiết buồng trứng vẫn đang hoạt động sinh lý.'
+  },
+  {
+    id: 'qa-30',
+    category: 'case_results',
+    categoryLabel: 'Lịch Sử Chu Kỳ',
+    question: 'Lịch sử theo dõi kinh nguyệt từ 2022 đến 2024 cho thấy chu kỳ của tôi thường dài 35-40 ngày, điều này có ý nghĩa gì đối với việc chẩn đoán nội mạc tử cung và Tamoxifen?',
+    shortSummary: 'ĐÂY LÀ "BẰNG CHỨNG VÀNG" KHẲNG ĐỊNH CƠ ĐỊA CHU KỲ DÀI SINH LÝ TỰ NHIÊN, buồng trứng hoạt động bền bỉ và giải thích chính xác thời điểm rụng trứng.',
+    detailedAnswer: [
+      '• Cơ địa chu kỳ dài sinh lý (Normal Long Cycle): Dữ liệu theo dõi liên tục 21 chu kỳ (2022 – 2024) cho thấy độ dài trung bình là 36.8 ngày (81% chu kỳ trong khoảng 34-42 ngày) và số ngày hành kinh cực kỳ ổn định (chuẩn 5 ngày). Đây là nhịp sinh học tự nhiên của cơ thể chị, không phải bệnh lý.',
+      '• Tương quan cửa sổ rụng trứng: Với chu kỳ 35-40 ngày, pha hoàng thể luôn cố định 14 ngày trước kỳ kinh tiếp theo, nghĩa là thời điểm rụng trứng của chị thường rơi vào khoảng Ngày 21 – 26 của chu kỳ (hoặc ngày 15-17 ở các chu kỳ 30-31 ngày).',
+      '• Ý nghĩa chẩn đoán Pipelle ngày 17: Khi làm sinh thiết ngày 17 (09/09/2026), tử cung đang ở đỉnh pha tăng sinh muộn / bắt đầu phân tiết, nội mạc sinh lý tự nhiên đạt độ dày cao. Hình ảnh vi thể "ống tuyến giãn rộng dạng bọc" là phản ánh sự hòa quyện giữa pha chu kỳ và tác động 5 năm Tamoxifen.',
+      '• Bác bỏ nguy cơ ác tính: Việc duy trì chu kỳ kinh nguyệt đều đặn trong suốt thời gian uống Tamoxifen chứng minh hệ trục Hạ đồi - Tuyến yên - Buồng trứng hoạt động lành mạnh. Tình trạng rong kinh sau khi ngưng thuốc (tháng 1/2026) chỉ là sự mất cân bằng thoáng qua do nội tiết tái điều hòa kết hợp khối u xơ 45mm, hoàn toàn không phải ung thư tái phát.'
+    ],
+    clinicalHighlight: '21 chu kỳ theo dõi dài hạn từ 2022-2024 là bằng chứng thực chứng đập tan mọi nghi ngờ về xuất huyết do ung thư ác tính.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, tôi có dữ liệu theo dõi chu kỳ kinh nguyệt 35-40 ngày đều đặn qua app từ năm 2022, điều này có giúp bác sĩ đánh giá chính xác hơn về nguyên nhân rong kinh sau khi ngừng Tamoxifen không?"'
   }
 ];
+
+
