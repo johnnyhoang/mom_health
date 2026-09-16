@@ -7,17 +7,22 @@ import {
   X, 
   ChevronUp, 
   BookOpen,
-  Activity
+  Activity,
+  Sparkles
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
   onJumpToSection: (sectionId: string) => void;
   activeSection: string;
+  currentView?: 'monograph' | 'qa';
+  onSwitchView?: (view: 'monograph' | 'qa') => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onJumpToSection,
-  activeSection
+  activeSection,
+  currentView = 'monograph',
+  onSwitchView
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
@@ -33,6 +38,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
   const handleJump = (id: string) => {
     setIsDrawerOpen(false);
+    if (currentView !== 'monograph' && onSwitchView) {
+      onSwitchView('monograph');
+    }
     onJumpToSection(id);
   };
 
@@ -46,6 +54,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       <div className="fixed bottom-3 inset-x-0 z-40 px-3 sm:px-6 pointer-events-none flex justify-center">
         <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 sm:gap-2 text-white max-w-lg w-full justify-between">
           
+          {/* Mục Lục Button */}
           <button
             onClick={() => setIsDrawerOpen(true)}
             className="flex flex-col items-center justify-center py-1 px-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex-1"
@@ -54,46 +63,63 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
           </button>
 
+          {/* Soi Bệnh Án */}
           <button
             onClick={() => handleJump('chapter-2')}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
-              activeSection === 'chapter-2' ? 'bg-teal-950 text-teal-300 font-bold border border-teal-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              currentView === 'monograph' && activeSection === 'chapter-2' 
+                ? 'bg-teal-950 text-teal-300 font-bold border border-teal-800' 
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <FileSearch className="w-4 h-4 text-teal-400" />
-            <span className="text-[10px] font-bold mt-0.5">Soi Bệnh Án</span>
+            <span className="text-[10px] font-bold mt-0.5">Bệnh Án</span>
           </button>
 
+          {/* 4 Cách Chữa */}
           <button
             onClick={() => handleJump('chapter-4')}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
-              activeSection === 'chapter-4' ? 'bg-emerald-950 text-emerald-300 font-bold border border-emerald-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              currentView === 'monograph' && activeSection === 'chapter-4' 
+                ? 'bg-emerald-950 text-emerald-300 font-bold border border-emerald-800' 
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <Activity className="w-4 h-4 text-emerald-400" />
             <span className="text-[10px] font-bold mt-0.5">4 Cách Chữa</span>
           </button>
 
+          {/* Video Mổ */}
           <button
             onClick={() => handleJump('chapter-5')}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
-              activeSection === 'chapter-5' ? 'bg-purple-950 text-purple-300 font-bold border border-purple-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              currentView === 'monograph' && activeSection === 'chapter-5' 
+                ? 'bg-purple-950 text-purple-300 font-bold border border-purple-800' 
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <Video className="w-4 h-4 text-purple-400" />
             <span className="text-[10px] font-bold mt-0.5">Video Mổ</span>
           </button>
 
+          {/* Tập Q&A Button */}
           <button
-            onClick={() => handleJump('chapter-6')}
+            onClick={() => {
+              if (onSwitchView) {
+                onSwitchView(currentView === 'qa' ? 'monograph' : 'qa');
+              }
+            }}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
-              activeSection === 'chapter-6' ? 'bg-amber-950 text-amber-300 font-bold border border-amber-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+              currentView === 'qa' 
+                ? 'bg-amber-500 text-slate-950 font-bold shadow-md' 
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <HelpCircle className="w-4 h-4 text-amber-400" />
-            <span className="text-[10px] font-bold mt-0.5">Tự Đánh Giá</span>
+            <HelpCircle className={`w-4 h-4 ${currentView === 'qa' ? 'text-slate-950' : 'text-amber-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">Q&A (16)</span>
           </button>
 
+          {/* Scroll to Top */}
           <button
             onClick={scrollToTop}
             title="Lên đầu trang"
@@ -130,6 +156,24 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                 <X className="w-5 h-5" />
               </button>
             </div>
+
+            {/* Quick Switch to Q&A in Drawer */}
+            <button
+              onClick={() => {
+                setIsDrawerOpen(false);
+                if (onSwitchView) onSwitchView('qa');
+              }}
+              className="w-full p-3 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-left flex items-center justify-between group hover:bg-amber-900/40 transition-colors"
+            >
+              <div className="flex items-center gap-2.5">
+                <HelpCircle className="w-5 h-5 text-amber-400" />
+                <div>
+                  <div className="text-xs font-bold text-amber-300">Mở Tập Q&A Hỏi - Đáp Tổng Kết (16 Câu)</div>
+                  <div className="text-[11px] text-amber-200/80">Tra cứu nhanh mọi thắc mắc và câu hỏi đi khám</div>
+                </div>
+              </div>
+              <Sparkles className="w-4 h-4 text-amber-400" />
+            </button>
 
             {/* Chapter Jump List */}
             <div className="space-y-2.5 pt-1">
