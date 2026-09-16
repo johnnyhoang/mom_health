@@ -104,8 +104,8 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* Personalized Clinical Preface */}
-        <div className="pt-2 text-slate-300 text-sm sm:text-base leading-relaxed space-y-4 font-serif">
-          <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-teal-400 first-letter:mr-2 first-letter:float-left">
+        <div className="pt-2 text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
+          <p>
             Chúc mừng chị đã hoàn thành trọn vẹn chặng đường 5 năm kiên cường điều trị Tamoxifen bảo vệ tuyến vú (2021 – 01/2026). Đây là một cột mốc vàng son khẳng định sự chiến thắng của chị trước căn bệnh ung thư vú.
           </p>
           <p>
