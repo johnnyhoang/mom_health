@@ -399,6 +399,17 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             </p>
           </div>
 
+          {/* Layman Analogy */}
+          {activeTreatment.laymanAnalogy && (
+            <div className="p-3.5 rounded-xl bg-slate-950/90 border-l-2 border-teal-400 text-xs text-slate-300 space-y-1">
+              <span className="font-bold text-teal-300 flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                <span>Hình tượng đời thường dễ hiểu:</span>
+              </span>
+              <p className="text-slate-200">{activeTreatment.laymanAnalogy}</p>
+            </div>
+          )}
+
           {/* Mechanism */}
           <div className="space-y-1.5">
             <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">

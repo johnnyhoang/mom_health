@@ -4,43 +4,53 @@ import {
   HelpCircle, 
   X, 
   ChevronUp, 
-  BookOpen, 
-  Activity, 
-  Sparkles, 
-  UserCheck 
+  UserCheck,
+  Ribbon,
+  Stethoscope
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
   onJumpToSection: (sectionId: string) => void;
   activeSection: string;
-  currentView?: 'monograph' | 'qa' | 'doctors';
-  onSwitchView?: (view: 'monograph' | 'qa' | 'doctors') => void;
+  currentView?: 'breast_cancer' | 'monograph' | 'qa' | 'doctors';
+  onSwitchView?: (view: 'breast_cancer' | 'monograph' | 'qa' | 'doctors') => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onJumpToSection,
   activeSection,
-  currentView = 'monograph',
+  currentView = 'breast_cancer',
   onSwitchView
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
 
-  const chapters = [
+  const bcChapters = [
+    { id: 'bc-chapter-1', title: 'Chương 1: Toàn Cảnh 4 Phân Nhóm Phân Tử K Vú', desc: 'Luminal A, Luminal B, HER2-low, Tam âm & Ki-67' },
+    { id: 'bc-chapter-2', title: 'Chương 2: Tamoxifen 5 Năm & Thử Nghiệm 10 Năm (ATLAS)', desc: 'Lợi ích bảo vệ vú và lý do dừng ở 5 năm' },
+    { id: 'bc-chapter-3', title: 'Chương 3: Vũ Khí Mới 2024-2026 (CDK4/6i, SERD, ADCs)', desc: 'Ribociclib NATALEE FDA 09/2024, Elacestrant, T-DXd' },
+    { id: 'bc-chapter-4', title: 'Chương 4: Video 3D Liệu Pháp Nhắm Trúng Đích', desc: 'Mô phỏng phân tử CDK4/6i, ADCs Enhertu & Tầm soát kép' },
+    { id: 'bc-chapter-5', title: 'Chương 5: Cây Quyết Định K Vú Cá Thể Hóa', desc: 'Đánh giá chiến lược điều trị và câu hỏi cho Bác sĩ' },
+    { id: 'bc-chapter-6', title: 'Chương 6: Dinh Dưỡng Giảm Viêm & Tầm Soát Trọn Đời', desc: 'Chế độ ăn Địa Trung Hải và lịch tầm soát định kỳ' }
+  ];
+
+  const gynChapters = [
     { id: 'chapter-1', title: 'Chương 1: Giải Mã "Nghịch Lý Tamoxifen"', desc: 'Cơ chế SERM: Chặn ở tuyến vú nhưng kích thích ở tử cung' },
     { id: 'chapter-2', title: 'Chương 2: Giải Mã 4 Hồ Sơ Bệnh Án & GPB Thực Tế', desc: 'Soi phiếu Hùng Vương & Tâm Anh: Tăng sản điển hình LÀNH TÍNH' },
     { id: 'chapter-3', title: 'Chương 3: Căn Nguyên Gây Rong Kinh: "Bộ Tứ Tác Động"', desc: 'Tăng sản tuyến, Adenomyosis thành sau, U xơ 45mm & Tuổi 45' },
-    { id: 'chapter-4', title: 'Chương 4: So Sánh 4 Hướng Điều Trị An Toàn K Vú', desc: 'Mổ nội soi bảo tồn buồng trứng, nội soi buồng tử cung, vòng Mirena' },
+    { id: 'chapter-4', title: 'Chương 4: So Sánh 4 Hướng Điều Trị & Ma Trận K Vú', desc: 'Mổ nội soi bảo tồn buồng trứng, nội soi buồng tử cung, vòng Mirena' },
     { id: 'chapter-5', title: 'Chương 5: Video Thủ Thuật & Mổ Thực Tế', desc: 'Xem video nội soi buồng tử cung, phẫu thuật nội soi, sinh thiết' },
     { id: 'chapter-6', title: 'Chương 6: Cây Quyết Định Cá Thể Hóa', desc: 'Tự đánh giá theo triệu chứng & nhận câu hỏi chuẩn cho Bác sĩ' },
     { id: 'chapter-7', title: 'Chương 7: Chăm Sóc Sức Khỏe & Tái Khám', desc: 'Dinh dưỡng bổ máu, bảo vệ xương khớp & tầm soát kép định kỳ' }
   ];
 
-  const handleJump = (id: string) => {
+  const handleJump = (id: string, targetModule: 'breast_cancer' | 'monograph') => {
     setIsDrawerOpen(false);
-    if (currentView !== 'monograph' && onSwitchView) {
-      onSwitchView('monograph');
+    if (currentView !== targetModule && onSwitchView) {
+      onSwitchView(targetModule);
     }
-    onJumpToSection(id);
+    setTimeout(() => {
+      onJumpToSection(id);
+    }, 80);
   };
 
   const scrollToTop = () => {
@@ -49,9 +59,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
   return (
     <>
-      {/* Floating Bottom Nav Bar (Sticky on all mobile & desktop viewports) */}
+      {/* Floating Bottom Nav Bar */}
       <div className="fixed bottom-3 inset-x-0 z-40 px-2 sm:px-6 pointer-events-none flex justify-center">
-        <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 text-white max-w-lg w-full justify-between">
+        <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 text-white max-w-md w-full justify-between">
           
           {/* Mục Lục Button */}
           <button
@@ -62,74 +72,71 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
           </button>
 
-          {/* Sách / Chuyên Khảo */}
+          {/* K Vú Module */}
+          <button
+            onClick={() => {
+              if (onSwitchView) onSwitchView('breast_cancer');
+            }}
+            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 ${
+              currentView === 'breast_cancer' 
+                ? 'bg-rose-500 text-white font-bold shadow-md shadow-rose-500/30' 
+                : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <Ribbon className={`w-4 h-4 ${currentView === 'breast_cancer' ? 'text-white' : 'text-rose-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">K Vú Mới</span>
+          </button>
+
+          {/* Tử Cung Module */}
           <button
             onClick={() => {
               if (onSwitchView) onSwitchView('monograph');
-              handleJump('chapter-1');
             }}
             className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 ${
               currentView === 'monograph' 
-                ? 'bg-teal-950 text-teal-300 font-bold border border-teal-800' 
+                ? 'bg-teal-500 text-slate-950 font-bold shadow-md shadow-teal-500/30' 
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <BookOpen className="w-4 h-4 text-teal-400" />
-            <span className="text-[10px] font-bold mt-0.5">Sách Đọc</span>
+            <Stethoscope className={`w-4 h-4 ${currentView === 'monograph' ? 'text-slate-950' : 'text-teal-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">Tử Cung</span>
           </button>
 
-          {/* 4 Cách Chữa */}
-          <button
-            onClick={() => handleJump('chapter-4')}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 ${
-              currentView === 'monograph' && activeSection === 'chapter-4' 
-                ? 'bg-emerald-950 text-emerald-300 font-bold border border-emerald-800' 
-                : 'text-slate-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Activity className="w-4 h-4 text-emerald-400" />
-            <span className="text-[10px] font-bold mt-0.5">4 Phác Đồ</span>
-          </button>
-
-          {/* Tập Q&A Button */}
+          {/* Tập Q&A */}
           <button
             onClick={() => {
-              if (onSwitchView) {
-                onSwitchView('qa');
-              }
+              if (onSwitchView) onSwitchView('qa');
             }}
             className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 ${
               currentView === 'qa' 
-                ? 'bg-amber-500 text-slate-950 font-bold shadow-md' 
+                ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/30' 
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
             <HelpCircle className={`w-4 h-4 ${currentView === 'qa' ? 'text-slate-950' : 'text-amber-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Q&A (16)</span>
+            <span className="text-[10px] font-bold mt-0.5">Q&A (26)</span>
           </button>
 
-          {/* Top 10 Bác Sĩ Button */}
+          {/* Top 10 Bác Sĩ */}
           <button
             onClick={() => {
-              if (onSwitchView) {
-                onSwitchView('doctors');
-              }
+              if (onSwitchView) onSwitchView('doctors');
             }}
             className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 ${
               currentView === 'doctors' 
-                ? 'bg-teal-500 text-slate-950 font-bold shadow-md' 
+                ? 'bg-purple-500 text-white font-bold shadow-md shadow-purple-500/30' 
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <UserCheck className={`w-4 h-4 ${currentView === 'doctors' ? 'text-slate-950' : 'text-teal-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Top Bác Sĩ</span>
+            <UserCheck className={`w-4 h-4 ${currentView === 'doctors' ? 'text-white' : 'text-purple-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">Bác Sĩ</span>
           </button>
 
           {/* Scroll to Top */}
           <button
             onClick={scrollToTop}
             title="Lên đầu trang"
-            className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors ml-0.5 hidden sm:flex items-center justify-center"
+            className="p-1.5 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors hidden sm:flex items-center justify-center"
           >
             <ChevronUp className="w-4 h-4" />
           </button>
@@ -152,8 +159,8 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             
             <div className="flex items-center justify-between pb-3 border-b border-slate-800">
               <div className="flex items-center gap-2">
-                <BookOpen className="w-5 h-5 text-teal-400" />
-                <h3 className="font-bold text-base text-white">Mục Lục Toàn Bộ Ứng Dụng</h3>
+                <Ribbon className="w-5 h-5 text-rose-400" />
+                <h3 className="font-bold text-base text-white">Mục Lục Toàn Bộ Hệ Thống</h3>
               </div>
               <button 
                 onClick={() => setIsDrawerOpen(false)}
@@ -163,23 +170,22 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               </button>
             </div>
 
-            {/* Quick Links in Drawer */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+            {/* Quick Switch Cards */}
+            <div className="grid grid-cols-2 gap-2">
               <button
                 onClick={() => {
                   setIsDrawerOpen(false);
                   if (onSwitchView) onSwitchView('qa');
                 }}
-                className="w-full p-3 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-left flex items-center justify-between group hover:bg-amber-900/40 transition-colors"
+                className="p-3 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-left flex items-center justify-between group hover:bg-amber-900/40 transition-colors"
               >
-                <div className="flex items-center gap-2.5">
-                  <HelpCircle className="w-5 h-5 text-amber-400" />
+                <div className="flex items-center gap-2">
+                  <HelpCircle className="w-4 h-4 text-amber-400 shrink-0" />
                   <div>
-                    <div className="text-xs font-bold text-amber-300">Tập Q&A Hỏi - Đáp (16 Câu)</div>
+                    <div className="text-xs font-bold text-amber-300">Tập Q&A (26 Câu)</div>
                     <div className="text-[10px] text-amber-200/80">Tra cứu nhanh câu hỏi đi khám</div>
                   </div>
                 </div>
-                <Sparkles className="w-4 h-4 text-amber-400" />
               </button>
 
               <button
@@ -187,43 +193,96 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                   setIsDrawerOpen(false);
                   if (onSwitchView) onSwitchView('doctors');
                 }}
-                className="w-full p-3 rounded-2xl bg-teal-950/40 border border-teal-500/40 text-left flex items-center justify-between group hover:bg-teal-900/40 transition-colors"
+                className="p-3 rounded-2xl bg-purple-950/40 border border-purple-500/40 text-left flex items-center justify-between group hover:bg-purple-900/40 transition-colors"
               >
-                <div className="flex items-center gap-2.5">
-                  <UserCheck className="w-5 h-5 text-teal-400" />
+                <div className="flex items-center gap-2">
+                  <UserCheck className="w-4 h-4 text-purple-400 shrink-0" />
                   <div>
-                    <div className="text-xs font-bold text-teal-300">Top 10 Bác Sĩ Phụ Khoa & Ung Bướu</div>
-                    <div className="text-[10px] text-teal-200/80">Lịch khám, địa chỉ & SĐT đặt hẹn</div>
+                    <div className="text-xs font-bold text-purple-300">Top 10 Bác Sĩ TP.HCM</div>
+                    <div className="text-[10px] text-purple-200/80">Lịch khám & SĐT đặt hẹn</div>
                   </div>
                 </div>
-                <Sparkles className="w-4 h-4 text-teal-400" />
               </button>
             </div>
 
-            {/* Chapter Jump List */}
-            <div className="space-y-2 pt-1 border-t border-slate-800">
-              <div className="text-xs font-bold text-slate-400 uppercase tracking-wider px-1">
-                Các Chương Trong Sách Chuyên Khảo:
+            {/* K Vú Chapters */}
+            <div className="space-y-2 pt-2 border-t border-slate-800">
+              <div className="flex items-center gap-2 text-xs font-bold text-rose-400 uppercase tracking-wider px-1">
+                <Ribbon className="w-3.5 h-3.5" />
+                <span>Chuyên Khảo: K Vú & Các Đột Phá Thuốc Mới</span>
               </div>
-              {chapters.map((chap, idx) => (
-                <button
-                  key={chap.id}
-                  onClick={() => handleJump(chap.id)}
-                  className="w-full text-left p-3 rounded-2xl bg-slate-800/80 hover:bg-teal-950/80 border border-slate-700/80 hover:border-teal-500/50 transition-all flex items-start gap-3 group"
-                >
-                  <span className="w-7 h-7 rounded-xl bg-teal-600/20 border border-teal-500/40 text-teal-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-teal-600 group-hover:text-white transition-colors">
-                    {idx + 1}
-                  </span>
-                  <div>
-                    <h4 className="text-sm font-bold text-slate-100 group-hover:text-teal-300 transition-colors">
-                      {chap.title}
-                    </h4>
-                    <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">
-                      {chap.desc}
-                    </p>
-                  </div>
-                </button>
-              ))}
+              {bcChapters.map((chap, idx) => {
+                const isActive = currentView === 'breast_cancer' && activeSection === chap.id;
+                return (
+                  <button
+                    key={chap.id}
+                    onClick={() => handleJump(chap.id, 'breast_cancer')}
+                    className={`w-full text-left p-3 rounded-2xl transition-all flex items-start gap-3 group ${
+                      isActive 
+                        ? 'bg-rose-950/90 border-2 border-rose-500 shadow-md shadow-rose-500/20' 
+                        : 'bg-slate-800/80 hover:bg-rose-950/80 border border-slate-700/80 hover:border-rose-500/50'
+                    }`}
+                  >
+                    <span className={`w-7 h-7 rounded-xl text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                      isActive 
+                        ? 'bg-rose-600 text-white shadow-sm' 
+                        : 'bg-rose-600/20 border border-rose-500/40 text-rose-400 group-hover:bg-rose-600 group-hover:text-white'
+                    }`}>
+                      {idx + 1}
+                    </span>
+                    <div>
+                      <h4 className={`text-sm font-bold transition-colors ${
+                        isActive ? 'text-rose-200 font-extrabold' : 'text-slate-100 group-hover:text-rose-300'
+                      }`}>
+                        {chap.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">
+                        {chap.desc}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Tử Cung Chapters */}
+            <div className="space-y-2 pt-2 border-t border-slate-800">
+              <div className="flex items-center gap-2 text-xs font-bold text-teal-400 uppercase tracking-wider px-1">
+                <Stethoscope className="w-3.5 h-3.5" />
+                <span>Chuyên Khảo: Bảo Vệ Tử Cung Sau 5 Năm Tamoxifen</span>
+              </div>
+              {gynChapters.map((chap, idx) => {
+                const isActive = currentView === 'monograph' && activeSection === chap.id;
+                return (
+                  <button
+                    key={chap.id}
+                    onClick={() => handleJump(chap.id, 'monograph')}
+                    className={`w-full text-left p-3 rounded-2xl transition-all flex items-start gap-3 group ${
+                      isActive 
+                        ? 'bg-teal-950/90 border-2 border-teal-500 shadow-md shadow-teal-500/20' 
+                        : 'bg-slate-800/80 hover:bg-teal-950/80 border border-slate-700/80 hover:border-teal-500/50'
+                    }`}
+                  >
+                    <span className={`w-7 h-7 rounded-xl text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 transition-colors ${
+                      isActive 
+                        ? 'bg-teal-500 text-slate-950 shadow-sm' 
+                        : 'bg-teal-600/20 border border-teal-500/40 text-teal-400 group-hover:bg-teal-600 group-hover:text-white'
+                    }`}>
+                      {idx + 1}
+                    </span>
+                    <div>
+                      <h4 className={`text-sm font-bold transition-colors ${
+                        isActive ? 'text-teal-200 font-extrabold' : 'text-slate-100 group-hover:text-teal-300'
+                      }`}>
+                        {chap.title}
+                      </h4>
+                      <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">
+                        {chap.desc}
+                      </p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
 
             <div className="pt-2 text-center text-xs text-slate-500">

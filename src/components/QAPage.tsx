@@ -108,10 +108,10 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook }) => {
 
         <div className="space-y-3">
           <h1 className="text-3xl sm:text-4xl font-black text-white tracking-tight leading-tight">
-            Tập Q&A Tổng Kết: Toàn Bộ Thắc Mắc Về Tử Cung Sau 5 Năm Tamoxifen
+            Tập Q&A Tổng Kết: Toàn Bộ Thắc Mắc Sau 5 Năm Tamoxifen
           </h1>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed font-normal">
-            Tổng hợp và giải đáp cặn kẽ 16 câu hỏi quan trọng nhất từ chẩn đoán giải phẫu bệnh, nguyên nhân rong kinh đến 4 phác đồ điều trị an toàn cho bệnh nhân K vú.
+            Tổng hợp và giải đáp cặn kẽ {tamoxifenQADataset.length} câu hỏi quan trọng nhất từ chẩn đoán giải phẫu bệnh, nguyên nhân rong kinh, bảo vệ tuyến vú đến các phác đồ điều trị tối ưu.
           </p>
         </div>
 
@@ -122,7 +122,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook }) => {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Tìm nhanh: Lành tính, U xơ, Cắt tử cung, Mãn kinh, Bổ máu, Mirena..."
+            placeholder="Tìm nhanh: Lành tính, U xơ, Cắt tử cung, Mãn kinh, Bổ máu, Mirena, Đậu nành, Quan hệ vợ chồng..."
             className="w-full pl-11 pr-4 py-3 rounded-2xl bg-slate-900 border border-slate-800 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-teal-500 transition-colors shadow-inner"
           />
           {searchQuery && (
@@ -186,7 +186,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook }) => {
               onClick={() => { setSearchQuery(''); setSelectedCategory('all'); }}
               className="text-xs text-teal-400 hover:underline font-semibold"
             >
-              Xem tất cả 16 câu hỏi
+              Xem tất cả {tamoxifenQADataset.length} câu hỏi
             </button>
           </div>
         ) : (

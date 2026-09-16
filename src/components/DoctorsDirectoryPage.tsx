@@ -353,7 +353,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
               className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs transition-colors"
             >
               <HelpCircle className="w-4 h-4 text-amber-400" />
-              <span>Xem Tập Q&A (16 Câu)</span>
+              <span>Xem Tập Q&A (26 Câu)</span>
             </button>
           </div>
         </div>

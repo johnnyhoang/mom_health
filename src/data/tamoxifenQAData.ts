@@ -302,5 +302,75 @@ export const tamoxifenQADataset: QAItem[] = [
       '• Về mặt mô học tử cung: Các nang tuyến phình to, phù nề mô đệm và mảng tăng sản tích lũy qua 5 năm cần từ 6 - 12 tháng để thoái triển tự nhiên.',
       'Tuy nhiên, vì chị còn có khối u xơ 45mm và ổ Adenomyosis thành sau, nên sự thoái triển tự nhiên có thể không đủ để cầm máu dứt điểm, do đó cần có sự can thiệp y khoa chủ động.'
     ]
+  },
+  {
+    id: 'qa-22',
+    category: 'surgery_reassurance',
+    categoryLabel: 'Phẫu Thuật Nội Soi',
+    question: 'Quan hệ vợ chồng sau phẫu thuật cắt tử cung bảo tồn 2 buồng trứng có bị ảnh hưởng hay đau đớn không?',
+    shortSummary: 'HOÀN TOÀN KHÔNG ẢNH HƯỞNG TIÊU CỰC. Ngược lại, đời sống vợ chồng còn thoải mái hơn vì không còn bị rong kinh hay đau tức bụng.',
+    detailedAnswer: [
+      '1. Về mặt giải phẫu: Bác sĩ chỉ cắt thân tử cung và khâu kín mỏm âm đạo lại ở phía trong cùng. Chiều dài ống âm đạo vẫn được giữ nguyên vẹn 100%.',
+      '2. Về mặt cảm giác & cực khoái: Cảm giác thăng hoa của phụ nữ do các dây thần kinh ở âm vật (Clitoris) và 1/3 ngoài âm đạo chi phối, hoàn toàn không nằm ở tử cung.',
+      '3. Về mặt bôi trơn: Hai buồng trứng được giữ nguyên nên tiếp tục tiết Estrogen tự nhiên, đảm bảo độ ẩm mượt mà sinh lý, không gây khô rát.',
+      '4. Thời gian kiêng cữ: Chỉ cần kiêng quan hệ 6 - 8 tuần sau mổ để vết khâu mỏm âm đạo lành hẳn. Sau đó sinh hoạt vợ chồng diễn ra hoàn toàn bình thường và thăng hoa hơn vì không còn nỗi ám ảnh rong kinh.'
+    ],
+    clinicalHighlight: 'Hơn 90% phụ nữ sau phẫu thuật cắt tử cung bảo tồn buồng trứng chia sẻ chất lượng đời sống vợ chồng tốt hơn rõ rệt.'
+  },
+  {
+    id: 'qa-23',
+    category: 'lifestyle_followup',
+    categoryLabel: 'Lối Sống & Tái Khám',
+    question: 'Khi nào bệnh nhân sau 5 năm Tamoxifen cần chụp Cộng hưởng từ (MRI Tuyến Vú) thay vì chỉ Siêu âm và Nhũ ảnh?',
+    shortSummary: 'MRI Tuyến Vú có độ nhạy cao nhất (> 90%), được chỉ định khi mô vú quá đặc (Dense Breast), nghi ngờ tái phát hoặc có đột biến gen BRCA.',
+    detailedAnswer: [
+      '• Bộ đôi tiêu chuẩn hàng năm: Siêu âm Doppler màu tuyến vú + Chụp nhũ ảnh kỹ thuật số (Mammography) là đủ cho hầu hết phụ nữ theo dõi sau 5 năm Tamoxifen.',
+      '• Khi nào bác sĩ chỉ định thêm MRI Vú cản từ (Dynamic Contrast-Enhanced MRI):',
+      '  1. Bệnh nhân có mô tuyến vú quá dày đặc (Type C hoặc Type D trên nhũ ảnh làm che khuất tổn thương nhỏ).',
+      '  2. Có tổn thương nghi ngờ trên siêu âm/nhũ ảnh nhưng chưa thể khẳng định chắc chắn.',
+      '  3. Bệnh nhân có mang đột biến gen di truyền BRCA1 hoặc BRCA2 (thuộc nhóm nguy cơ cao).'
+    ],
+    doctorQuestionToAsk: '"Thưa bác sĩ, mô tuyến vú của tôi trên kết quả nhũ ảnh thuộc loại nào (đặc hay mỡ)? Tôi có cần chụp thêm MRI tuyến vú không?"'
+  },
+  {
+    id: 'qa-24',
+    category: 'tamoxifen_mechanism',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Nếu sau này Bác sĩ Ung bướu chỉ định đổi sang Thuốc ức chế men Aromatase (AI - Letrozole/Anastrozole), tử cung có bị rong kinh nữa không?',
+    shortSummary: 'TUYỆT ĐỐI KHÔNG BỊ DÀY TỬ CUNG HAY RONG KINH. Thuốc AI có cơ chế làm teo mỏng niêm mạc tử cung triệt để.',
+    detailedAnswer: [
+      '• Khác biệt bản chất: Tamoxifen là SERM (vừa chặn ở vú vừa kích thích ở tử cung), còn thuốc AI (Letrozole, Anastrozole, Exemestane) là thuốc ức chế men Aromatase làm giảm nồng độ Estrogen toàn thân xuống mức cực thấp (< 2-5 pg/mL).',
+      '• Tác động lên tử cung: Vì không còn Estrogen, lớp niêm mạc tử cung sẽ teo mỏng hoàn toàn, không có hiện tượng tăng sản, không sinh polyp và không bao giờ gây rong kinh.',
+      '• Điểm cần chú ý của thuốc AI: Vì Estrogen xuống thấp nên cần theo dõi mật độ xương (ngừa loãng xương) và bổ sung Canxi + D3.'
+    ],
+    clinicalHighlight: 'Thuốc AI là giải pháp thay thế hoàn hảo không để lại bất kỳ tác dụng phụ nào trên tử cung.'
+  },
+  {
+    id: 'qa-25',
+    category: 'lifestyle_followup',
+    categoryLabel: 'Lối Sống & Tái Khám',
+    question: 'Bị đau nhức cơ xương khớp, cứng khớp ngón tay sau 5 năm uống Tamoxifen thì khắc phục bằng cách nào?',
+    shortSummary: 'Vận động thể thao nhẹ nhàng hàng ngày, bổ sung Glucosamine Sulfate, Collagen Type 2, Omega-3 và ngâm chân nước ấm.',
+    detailedAnswer: [
+      '1. Cơ chế: Sự biến động của nồng độ nội tiết tố qua 5 năm làm giảm sự bôi trơn ổ khớp và tăng phản ứng viêm nhẹ quanh gân cơ.',
+      '2. Vận động trị liệu: Đi bộ nhanh 30 phút mỗi ngày, tập Yoga dưỡng sinh hoặc bơi lội giúp kích thích bao hoạt dịch tiết dịch khớp nuôi dưỡng sụn.',
+      '3. Thực phẩm bổ sung an toàn cho K vú: Glucosamine Sulfate (1500mg/ngày), Collagen Type II không biến tính, Vitamin D3 + K2, Dầu cá Omega-3 tinh khiết.',
+      '4. Liệu pháp nhiệt: Ngâm chân nước ấm với gừng và muối thảo dược vào buổi tối trước khi ngủ giúp giãn mạch, giảm đau và ngủ ngon sâu giấc.'
+    ]
+  },
+  {
+    id: 'qa-26',
+    category: 'case_results',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Tôi có cần làm xét nghiệm gen di truyền (BRCA1, BRCA2, đa gen) sau 5 năm điều trị ung thư vú không?',
+    shortSummary: 'RẤT NÊN CÂN NHẮC nếu được chẩn đoán K vú ở tuổi trẻ (< 50 tuổi) hoặc gia đình có người mắc ung thư vú / buồng trứng.',
+    detailedAnswer: [
+      '• Mục đích xét nghiệm gen mầm (Germline Genetic Testing): Xét nghiệm qua mẫu máu hoặc niêm mạc miệng để phát hiện đột biến di truyền *BRCA1, BRCA2, PALB2, TP53, CHEK2*.',
+      '• Lợi ích mang lại:',
+      '  1. Định hướng theo dõi buồng trứng: Nếu mang đột biến BRCA1/2, phẫu thuật phụ khoa sẽ cân nhắc cắt cả 2 buồng trứng để ngừa ung thư buồng trứng.',
+      '  2. Định hướng dùng thuốc mới: Bệnh nhân có đột biến BRCA được chỉ định thuốc ức chế PARP trúng đích (Olaparib / Lynparza) giúp giảm 32% tử vong.',
+      '  3. Giá trị cho người thân: Giúp con gái và chị em gái trong gia đình có kế hoạch tầm soát sớm chủ động.'
+    ],
+    doctorQuestionToAsk: '"Thưa bác sĩ Ung bướu, với bệnh án của tôi, tôi có thuộc nhóm chỉ định làm xét nghiệm gen di truyền BRCA1/2 không?"'
   }
 ];

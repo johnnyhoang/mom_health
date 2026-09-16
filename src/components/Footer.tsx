@@ -16,23 +16,23 @@ export const Footer: React.FC = () => {
                 <HeartPulse className="w-4 h-4" />
               </div>
               <span className="text-white font-bold text-base tracking-tight">
-                ENDOMETRIUM CLINICAL RESEARCH ATLAS
+                K VÚ & TỬ CUNG ATLAS • CHUYÊN KHẢO Y KHOA THỰC CHỨNG
               </span>
             </div>
             <p className="text-slate-400 text-xs leading-relaxed max-w-lg">
-              Cơ sở dữ liệu chuyên khảo học thuật chuyên sâu về Nội Mạc Tử Cung. Tổng hợp và chuẩn hóa theo các hướng dẫn lâm sàng cập nhật nhất từ Hội Sản Phụ Khoa Hoa Kỳ (ACOG), Liên đoàn Sản Phụ Khoa Quốc tế (FIGO 2023), Hiệp hội Sinh sản & Phôi học Châu Âu (ESHRE 2022) và Mạng lưới Ung thư Quốc gia Hoa Kỳ (NCCN 2024).
+              Hệ thống chuyên khảo y khoa cá thể hóa cho bệnh nhân sau 5 năm Tamoxifen (K Vú). Tổng hợp và chuẩn hóa theo các hướng dẫn lâm sàng cập nhật nhất từ Hiệp hội Ung thư Lâm sàng Hoa Kỳ (ASCO 2024/2026), Mạng lưới Ung thư Quốc gia Hoa Kỳ (NCCN 2024/2026), Hiệp hội Ung thư Châu Âu (ESMO), Hội Sản Phụ Khoa Hoa Kỳ (ACOG) và Liên đoàn Sản Phụ Khoa Quốc tế (FIGO).
             </p>
           </div>
 
           {/* Col 2: Standard Guidelines */}
           <div className="space-y-2">
-            <h4 className="text-white font-bold text-xs uppercase tracking-wider">Hướng Dẫn Nền Tảng</h4>
+            <h4 className="text-white font-bold text-xs uppercase tracking-wider">Hướng Dẫn & Nguồn Uy Tín</h4>
             <ul className="space-y-1.5 text-[11px] text-slate-400">
-              <li>• FIGO Staging of Endometrial Cancer (2023)</li>
-              <li>• ACOG Practice Bulletin #128 & #734 (AUB/PMB)</li>
-              <li>• ESHRE Guideline: Endometriosis (2022)</li>
-              <li>• WHO Classification of Female Genital Tumours (2020)</li>
-              <li>• IETA Ultrasound Consensus Statement</li>
+              <li>• ASCO / NCCN Breast Cancer Guidelines (2024–2026)</li>
+              <li>• FDA Drug Approvals (Ribociclib NATALEE 09/2024)</li>
+              <li>• ESMO Clinical Practice Guidelines</li>
+              <li>• ACOG Practice Bulletin (AUB/PMB & Tamoxifen)</li>
+              <li>• BV Hùng Vương, BV Từ Dũ, BV Ung Bướu TP.HCM</li>
             </ul>
           </div>
 

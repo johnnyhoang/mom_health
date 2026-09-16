@@ -4,6 +4,7 @@ export interface TreatmentOption {
   subtitle: string;
   suitabilityScore: 'Rất Phù Hợp' | 'Cân Nhắc Kỹ' | 'Lựa Chọn Tối Ưu Lâu Dài' | 'Tạm Thời';
   colorTheme: string;
+  laymanAnalogy: string;
   mechanism: string;
   pros: string[];
   cons: string[];
@@ -19,6 +20,7 @@ export const tamoxifenTreatmentOptions: TreatmentOption[] = [
     subtitle: 'Giải pháp triệt để 100% triệu chứng & vĩnh viễn không còn lo âu ung thư tử cung',
     suitabilityScore: 'Lựa Chọn Tối Ưu Lâu Dài',
     colorTheme: 'emerald',
+    laymanAnalogy: 'Giữ nguyên nhà máy phát điện, chỉ dọn bỏ căn nhà hỏng: Giữ 2 buồng trứng để duy trì 100% hormone nữ tự nhiên, sự tươi trẻ và sinh lý; chỉ bóc tách tử cung bị tổn thương (u xơ 45mm, Adenomyosis, niêm mạc tăng sản), giải quyết dứt điểm 1 lần duy nhất mà không cần uống bất kỳ thuốc nội tiết nào.',
     mechanism: 'Bác sĩ đưa dụng cụ nội soi qua 3 lỗ nhỏ 5-10mm ở thành bụng để cắt trọn vẹn thân và cổ tử cung chứa khối u xơ 45mm, vùng lạc tuyến Adenomyosis và lớp niêm mạc tăng sản. GIỮ NGUYÊN HOÀN TOÀN 2 BUỒNG TRỨNG.',
     pros: [
       'Chấm dứt vĩnh viễn 100% tình trạng rong kinh, thiếu máu và đau bụng dưới.',
@@ -41,6 +43,7 @@ export const tamoxifenTreatmentOptions: TreatmentOption[] = [
     subtitle: 'Bảo tồn nguyên vẹn tử cung, xử lý trực tiếp mảng niêm mạc tăng sản',
     suitabilityScore: 'Rất Phù Hợp',
     colorTheme: 'teal',
+    laymanAnalogy: 'Cắt tỉa cành cây hư mà không chặt gốc: Dùng camera qua đường tự nhiên để bóc tách mảng niêm mạc tăng sản và cầm máu tại chỗ, giữ nguyên tử cung; tuy nhiên gốc rễ u xơ 45mm và Adenomyosis trong thành cơ vẫn còn nguyên.',
     mechanism: 'Đưa ống nội soi siêu nhỏ gắn camera qua ngả âm đạo vào buồng tử cung (không rạch bụng), quan sát trực tiếp bề mặt niêm mạc, cắt gọt polyp hoặc bóc tách mảng tăng sản khu trú và cầm máu tại chỗ.',
     pros: [
       'Thủ thuật nhẹ nhàng qua đường tự nhiên, không có vết mổ trên bụng.',
@@ -62,6 +65,7 @@ export const tamoxifenTreatmentOptions: TreatmentOption[] = [
     subtitle: 'Làm teo mỏng niêm mạc và kiểm soát rong kinh tại chỗ',
     suitabilityScore: 'Cân Nhắc Kỹ',
     colorTheme: 'amber',
+    laymanAnalogy: 'Bôi thuốc ngoài da thay vì uống toàn thân: Vòng phóng thích vi liều Progestin trực tiếp vào niêm mạc tử cung để teo mỏng mảng tăng sản, lượng thuốc ngấm vào máu cực thấp; tuy nhiên vì đã dừng Tamoxifen nên vẫn cần Bác sĩ Ung bướu đồng thuận.',
     mechanism: 'Đặt một dụng cụ hình chữ T nhỏ vào buồng tử cung để phóng thích đều đặn vi liều Levonorgestrel (Progestin) trực tiếp tại niêm mạc tử cung.',
     pros: [
       'Nồng độ thuốc tại buồng tử cung cao gấp 1000 lần so với trong máu, làm teo mỏng niêm mạc cực kỳ mạnh mẽ.',
@@ -82,6 +86,7 @@ export const tamoxifenTreatmentOptions: TreatmentOption[] = [
     subtitle: 'Chờ đợi cơ thể tự ổn định sau khi ngưng Tamoxifen (tháng 1/2026)',
     suitabilityScore: 'Tạm Thời',
     colorTheme: 'blue',
+    laymanAnalogy: 'Chờ nước rút sau bão: Dùng thuốc cầm máu Tranexamic Acid tạm thời và viên sắt, chờ đợi niêm mạc tử cung tự thoái triển sau khi đã ngừng Tamoxifen tháng 1/2026.',
     mechanism: 'Sử dụng các thuốc cầm máu không nội tiết (Tranexamic Acid khi có kinh nhiều, viên sắt bổ máu) và theo dõi siêu âm mỗi 3 tháng.',
     pros: [
       'Không can thiệp thủ thuật hay phẫu thuật.',
