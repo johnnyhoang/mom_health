@@ -1,0 +1,165 @@
+import React, { useState } from 'react';
+import { 
+  ListOrdered, 
+  FileSearch, 
+  Video, 
+  HelpCircle, 
+  X, 
+  ChevronUp, 
+  BookOpen,
+  Activity
+} from 'lucide-react';
+
+interface MobileBottomNavProps {
+  onJumpToSection: (sectionId: string) => void;
+  activeSection: string;
+}
+
+export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
+  onJumpToSection,
+  activeSection
+}) => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const chapters = [
+    { id: 'chapter-1', title: 'Chương 1: Giải Mã "Nghịch Lý Tamoxifen"', desc: 'Cơ chế SERM: Chặn ở tuyến vú nhưng kích thích ở tử cung' },
+    { id: 'chapter-2', title: 'Chương 2: Giải Mã 4 Hồ Sơ Bệnh Án & GPB Thực Tế', desc: 'Soi phiếu Hùng Vương & Tâm Anh: Tăng sản điển hình LÀNH TÍNH' },
+    { id: 'chapter-3', title: 'Chương 3: Căn Nguyên Gây Rong Kinh: "Bộ Tứ Tác Động"', desc: 'Tăng sản tuyến, Adenomyosis thành sau, U xơ 45mm & Tuổi 45' },
+    { id: 'chapter-4', title: 'Chương 4: So Sánh 4 Hướng Điều Trị An Toàn K Vú', desc: 'Mổ nội soi bảo tồn buồng trứng, nội soi buồng tử cung, vòng Mirena' },
+    { id: 'chapter-5', title: 'Chương 5: Video Thủ Thuật & Mổ Thực Tế', desc: 'Xem video nội soi buồng tử cung, phẫu thuật nội soi, sinh thiết' },
+    { id: 'chapter-6', title: 'Chương 6: Cây Quyết Định Cá Thể Hóa', desc: 'Tự đánh giá theo triệu chứng & nhận câu hỏi chuẩn cho Bác sĩ' },
+    { id: 'chapter-7', title: 'Chương 7: Chăm Sóc Sức Khỏe & Tái Khám', desc: 'Dinh dưỡng bổ máu, bảo vệ xương khớp & tầm soát kép định kỳ' }
+  ];
+
+  const handleJump = (id: string) => {
+    setIsDrawerOpen(false);
+    onJumpToSection(id);
+  };
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  return (
+    <>
+      {/* Floating Bottom Nav Bar (Sticky on all mobile & desktop viewports) */}
+      <div className="fixed bottom-3 inset-x-0 z-40 px-3 sm:px-6 pointer-events-none flex justify-center">
+        <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 sm:gap-2 text-white max-w-lg w-full justify-between">
+          
+          <button
+            onClick={() => setIsDrawerOpen(true)}
+            className="flex flex-col items-center justify-center py-1 px-2 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex-1"
+          >
+            <ListOrdered className="w-4 h-4 text-teal-400" />
+            <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
+          </button>
+
+          <button
+            onClick={() => handleJump('chapter-2')}
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
+              activeSection === 'chapter-2' ? 'bg-teal-950 text-teal-300 font-bold border border-teal-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <FileSearch className="w-4 h-4 text-teal-400" />
+            <span className="text-[10px] font-bold mt-0.5">Soi Bệnh Án</span>
+          </button>
+
+          <button
+            onClick={() => handleJump('chapter-4')}
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
+              activeSection === 'chapter-4' ? 'bg-emerald-950 text-emerald-300 font-bold border border-emerald-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <Activity className="w-4 h-4 text-emerald-400" />
+            <span className="text-[10px] font-bold mt-0.5">4 Cách Chữa</span>
+          </button>
+
+          <button
+            onClick={() => handleJump('chapter-5')}
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
+              activeSection === 'chapter-5' ? 'bg-purple-950 text-purple-300 font-bold border border-purple-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <Video className="w-4 h-4 text-purple-400" />
+            <span className="text-[10px] font-bold mt-0.5">Video Mổ</span>
+          </button>
+
+          <button
+            onClick={() => handleJump('chapter-6')}
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-colors flex-1 ${
+              activeSection === 'chapter-6' ? 'bg-amber-950 text-amber-300 font-bold border border-amber-800' : 'text-slate-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <HelpCircle className="w-4 h-4 text-amber-400" />
+            <span className="text-[10px] font-bold mt-0.5">Tự Đánh Giá</span>
+          </button>
+
+          <button
+            onClick={scrollToTop}
+            title="Lên đầu trang"
+            className="p-2 rounded-xl bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors ml-1 hidden sm:flex items-center justify-center"
+          >
+            <ChevronUp className="w-4 h-4" />
+          </button>
+
+        </nav>
+      </div>
+
+      {/* Slide-up Table of Contents Drawer Modal */}
+      {isDrawerOpen && (
+        <div 
+          className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex flex-col justify-end animate-fade-in"
+          onClick={() => setIsDrawerOpen(false)}
+        >
+          <div 
+            className="bg-slate-900 border-t border-slate-700 w-full max-h-[85vh] rounded-t-3xl p-5 overflow-y-auto text-white space-y-4 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {/* Drawer Handle & Header */}
+            <div className="w-12 h-1.5 bg-slate-700 rounded-full mx-auto mb-2" />
+            
+            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+              <div className="flex items-center gap-2">
+                <BookOpen className="w-5 h-5 text-teal-400" />
+                <h3 className="font-bold text-base text-white">Mục Lục Chuyên Khảo Tamoxifen</h3>
+              </div>
+              <button 
+                onClick={() => setIsDrawerOpen(false)}
+                className="p-1.5 rounded-full bg-slate-800 text-slate-400 hover:text-white"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            {/* Chapter Jump List */}
+            <div className="space-y-2.5 pt-1">
+              {chapters.map((chap, idx) => (
+                <button
+                  key={chap.id}
+                  onClick={() => handleJump(chap.id)}
+                  className="w-full text-left p-3.5 rounded-2xl bg-slate-800/80 hover:bg-teal-950/80 border border-slate-700/80 hover:border-teal-500/50 transition-all flex items-start gap-3 group"
+                >
+                  <span className="w-7 h-7 rounded-xl bg-teal-600/20 border border-teal-500/40 text-teal-400 text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5 group-hover:bg-teal-600 group-hover:text-white transition-colors">
+                    {idx + 1}
+                  </span>
+                  <div>
+                    <h4 className="text-sm font-bold text-slate-100 group-hover:text-teal-300 transition-colors">
+                      {chap.title}
+                    </h4>
+                    <p className="text-xs text-slate-400 mt-0.5 line-clamp-1">
+                      {chap.desc}
+                    </p>
+                  </div>
+                </button>
+              ))}
+            </div>
+
+            <div className="pt-2 text-center text-xs text-slate-500">
+              Chạm vào chương bất kỳ để cuộn ngay tới nội dung
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
