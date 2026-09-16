@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react';
 import { BookLayoutArticle } from './components/BookLayoutArticle';
 import { QAPage } from './components/QAPage';
+import { DoctorsDirectoryPage } from './components/DoctorsDirectoryPage';
 import { MobileBottomNav } from './components/MobileBottomNav';
 import { VideoModal } from './components/VideoModal';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
-import { BookOpen, HelpCircle } from 'lucide-react';
+import { BookOpen, HelpCircle, UserCheck } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'monograph' | 'qa'>('monograph');
+  const [currentView, setCurrentView] = useState<'monograph' | 'qa' | 'doctors'>('monograph');
   const [selectedVideo, setSelectedVideo] = useState<MediaItem | null>(null);
   const [activeSection, setActiveSection] = useState<string>('chapter-1');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -86,7 +87,7 @@ export function App() {
     }
   };
 
-  const handleSwitchView = (view: 'monograph' | 'qa') => {
+  const handleSwitchView = (view: 'monograph' | 'qa' | 'doctors') => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -104,7 +105,7 @@ export function App() {
           />
         )}
         
-        <div className="w-full max-w-3xl mx-auto px-4 sm:px-6 h-13 py-2 flex items-center justify-between gap-2">
+        <div className="w-full max-w-4xl mx-auto px-3 sm:px-6 h-14 py-2 flex items-center justify-between gap-2">
           {/* Logo & Brand */}
           <div 
             onClick={() => handleSwitchView('monograph')}
@@ -116,44 +117,65 @@ export function App() {
             </span>
           </div>
 
-          {/* View Mode Toggle Pill */}
-          <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-xs font-bold">
+          {/* View Mode Toggle Pill (3 Modes) */}
+          <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-[11px] sm:text-xs font-bold">
             <button
               onClick={() => handleSwitchView('monograph')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-2 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 ${
                 currentView === 'monograph'
                   ? 'bg-teal-500 text-slate-950 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <BookOpen className="w-3.5 h-3.5" />
-              <span>Sách Chuyên Khảo</span>
+              <BookOpen className="w-3.5 h-3.5 shrink-0" />
+              <span className="hidden xs:inline">Chuyên Khảo</span>
             </button>
 
             <button
               onClick={() => handleSwitchView('qa')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1.5 ${
+              className={`px-2 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 ${
                 currentView === 'qa'
                   ? 'bg-teal-500 text-slate-950 shadow-sm'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
-              <HelpCircle className="w-3.5 h-3.5" />
-              <span>Tập Q&A (16)</span>
+              <HelpCircle className="w-3.5 h-3.5 shrink-0" />
+              <span>Q&A (16)</span>
+            </button>
+
+            <button
+              onClick={() => handleSwitchView('doctors')}
+              className={`px-2 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 ${
+                currentView === 'doctors'
+                  ? 'bg-teal-500 text-slate-950 shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200'
+              }`}
+            >
+              <UserCheck className="w-3.5 h-3.5 shrink-0" />
+              <span>Top 10 Bác Sĩ</span>
             </button>
           </div>
         </div>
       </header>
 
-      {/* Main Content: Monograph or Q&A Page */}
+      {/* Main Content: Monograph or Q&A or Doctors Directory */}
       <main className="flex-1 w-full">
-        {currentView === 'monograph' ? (
+        {currentView === 'monograph' && (
           <BookLayoutArticle
             onOpenVideoModal={(video) => setSelectedVideo(video)}
           />
-        ) : (
+        )}
+        
+        {currentView === 'qa' && (
           <QAPage 
             onBackToBook={() => handleSwitchView('monograph')}
+          />
+        )}
+
+        {currentView === 'doctors' && (
+          <DoctorsDirectoryPage
+            onBackToBook={() => handleSwitchView('monograph')}
+            onOpenQA={() => handleSwitchView('qa')}
           />
         )}
       </main>
