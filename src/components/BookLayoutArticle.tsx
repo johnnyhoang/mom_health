@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { InteractiveCaseViewer } from './InteractiveCaseViewer';
+import { BreastCancerSafetySection } from './BreastCancerSafetySection';
 import { tamoxifenTreatmentOptions, tamoxifenMechanisms } from '../data/tamoxifenTreatmentData';
 import { tamoxifenMediaItems } from '../data/tamoxifenMediaData';
 import { tamoxifenClinicalDecisionTree } from '../data/tamoxifenDecisionData';
@@ -457,6 +458,24 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="pt-1"><strong className="text-teal-400">Khuyến nghị chuyên gia:</strong> {activeTreatment.recommendationNote}</div>
           </div>
 
+        </div>
+
+        {/* Dedicated Oncology Safety & Recurrence Cross-Talk Matrix */}
+        <div className="pt-6 space-y-3">
+          <div className="space-y-1">
+            <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
+              Đánh Giá Dược Lâm Sàng Ung Bướu (ASCO / NCCN)
+            </span>
+            <h3 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
+              <ShieldAlert className="w-5 h-5 text-rose-400" />
+              <span>Ma Trận Đánh Giá Nguy Cơ Ảnh Hưởng Ngược Lên Ung Thư Vú</span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              Mọi giải pháp điều trị phụ khoa, thuốc cầm máu hay thực phẩm bổ sung đều được đối chiếu chặt chẽ với nguy cơ tái phát K vú theo các thử nghiệm lâm sàng quốc tế:
+            </p>
+          </div>
+
+          <BreastCancerSafetySection />
         </div>
 
       </section>

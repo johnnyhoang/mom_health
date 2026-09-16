@@ -233,5 +233,74 @@ export const tamoxifenQADataset: QAItem[] = [
       '• Lịch khám Tuyến Vú: Định kỳ mỗi 6 - 12 tháng tại bệnh viện chuyên khoa Ung bướu, thực hiện Siêu âm tuyến vú + Chụp nhũ ảnh (Mammography) hàng năm.',
       'Chỉ cần tuân thủ đúng lịch tái khám kép này, chị hoàn toàn có thể yên tâm tận hưởng cuộc sống khỏe mạnh, an vui!'
     ]
+  },
+
+  // =========================================================================
+  // NHÓM 6: CÂN NHẮC ẢNH HƯỞNG NGƯỢC LÊN UNG THƯ VÚ & DƯỢC LÂM SÀNG
+  // =========================================================================
+  {
+    id: 'qa-17',
+    category: 'treatment_options',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Những loại thuốc phụ khoa nào TUYỆT ĐỐI CHỐNG CHỈ ĐỊNH (Cấm dùng) cho bệnh nhân có tiền sử K vú?',
+    shortSummary: 'Tuyệt đối cấm dùng: Liệu pháp hormone thay thế Estrogen (HRT), Thuốc tránh thai kết hợp, Progestin uống toàn thân liều cao & Viên mầm đậu nành đậm đặc.',
+    detailedAnswer: [
+      '1. Liệu pháp Hormone Thay Thế (HRT) chứa Estrogen: Thử nghiệm lâm sàng HABITS đã chứng minh Estrogen ngoại sinh làm tăng nguy cơ tái phát K vú lên 2.4 lần.',
+      '2. Thuốc Progestin uống toàn thân (Dydrogesterone, Medroxyprogesterone): Làm tăng nguy cơ kích hoạt thụ thể PR ở mô vú.',
+      '3. Thuốc tránh thai phối hợp (hàng ngày hoặc khẩn cấp): Chứa cả estrogen và progestin liều cao.',
+      '4. Các loại thực phẩm chức năng kích thích nội tiết (Sâm tố nữ, Mầm đậu nành cô đặc, Tinh dầu hoa anh thảo liều cao): Tiềm ẩn phytoestrogen kích thích mô vú.',
+      'Nguyên tắc vàng: Mọi giải pháp điều trị phụ khoa cho chị nên ưu tiên PHƯƠNG PHÁP CƠ HỌC / PHẪU THUẬT NỘI SOI hoặc THUỐC KHÔNG HORMONE để giữ an toàn tuyệt đối 100% cho tuyến vú.'
+    ],
+    clinicalHighlight: 'Đây là lý do Phẫu thuật nội soi cắt tử cung bảo tồn buồng trứng vượt trội hơn hẳn các biện pháp điều trị nội tiết kéo dài.'
+  },
+  {
+    id: 'qa-18',
+    category: 'surgery_reassurance',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Nếu mổ cắt tử cung BẢO TỒN 2 BUỒNG TRỨNG, buồng trứng vẫn tiết hormone có làm tăng nguy cơ tái phát K vú không?',
+    shortSummary: 'KHÔNG LÀM TĂNG NGUY CƠ TÁI PHÁT K VÚ. Nồng độ hormone tự nhiên của cơ thể ở tuổi 45 là sinh lý bình thường sau 5 năm Tamoxifen.',
+    detailedAnswer: [
+      'Chị đã hoàn thành 5 năm điều trị Tamoxifen (2021 - 01/2026). Theo phác đồ chuẩn quốc tế của ASCO và NCCN, 5 năm Tamoxifen đã hoàn thành xuất sắc sứ mệnh bảo vệ và giảm thiểu tối đa nguy cơ tái phát K vú.',
+      'Sau 5 năm, cơ thể bước vào giai đoạn theo dõi tự nhiên. Ở độ tuổi 45, buồng trứng đang trong quá trình chuyển tiếp tiền mãn kinh sinh lý bình thường.',
+      'Việc giữ lại 2 buồng trứng chỉ duy trì lượng hormone nội sinh tự nhiên để bảo vệ tim mạch, xương khớp và não bộ của người phụ nữ, hoàn toàn KHÔNG đưa thêm bất kỳ hormone nhân tạo nào vào cơ thể.',
+      'Hàng loạt nghiên cứu theo dõi dài hạn khẳng định: Phụ nữ sau 5 năm Tamoxifen được phẫu thuật phụ khoa bảo tồn buồng trứng có tỷ lệ sống không bệnh (DFS) hoàn toàn tương đương nhóm không phẫu thuật.'
+    ],
+    clinicalHighlight: 'Không cần thiết phải cắt bỏ 2 buồng trứng lành tính trừ khi bệnh nhân có mang đột biến gen di truyền BRCA1/BRCA2.'
+  },
+  {
+    id: 'qa-19',
+    category: 'treatment_options',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Tại sao Bác sĩ Ung bướu thường rất đắn đo khi Bác sĩ Phụ khoa đề xuất đặt vòng nội tiết Mirena (LNG-IUD)?',
+    shortSummary: 'Do tranh cãi về lượng vi liều Progestin hấp thu vào máu có thể tác động lên thụ thể PR của tế bào K vú nhạy cảm nội tiết.',
+    detailedAnswer: [
+      'Góc nhìn của Bác sĩ Phụ khoa: Vòng Mirena là giải pháp tuyệt vời tại chỗ, nồng độ Levonorgestrel trong buồng tử cung cực cao giúp làm teo mỏng niêm mạc và cầm máu rong kinh 90-95% mà không cần phẫu thuật.',
+      'Góc nhìn thận trọng của Bác sĩ Ung bướu: Mặc dù nồng độ thuốc ngấm vào máu rất thấp (khoảng 0.1 - 0.2 ng/mL), nhưng trên bệnh nhân có khối u vú nhạy cảm nội tiết (ER+/PR+), mọi nguồn Progestin ngoại sinh liên tục trong 5 năm đều có nguy cơ tiềm ẩn vi thể.',
+      'Đặc biệt, vì chị ĐÃ DỪNG TAMOXIFEN (tháng 1/2026), không còn thuốc Tamoxifen ở mô vú để che chắn, nên việc đưa thêm Progestin vào cơ thể cần phải được Bác sĩ Ung bướu cân nhắc cực kỳ cẩn trọng.'
+    ],
+    doctorQuestionToAsk: '"Thưa bác sĩ Ung bướu, với thể K vú trước đây của tôi (ER/PR status), tôi có đủ điều kiện an toàn để đặt vòng nội tiết Mirena cầm máu tử cung không?"'
+  },
+  {
+    id: 'qa-20',
+    category: 'treatment_options',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Thuốc cầm máu Tranexamic Acid (Transamin) có tương tác xấu gì sau 5 năm uống Tamoxifen không?',
+    shortSummary: 'Thuốc không chứa hormone nên 100% an toàn với tuyến vú, nhưng cần lưu ý thời gian dùng ngắn ngày để tránh nguy cơ huyết khối.',
+    detailedAnswer: [
+      '1. Về mặt Tuyến Vú: Tranexamic Acid là chất ức chế enzym tiêu sợi huyết (Plasminogen), hoàn toàn không phải hormone nên 0% nguy cơ tái phát ung thư vú.',
+      '2. Về mặt Mạch Máu: Tamoxifen trong 5 năm qua có thể làm tăng nhẹ tính đông máu. Vì vậy, Tranexamic Acid chỉ nên uống trong những ngày ra máu nhiều nhất (khoảng 3 - 5 ngày mỗi chu kỳ) theo đúng liều lượng bác sĩ kê đơn, không tự ý uống kéo dài liên tục hàng tháng trời nếu có tiền sử viêm tắc tĩnh mạch.'
+    ]
+  },
+  {
+    id: 'qa-21',
+    category: 'lifestyle_followup',
+    categoryLabel: 'Cân Nhắc K Vú',
+    question: 'Sau khi dừng Tamoxifen tháng 01/2026, mất bao lâu để tử cung và cơ thể hết hẳn tác động của thuốc?',
+    shortSummary: 'Thời gian bán thải của thuốc là 7-14 ngày, nhưng các biến đổi mô học ở niêm mạc tử cung cần từ 6 đến 12 tháng để thoái triển.',
+    detailedAnswer: [
+      '• Về mặt dược động học: Phân tử Tamoxifen và chất chuyển hóa có hoạt tính (Endoxifen) sẽ được gan đào thải hết ra khỏi máu sau khoảng 4 - 6 tuần kể từ liều uống cuối cùng vào tháng 1/2026.',
+      '• Về mặt mô học tử cung: Các nang tuyến phình to, phù nề mô đệm và mảng tăng sản tích lũy qua 5 năm cần từ 6 - 12 tháng để thoái triển tự nhiên.',
+      'Tuy nhiên, vì chị còn có khối u xơ 45mm và ổ Adenomyosis thành sau, nên sự thoái triển tự nhiên có thể không đủ để cầm máu dứt điểm, do đó cần có sự can thiệp y khoa chủ động.'
+    ]
   }
 ];
