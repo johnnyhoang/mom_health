@@ -3,8 +3,12 @@ import { breastCancerSubtypesData } from '../data/breastCancerMolecularData';
 import { advancedBreastTherapies } from '../data/breastCancerTreatmentData';
 import { breastCancerMediaItems } from '../data/breastCancerMediaData';
 import { breastCancerClinicalDecisionTree } from '../data/breastCancerDecisionData';
+import { breastCancerReferences } from '../data/medicalReferencesData';
 import type { MediaItem } from '../types/medical';
 import { ReadAloudButton } from './ReadAloudButton';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
+
 import { 
   Ribbon, 
   Sparkles, 
@@ -73,7 +77,14 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
 
   return (
     <article className="w-full bg-slate-950 text-slate-200 font-sans pb-32">
-      
+
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty="Ung bướu / Phụ khoa Ung bướu"
+        primaryGuideline="NCCN Breast Cancer Guidelines 2024–2025, ASCO 2023, ESMO 2021"
+        lastUpdated="Tháng 9/2026"
+      />
+
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Breast Cancer Monograph */}
       {/* ========================================================================= */}
@@ -190,7 +201,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
                     : 'bg-slate-900/70 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
                 }`}
               >
-                <span className="line-clamp-1">{st.name.split('(')[0]}</span>
+                <span className="whitespace-pre-line leading-tight">{st.shortName}</span>
                 <span className="text-[10px] text-slate-500 line-clamp-1">{st.prevalence}</span>
               </button>
             );
@@ -770,6 +781,12 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
       </section>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={breastCancerReferences}
+        diseaseTitle="Ung Thư Vú"
+      />
 
     </article>
   );

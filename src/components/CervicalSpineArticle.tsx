@@ -5,6 +5,9 @@ import { cervicalSpineDecisionTree } from '../data/cervicalSpineDecisionData';
 import { CervicalSpineCaseViewer } from './CervicalSpineCaseViewer';
 import { CervicalSpineComorbiditiesSection } from './CervicalSpineComorbiditiesSection';
 import { ReadAloudButton } from './ReadAloudButton';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
+import { cervicalSpineReferences } from '../data/medicalReferencesData';
 import type { MediaItem } from '../types/medical';
 import { 
   Activity, 
@@ -74,6 +77,14 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
 
   return (
     <article className="w-full bg-slate-950 text-slate-200 font-sans pb-32">
+
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty="Phẫu thuật Cột sống / Thần kinh Ngoại khoa"
+        primaryGuideline="NASS Guidelines 2021, AAOS/AOA Cervical Myelopathy 2024"
+        lastUpdated="Tháng 9/2026"
+      />
+
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Cervical Spine Monograph */}
       {/* ========================================================================= */}
@@ -630,6 +641,13 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           </button>
         </div>
       </section>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={cervicalSpineReferences}
+        diseaseTitle="Thoát Vị Đĩa Đệm Cột Sống Cổ"
+      />
+
     </article>
   );
 };

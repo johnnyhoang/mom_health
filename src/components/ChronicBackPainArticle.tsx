@@ -8,8 +8,11 @@ import {
 } from '../data/chronicBackPainData';
 import { chronicBackPainMediaItems } from '../data/chronicBackPainMediaData';
 import { chronicBackPainDecisionTree } from '../data/chronicBackPainDecisionData';
+import { chronicBackPainReferences } from '../data/medicalReferencesData';
 import type { MediaItem } from '../types/medical';
 import { ReadAloudButton } from './ReadAloudButton';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
 import { 
   Activity, 
   Sparkles, 
@@ -84,6 +87,13 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
   return (
     <article className="w-full bg-slate-950 text-slate-200 font-sans pb-32">
       
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty="Thần Kinh Cột Sống & Phục Hồi Chức Năng"
+        primaryGuideline="WHO Low Back Pain Guidelines 2023, ACP Clinical Guideline, NASS"
+        lastUpdated="Tháng 9/2026"
+      />
+
       {/* ========================================================================= */}
       {/* MONOGRAPH HEADER & CASE PROFILE */}
       {/* ========================================================================= */}
@@ -769,6 +779,12 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
         </div>
 
       </section>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={chronicBackPainReferences}
+        diseaseTitle="Đau Lưng Kinh Niên & Hội Chứng Thần Kinh Cân Cơ"
+      />
 
     </article>
   );

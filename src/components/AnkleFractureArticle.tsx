@@ -6,6 +6,9 @@ import { AnkleFractureCaseViewer } from './AnkleFractureCaseViewer';
 import { AnkleFractureRehabTimeline } from './AnkleFractureRehabTimeline';
 import { AnkleFractureSafetySection } from './AnkleFractureSafetySection';
 import { ReadAloudButton } from './ReadAloudButton';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
+import { ankleFractureReferences } from '../data/medicalReferencesData';
 import type { MediaItem } from '../types/medical';
 import { 
   Activity, 
@@ -76,6 +79,14 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
 
   return (
     <article className="w-full bg-slate-950 text-slate-200 font-sans pb-32">
+
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty="Chấn Thương Chỉnh Hình"
+        primaryGuideline="AAOS Clinical Practice Guideline 2022, AOFAS 2023"
+        lastUpdated="Tháng 9/2026"
+      />
+
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Ankle Trauma & Rehabilitation Monograph */}
       {/* ========================================================================= */}
@@ -615,6 +626,13 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           </button>
         </div>
       </section>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={ankleFractureReferences}
+        diseaseTitle="Gãy Mắt Cá Chân"
+      />
+
     </article>
   );
 };

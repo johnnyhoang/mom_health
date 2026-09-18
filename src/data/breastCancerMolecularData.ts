@@ -1,6 +1,7 @@
 export interface BreastCancerSubtype {
   id: string;
   name: string;
+  shortName: string;
   vietnameseName: string;
   prevalence: string;
   receptorProfile: {
@@ -20,6 +21,7 @@ export const breastCancerSubtypesData: BreastCancerSubtype[] = [
   {
     id: 'luminal-a',
     name: 'Luminal A (Thể Lòng Ống A)',
+    shortName: 'Luminal A',
     vietnameseName: 'Thể Nhạy Cảm Nội Tiết Cao - Tiên Lượng Tốt Nhất',
     prevalence: '50% - 60% tổng số ca K vú',
     receptorProfile: {
@@ -44,6 +46,7 @@ export const breastCancerSubtypesData: BreastCancerSubtype[] = [
   {
     id: 'luminal-b-her2-negative',
     name: 'Luminal B (HER2 Âm Tính)',
+    shortName: 'Luminal B\nHER2−',
     vietnameseName: 'Thể Lòng Ống B - Phân Chia Nhanh / Ki-67 Cao',
     prevalence: '15% - 20% tổng số ca K vú',
     receptorProfile: {
@@ -68,6 +71,7 @@ export const breastCancerSubtypesData: BreastCancerSubtype[] = [
   {
     id: 'luminal-b-her2-positive',
     name: 'Luminal B (HER2 Dương Tính / Triple Positive)',
+    shortName: 'Luminal B\nHER2+',
     vietnameseName: 'Thể Dương Tính Cả 3 Thụ Thể (ER+, PR+, HER2+)',
     prevalence: '10% - 15% tổng số ca K vú',
     receptorProfile: {
@@ -92,6 +96,7 @@ export const breastCancerSubtypesData: BreastCancerSubtype[] = [
   {
     id: 'her2-enriched',
     name: 'HER2-Enriched (HER2 Đơn Thuần)',
+    shortName: 'HER2-Enriched',
     vietnameseName: 'Thể HER2 Dương Tính Thuần Túy (ER-, PR-, HER2+)',
     prevalence: '10% - 15% tổng số ca K vú',
     receptorProfile: {
@@ -115,6 +120,7 @@ export const breastCancerSubtypesData: BreastCancerSubtype[] = [
   {
     id: 'triple-negative',
     name: 'Triple-Negative Breast Cancer (TNBC)',
+    shortName: 'Triple-Negative\n(TNBC)',
     vietnameseName: 'Thể Tam Âm (ER-, PR-, HER2-)',
     prevalence: '10% - 15% tổng số ca K vú',
     receptorProfile: {

@@ -4,6 +4,14 @@ import { cervicalSpineQAList } from '../data/cervicalSpineQAData';
 import { ankleFractureQAList } from '../data/ankleFractureQAData';
 import { chronicBackPainQAItems } from '../data/chronicBackPainQAData';
 import { ReadAloudButton } from './ReadAloudButton';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
+import { 
+  ankleFractureReferences, 
+  cervicalSpineReferences, 
+  uterineTamoxifenReferences, 
+  chronicBackPainReferences 
+} from '../data/medicalReferencesData';
 import { 
   HelpCircle, 
   Search, 
@@ -192,6 +200,29 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
 
   return (
     <div className="w-full min-h-screen bg-slate-950 text-slate-100 pb-32">
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty={
+          activeTopic === 'ankle'
+            ? 'Chấn Thương Chỉnh Hình & Khớp Cổ Chân'
+            : activeTopic === 'spine'
+            ? 'Phẫu Thuật Cột Sống & Ngoại Thần Kinh'
+            : activeTopic === 'gynecology'
+            ? 'Sản Phụ Khoa & Ung Bướu Tuyến Vú'
+            : 'Thần Kinh Cột Sống & Y Học Phục Hồi'
+        }
+        primaryGuideline={
+          activeTopic === 'ankle'
+            ? 'AAOS Clinical Practice Guidelines, AOFAS'
+            : activeTopic === 'spine'
+            ? 'NASS Guidelines, AOSpine Protocols'
+            : activeTopic === 'gynecology'
+            ? 'ACOG Practice Bulletin, NCCN Guidelines'
+            : 'WHO Low Back Pain 2023, ACP Guidelines'
+        }
+        lastUpdated="Tháng 9/2026"
+      />
+
       {/* Header Banner */}
       <div className="w-full max-w-4xl mx-auto pt-8 pb-6 px-4 sm:px-6 space-y-6">
         <div className="flex items-center justify-between">
@@ -791,6 +822,28 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
           )
         )}
       </div>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={
+          activeTopic === 'ankle'
+            ? ankleFractureReferences
+            : activeTopic === 'spine'
+            ? cervicalSpineReferences
+            : activeTopic === 'gynecology'
+            ? uterineTamoxifenReferences
+            : chronicBackPainReferences
+        }
+        diseaseTitle={
+          activeTopic === 'ankle'
+            ? 'Q&A Chấn Thương Khớp Cổ Chân'
+            : activeTopic === 'spine'
+            ? 'Q&A Cột Sống Cổ (ACDF)'
+            : activeTopic === 'gynecology'
+            ? 'Q&A Bệnh Lý Tử Cung & Tamoxifen'
+            : 'Q&A Đau Lưng & Cân Cơ'
+        }
+      />
     </div>
   );
 };

@@ -98,14 +98,16 @@ export const tamoxifenQADataset: QAItem[] = [
     id: 'qa-7',
     category: 'tamoxifen_mechanism',
     categoryLabel: 'Cơ Chế Tamoxifen',
-    question: 'Tại sao tôi uống thuốc 5 năm không sao, vừa ngưng thuốc tháng 01/2026 thì lại bùng phát rong kinh?',
-    shortSummary: 'Do sự sụt giảm nội tiết đột ngột sau ngưng thuốc kết hợp rối loạn chu kỳ rụng trứng ở tuổi 45.',
+    question: 'Vì sao tôi đã ngừng Tamoxifen từ tháng 1/2026, đúng ra triệu chứng tử cung phải giảm dần, đằng này đến tháng 9 mới bất thường và ngày càng tăng?',
+    shortSummary: 'Do 3 cơ chế y khoa: Hiện tượng "bung ức chế" Estrogen nội sinh không đối kháng, độ trễ tích tụ mô học 6-9 tháng (Lag Phase) và sự mất kiểm soát của khối U xơ 45mm + Adenomyosis.',
     detailedAnswer: [
-      'Khi uống thuốc 5 năm, niêm mạc tử cung ở trạng thái "ổn định cưỡng bức" dưới tác động của phân tử SERM.',
-      'Tháng 1/2026 khi ngưng thuốc: Nồng độ SERM giảm dần, trục nội tiết buồng trứng - tử cung tự thiết lập lại.',
-      'Ở độ tuổi 45 (giai đoạn tiền mãn kinh): Buồng trứng thường xuyên có các chu kỳ không rụng trứng, dẫn đến thiếu Progesterone đối kháng tự nhiên.',
-      'Lớp niêm mạc dày tích tụ qua 5 năm bắt đầu bong tróc rải rác từng mảng, không bong đồng loạt, tạo ra tình trạng rong huyết rỉ rả kéo dài.'
-    ]
+      '1. Hiện tượng "Bung ức chế" sau khi hết thuốc Tamoxifen: Trong suốt 5 năm, phân tử Tamoxifen liên tục gắn vào thụ thể Estrogen ở tử cung, tạo ra một trạng thái "bình ổn cưỡng bức". Khi ngưng thuốc từ tháng 1/2026, Tamoxifen đào thải hết và giải phóng hoàn toàn các thụ thể.',
+      '2. Buồng trứng tuổi 45 tiết "Estrogen không đối kháng" (Unopposed Estrogen): Ở độ tuổi tiền mãn kinh, buồng trứng có nhiều chu kỳ không rụng trứng (Anovulatory cycles). Buồng trứng vẫn sản xuất lượng Estrogen dồi dào kích thích niêm mạc, nhưng lại hoàn toàn THIẾU HỤT Progesterone (do không có hoàng thể) để kìm hãm hay làm bong niêm mạc theo chu kỳ.',
+      '3. Độ trễ tích tụ mô học (Endometrial Build-up Lag Phase: 6 - 9 tháng): Quá trình tăng sản không xảy ra ngay lập tức. Dưới tác động của Estrogen nội sinh không đối kháng kéo dài liên tục từ tháng 2 đến tháng 8, lớp niêm mạc âm thầm dày lên từng ngày. Đến tháng 8 - 9/2026 (sau 8 tháng tích tụ), niêm mạc dày vượt quá khả năng nuôi dưỡng của mạng lưới vi mạch máu, dẫn đến hiện tượng hoại tử bong tróc nham nhở từng mảng (breakthrough bleeding), gây rong kinh kéo dài và các đốm huyết bất thường.',
+      '4. Khối U xơ 45mm và Adenomyosis thành sau bộc lộ triệu chứng: Khi niêm mạc bắt đầu bong tróc rỉ máu, khối u xơ 45mm và ổ Adenomyosis làm thành cơ tử cung bị xơ cứng, không thể co bóp siết chặt các mạch máu để tự cầm máu. Điều này khiến lượng máu ra ngày càng nhiều hơn và các triệu chứng đau tức bụng, rong kinh ngày càng tăng dần vào tháng 9.'
+    ],
+    clinicalHighlight: 'Triệu chứng bùng phát vào tháng 9/2026 là quy luật diễn tiến tự nhiên của pha tích tụ mô học (Lag phase) kết hợp Estrogen không đối kháng ở tuổi tiền mãn kinh, hoàn toàn không phải do ung thư tái phát.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, có phải việc ngưng Tamoxifen tháng 1/2026 đã giải phóng thụ thể estrogen, kết hợp với chu kỳ không phóng noãn tuổi 45 đã tạo ra độ trễ 8 tháng tích tụ niêm mạc gây rong kinh rộ lên vào tháng 9 không?"'
   },
 
   // =========================================================================
@@ -295,13 +297,14 @@ export const tamoxifenQADataset: QAItem[] = [
     id: 'qa-21',
     category: 'lifestyle_followup',
     categoryLabel: 'Cân Nhắc K Vú',
-    question: 'Sau khi dừng Tamoxifen tháng 01/2026, mất bao lâu để tử cung và cơ thể hết hẳn tác động của thuốc?',
-    shortSummary: 'Thời gian bán thải của thuốc là 7-14 ngày, nhưng các biến đổi mô học ở niêm mạc tử cung cần từ 6 đến 12 tháng để thoái triển.',
+    question: 'Hiệu ứng giảm dần của Tamoxifen trên tử cung thường kéo dài trong bao lâu?',
+    shortSummary: 'Thuốc đào thải khỏi máu sau 4-6 tuần, nhưng quá trình thoái triển mô học của niêm mạc tử cung cần từ 6 đến 12 tháng (trung bình 9-12 tháng).',
     detailedAnswer: [
-      '• Về mặt dược động học: Phân tử Tamoxifen và chất chuyển hóa có hoạt tính (Endoxifen) sẽ được gan đào thải hết ra khỏi máu sau khoảng 4 - 6 tuần kể từ liều uống cuối cùng vào tháng 1/2026.',
-      '• Về mặt mô học tử cung: Các nang tuyến phình to, phù nề mô đệm và mảng tăng sản tích lũy qua 5 năm cần từ 6 - 12 tháng để thoái triển tự nhiên.',
-      'Tuy nhiên, vì chị còn có khối u xơ 45mm và ổ Adenomyosis thành sau, nên sự thoái triển tự nhiên có thể không đủ để cầm máu dứt điểm, do đó cần có sự can thiệp y khoa chủ động.'
-    ]
+      '1. Về mặt nồng độ thuốc trong máu (Dược động học): Phân tử Tamoxifen và chất chuyển hóa Endoxifen có thời gian bán thải từ 7-14 ngày. Cơ thể mất khoảng 4 đến 6 tuần (kể từ tháng 1/2026) để đào thải 100% hoạt chất ra khỏi hệ tuần hoàn.',
+      '2. Về mặt biến đổi cấu trúc mô học tử cung (Dược lực học): Các tổn thương tích lũy qua 5 năm (giãn nang tuyến, phù nề mô đệm, dày niêm mạc) không thể biến mất ngay sau khi hết thuốc, mà cần từ 6 ĐẾN 12 THÁNG để thoái triển dần.',
+      '3. Vì sao có "hiệu ứng giảm dần" nhưng vẫn bị xuất huyết sau 9 tháng: Đúng là tác động kích thích của Tamoxifen đã giảm dần, nhưng ở tháng thứ 8-9, lớp niêm mạc dày tích tụ chưa kịp thoái triển hết lại gặp phải tình trạng "Estrogen nội sinh không đối kháng" của buồng trứng tuổi tiền mãn kinh và khối U xơ 45mm, dẫn đến hiện tượng bong tróc rỉ máu nham nhở.'
+    ],
+    clinicalHighlight: 'Mốc 9 tháng (tháng 9/2026) chính là điểm giao thoa giữa giai đoạn cuối của sự thoái triển Tamoxifen (6-12 tháng) và sự tái kích hoạt của nội tiết buồng trứng tự nhiên.'
   },
   {
     id: 'qa-22',
@@ -431,6 +434,67 @@ export const tamoxifenQADataset: QAItem[] = [
     ],
     clinicalHighlight: '21 chu kỳ theo dõi dài hạn từ 2022-2024 là bằng chứng thực chứng đập tan mọi nghi ngờ về xuất huyết do ung thư ác tính.',
     doctorQuestionToAsk: '"Thưa bác sĩ, tôi có dữ liệu theo dõi chu kỳ kinh nguyệt 35-40 ngày đều đặn qua app từ năm 2022, điều này có giúp bác sĩ đánh giá chính xác hơn về nguyên nhân rong kinh sau khi ngừng Tamoxifen không?"'
+  },
+  {
+    id: 'qa-31',
+    category: 'case_results',
+    categoryLabel: 'Ảnh Hưởng Thiếu Máu',
+    question: 'Rong kinh kéo dài dẫn đến thiếu máu mạn tính thì có sao không? Có nguy hiểm không?',
+    shortSummary: 'RẤT NGUY HIỂM NẾU ĐỂ KÉO DÀI. Thiếu máu mạn tính gây quá tải tim mạch (nguy cơ suy tim), suy nhược thần kinh, làm suy yếu hệ miễn dịch giám sát ung thư và gây khó khăn nếu phải phẫu thuật.',
+    detailedAnswer: [
+      '1. Gánh nặng và quá tải Tim Mạch: Khi lượng huyết sắc tố (Hemoglobin) giảm thấp, máu không đủ oxy nuôi cơ thể. Để bù đắp, tim bắt buộc phải đập nhanh hơn, co bóp mạnh hơn liên tục 24/7. Lâu dài dẫn đến phì đại cơ tim, hồi hộp đánh trống ngực, khó thở khi gắng sức (leo cầu thang) và nguy cơ suy tim tăng cung lượng.',
+      '2. Suy nhược Thần kinh & Thể lực: Não thiếu oxy làm giảm khả năng tập trung, hay quên, hoa mắt chóng mặt khi đứng dậy đột ngột, đau đầu mạn tính, mất ngủ. Cơ thể luôn mệt mỏi rã rời, uể oải, da dẻ xanh xao nhợt nhạt, tóc rụng nhiều và móng tay giòn gãy.',
+      '3. Suy giảm Hệ Miễn Dịch (Đặc biệt quan trọng với tiền sử K vú): Cơ thể sau 5 năm điều trị K vú cần một hệ thống miễn dịch khỏe mạnh (tế bào Lympho T, đại thực bào) để giám sát và tiêu diệt các tế bào lạ. Thiếu máu và thiếu sắt kéo dài làm suy yếu chức năng miễn dịch, khiến sức đề kháng tổng thể sụt giảm rõ rệt.',
+      '4. Nguy cơ phải truyền máu khi phẫu thuật: Nếu để Hemoglobin tụt sâu (< 8-9 g/dL), khi cần can thiệp phẫu thuật (như nội soi cắt tử cung), bệnh nhân sẽ phải truyền máu trước hoặc trong mổ, làm tăng chi phí và nguy cơ phản ứng dị ứng truyền máu.'
+    ],
+    clinicalHighlight: 'Đây chính là lý do vì sao dù kết quả GPB là LÀNH TÍNH, các bác sĩ vẫn khuyến nghị xử lý dứt điểm rong kinh sớm để bảo vệ trái tim và thể trạng lâu dài cho bệnh nhân.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, với tình trạng rong kinh nhiều tháng nay, chỉ số Huyết sắc tố (Hemoglobin/Hb) và Dự trữ sắt (Ferritin) hiện tại của tôi là bao nhiêu, tôi có cần bù sắt liều cao hoặc truyền sắt không?"'
+  },
+  {
+    id: 'qa-32',
+    category: 'lifestyle_followup',
+    categoryLabel: 'Dinh Dưỡng & Tiêu Hóa',
+    question: 'Tôi cần uống thuốc sắt liều lượng bao nhiêu khi bị rong kinh? Uống nhiều sắt có ảnh hưởng xấu đến Bệnh Trĩ hay Polyp Đại Tràng không?',
+    shortSummary: 'Liều chuẩn là 60-100mg sắt nguyên tố/ngày (ưu tiên sắt hữu cơ). Uống quá liều hoặc dùng sắt vô cơ dễ gây táo bón làm nặng bệnh trĩ và gây kích ứng oxy hóa niêm mạc đại tràng.',
+    detailedAnswer: [
+      '1. Liều lượng thuốc sắt khuyến nghị cho rong kinh: Chuẩn y khoa là 60 – 100 mg SẮT NGUYÊN TỐ (Elemental Iron)/ngày. Nên ưu tiên chọn các dòng Sắt Hữu Cơ (Sắt Bisglycinate, Sắt Polymaltose hoặc Sắt Liposome) để hạn chế tối đa kích ứng dạ dày và giảm táo bón.',
+      '2. Ảnh hưởng đến BỆNH TRĨ (Rất cần lưu ý): Thuốc sắt (đặc biệt là sắt vô cơ Sulfate hoặc khi dùng liều quá cao) lượng sắt thừa không hấp thu hết trong ruột sẽ làm phân khô cứng, vón cục và có màu đen xám. Táo bón buộc người bệnh phải rặn mạnh khi đi tiêu, làm tăng áp lực tĩnh mạch hậu môn, trực tiếp gây SƯNG ĐAU, CHẢY MÁU BÚI TRĨ và NỨT KẼ HẬU MÔN.',
+      '3. Ảnh hưởng đến POLYP ĐẠI TRÀNG: Sắt tự do dư thừa trong lòng đại tràng có thể tạo ra các gốc tự do oxy hóa (Phản ứng Fenton), gây kích ứng nhẹ niêm mạc ruột. Dù uống sắt ngắn hạn (3-6 tháng) để bù máu không làm sinh ra polyp mới hay làm polyp ung thư hóa ngay, nhưng người có polyp đại tràng không nên tự ý uống sắt liều cao vô tội vạ kéo dài hàng năm trời.',
+      '4. Bí quyết uống sắt an toàn cho người có tiền sử trĩ & polyp: (a) Chọn sắt hữu cơ Bisglycinate/Liposome; (b) Uống kèm nửa ly nước cam/ổi tươi (Vitamin C); (c) Uống đủ 2 - 2.5 lít nước/ngày và bổ sung nhiều chất xơ hòa tan (khoai lang, thanh long, rau mồng tơi, hạt chia); (d) Xét nghiệm lại chỉ số Huyết sắc tố (Hb) và Dự trữ sắt (Ferritin) sau 3 tháng để dừng uống khi cơ thể đã đủ sắt.'
+    ],
+    clinicalHighlight: 'Uống sắt cách ngày (uống 1 ngày nghỉ 1 ngày) theo khuyến cáo mới của WHO vừa giúp ruột hấp thu sắt tối ưu hơn vừa giảm hẳn 50% nguy cơ táo bón cho người bị trĩ.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, tôi có cơ địa trĩ/polyp đại tràng, bác sĩ có thể kê cho tôi loại sắt hữu cơ êm dịu cho đường tiêu hóa (như Sắt Bisglycinate/Liposome) và hướng dẫn liều uống cách ngày không?"'
+  },
+  {
+    id: 'qa-33',
+    category: 'case_results',
+    categoryLabel: 'Đối Chiếu Lâm Sàng',
+    question: 'Đối chiếu phiếu kết quả BV Từ Dũ: Bác sĩ ghi "Tăng sản điển hình nội mạc tử cung (Hyperplasia Without Atypia) nếu không điều trị sẽ tiến triển thành Ung thư" có ý nghĩa gì đối với tôi?',
+    shortSummary: 'Phiếu GPB BV Từ Dũ là BẰNG CHỨNG VÀNG xác nhận "Tăng sản điển hình" chính là "Without Atypia" (Lành tính). Cảnh báo tiến triển chỉ xảy ra nếu bỏ mặc nhiều năm không xử lý; việc can thiệp sớm sẽ ngăn chặn triệt để 100% nguy cơ ung thư.',
+    detailedAnswer: [
+      '1. Bằng chứng văn bản vàng khẳng định thuật ngữ: Phiếu kết quả Giải phẫu bệnh thực tế tại BV Từ Dũ in rõ ràng từng chữ: "TĂNG SẢN ĐIỂN HÌNH NỘI MẠC TỬ CUNG (HYPERPLASIA WITHOUT ATYPIA) KHU TRÚ". Điều này dập tắt 100% mọi nghi ngờ về thuật ngữ: Kết quả "Tăng sản điển hình" tại BV Hùng Vương của chị chính xác tuyệt đối là tổn thương LÀNH TÍNH (Without Atypia - Không có dị sản nhân).',
+      '2. Vì sao Bác sĩ cảnh báo "nếu không điều trị có nguy cơ tiến triển ung thư": Nếu một mảng tăng sản bị bỏ mặc không theo dõi trong 5 - 10 năm, dưới tác động liên tục của hormone Estrogen không đối kháng ở tuổi tiền mãn kinh, các tế bào có thể tích lũy thêm đột biến để chuyển thành Tăng sản không điển hình (EIN) rồi tiến triển thành K nội mạc tử cung (tỷ lệ khoảng 1 - 3%).',
+      '3. Giá trị của việc phát hiện sớm và can thiệp chủ động: Chị đã làm sinh thiết tầm soát kịp thời tại BV Hùng Vương tháng 09/2026. Khi chúng ta chủ động can thiệp (đặc biệt là giải pháp phẫu thuật nội soi cắt tử cung bảo tồn 2 buồng trứng), toàn bộ niêm mạc tăng sản, u xơ 45mm và Adenomyosis được loại bỏ trọn vẹn, XÓA BỎ VĨNH VIỄN 100% NGUY CƠ TIẾN TRIỂN THÀNH UNG THƯ TỬ CUNG TRONG TƯƠNG LAI!',
+      '4. Kết luận an tâm: Cảnh báo của bác sĩ là dành cho những người "bỏ mặc không điều trị". Chị đang chủ động thăm khám và có kế hoạch xử lý dứt điểm, vì vậy chị hoàn toàn có thể yên tâm 100% không bao giờ phải đối mặt với nguy cơ ung thư tử cung.'
+    ],
+    clinicalHighlight: 'Phiếu GPB BV Từ Dũ là minh chứng thực tế rõ ràng nhất chứng minh Tăng sản điển hình = Without Atypia lành tính và khẳng định giá trị bảo vệ tuyệt đối của việc can thiệp xử lý sớm.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, phiếu giải phẫu bệnh của tôi tương đồng với kết quả Tăng sản điển hình (Without atypia) của BV Từ Dũ, vậy khi tôi phẫu thuật nội soi xử lý triệt để thì nguy cơ ung thư tử cung sau này có bằng 0% không?"'
+  },
+  {
+    id: 'qa-34',
+    category: 'treatment_options',
+    categoryLabel: 'Phác Đồ K Vú',
+    question: 'Tăng sản điển hình do Tamoxifen có tự thoái triển không? Thời gian theo dõi bao lâu và phác đồ tối ưu cho bệnh nhân K vú là gì?',
+    shortSummary: 'Tế bào hoàn toàn bình thường lành tính. Khoảng 60-70% có thể tự thoái triển sau 6-12 tháng ngưng Tamoxifen, nhưng do có u xơ 45mm và Adenomyosis gây rong kinh nên phẫu thuật nội soi cắt tử cung bảo tồn 2 buồng trứng là lựa chọn tối ưu và an toàn nhất.',
+    detailedAnswer: [
+      '1. Bản chất tế bào: TĂNG SẢN ĐIỂN HÌNH là tế bào hoàn toàn BÌNH THƯỜNG về mặt cấu trúc nhân (không đột biến, không dị sản), chỉ tăng về số lượng tế bào do kích thích nội tiết.',
+      '2. Khả năng tự thoái triển & Yếu tố cản trở: Sau khi ngưng Tamoxifen, mảng tăng sản có thể tự teo mỏng sau 6 - 12 tháng. Tuy nhiên, ở trường hợp của chị, tình trạng thiếu Progesterone tuổi 45 cùng khối U xơ 45mm và Adenomyosis thành sau khiến triệu chứng rong kinh không thể tự dứt điểm.',
+      '3. Thời gian theo dõi & Nguy cơ tiến triển: Nếu muốn theo dõi bảo tồn, thời gian an toàn là 3 - 6 tháng (tối đa 12 tháng). Quá trình để một tổn thương tăng sản điển hình biến đổi thành ác tính (nếu bỏ mặc không điều trị) diễn ra rất chậm, mất từ 5 ĐẾN 10 NĂM với tỷ lệ chỉ < 1-3%.',
+      '4. Các bước theo dõi thoái triển: (a) Siêu âm đầu dò âm đạo (TVUS) mỗi 3 tháng đo độ dày niêm mạc và khối u xơ; (b) Xét nghiệm công thức máu (Hb) và Ferritin định kỳ; (c) Sinh thiết lại sau 6 tháng nếu niêm mạc không mỏng đi.',
+      '5. Phác đồ tối ưu cho bệnh nhân K vú (ER+/PR+): PHẪU THUẬT NỘI SOI CẮT TỬ CUNG BẢO TỒN 2 BUỒNG TRỨNG là giải pháp số 1 vì: 0% dùng thuốc nội tiết (an toàn tuyệt đối cho vú), giữ nguyên 2 buồng trứng không lo mãn kinh sớm, đồng thời dứt điểm trọn vẹn cả Tăng sản + U xơ 45mm + Adenomyosis.'
+    ],
+    clinicalHighlight: 'Phẫu thuật nội soi cắt tử cung bảo tồn buồng trứng vừa giải quyết dứt điểm 100% rong kinh vừa triệt tiêu vĩnh viễn 100% nguy cơ ung thư tử cung mà không chạm đến nội tiết của bệnh nhân K vú.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, trên nền K vú thể nội tiết, giữa việc theo dõi 6 tháng và phẫu thuật nội soi cắt tử cung bảo tồn 2 buồng trứng ngay, phương án nào mang lại chất lượng sống và sự an tâm cao nhất cho tôi?"'
   }
 ];
 

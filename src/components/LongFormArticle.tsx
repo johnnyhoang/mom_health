@@ -3,6 +3,9 @@ import { friendlyDiseases } from '../data/patientFriendlyData';
 import { menstrualCyclePhases } from '../data/histologyData';
 import { mediaAtlasItems } from '../data/mediaAtlasData';
 import { clinicalDecisionTree } from '../data/decisionTreeData';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
+import { uterineTamoxifenReferences } from '../data/medicalReferencesData';
 import type { MediaItem } from '../types/medical';
 import { 
   HeartHandshake, 
@@ -84,6 +87,13 @@ export const LongFormArticle: React.FC<LongFormArticleProps> = ({ onOpenVideoMod
 
   return (
     <article className="w-full bg-slate-950 text-slate-100 font-sans pb-28">
+
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty="Sản Phụ Khoa & Y Học Sinh Sản"
+        primaryGuideline="ACOG Practice Bulletin, FIGO Staging, ESHRE Guidelines"
+        lastUpdated="Tháng 9/2026"
+      />
       
       {/* ========================================================================= */}
       {/* HERO SECTION: Warm, Relatable, Trustworthy Introduction */}
@@ -781,6 +791,12 @@ export const LongFormArticle: React.FC<LongFormArticleProps> = ({ onOpenVideoMod
         </div>
 
       </section>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={uterineTamoxifenReferences}
+        diseaseTitle="Nội Mạc Tử Cung & Bệnh Học Phụ Khoa"
+      />
 
     </article>
   );

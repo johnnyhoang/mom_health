@@ -2,6 +2,13 @@ import React, { useState, useMemo } from 'react';
 import { topDoctorsList } from '../data/doctorsData';
 import { topSpineDoctorsList } from '../data/spineDoctorsData';
 import { topOrthoDoctorsList } from '../data/orthopedicDoctorsData';
+import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
+import { ReferencesSection } from './ReferencesSection';
+import { 
+  ankleFractureReferences, 
+  cervicalSpineReferences, 
+  uterineTamoxifenReferences 
+} from '../data/medicalReferencesData';
 import { 
   UserCheck, 
   Search, 
@@ -121,6 +128,19 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
 
   return (
     <div className="w-full min-h-screen bg-slate-950 text-slate-100 pb-32">
+      {/* Medical Disclaimer Banner */}
+      <MedicalDisclaimerBanner
+        specialty={
+          activeTopic === 'ankle'
+            ? 'Chuyên Gia Chấn Thương Chỉnh Hình TP.HCM'
+            : activeTopic === 'spine'
+            ? 'Chuyên Gia Ngoại Thần Kinh & Cột Sống TP.HCM'
+            : 'Chuyên Gia Sản Phụ Khoa Tuyến Cuối TP.HCM'
+        }
+        primaryGuideline="Tiêu chuẩn năng lực hành nghề Bộ Y Tế & Hội Y Học TP.HCM"
+        lastUpdated="Tháng 9/2026"
+      />
+
       {/* Top Banner */}
       <div className="w-full max-w-4xl mx-auto pt-8 pb-6 px-4 sm:px-6 space-y-6">
         <div className="flex items-center justify-between">
@@ -613,6 +633,24 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
           )
         )}
       </div>
+
+      {/* References Section */}
+      <ReferencesSection
+        references={
+          activeTopic === 'ankle'
+            ? ankleFractureReferences
+            : activeTopic === 'spine'
+            ? cervicalSpineReferences
+            : uterineTamoxifenReferences
+        }
+        diseaseTitle={
+          activeTopic === 'ankle'
+            ? 'Danh Bạ Chấn Thương Chỉnh Hình'
+            : activeTopic === 'spine'
+            ? 'Danh Bạ Phẫu Thuật Cột Sống'
+            : 'Danh Bạ Sản Phụ Khoa & Ung Bướu'
+        }
+      />
     </div>
   );
 };
