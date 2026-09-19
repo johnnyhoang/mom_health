@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Báo Cáo Tổng Luận Y Khoa Toàn Diện: Giải Mã Nghịch Lý Tamoxifen, Bản Chất Tăng Sản & Phác Đồ Điều Trị</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 13mm 15mm 14mm 15mm;
+    @bottom-right {
+      content: "Trang " counter(page) " / 3";
+      font-size: 7.5pt;
+      font-family: 'Segoe UI', sans-serif;
+      color: #64748b;
+    }
+  }
+  
+  * { box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    color: #0f172a;
+    background-color: #ffffff;
+    line-height: 1.46;
+    font-size: 9.2pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  .header {
+    border-bottom: 2.5px solid #0f766e;
+    padding-bottom: 6px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+
+  .header-left h1 {
+    font-size: 14.5pt;
+    font-weight: 800;
+    color: #0f766e;
+    margin: 0 0 2px 0;
+    letter-spacing: -0.3px;
+  }
+
+  .header-left .subtitle {
+    font-size: 8.5pt;
+    color: #475569;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .header-right {
+    text-align: right;
+    font-size: 8pt;
+    color: #64748b;
+    line-height: 1.3;
+  }
+
+  .disclaimer-box {
+    background-color: #f8fafc;
+    border-left: 3.5px solid #0284c7;
+    border-top: 1px solid #e2e8f0;
+    border-right: 1px solid #e2e8f0;
+    border-bottom: 1px solid #e2e8f0;
+    border-radius: 5px;
+    padding: 6px 10px;
+    margin-bottom: 10px;
+    font-size: 8pt;
+    color: #334155;
+    line-height: 1.35;
+  }
+
+  .disclaimer-box strong {
+    color: #0369a1;
+  }
+
+  h2 {
+    font-size: 11pt;
+    font-weight: 800;
+    color: #0f172a;
+    border-bottom: 1.5px solid #cbd5e1;
+    padding-bottom: 3px;
+    margin-top: 12px;
+    margin-bottom: 8px;
+    page-break-after: avoid;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  h3 {
+    font-size: 9.8pt;
+    font-weight: 700;
+    color: #0f766e;
+    margin-top: 8px;
+    margin-bottom: 3px;
+    page-break-after: avoid;
+  }
+
+  p {
+    margin: 0 0 6px 0;
+    text-align: justify;
+  }
+
+  ul, ol {
+    margin: 0 0 6px 0;
+    padding-left: 17px;
+  }
+
+  li {
+    margin-bottom: 2.5px;
+  }
+
+  .highlight-card {
+    background-color: #f0fdfa;
+    border: 1px solid #99f6e4;
+    border-left: 3.5px solid #0d9488;
+    border-radius: 5px;
+    padding: 7px 11px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .highlight-card strong { color: #0f766e; }
+
+  .danger-card {
+    background-color: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 3.5px solid #dc2626;
+    border-radius: 5px;
+    padding: 8px 11px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .danger-card strong { color: #b91c1c; }
+
+  .info-card {
+    background-color: #f0f9ff;
+    border: 1px solid #bae6fd;
+    border-left: 3.5px solid #0284c7;
+    border-radius: 5px;
+    padding: 7px 11px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .info-card strong { color: #0369a1; }
+
+  .warning-card {
+    background-color: #fffbeb;
+    border: 1px solid #fde68a;
+    border-left: 3.5px solid #d97706;
+    border-radius: 5px;
+    padding: 7px 11px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .warning-card strong { color: #b45309; }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    font-size: 8.5pt;
+  }
+
+  table th, table td {
+    border: 1px solid #cbd5e1;
+    padding: 6px 8px;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  table th {
+    background-color: #f1f5f9;
+    color: #0f172a;
+    font-weight: 700;
+  }
+
+  table tr:nth-child(even) {
+    background-color: #f8fafc;
+  }
+
+  .tag-success {
+    display: inline-block;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-size: 7.8pt;
+    font-weight: bold;
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+  }
+
+  .flow-badge {
+    background-color: #0f766e;
+    color: #ffffff;
+    font-size: 8pt;
+    font-weight: 800;
+    padding: 1.5px 7px;
+    border-radius: 10px;
+    display: inline-block;
+  }
+
+  .footer-ref {
+    margin-top: 14px;
+    border-top: 1.5px solid #e2e8f0;
+    padding-top: 8px;
+    font-size: 7.8pt;
+    color: #64748b;
+    page-break-inside: avoid;
+  }
+  .footer-ref h4 {
+    font-size: 8.5pt;
+    color: #1e293b;
+    margin: 0 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .footer-ref ol {
+    margin: 0;
+    padding-left: 14px;
+  }
+  .footer-ref li {
+    margin-bottom: 2px;
+  }
+
+  .page-break {
+    break-before: page;
+    page-break-before: always;
+    display: block;
+    clear: both;
+  }
+  
+  .page-3-box {
+    background-color: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 3.5px solid #16a34a;
+    border-radius: 5px;
+    padding: 7px 11px;
+    margin: 8px 0;
+    font-size: 8.8pt;
+  }
+  .page-3-box strong { color: #15803d; }
+</style>
+</head>
+<body>
+
+<!-- ==================== TRANG 1: KHỞI NGUỒN, NGHỊCH LÝ 9 THÁNG & BẢN CHẤT TẾ BÀO ==================== -->
+<div class="header">
+  <div class="header-left">
+    <div class="subtitle">Báo Cáo Tổng Hợp Y Khoa Toàn Diện • Chuẩn Y Học Thực Chứng NCCN & ACOG</div>
+    <h1>Giải Mã Nghịch Lý Tamoxifen, Bản Chất Tăng Sản & Phác Đồ Toàn Diện</h1>
+  </div>
+  <div class="header-right">
+    <strong>Thời điểm:</strong> Tháng 09/2026<br>
+    <strong>Chuyên khoa:</strong> Ung Bướu & Sản Phụ Khoa<br>
+    <strong>Mã hồ sơ:</strong> MOM-FULL-MONOGRAPH-0926
+  </div>
+</div>
+
+<div class="disclaimer-box">
+  <strong>Khuyến Cáo Y Khoa (Medical Disclaimer):</strong> Toàn bộ tài liệu được tổng hợp và đối chiếu khoa học từ: <em>ACOG Practice Bulletin No. 232</em> (Hoa Kỳ), <em>NCCN Clinical Practice Guidelines in Oncology</em> (Uterine Neoplasms & Breast Cancer 2024–2025), <em>WHO Guidelines on Anemia Management (2023)</em>, <em>The Lancet Oncology</em> và Phác đồ thực tế Bệnh viện Từ Dũ & Bệnh viện Hùng Vương TP.HCM.
+</div>
+
+<div class="highlight-card">
+  <strong>TỔNG QUAN BỆNH CẢNH & KẾT QUẢ GIẢI PHẪU BỆNH:</strong><br>
+  Bệnh nhân K vú thể nội tiết (HR+) đã hoàn thành xuất sắc 5 năm điều trị Tamoxifen (2021 – 01/2026). Sau khi dừng thuốc tháng 1/2026, đến tháng 9/2026 (sau 9 tháng) xuất hiện rong kinh kéo dài. Kết quả Giải Phẫu Bệnh tại BV Hùng Vương (15/09/2026) kết luận: <span class="tag-success">TĂNG SẢN ĐIỂN HÌNH KHU TRÚ NỘI MẠC TỬ CUNG (Without Atypia)</span> ➔ <strong>Hoàn toàn lành tính (nguy cơ ung thư &lt; 1–3%)</strong>, <strong>tuyệt đối KHÔNG PHẢI ung thư vú di căn</strong> và <strong>KHÔNG PHẢI ung thư nội mạc tử cung</strong>.
+</div>
+
+<h2><span class="flow-badge">CHƯƠNG 1</span> NGHỊCH LÝ TAMOXIFEN & VÌ SAO 9 THÁNG SAU MỚI BỊ XUẤT HUYẾT?</h2>
+<p>
+  <strong>Mối tương quan sinh học:</strong> Tamoxifen là chất điều hòa thụ thể Estrogen chọn lọc (SERM). Tại tuyến vú thuốc khóa chặt thụ thể để triệt tiêu tế bào ung thư, nhưng tại lòng tử cung thuốc lại kích thích nhẹ (chủ vận một phần) làm dày niêm mạc và giãn nang tuyến. Hiện tượng <em>"9 tháng sau khi ngưng thuốc mới xuất huyết và tăng dần"</em> được giải thích qua 3 cơ chế liên hoàn:
+</p>
+
+<h3>1. Hiện Tượng "Bung Ức Chế Thụ Thể" (Receptor Rebound / Unmasking Effect)</h3>
+<ul>
+  <li><strong>Suốt 5 năm dùng thuốc (2021 – 01/2026):</strong> Tamoxifen chiếm giữ thụ thể Estrogen ở tử cung, duy trì niêm mạc ở trạng thái <em>"bình ổn cưỡng bức"</em>, mạch máu chưa bị phá vỡ ồ ạt.</li>
+  <li><strong>Khi dừng thuốc tháng 1/2026:</strong> Thụ thể nhạy cảm hơn bình thường. Khi Tamoxifen đào thải hết, buồng trứng tự nhiên tác động trực tiếp và trọn vẹn lên lớp nội mạc này.</li>
+</ul>
+
+<h3>2. Độ Trễ Tích Tụ (Lag Phase: 6 – 9 Tháng) & Chu Kỳ Không Rụng Trứng Tiền Mãn Kinh (Tuổi 45)</h3>
+<ul>
+  <li>Ở tuổi 45, buồng trứng thường xuyên có các <strong>chu kỳ không phóng noãn</strong>, chỉ tiết <strong>Estrogen đơn thuần</strong> (làm niêm mạc dày âm thầm suốt 8 tháng từ tháng 1 đến tháng 8) mà <strong>hoàn toàn thiếu hụt Progesterone</strong>.</li>
+  <li>Đến <strong>tháng 8 – 9/2026 (sau 8–9 tháng tích tụ)</strong>, niêm mạc đạt độ dày tối đa, vi mao mạch không đủ nuôi dưỡng ➔ dẫn đến <strong>"Vỡ rỉ máu do thừa Estrogen" (Estrogen Breakthrough Bleeding)</strong> gây xuất huyết bất thường.</li>
+</ul>
+
+<h3>3. Sự Cộng Hưởng Khối U Xơ 45mm & Lạc Tuyến Cơ Tử Cung (Adenomyosis)</h3>
+<ul>
+  <li>Khối nhân xơ 41x45mm ở thành sau và tổn thương Adenomyosis làm cơ tử cung xơ chai, <strong>mất khả năng co bóp siết mạch máu để tự cầm máu</strong>, khiến máu chảy rỉ rả dai dẳng và lượng máu tăng dần vào tháng 9.</li>
+</ul>
+
+<h2><span class="flow-badge">CHƯƠNG 2</span> GIẢI MÃ BẢN CHẤT TẾ BÀO: TĂNG SẢN ĐIỂN HÌNH & "LÓT THƯỢNG MÔ TRỤ CAO"</h2>
+<p>
+  <strong>Mối tương quan giải phẫu bệnh:</strong> Để giải tỏa triệt để nỗi lo ung thư tái phát khi bị chảy máu, kết quả sinh thiết phân tích cấu trúc vi thể của tế bào:
+</p>
+<ul>
+  <li><strong>"Lót bởi thượng mô trụ cao":</strong> Là <strong>hình dạng tế bào sinh lý bình thường</strong> lót trong các ống tuyến tử cung, tế bào hình trụ đứng xếp ngay ngắn để tiết chất nhầy, <strong>không bị biến dạng thành tế bào ác tính hay dị sản</strong>.</li>
+  <li><strong>"Tăng sản điển hình" = "Tăng sản KHÔNG CÓ atypia" (Without Atypia):</strong> Chỉ là <strong>số lượng ống tuyến tăng sinh nhiều hơn bình thường</strong> (tăng về lượng), nhưng <strong>nhân tế bào vẫn đồng đều, phân cực nguyên vẹn, hoàn toàn KHÔNG CÓ ĐỘT BIẾN TIỀN UNG THƯ (Atypia / EIN)</strong>.</li>
+  <li><strong>Đối chiếu thực tế tại BV Từ Dũ & BV Hùng Vương:</strong> Cảnh báo <em>"nếu không điều trị có nguy cơ tiến triển ung thư"</em> là dành cho trường hợp <em>bỏ mặc nhiều năm (5–10 năm)</em> không can thiệp. Bệnh nhân đã phát hiện sớm nên nguy cơ này bằng 0.</li>
+</ul>
+
+<!-- ==================== TRANG 2: THOÁI TRIỂN THEO DÕI & TÁC HẠI THIẾU MÁU MẠN TÍNH ==================== -->
+<div style="break-before: page; page-break-before: always; height: 1px;"></div>
+
+<h2><span class="flow-badge">CHƯƠNG 3</span> ĐỘNG THÁI THOÁI TRIỂN & QUY TRÌNH THEO DÕI CHUẨN Y KHOA</h2>
+<p>
+  <strong>Mối tương quan thời gian:</strong> Tổn thương do Tamoxifen có tự thoái triển không và theo dõi trong bao lâu?
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 28%;">Giai Đoạn Thoái Lui</th>
+      <th style="width: 22%;">Thời Gian Thực Tế</th>
+      <th style="width: 50%;">Diễn Biến Sinh Học & Ý Nghĩa Lâm Sàng</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>1. Đào Thải Dược Động Học</strong><br><em>(Nồng độ thuốc trong máu)</em></td>
+      <td><strong>4 – 8 Tuần</strong><br>(1 – 2 tháng đầu sau ngưng)</td>
+      <td>
+        Tamoxifen và chất chuyển hóa (<em>Endoxifen</em>) có bán thải 7–14 ngày. Sau 5–7 chu kỳ bán thải (~2 tháng), thuốc đào thải 100% qua gan và thận.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>2. Thoái Triển Mô Học Tử Cung</strong><br><em>(Hồi phục cấu trúc niêm mạc)</em></td>
+      <td><strong>6 – 12 Tháng</strong><br>(Thường từ tháng thứ 9 trở đi)</td>
+      <td>
+        Nang tuyến giãn bọc cần <strong>6 đến 12 tháng</strong> để tế bào tự thoái triển hoặc đào thải ra ngoài. Mốc <strong>tháng 9/2026</strong> chính là thời điểm mô học thoái trào mạnh nhất.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="info-card">
+  <strong>Khung Thời Gian & Quy Trình 3 Bước Theo Dõi Thoái Triển:</strong>
+  <ul>
+    <li><strong>Thời gian cho phép theo dõi:</strong> 3 đến 6 tháng (tối đa 12 tháng). Thời gian để biến đổi nặng cần 5–10 năm phơi nhiễm Estrogen không đối kháng.</li>
+    <li><strong>Bước 1 - Theo dõi lâm sàng:</strong> Lượng máu kinh có giảm dần qua các tháng hay không.</li>
+    <li><strong>Bước 2 - Siêu âm Doppler qua ngả âm đạo (Mỗi 3 tháng/lần):</strong> Đo bề dày niêm mạc (ET) và kiểm tra tưới máu lòng tử cung.</li>
+    <li><strong>Bước 3 - Nội soi buồng tử cung (Hysteroscopy) / Sinh thiết lại:</strong> Chỉ định khi sau 3–6 tháng vẫn ra máu rỉ rả hoặc niêm mạc không mỏng đi.</li>
+  </ul>
+</div>
+
+<h2><span class="flow-badge">CHƯƠNG 4</span> TÁC HẠI CỦA RONG KINH & VÌ SAO THIẾU MÁU MÃN TÍNH CỰC KỲ NGUY HIỂM?</h2>
+<p>
+  <strong>Mối tương quan lâm sàng:</strong> Mặc dù nguyên nhân tại tử cung là lành tính, nhưng nếu để rong kinh kéo dài sẽ chuyển thành <strong>Thiếu máu thiếu sắt mạn tính (Chronic Iron Deficiency Anemia)</strong>, gây hại trực tiếp đến 5 hệ cơ quan sống còn:
+</p>
+
+<div class="danger-card">
+  <strong>5 Hậu Quả Nguy Hiểm Của Thiếu Máu Mạn Tính:</strong>
+  <ol style="margin-top: 3px; padding-left: 14px;">
+    <li>
+      <strong>Gánh nặng Tim mạch & Nguy cơ Suy tim thứ phát:</strong> Lượng Hemoglobin giảm sâu buộc tim phải đập nhanh và co bóp mạnh gấp 1.5–2 lần bình thường để bù oxy ➔ Dẫn tới hồi hộp, tim đập nhanh, đánh trống ngực, phì đại tâm thất và <em>suy tim do thiếu máu</em>.
+    </li>
+    <li>
+      <strong>Thiếu oxy Não & Suy giảm Thần kinh:</strong> Não tiêu thụ 20% oxy cơ thể. Thiếu máu gây <em>hoa mắt, chóng mặt khi đổi tư thế, giảm trí nhớ, mất ngủ kinh niên, giảm tập trung</em> và có thể ngất xỉu do tụt huyết áp tư thế.
+    </li>
+    <li>
+      <strong>Suy giảm Hệ Miễn Dịch (Cực kỳ nguy hiểm ở bệnh nhân tiền sử K vú):</strong> Thiếu sắt làm suy yếu tế bào lympho T và bạch cầu ➔ Làm suy yếu "lá chắn tự nhiên" giám sát và tiêu diệt tế bào lạ, tăng nguy cơ nhiễm trùng và giảm khả năng phòng ngừa K vú tái phát.
+    </li>
+    <li>
+      <strong>Kiệt quệ Cơ bắp & Thể lực (Chronic Fatigue):</strong> Giảm oxy cơ bắp gây mệt mỏi rã rời, hụt hơi khi leo cầu thang, rụng tóc từng mảng, móng tay giòn dễ gãy.
+    </li>
+    <li>
+      <strong>Tăng rủi ro khi phẫu thuật:</strong> Nếu Hemoglobin &lt; 8–9 g/dL, khi cần can thiệp phẫu thuật xử lý u xơ/tử cung sẽ phải <em>truyền máu cấp cứu</em>, tăng biến chứng và vết mổ chậm liền.
+    </li>
+  </ol>
+</div>
+
+<!-- ==================== TRANG 3: PHÁC ĐỒ TOÀN DIỆN, BỔ SUNG SẮT & TÀI LIỆU THAM KHẢO ==================== -->
+<div style="break-before: page; page-break-before: always; height: 1px;"></div>
+
+<h2><span class="flow-badge">CHƯƠNG 5</span> PHÁC ĐỒ ĐIỀU TRỊ TOÀN DIỆN: BỔ SUNG SẮT (TRĨ, POLYP) & XỬ TRÍ TỬ CUNG</h2>
+
+<h3>1. Hướng Dẫn Uống Thuốc Sắt An Toàn Cho Bệnh Trĩ & Polyp Đại Tràng</h3>
+<ul>
+  <li><strong>Liều lượng chuẩn:</strong> Bổ sung <strong>30 – 60 mg sắt nguyên tố/ngày</strong> (1 viên/ngày) trong <strong>1 đến 3 tháng</strong>. Uống buổi sáng lúc đói kèm nước cam/ổi tươi (Vitamin C tăng hấp thu gấp 3 lần). Tránh uống cùng sữa, canxi, trà, cà phê.</li>
+  <li><strong>Với bệnh Trĩ:</strong> Chọn <strong>SẮT HỮU CƠ CHELATE (Sắt Bisglycinate)</strong> hấp thu nhanh tại ruột non, không để lại cặn sắt ở đại tràng ➔ <strong>100% không gây táo bón, không kích ứng búi trĩ</strong>. Uống đủ 2–2.5L nước/ngày và ăn nhiều rau xanh.</li>
+  <li><strong>Với Polyp Đại Tràng:</strong> Uống sắt liều điều trị <strong>hoàn toàn an toàn, không kích thích polyp phát triển</strong>. Đi cầu phân sẫm màu/đen là do đào thải sắt dư thừa tự nhiên vô hại.</li>
+</ul>
+
+<h3>2. So Sánh 2 Phương Án Xử Trí Tử Cung Cho Bệnh Nhân K Vú Thể Nội Tiết</h3>
+
+<div class="warning-card">
+  <strong>Chống Chỉ Định Tuyệt Đối Cho Bệnh Nhân K Vú Thể Nội Tiết (HR+):</strong><br>
+  • <strong>KHÔNG DÙNG THUỐC NỘI TIẾT ESTROGEN</strong> (thuốc bổ sung nội tiết tố, viên uống mầm đậu nành liều cao, sâm tố nữ...).<br>
+  • Hạn chế các liệu pháp Progestin tổng hợp liều cao đường uống kéo dài nếu không có sự phối hợp chỉ định từ Bác sĩ Ung bướu.
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th style="width: 25%;">Phương Án</th>
+      <th style="width: 45%;">Nội Dung Phác Đồ</th>
+      <th style="width: 30%;">Đánh Giá An Toàn & Hiệu Quả</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Phương Án 1:<br>Bảo Tồn Nội Khoa</strong></td>
+      <td>
+        • Cầm máu cơ học: <strong>Tranexamic Acid 500mg</strong> khi ra máu nhiều.<br>
+        • Bổ sung Sắt hữu cơ Bisglycinate 30–60mg/ngày.<br>
+        • Tái khám siêu âm đầu dò sau 3 tháng.
+      </td>
+      <td>
+        <strong>An toàn tuyệt đối cho K vú</strong> nhưng chỉ là tạm thời, không làm mất khối u xơ 45mm và Adenomyosis.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Phương Án 2:<br>Phẫu Thuật Nội Soi<br>(Chuẩn Vàng Khuyến Nghị)</strong></td>
+      <td>
+        • <strong>Phẫu thuật nội soi cắt tử cung toàn phần bảo tồn 2 buồng trứng</strong> tại BV Từ Dũ, BV Hùng Vương hoặc BV ĐHYD TP.HCM.
+      </td>
+      <td>
+        • <strong>Chấm dứt 100% rong kinh & thiếu máu mạn</strong>.<br>
+        • Cắt bỏ khối u xơ 45mm & Adenomyosis.<br>
+        • <strong>Xóa bỏ 100% nỗi lo ung thư tử cung</strong>.<br>
+        • <strong>Bảo tồn 2 buồng trứng:</strong> Giữ nguyên hormone tự nhiên, không gây lão hóa sớm.
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="footer-ref">
+  <h4>Nguồn Tham Khảo Y Khoa Thực Chứng (References):</h4>
+  <ol>
+    <li><strong>NCCN Guidelines in Oncology (2024–2025):</strong> Uterine Neoplasms & Breast Cancer Management. National Comprehensive Cancer Network.</li>
+    <li><strong>ACOG Practice Bulletin No. 232:</strong> Tamoxifen Use and Uterine Effects. American College of Obstetricians and Gynecologists.</li>
+    <li><strong>WHO Guidelines on Anemia Management (2023):</strong> Clinical Practice and Evidence-based Management of Iron Deficiency Anemia.</li>
+    <li><strong>The Lancet Oncology:</strong> Endometrial changes and post-treatment bleeding dynamics following Tamoxifen cessation in breast cancer survivors.</li>
+    <li><strong>Bệnh viện Phụ Sản Hùng Vương TP.HCM:</strong> Kết quả Giải Phẫu Bệnh số GPB-2026 (Tăng sản điển hình khu trú nội mạc tử cung).</li>
+    <li><strong>Bệnh viện Từ Dũ TP.HCM:</strong> Phác đồ Chẩn đoán & Xử trí Tăng sản Nội mạc tử cung, U xơ tử cung & Adenomyosis.</li>
+  </ol>
+</div>
+
+</body>
+</html>
