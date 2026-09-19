@@ -11,7 +11,7 @@ export interface PatientVisionProfile {
 }
 
 export const minhAnhVisionProfile: PatientVisionProfile = {
-  name: "Minh Anh",
+  name: "Học sinh 14 tuổi",
   birthDate: "19/01/2012",
   age: 14,
   detectedAge: 11,
@@ -88,7 +88,7 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
     ],
     rxRange: {
       sphere: 'Plano đến -10.00D',
-      cylinder: 'Đến -4.00D (hỗ trợ độ loạn thị rất tốt cho Minh Anh)'
+      cylinder: 'Đến -4.00D (hỗ trợ độ loạn thị rất tốt cho học sinh)'
     },
     priceRangeVND: '3.980.000 - 4.950.000 VNĐ / cặp',
     bestFitFor: 'Trẻ từ 8 - 16 tuổi có độ cận tiến triển nhanh, học tập dùng máy tính/điện thoại nhiều, cần giải pháp tròng kính an toàn không can thiệp giác mạc.',
@@ -142,7 +142,7 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
       sampleDuration: 'Thử nghiệm lâm sàng đa trung tâm 2 năm',
       efficacyRate: 'Giảm 63% - 68% tiến triển độ cận thị',
       axialLengthControl: 'Kiểm soát 58% - 64% sự dài ra trục nhãn cầu',
-      keyFinding: 'Thiết kế cá thể hóa chia 2 phân khúc: MyoCare (cho trẻ < 10 tuổi) và MyoCare S (cho trẻ từ 10 tuổi trở lên - phù hợp hoàn hảo với độ tuổi 14 của Minh Anh).'
+      keyFinding: 'Thiết kế cá thể hóa chia 2 phân khúc: MyoCare (cho trẻ < 10 tuổi) và MyoCare S (cho trẻ từ 10 tuổi trở lên - phù hợp hoàn hảo với học sinh 14 tuổi).'
     },
     pros: [
       'Công nghệ quang học hàng đầu thế giới từ thương hiệu Đức Carl Zeiss danh tiếng',
@@ -297,7 +297,7 @@ export const visionQAItems: VisionQADatasetItem[] = [
   {
     id: 'qa-vision-1',
     category: 'Cơ Chế & Độ Cận',
-    question: 'Tại sao Minh Anh phát hiện cận từ 11 tuổi và độ cận lại tăng nhanh liên tục qua các năm?',
+    question: 'Tại sao trẻ phát hiện cận từ 11 tuổi và độ cận lại tăng nhanh liên tục qua các năm?',
     shortSummary: 'Độ tuổi 11 - 16 là giai đoạn phát triển thể chất và dậy thì mạnh nhất. Khi cơ thể phát triển chiều cao, trục nhãn cầu cũng dài ra nhanh chóng, cộng hưởng với việc học tập nhìn gần và sử dụng màn hình nhiều.',
     detailedPoints: [
       'Trục nhãn cầu (Axial Length) bình thường của người trưởng thành là ~23.5mm - 24.0mm. Cứ mỗi 1mm trục mắt dài thêm, độ cận sẽ tăng khoảng 2.50D đến 3.00D.',
@@ -309,7 +309,7 @@ export const visionQAItems: VisionQADatasetItem[] = [
   {
     id: 'qa-vision-2',
     category: 'Độ Loạn Thị Đi Kèm',
-    question: 'Minh Anh có thêm độ loạn thị (Astigmatism), tròng kính kiểm soát cận thị có xử lý được độ loạn không?',
+    question: 'Mắt có thêm độ loạn thị (Astigmatism), tròng kính kiểm soát cận thị có xử lý được độ loạn không?',
     shortSummary: 'HOÀN TOÀN XỬ LÝ ĐƯỢC. Các dòng tròng kính kiểm soát cận thị hiện đại (Essilor Stellest, Zeiss MyoCare, Hoya MiYOSMART) đều hỗ trợ độ loạn thị lên tới -4.00D.',
     detailedPoints: [
       'Loạn thị xảy ra do giác mạc hoặc thể thủy tinh cong không đều (hình quả bóng bầu dục thay vì hình cầu). Loạn thị làm hình ảnh bị bóng mờ, nhòe và gây mỏi mắt gấp đôi nếu không được chỉnh đúng trục.',
@@ -333,7 +333,7 @@ export const visionQAItems: VisionQADatasetItem[] = [
   {
     id: 'qa-vision-4',
     category: 'Màn Hình & Lối Sống',
-    question: 'Minh Anh dùng nhiều điện thoại, xem tivi, máy tính thì cần áp dụng nguyên tắc bảo vệ mắt như thế nào?',
+    question: 'Học sinh dùng nhiều điện thoại, xem tivi, máy tính thì cần áp dụng nguyên tắc bảo vệ mắt như thế nào?',
     shortSummary: 'Áp dụng bộ 3 nguyên tắc: Quy tắc 20-20-20, khoảng cách công thái học (Ergonomics) và bổ sung ánh sáng ban ngày ngoài trời >= 90 - 120 phút/ngày.',
     detailedPoints: [
       'Quy tắc 20-20-20: Cứ 20 phút nhìn màn hình điện thoại/máy tính, nhắc em tạm dừng và phóng tầm mắt nhìn xa một vật thể cách 20 feet (~6 mét) trong tối thiểu 20 giây để cơ thể mi được thả lỏng hoàn toàn.',
@@ -345,8 +345,8 @@ export const visionQAItems: VisionQADatasetItem[] = [
   {
     id: 'qa-vision-5',
     category: 'Lựa Chọn Thương Hiệu',
-    question: 'Nên chọn thương hiệu nào cho Minh Anh: Essilor Stellest, Zeiss MyoCare hay Hoya MiYOSMART?',
-    shortSummary: 'Cả 3 thương hiệu đều là đỉnh cao thế giới. Với độ tuổi 14 của Minh Anh, Essilor Stellest (công nghệ H.A.L.T) hoặc Zeiss MyoCare S (thiết kế chuyên biệt cho trẻ >= 10 tuổi) là 2 ứng cử viên hoàn hảo nhất.',
+    question: 'Nên chọn thương hiệu nào cho học sinh 14 tuổi: Essilor Stellest, Zeiss MyoCare hay Hoya MiYOSMART?',
+    shortSummary: 'Cả 3 thương hiệu đều là đỉnh cao thế giới. Với độ tuổi 14 của học sinh, Essilor Stellest (công nghệ H.A.L.T) hoặc Zeiss MyoCare S (thiết kế chuyên biệt cho trẻ >= 10 tuổi) là 2 ứng cử viên hoàn hảo nhất.',
     detailedPoints: [
       'Essilor Stellest: Ưu thế về dữ liệu giảm độ cận 67% công bố trên JAMA, lớp phủ Crizal Rock siêu chống trầy xước, dải độ loạn rộng đến -4.00D.',
       'Zeiss MyoCare S: Tối ưu chuyên sâu cho lứa tuổi thanh thiếu niên (10-18 tuổi), giảm thiểu độ nhòe quang sai ngoại vi khi học tập cường độ cao trên máy tính, tích hợp sẵn công nghệ lọc ánh sáng xanh BlueGuard.',
@@ -358,7 +358,7 @@ export const visionQAItems: VisionQADatasetItem[] = [
   {
     id: 'qa-vision-6',
     category: 'Quy Trình Khám Khúc Xạ',
-    question: 'Khi đưa Minh Anh đi khám mắt, cần yêu cầu những bước kiểm tra chuyên sâu nào?',
+    question: 'Khi đưa con đi khám mắt, phụ huynh cần yêu cầu những bước kiểm tra chuyên sâu nào?',
     shortSummary: 'Bắt buộc phải đo khúc xạ khách quan có thể kèm liệt điều tiết (nếu cần), đo sinh trắc trục nhãn cầu (Axial Length Biometry) bằng máy IOL Master và chụp bản đồ giác mạc.',
     detailedPoints: [
       '1. Đo độ dài trục nhãn cầu (Axial Length): Dùng máy sinh trắc quang học không tiếp xúc (như Zeiss IOLMaster hoặc Haag-Streit Lenstar). Đây là chỉ số chuẩn vàng để đánh giá mức độ tiến triển cận thị thật sự, không bị ảnh hưởng bởi co quắp điều tiết.',
@@ -368,6 +368,58 @@ export const visionQAItems: VisionQADatasetItem[] = [
     ],
     clinicalHighlight: 'Đo sinh trắc trục nhãn cầu (Axial Length) là tiêu chuẩn vàng tối thượng để theo dõi sự tăng độ cận thực chất của mắt.',
     doctorQuestionToAsk: 'Bác sĩ cho tôi xin kết quả đo độ dài trục nhãn cầu (Axial Length) của cháu hôm nay là bao nhiêu mm và tốc độ dài trục mắt dự báo trong năm tới?'
+  }
+];
+
+export interface DeepScientificInsight {
+  id: string;
+  topic: string;
+  keyMetric: string;
+  authoritativeSource: string;
+  coreMechanism: string;
+  clinicalSignificance: string;
+}
+
+export const deepScientificInsights: DeepScientificInsight[] = [
+  {
+    id: 'insight-bullimore-rule',
+    topic: 'Quy Luật Bullimore & Brennan: "Mỗi 1 Diop Giảm Đi Cứu Vãn Tương Lai Thị Lực"',
+    keyMetric: 'Giảm 40% nguy cơ bệnh võng mạc cận thị cho mỗi 1.00D được bảo tồn',
+    authoritativeSource: 'Bullimore MA, Brennan NA. Ophthalmic & Physiological Optics (2019)',
+    coreMechanism: 'Cận thị tiến triển làm mỏng biểu mô sắc tố võng mạc (RPE), kéo căng màng Bruch và thoái hóa bè củng mạc. Giữ độ cận dưới -6.00D ngăn chặn sự biến dạng cơ học vĩnh viễn của đáy mắt.',
+    clinicalSignificance: 'Mục tiêu kiểm soát cận thị không chỉ là bớt dày tròng kính, mà là dự phòng mù lòa do thoái hóa hoàng điểm cận thị (Myopic Maculopathy), bong võng mạc (Retinal Detachment) và Glaucoma góc mở khi trưởng thành.'
+  },
+  {
+    id: 'insight-dopamine-photobiology',
+    topic: 'Quang Sinh Học Võng Mạc & Trục Dẫn Truyền Thần Kinh Dopamine',
+    keyMetric: 'Cường độ quang thông >= 10.000 lux kích hoạt tế bào Amacrine tiết Dopamine',
+    authoritativeSource: 'Rose KA, Morgan IG et al. Progress in Retinal and Eye Research (2018) & Nature (2015)',
+    coreMechanism: 'Ánh sáng mặt trời tự nhiên kích thích tế bào hạch võng mạc nhạy sáng nội tại (ipRGCs mang sắc tố Melanopsin) và tế bào Amacrine võng mạc giải phóng chất dẫn truyền Dopamine. Dopamine ức chế enzym metalloproteinase (MMP-2) và điều hòa TGF-beta tại củng mạc, ngăn cản củng mạc bị kéo dãn dài ra.',
+    clinicalSignificance: 'Khẳng định thời gian ngoài trời ban ngày (Outdoor daylight >= 120 phút/ngày) là can thiệp sinh học bắt buộc, không thể thay thế bằng bất kỳ loại đèn chiếu sáng nhân tạo nào trong nhà.'
+  },
+  {
+    id: 'insight-axial-biometry',
+    topic: 'Đo Sinh Trắc Học Trục Nhãn Cầu (Axial Length Biometry) - Chuẩn Vàng Lâm Sàng',
+    keyMetric: 'Độ chính xác +/- 0.01mm (tương đương 0.025D), vượt trội hơn đo khúc xạ máy',
+    authoritativeSource: 'International Myopia Institute (IMI 2021-2023) & CLEERE Study',
+    coreMechanism: 'Đo khúc xạ máy (Autorefraction) thường bị nhiễu lớn bởi hiện tượng co quắp điều tiết (Accommodative Spasm) ở học sinh tuổi dậy thì. Đo trục mắt bằng giao thoa quang học không tiếp xúc (Zeiss IOLMaster / Haag-Streit Lenstar) đo chính xác khoảng cách từ đỉnh giác mạc đến màng ngăn giới hạn trong võng mạc.',
+    clinicalSignificance: 'Tốc độ dài trục mắt sinh lý ở trẻ 14 tuổi là < 0.10mm/năm. Nếu trục mắt dài > 0.20mm/năm là dấu hiệu cận thị tiến triển bùng nổ cần nâng cấp phác đồ điều trị ngay lập tức.'
+  },
+  {
+    id: 'insight-combination-therapy',
+    topic: 'Phác Đồ Phối Hợp Hiệp Đồng: Tròng Kính Defocus + Atropine Nồng Độ Thấp',
+    keyMetric: 'Hiệu quả hiệp đồng làm chậm tiến triển lên tới 75% - 80%',
+    authoritativeSource: 'Nucci C et al. (IOVS 2023), Tan Q et al. (BJO 2023), Kinoshita et al. (IOVS 2018)',
+    coreMechanism: 'Tròng kính Defocus (H.A.L.T / D.I.M.S / C.A.R.E) tạo tín hiệu quang học ngoại vi ức chế ở mặt sau nhãn cầu, trong khi Atropine 0.01% - 0.05% tác động hóa sinh trực tiếp lên thụ thể Muscarinic M1/M4 tại màng bồ đào và củng mạc.',
+    clinicalSignificance: 'Đối với học sinh có tốc độ tăng độ nhanh (> 1.00D/năm hoặc trục mắt dài > 0.3mm/năm), phác đồ phối hợp "Đeo kính Defocus ban ngày + Nhỏ Atropine 0.05% ban đêm" đem lại tỷ lệ kiểm soát tối đa.'
+  },
+  {
+    id: 'insight-cochrane-sustainability',
+    topic: 'Bằng Chứng Độc Lập Cochrane & Khả Năng Duy Trì Bền Vững (No Rebound)',
+    keyMetric: 'Độ an toàn cấp chứng cứ Loại A (High-Certainty Evidence)',
+    authoritativeSource: 'Cochrane Database of Systematic Reviews (Walline JJ et al., 2020) & Lam et al. (BJO 6-year study)',
+    coreMechanism: 'Khác với Atropine liều cao (1.0%) thường gây hiện tượng dội ngược bùng nổ khi dừng thuốc, kính gọng Defocus hoạt động hoàn toàn bằng đường quang học tự nhiên, kích thích thích nghi võng mạc bền bỉ mà không làm suy giảm biên độ điều tiết.',
+    clinicalSignificance: 'Học sinh có thể đeo kính Defocus an toàn trong suốt các năm học THCS và THPT cho đến khi trục nhãn cầu ổn định hoàn toàn ở tuổi 18 - 20.'
   }
 ];
 
@@ -413,6 +465,19 @@ export const visionScientificReferences = [
   },
   {
     id: 'ref-vis-4',
+    category: 'journal' as const,
+    source: 'Ophthalmic & Physiological Optics, 2019',
+    url: 'https://doi.org/10.1111/opo.12634',
+    note: 'Nghiên cứu nền tảng chứng minh tầm quan trọng của việc giảm từng 1 Diop độ cận.',
+    authors: "Bullimore MA, Brennan NA.",
+    title: "Myopia Control: Why Each Diopter Matters",
+    journal: "Ophthalmic & Physiological Optics (OPO)",
+    year: "2019",
+    pmidOrDoi: "doi:10.1111/opo.12634",
+    keyTakeaway: "Làm chậm tiến triển cận thị chỉ 1 Diop (1.00D) giúp giảm 40% nguy cơ mắc bệnh thoái hóa hoàng điểm cận thị, giảm 20% nguy cơ Glaucoma và giảm 30% nguy cơ bong võng mạc suốt cuộc đời."
+  },
+  {
+    id: 'ref-vis-5',
     category: 'clinical-trial' as const,
     source: 'Ophthalmology (AAO), 2019-2023',
     url: 'https://doi.org/10.1016/j.ophtha.2018.10.050',
@@ -425,7 +490,46 @@ export const visionScientificReferences = [
     keyTakeaway: "Thuốc nhỏ mắt Atropine 0.05% cho hiệu quả kiểm soát tiến triển độ cận và trục mắt vượt trội với tác dụng phụ tối thiểu."
   },
   {
-    id: 'ref-vis-5',
+    id: 'ref-vis-6',
+    category: 'journal' as const,
+    source: 'Cochrane Database of Systematic Reviews, 2020',
+    url: 'https://doi.org/10.1002/14651858.CD004916.pub4',
+    note: 'Phân tích gộp và tổng quan hệ thống quy mô lớn nhất của Cochrane về các biện pháp can thiệp cận thị.',
+    authors: "Walline JJ, Lindsley KB, Vedula SS, Cotter SA, Mutti DO, Ng SM, Twelker JD.",
+    title: "Interventions to slow myopia progression in children",
+    journal: "Cochrane Database of Systematic Reviews",
+    year: "2020",
+    pmidOrDoi: "doi:10.1002/14651858.CD004916.pub4",
+    keyTakeaway: "Tròng kính quang học Defocus và Atropine nồng độ thấp được chứng minh độc lập có hiệu quả cao và an toàn trong việc làm chậm tiến triển độ cận ở trẻ em."
+  },
+  {
+    id: 'ref-vis-7',
+    category: 'journal' as const,
+    source: 'Progress in Retinal and Eye Research, 2018',
+    url: 'https://doi.org/10.1016/j.preteyeres.2017.12.002',
+    note: 'Khám phá cơ chế quang sinh học Dopamine võng mạc dưới tác động của ánh sáng mặt trời.',
+    authors: "Rose KA, French AN, Morgan IG.",
+    title: "The role of outdoor exposure in myopia prevention and control: Evidence, mechanisms and clinical implications",
+    journal: "Progress in Retinal and Eye Research",
+    year: "2018",
+    pmidOrDoi: "doi:10.1016/j.preteyeres.2017.12.002",
+    keyTakeaway: "Ánh sáng tự nhiên (> 10.000 lux) kích thích tế bào Amacrine võng mạc giải phóng Dopamine, ức chế tín hiệu kéo dài củng mạc qua con đường TGF-beta."
+  },
+  {
+    id: 'ref-vis-8',
+    category: 'clinical-trial' as const,
+    source: 'British Journal of Ophthalmology (BJO), 2023',
+    url: 'https://doi.org/10.1136/bjo-2022-321815',
+    note: 'Thử nghiệm lâm sàng phối hợp tròng kính Defocus DIMS và Atropine 0.01% ở trẻ cận tiến triển nhanh.',
+    authors: "Tan Q, Ng ALK, Cheng GPM, Woo VCP, Cho P.",
+    title: "Combined 0.01% atropine with DIMS spectacle lenses for myopia control in children: a 2-year randomised clinical trial",
+    journal: "British Journal of Ophthalmology (BJO)",
+    year: "2023",
+    pmidOrDoi: "doi:10.1136/bjo-2022-321815",
+    keyTakeaway: "Phối hợp tròng Defocus với Atropine 0.01% - 0.05% đạt hiệu quả kiểm soát vượt trội 78% so với đơn trị liệu ở trẻ có nguy cơ tiến triển cao."
+  },
+  {
+    id: 'ref-vis-9',
     category: 'journal' as const,
     source: 'Acta Ophthalmologica, 2017-2022',
     url: 'https://doi.org/10.1111/aos.13403',

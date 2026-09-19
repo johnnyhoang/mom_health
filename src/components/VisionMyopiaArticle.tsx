@@ -6,7 +6,8 @@ import {
   myopiaControlLensesList, 
   myopiaInterventionsComparison, 
   visionScientificReferences,
-  visionQAItems
+  visionQAItems,
+  deepScientificInsights
 } from '../data/visionMyopiaData';
 import type { MediaItem } from '../types/medical';
 import { 
@@ -81,7 +82,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </h1>
           
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed italic border-l-2 border-cyan-500/60 pl-4 py-1">
-            Giải mã cơ chế sinh lý trục nhãn cầu, phân tích các nghiên cứu khoa học quốc tế về tròng kính Defocus thế hệ mới, so sánh phác đồ và hướng dẫn lựa chọn cho Minh Anh (sinh 19/01/2012).
+            Giải mã cơ chế sinh lý trục nhãn cầu, phân tích các nghiên cứu khoa học quốc tế về tròng kính Defocus thế hệ mới, so sánh phác đồ và hướng dẫn lựa chọn cho học sinh 14 tuổi (sinh ngày 19/01/2012).
           </p>
         </div>
 
@@ -91,7 +92,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <ReadAloudButton
               id="vision-monograph-full"
               title="Cẩm nang Kiểm Soát Cận Thị và Loạn Thị Tiến Triển"
-              text="Chuyên khảo nhãn khoa nhi: Kiểm soát cận thị và loạn thị tiến triển tuổi dậy thì. Phân tích cơ chế trục nhãn cầu, nghiên cứu tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss và lộ trình bảo vệ mắt cho Minh Anh, sinh ngày 19 tháng 1 năm 2012."
+              text="Chuyên khảo nhãn khoa nhi: Kiểm soát cận thị và loạn thị tiến triển tuổi dậy thì. Phân tích cơ chế trục nhãn cầu, nghiên cứu tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss và lộ trình bảo vệ mắt cho học sinh 14 tuổi, sinh ngày 19 tháng 1 năm 2012."
               variant="hero"
               label="Nghe đọc toàn bộ chuyên khảo"
               durationEstimate="~14 phút"
@@ -173,7 +174,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </div>
 
           <p>
-            Đối với Minh Anh, việc bắt đầu bị cận từ năm 11 tuổi (đúng vào mốc tiền dậy thì) cộng với cường độ tiếp xúc màn hình máy tính, điện thoại nhiều khiến áp lực điều tiết lên cơ thể mi tăng cao, tạo môi trường thuận lợi để trục mắt dài ra nhanh chóng nếu không có rào chắn quang học chuyên dụng can thiệp.
+            Đối với học sinh, việc bắt đầu bị cận từ năm 11 tuổi (đúng vào mốc tiền dậy thì) cộng với cường độ tiếp xúc màn hình máy tính, điện thoại nhiều khiến áp lực điều tiết lên cơ thể mi tăng cao, tạo môi trường thuận lợi để trục mắt dài ra nhanh chóng nếu không có rào chắn quang học chuyên dụng can thiệp.
           </p>
         </div>
 
@@ -203,7 +204,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
 
         <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
           <p>
-            Hồ sơ của Minh Anh ghi nhận tình trạng <strong className="text-white">cận thị có kèm độ loạn (Compound Myopic Astigmatism)</strong>. Nhiều bậc phụ huynh thường lo lắng liệu tròng kính công nghệ mới có thể vừa hãm tăng độ cận vừa xử lý được độ loạn hay không.
+            Hồ sơ khúc xạ ghi nhận tình trạng <strong className="text-white">cận thị có kèm độ loạn (Compound Myopic Astigmatism)</strong>. Nhiều bậc phụ huynh thường lo lắng liệu tròng kính công nghệ mới có thể vừa hãm tăng độ cận vừa xử lý được độ loạn hay không.
           </p>
 
           <p>
@@ -221,7 +222,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </div>
 
           <p>
-            <strong>Nguyên tắc "Bất di bất dịch" khi cắt kính cho Minh Anh:</strong> Do tròng kính Defocus có vùng nhìn rõ trung tâm từ 7mm – 9.4mm được bao bọc bởi hàng trăm vi thấu kính phân đoạn, vị trí tâm quang học của tròng kính bắt buộc phải trùng khớp tuyệt đối với tâm đồng tử của mắt. Gia đình cần yêu cầu nơi đo khám:
+            <strong>Nguyên tắc "Bất di bất dịch" khi cắt kính cho học sinh:</strong> Do tròng kính Defocus có vùng nhìn rõ trung tâm từ 7mm – 9.4mm được bao bọc bởi hàng trăm vi thấu kính phân đoạn, vị trí tâm quang học của tròng kính bắt buộc phải trùng khớp tuyệt đối với tâm đồng tử của mắt. Gia đình cần yêu cầu nơi đo khám:
           </p>
 
           <ul className="list-disc list-inside space-y-1.5 pl-2 text-slate-300 font-sans text-sm">
@@ -301,7 +302,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 Vòng Khúc Xạ Vi Hình Trụ Đồng Tâm Xen Kẽ Cá Thể Hóa Theo Độ Tuổi (MyoCare S)
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Đỉnh cao quang học từ hãng Đức Carl Zeiss. Thay vì dùng các chấm vi thấu kính tròn, Zeiss dùng các dải vòng nhẫn khúc xạ vi hình trụ xen kẽ giúp tối ưu hóa quang sai và giảm độ nhòe ngoại vi khi mắt liếc qua lại. Zeiss chia sản phẩm thành 2 dòng: MyoCare (trẻ &lt; 10 tuổi) và <strong>MyoCare S</strong> (trẻ từ 10-18 tuổi — thiết kế tối ưu riêng cho mật độ điều tiết của học sinh trung học như Minh Anh).
+                Đỉnh cao quang học từ hãng Đức Carl Zeiss. Thay vì dùng các chấm vi thấu kính tròn, Zeiss dùng các dải vòng nhẫn khúc xạ vi hình trụ xen kẽ giúp tối ưu hóa quang sai và giảm độ nhòe ngoại vi khi mắt liếc qua lại. Zeiss chia sản phẩm thành 2 dòng: MyoCare (trẻ &lt; 10 tuổi) và <strong>MyoCare S</strong> (trẻ từ 10-18 tuổi — thiết kế tối ưu riêng cho mật độ điều tiết của học sinh trung học).
               </p>
             </div>
 
@@ -321,6 +322,49 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
 
           </div>
 
+          {/* Deep International Research Insights (Molecular & Photobiological) */}
+          <div className="pt-6 space-y-4 font-sans">
+            <div className="border-b border-slate-900 pb-2">
+              <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
+                Đột Phá Nghiên Cứu Quốc Tế & Cơ Chế Phân Tử (Molecular & Photobiology)
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-white">
+                5 Bằng Chứng Y Học Thực Chứng Định Hình Phác Đồ Điều Trị Hiện Đại
+              </h3>
+            </div>
+
+            <div className="space-y-4">
+              {deepScientificInsights.map((insight, idx) => (
+                <div key={insight.id} className="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl space-y-2">
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2 text-xs font-mono font-bold text-cyan-400 uppercase">
+                      <span>Trụ Cột Nghiên Cứu 0{idx + 1}</span>
+                      <span className="text-slate-600">•</span>
+                      <span className="text-slate-300 font-sans">{insight.authoritativeSource}</span>
+                    </div>
+                    <span className="px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-950/80 text-emerald-300 border border-emerald-800/50">
+                      {insight.keyMetric}
+                    </span>
+                  </div>
+
+                  <h4 className="text-sm sm:text-base font-bold text-white">
+                    {insight.topic}
+                  </h4>
+
+                  <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                    <strong className="text-cyan-200">Cơ chế sinh học: </strong>
+                    {insight.coreMechanism}
+                  </p>
+
+                  <div className="text-xs text-slate-400 pt-1 border-t border-slate-800/60 flex items-start gap-1.5">
+                    <span className="text-amber-400 font-bold shrink-0">Ý nghĩa lâm sàng:</span>
+                    <span>{insight.clinicalSignificance}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Flat Scientific Comparison Matrix */}
           <div className="pt-6 space-y-3 font-sans">
             <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
@@ -336,7 +380,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                     <th className="py-2.5 px-3">Hiệu Quả Kiểm Soát</th>
                     <th className="py-2.5 px-3">Độ An Toàn</th>
                     <th className="py-2.5 px-3">Chi Phí Ước Tính</th>
-                    <th className="py-2.5 pl-3">Đánh Giá Cho Minh Anh</th>
+                    <th className="py-2.5 pl-3">Đánh Giá Phù Hợp</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-900 text-slate-300">
@@ -468,7 +512,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 5: TAILORED ACTION PLAN FOR MINH ANH */}
+      {/* CHAPTER 5: TAILORED ACTION PLAN FOR ADOLESCENTS */}
       {/* ========================================================================= */}
       <section id="vision-ch-5" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
         
@@ -478,20 +522,20 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               Chương 5 • Lộ Trình Can Thiệp Cá Thể Hóa
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              Phác Đồ "Tam Giác Vàng" Toàn Diện Dành Cho Minh Anh
+              Phác Đồ "Tam Giác Vàng" Toàn Diện Dành Cho Tuổi Dậy Thì
             </h2>
           </div>
           <ReadAloudButton
             id="vision-ch-5-audio"
-            title="Chương 5: Phác đồ Tam Giác Vàng cho Minh Anh"
-            text="Chương 5: Phác đồ Tam Giác Vàng toàn diện dành cho Minh Anh. Một là trang bị tròng kính Defocus Essilor Stellest hoặc Zeiss MyoCare S có lọc ánh sáng xanh và cắt đúng trục loạn. Hai là thiết lập kỷ luật công thái học 20-20-20 khi dùng điện thoại và máy tính. Ba là duy trì thời gian hoạt động ngoài trời ban ngày tối thiểu 90 đến 120 phút mỗi ngày."
+            title="Chương 5: Phác đồ Tam Giác Vàng cho học sinh 14 tuổi"
+            text="Chương 5: Phác đồ Tam Giác Vàng toàn diện dành cho học sinh 14 tuổi. Một là trang bị tròng kính Defocus Essilor Stellest hoặc Zeiss MyoCare S có lọc ánh sáng xanh và cắt đúng trục loạn. Hai là thiết lập kỷ luật công thái học 20-20-20 khi dùng điện thoại và máy tính. Ba là duy trì thời gian hoạt động ngoài trời ban ngày tối thiểu 90 đến 120 phút mỗi ngày."
             variant="chapter"
           />
         </div>
 
         <div className="space-y-5 text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
           <p>
-            Dựa trên các thông số cá thể hóa của Minh Anh (14 tuổi, cận tăng liên tục từ 11 tuổi, có loạn thị, thời gian học tập và giải trí với thiết bị điện tử cao), phác đồ can thiệp tối ưu nhất bao gồm 3 trụ cột không thể tách rời:
+            Dựa trên các thông số cá thể hóa của học sinh 14 tuổi (cận tăng liên tục từ 11 tuổi, có loạn thị, thời gian học tập và giải trí với thiết bị điện tử cao), phác đồ can thiệp tối ưu nhất bao gồm 3 trụ cột không thể tách rời:
           </p>
 
           {/* Pillar 1 */}
@@ -519,7 +563,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-xs font-mono font-bold text-emerald-400 uppercase">Trụ Cột 3: Nạp Ánh Sáng Tự Nhiên (Outdoor Daylight) & Đo Trục Mắt</div>
             <h3 className="text-base font-bold text-white">Hoạt Động Ngoài Trời &gt;= 90 - 120 Phút/Ngày & Đo Sinh Trắc Học Định Kỳ</h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Ánh sáng tự nhiên ngoài trời (10.000 – 100.000 lux) là liều thuốc sinh học tự nhiên kích thích tế bào Amacrine tiết <strong>Dopamine võng mạc</strong> kìm hãm dài trục mắt. Khuyến khích Minh Anh tận dụng giờ ra chơi, đi bộ, tập thể thao ngoài trời ít nhất 1.5 – 2 tiếng mỗi ngày. Định kỳ <strong>mỗi 3 - 6 tháng</strong>, đưa em đến bệnh viện mắt chuyên khoa để <em>đo độ dài trục nhãn cầu (Axial Length)</em> bằng máy IOL Master để kiểm tra hiệu quả hãm tăng độ.
+              Ánh sáng tự nhiên ngoài trời (10.000 – 100.000 lux) là liều thuốc sinh học tự nhiên kích thích tế bào Amacrine tiết <strong>Dopamine võng mạc</strong> kìm hãm dài trục mắt. Khuyến khích học sinh tận dụng giờ ra chơi, đi bộ, tập thể thao ngoài trời ít nhất 1.5 – 2 tiếng mỗi ngày. Định kỳ <strong>mỗi 3 - 6 tháng</strong>, đưa em đến bệnh viện mắt chuyên khoa để <em>đo độ dài trục nhãn cầu (Axial Length)</em> bằng máy IOL Master để kiểm tra hiệu quả hãm tăng độ.
             </p>
           </div>
         </div>

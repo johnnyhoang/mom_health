@@ -107,7 +107,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       {/* Floating Bottom Nav Bar */}
       <div className="fixed bottom-3 inset-x-0 z-40 px-2 sm:px-6 pointer-events-none flex justify-center">
         <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 text-white max-w-xl w-full justify-between">
-          {/* Thị Lực Minh Anh Button */}
+          {/* Thị Lực Học Đường Button */}
           <button
             onClick={() => {
               if (onSwitchView) onSwitchView('vision_myopia');
@@ -209,11 +209,11 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                 </button>
               </div>
 
-              {/* Vision Chapters (Minh Anh) */}
+              {/* Vision Chapters */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 px-2">
                   <Eye className="w-3.5 h-3.5" />
-                  <span>Chuyên Khảo Thị Lực (Minh Anh - 7 Chương)</span>
+                  <span>Chuyên Khảo Thị Lực Học Đường (7 Chương)</span>
                 </div>
                 <div className="space-y-1">
                   {visionChapters.map((ch, idx) => {
