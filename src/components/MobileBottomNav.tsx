@@ -9,14 +9,15 @@ import {
   Stethoscope,
   Bone,
   Footprints,
-  Activity
+  Activity,
+  Calendar
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
   onJumpToSection: (sectionId: string) => void;
   activeSection: string;
-  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors';
-  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors') => void;
+  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker';
+  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker') => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
@@ -216,6 +217,27 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
             {/* Chapters List */}
             <div className="flex-1 overflow-y-auto p-4 space-y-6">
+              {/* Nhập Chu Kỳ Shortcut */}
+              <div className="p-3 bg-gradient-to-r from-rose-950/60 to-pink-950/60 border border-rose-500/40 rounded-xl flex items-center justify-between">
+                <div>
+                  <div className="text-xs font-black text-rose-300 flex items-center gap-1.5">
+                    <Calendar className="w-4 h-4 text-rose-400" />
+                    <span>Nhập & Theo Dõi Chu Kỳ (43)</span>
+                  </div>
+                  <div className="text-[11px] text-slate-400 mt-0.5">
+                    Bảng theo dõi chu kỳ kinh & nhật ký triệu chứng
+                  </div>
+                </div>
+                <button
+                  onClick={() => {
+                    setIsDrawerOpen(false);
+                    if (onSwitchView) onSwitchView('cycle_tracker');
+                  }}
+                  className="px-2.5 py-1.5 bg-rose-500 hover:bg-rose-600 text-white rounded-lg text-xs font-bold shrink-0 cursor-pointer shadow-sm"
+                >
+                  Mở Tool
+                </button>
+              </div>
               {/* Back Pain Chapters (MỚI) */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 px-2">

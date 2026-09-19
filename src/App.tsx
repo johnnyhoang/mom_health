@@ -4,6 +4,7 @@ import { CervicalSpineArticle } from './components/CervicalSpineArticle';
 import { BreastCancerArticle } from './components/BreastCancerArticle';
 import { BookLayoutArticle } from './components/BookLayoutArticle';
 import { ChronicBackPainArticle } from './components/ChronicBackPainArticle';
+import { MenstrualCycleTrackerSection } from './components/MenstrualCycleTrackerSection';
 import { QAPage } from './components/QAPage';
 import { DoctorsDirectoryPage } from './components/DoctorsDirectoryPage';
 import { MobileBottomNav } from './components/MobileBottomNav';
@@ -12,10 +13,10 @@ import { AudioPlayerBar } from './components/AudioPlayerBar';
 import { AudioReaderProvider } from './context/AudioReaderContext';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
-import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity } from 'lucide-react';
+import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity, Calendar } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors'>('ankle_trauma');
+  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker'>('cycle_tracker');
   const [selectedVideo, setSelectedVideo] = useState<MediaItem | null>(null);
   const [activeSection, setActiveSection] = useState<string>('ankle-ch-1');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
@@ -151,7 +152,7 @@ export function App() {
     }
   };
 
-  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors') => {
+  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker') => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -183,8 +184,21 @@ export function App() {
             </span>
           </div>
 
-          {/* View Mode Toggle Pill (7 Navigation Tabs) */}
-          <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-[11px] sm:text-xs font-bold overflow-x-auto max-w-full">
+          {/* View Mode Toggle Pill (8 Navigation Tabs) */}
+          <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-[11px] sm:text-xs font-bold overflow-x-auto max-w-full gap-0.5">
+            {/* Theo Dõi Chu Kỳ (MỚI & NỔI BẬT) */}
+            <button
+              onClick={() => handleSwitchView('cycle_tracker')}
+              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
+                currentView === 'cycle_tracker'
+                  ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/30 ring-1 ring-rose-400 font-extrabold'
+                  : 'text-rose-300 hover:text-rose-100 bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/50'
+              }`}
+            >
+              <Calendar className="w-3.5 h-3.5 shrink-0 text-rose-300" />
+              <span>Nhập Chu Kỳ (43)</span>
+            </button>
+
             {/* Mắt Cá Chân */}
             <button
               onClick={() => handleSwitchView('ankle_trauma')}
@@ -211,7 +225,7 @@ export function App() {
               <span>Cổ ACDF</span>
             </button>
 
-            {/* Đau Lưng Kinh Niên (MỚI) */}
+            {/* Đau Lưng Kinh Niên */}
             <button
               onClick={() => handleSwitchView('chronic_back_pain')}
               className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
@@ -221,7 +235,7 @@ export function App() {
               }`}
             >
               <Activity className="w-3.5 h-3.5 shrink-0" />
-              <span>Đau Lưng (Mới)</span>
+              <span>Đau Lưng</span>
             </button>
 
             {/* K Vú */}
@@ -260,7 +274,7 @@ export function App() {
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5 shrink-0" />
-              <span>Tập Q&A (68)</span>
+              <span>Q&A (68)</span>
             </button>
 
             {/* Bác Sĩ */}
@@ -273,7 +287,7 @@ export function App() {
               }`}
             >
               <UserCheck className="w-3.5 h-3.5 shrink-0" />
-              <span>Top 30 Bác Sĩ</span>
+              <span>Bác Sĩ</span>
             </button>
           </div>
         </div>
@@ -281,6 +295,12 @@ export function App() {
 
       {/* Main Content Router */}
       <main className="flex-1 w-full">
+        {currentView === 'cycle_tracker' && (
+          <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6">
+            <MenstrualCycleTrackerSection />
+          </div>
+        )}
+
         {currentView === 'ankle_trauma' && (
           <AnkleFractureArticle
             onOpenVideoModal={(video) => setSelectedVideo(video)}
