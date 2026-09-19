@@ -16,7 +16,7 @@ export const diagnosticModalities: DiagnosticModality[] = [
       'Kiểm tra định kỳ ở phụ nữ điều trị Tamoxifen.'
     ],
     contraindications: [
-      'Phụ nữ chưa từng quan hệ tình dục hoặc có màng trinh nguyên vẹn (thay thế bằng siêu âm qua ngả trực tràng Transrectal Ultrasound - TRUS hoặc siêu âm bụng).',
+      'Phụ nữ chưa từng quan hệ hoặc có màng trinh nguyên vẹn (thay thế bằng siêu âm qua ngả trực tràng Transrectal Ultrasound - TRUS hoặc siêu âm bụng).',
       'Dị tật chít hẹp âm đạo hoàn toàn.'
     ],
     procedureSteps: [

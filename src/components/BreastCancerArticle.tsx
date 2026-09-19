@@ -88,7 +88,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Breast Cancer Monograph */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-3xl mx-auto pt-10 pb-8 px-5 sm:px-6 space-y-6">
+      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         
         {/* Series Badge */}
         <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold tracking-wider uppercase">
@@ -99,7 +99,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         {/* Main Title */}
         {/* Book Main Title & Unified Header Container */}
         <div className="space-y-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
             Ung Thư Vú Thể Nội Tiết: Từ Tamoxifen Đến Các Đột Phá Mới Nhất
           </h1>
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
@@ -107,7 +107,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           </p>
 
           {/* Unified Preface & Status Panel */}
-          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <ReadAloudButton
                 id="bc-hero"
@@ -123,13 +123,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </div>
             </div>
 
-            <div className="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-2">
+            <div className="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-1.5">
               <p>
                 Hơn 70% bệnh nhân ung thư vú thuộc nhóm <strong>thụ thể nội tiết dương tính (HR+ / HER2-)</strong>. Sau 5 năm hoàn thành Tamoxifen (2021 – 01/2026), cơ thể tiếp tục được bảo vệ bởi hiệu ứng kế thừa lâu dài. Các đột phá mới 2024–2026 mở ra kỷ nguyên kiểm soát tối ưu và ngăn chặn tái phát muộn.
               </p>
             </div>
 
-            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+            <div className="pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-slate-500" />
@@ -143,7 +143,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
 
               <button
                 onClick={onSwitchToGynecologyModule}
-                className="text-xs text-teal-300 hover:text-teal-200 font-medium hover:underline flex items-center gap-1"
+                className="text-xs text-teal-300 hover:text-teal-200 font-medium hover:underline flex items-center gap-1 cursor-pointer"
               >
                 <span>Xem Chuyên Khảo Tử Cung (U Xơ & Tamoxifen)</span>
                 <ArrowRight className="w-3.5 h-3.5" />
@@ -156,13 +156,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: MOLECULAR SUBTYPES (4 SUBTYPES & BIOMARKERS) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-1" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="bc-chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 1 • Sinh Học Phân Tử
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Toàn Cảnh 4 Phân Nhóm Phân Tử K Vú & Vai Trò Thụ Thể Nội Tiết
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -185,7 +185,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               <button
                 key={st.id}
                 onClick={() => setSelectedSubtypeId(st.id)}
-                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-1.5 ${
+                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-1.5 cursor-pointer ${
                   isSelected
                     ? 'bg-rose-500/20 text-rose-200 border border-rose-500/60 shadow-md'
                     : 'bg-slate-900/70 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
@@ -199,9 +199,9 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
         {/* Active Subtype Deep-Dive Card */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-5">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
           
-          <div className="space-y-1.5 border-b border-slate-800 pb-4">
+          <div className="space-y-1 border-b border-slate-800 pb-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
                 Chi Tiết Phân Nhóm Phân Tử
@@ -210,10 +210,10 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
                 Tỷ lệ: {activeSubtype.prevalence}
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-white">
+            <h3 className="text-base sm:text-lg font-black text-white">
               {activeSubtype.name}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 italic">
+            <p className="text-xs text-slate-400 italic">
               {activeSubtype.vietnameseName}
             </p>
           </div>
@@ -245,47 +245,47 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             </div>
 
             {/* Layman Analogy for Biomarkers */}
-            <div className="p-3.5 rounded-xl bg-slate-950/90 border-l-2 border-rose-400 text-xs space-y-1.5 text-slate-300">
+            <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-rose-400 text-xs space-y-1 text-slate-300">
               <span className="font-bold text-rose-300 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-rose-400 shrink-0" />
                 <span>Hình tượng đời thường giúp giải mã 4 chỉ số:</span>
               </span>
-              <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] pt-1">
+              <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] pt-1">
                 <li className="p-2 rounded-lg bg-slate-900 border border-slate-800/80">
-                  <strong className="text-teal-300">ER & PR (Ăng-ten bắt sóng dinh dưỡng):</strong> ER+ nghĩa là tế bào u sống nhờ Estrogen. Dùng Tamoxifen/AI giống như "khóa chặt ăng-ten", bỏ đói tế bào u khiến chúng tự teo chết.
+                  <strong className="text-teal-300 block mb-0.5">ER & PR (Ăng-ten):</strong> ER+ nghĩa là tế bào u sống nhờ Estrogen. Dùng Tamoxifen/AI giống như "khóa chặt ăng-ten", bỏ đói tế bào u khiến chúng tự teo chết.
                 </li>
                 <li className="p-2 rounded-lg bg-slate-900 border border-slate-800/80">
-                  <strong className="text-rose-300">HER2 (Bàn đạp ga / Động cơ tăng áp):</strong> HER2+ là tế bào chạy nhanh hơn nhưng lại có "tên lửa dẫn đường" (Trastuzumab, ADC Enhertu) bắn trúng đích chính xác.
+                  <strong className="text-rose-300 block mb-0.5">HER2 (Động cơ tăng áp):</strong> HER2+ là tế bào chạy nhanh hơn nhưng lại có "tên lửa dẫn đường" (Trastuzumab, ADC Enhertu) bắn trúng đích chính xác.
                 </li>
-                <li className="p-2 rounded-lg bg-slate-900 border border-slate-800/80 sm:col-span-2">
-                  <strong className="text-amber-300">Ki-67 (Đồng hồ đo tốc độ sinh sôi):</strong> &lt; 14-20% là tế bào "đi bộ chậm rãi" (Luminal A hiền lành, ít tái phát); &gt; 20-30% là tế bào "chạy nước rút" cần chặn bằng thuốc ức chế chu kỳ CDK4/6 (Ribociclib/Abemaciclib) hoặc hóa trị.
+                <li className="p-2 rounded-lg bg-slate-900 border border-slate-800/80">
+                  <strong className="text-amber-300 block mb-0.5">Ki-67 (Đồng hồ đo tốc độ):</strong> &lt; 14-20% là tế bào "đi bộ chậm rãi" (Luminal A hiền lành); &gt; 20-30% là "chạy nước rút" cần chặn bằng thuốc CDK4/6 hoặc hóa trị.
                 </li>
               </ul>
             </div>
           </div>
 
           {/* Biological Behavior & Tamoxifen Response */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-            <div className="space-y-1.5 p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="space-y-1 p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs">
               <strong className="text-slate-200 block text-xs uppercase font-bold">Hành vi sinh học & Tiên lượng:</strong>
               <p className="text-slate-300">{activeSubtype.biologicalBehavior}</p>
-              <p className="text-slate-400 italic pt-1">{activeSubtype.prognosis}</p>
+              <p className="text-slate-400 italic pt-0.5">{activeSubtype.prognosis}</p>
             </div>
 
-            <div className="space-y-1.5 p-3.5 rounded-xl bg-rose-950/20 border border-rose-900/30 text-xs">
+            <div className="space-y-1 p-3 rounded-xl bg-rose-950/20 border border-rose-900/30 text-xs">
               <strong className="text-rose-300 block text-xs uppercase font-bold">Mức độ đáp ứng với Tamoxifen:</strong>
               <p className="text-rose-100">{activeSubtype.tamoxifenResponse}</p>
             </div>
           </div>
 
           {/* Standard Therapy & Novel Breakthroughs */}
-          <div className="space-y-3 pt-1 border-t border-slate-800">
-            <div className="space-y-1.5">
+          <div className="space-y-2.5 pt-1 border-t border-slate-800">
+            <div className="space-y-1">
               <strong className="text-slate-300 text-xs uppercase font-bold flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-teal-400" />
                 <span>Phác đồ điều trị chuẩn mực hiện hành:</span>
               </strong>
-              <ul className="space-y-1 text-xs text-slate-300 pl-2">
+              <ul className="space-y-0.5 text-xs text-slate-300 pl-2">
                 {activeSubtype.standardTherapy.map((std, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-teal-400 font-bold shrink-0">•</span>
@@ -295,12 +295,12 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </ul>
             </div>
 
-            <div className="space-y-1.5 p-3 rounded-xl bg-gradient-to-r from-rose-950/30 to-slate-950 border border-rose-900/30">
+            <div className="space-y-1 p-3 rounded-xl bg-gradient-to-r from-rose-950/30 to-slate-950 border border-rose-900/30">
               <strong className="text-rose-300 text-xs uppercase font-bold flex items-center gap-1.5">
                 <Zap className="w-3.5 h-3.5 text-rose-400" />
                 <span>Đột phá điều trị nhắm trúng đích mới nhất (2024 - 2026):</span>
               </strong>
-              <ul className="space-y-1 text-xs text-rose-100 pl-2">
+              <ul className="space-y-0.5 text-xs text-rose-100 pl-2">
                 {activeSubtype.novelTargetedTherapies2024_2026.map((nov, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-rose-400 font-bold shrink-0">⚡</span>
@@ -318,13 +318,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: TAMOXIFEN 5-YEAR EVIDENCE & EXTENDED ENDOCRINE THERAPY (EET) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-2" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="bc-chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 2 • Tamoxifen & Chiến Lược Kéo Dài
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Giải Mã 5 Năm Tamoxifen & Thử Nghiệm Kéo Dài 10 Năm (ATLAS/aTTom)
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -339,46 +339,43 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           />
         </div>
 
-        <div className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
           
           <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-rose-300 text-sm sm:text-base flex items-center gap-2">
+            <h3 className="font-bold text-rose-300 text-sm flex items-center gap-2">
               <Award className="w-4 h-4 text-rose-400" />
               <span>1. Lợi ích bảo vệ to lớn của 5 năm Tamoxifen (2021 – 01/2026)</span>
             </h3>
             <p>
-              Dữ liệu tổng hợp từ nhóm nghiên cứu <strong>EBCTCG (Early Breast Cancer Trialists' Collaborative Group)</strong> theo dõi trên hàng chục nghìn bệnh nhân qua 20 năm khẳng định:
+              Dữ liệu tổng hợp từ nhóm nghiên cứu <strong>EBCTCG</strong> theo dõi trên hàng chục nghìn bệnh nhân qua 20 năm khẳng định:
             </p>
-            <ul className="list-disc list-inside space-y-1.5 pl-2 text-slate-200">
+            <ul className="list-disc list-inside space-y-1 pl-2 text-slate-200 text-xs">
               <li><strong>Giảm 47% nguy cơ tái phát K vú</strong> trong 5 năm đầu dùng thuốc.</li>
-              <li><strong>"Hiệu ứng kế thừa" (Carryover Effect) kéo dài 10 - 15 năm tiếp theo</strong>: Ngay cả sau khi đã ngừng thuốc tại mốc 5 năm, tỷ lệ tử vong do ung thư vú vẫn tiếp tục giảm 30% so với nhóm không dùng thuốc.</li>
-              <li><strong>Giảm 50% nguy cơ mắc ung thư vú ở bên vú đối diện</strong>.</li>
+              <li><strong>"Hiệu ứng kế thừa" kéo dài 10 - 15 năm tiếp theo</strong>: Tỷ lệ tử vong tiếp tục giảm 30% sau khi dừng thuốc.</li>
+              <li><strong>Giảm 50% nguy cơ ung thư vú ở bên vú đối diện</strong>.</li>
             </ul>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-amber-300 text-sm sm:text-base flex items-center gap-2">
+            <h3 className="font-bold text-amber-300 text-sm flex items-center gap-2">
               <Clock className="w-4 h-4 text-amber-400" />
-              <span>2. Thử nghiệm ATLAS & aTTom: Có nên kéo dài từ 5 năm lên 10 năm không?</span>
+              <span>2. Thử nghiệm ATLAS & aTTom: Kéo dài 10 năm?</span>
             </h3>
-            <p>
-              Hai thử nghiệm lâm sàng quy mô lớn nhất thế giới <strong>ATLAS</strong> (20.000 bệnh nhân) và <strong>aTTom</strong> (7.000 bệnh nhân) đã so sánh việc dùng Tamoxifen 5 năm so với 10 năm:
-            </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-              <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-900/30 space-y-1">
+            <div className="grid grid-cols-1 gap-2 pt-0.5">
+              <div className="p-2.5 rounded-xl bg-emerald-950/20 border border-emerald-900/30 space-y-0.5">
                 <span className="font-bold text-emerald-400 text-xs uppercase block">Lợi ích cộng thêm khi dùng 10 năm:</span>
-                <p className="text-xs text-slate-300">Giảm thêm khoảng 3 - 4% nguy cơ tái phát muộn sau năm thứ 10. Chủ yếu có ý nghĩa ở nhóm có hạch nách dương tính hoặc u ban đầu kích thước lớn.</p>
+                <p className="text-xs text-slate-300">Giảm thêm khoảng 3 - 4% nguy cơ tái phát muộn sau năm thứ 10. Chủ yếu có ý nghĩa ở nhóm hạch dương tính hoặc u ban đầu lớn.</p>
               </div>
 
-              <div className="p-3 rounded-xl bg-rose-950/20 border border-rose-900/30 space-y-1">
-                <span className="font-bold text-rose-400 text-xs uppercase block">Tác dụng phụ gia tăng khi kéo dài 10 năm:</span>
+              <div className="p-2.5 rounded-xl bg-rose-950/20 border border-rose-900/30 space-y-0.5">
+                <span className="font-bold text-rose-400 text-xs uppercase block">Tác dụng phụ gia tăng khi kéo dài:</span>
                 <p className="text-xs text-slate-300">Tăng gấp đôi nguy cơ bệnh lý nội mạc tử cung (tăng sản, polyp, ung thư nội mạc) và tăng nguy cơ huyết khối tĩnh mạch sâu (DVT).</p>
               </div>
             </div>
 
-            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300">
+            <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 mt-1">
               <strong className="text-teal-300">Kết luận cho trường hợp của chị: </strong>
-              Vì chị đã hoàn thành trọn vẹn 5 năm và hiện tại đang có biến chứng phụ khoa (rong kinh nhiều tháng, mảng tăng sản nội mạc, khối u xơ 45mm và Adenomyosis), việc <strong>DỪNG TAMOXIFEN TẠI MỐC 5 NĂM (THÁNG 1/2026)</strong> là hoàn toàn đúng đắn, an toàn và tối ưu nhất để cơ thể phục hồi!
+              Việc <strong>DỪNG TAMOXIFEN TẠI MỐC 5 NĂM (THÁNG 1/2026)</strong> là hoàn toàn đúng đắn, an toàn và tối ưu nhất để giải quyết u xơ, rong kinh!
             </div>
           </div>
 
@@ -389,13 +386,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: CUTTING-EDGE TARGETED THERAPIES (2024 - 2026) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-3" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="bc-chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 3 • Đột Phá Y Học 2024 - 2026
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Kho Vũ Khí Nhắm Trúng Đích Mới Nhất Cho K Vú Thể Nội Tiết
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -418,7 +415,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               <button
                 key={ther.id}
                 onClick={() => setSelectedTherapyId(ther.id)}
-                className={`p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-1.5 ${
+                className={`p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-1.5 cursor-pointer ${
                   isSelected
                     ? 'bg-rose-500/20 text-rose-200 border border-rose-500/60 shadow-md'
                     : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800 border border-slate-800'
@@ -432,9 +429,9 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
         {/* Active Therapy Detailed Sheet */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-5">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
           
-          <div className="space-y-1.5 border-b border-slate-800 pb-4">
+          <div className="space-y-1 border-b border-slate-800 pb-3">
             <div className="flex flex-wrap items-center justify-between gap-2">
               <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
                 {activeTherapy.drugClass}
@@ -443,7 +440,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
                 Tên Biệt Dược: {activeTherapy.tradeNames}
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-white">
+            <h3 className="text-base sm:text-lg font-black text-white">
               {activeTherapy.name}
             </h3>
             <p className="text-xs sm:text-sm text-teal-300 font-medium">
@@ -453,7 +450,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
 
           {/* Layman Analogy for Therapy */}
           {activeTherapy.laymanAnalogy && (
-            <div className="p-3.5 rounded-xl bg-slate-950/90 border-l-2 border-amber-400 text-xs text-slate-300 space-y-1">
+            <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-amber-400 text-xs text-slate-300 space-y-0.5">
               <span className="font-bold text-amber-300 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                 <span>Hình tượng đời thường dễ hiểu:</span>
@@ -463,7 +460,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           )}
 
           {/* Mechanism of Action */}
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
               <Activity className="w-3.5 h-3.5 text-rose-400" />
               <span>Cơ chế tác động phân tử:</span>
@@ -474,24 +471,24 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           </div>
 
           {/* Clinical Trial Milestone */}
-          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 space-y-1.5">
+          <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
             <span className="text-xs font-bold uppercase text-amber-400 flex items-center gap-1.5">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
               <span>Cột mốc thử nghiệm lâm sàng quốc tế:</span>
             </span>
-            <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+            <p className="text-xs text-slate-200 leading-relaxed">
               {activeTherapy.clinicalTrialMilestone}
             </p>
           </div>
 
           {/* Benefits & Side Effects */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-            <div className="space-y-2 p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="space-y-1.5 p-3 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
               <div className="font-bold text-xs uppercase text-emerald-400 flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-400" />
                 <span>Lợi ích điều trị vượt trội:</span>
               </div>
-              <ul className="space-y-1.5 text-xs text-slate-300">
+              <ul className="space-y-1 text-xs text-slate-300">
                 {activeTherapy.benefitsAndOutcomes.map((b, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-emerald-400 font-bold shrink-0">•</span>
@@ -501,12 +498,12 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </ul>
             </div>
 
-            <div className="space-y-2 p-3.5 rounded-xl bg-amber-950/20 border border-amber-900/30">
+            <div className="space-y-1.5 p-3 rounded-xl bg-amber-950/20 border border-amber-900/30">
               <div className="font-bold text-xs uppercase text-amber-400 flex items-center gap-1.5">
                 <AlertTriangle className="w-4 h-4 text-amber-400" />
                 <span>Tác dụng phụ & Cách theo dõi:</span>
               </div>
-              <ul className="space-y-1.5 text-xs text-slate-300">
+              <ul className="space-y-1 text-xs text-slate-300">
                 {activeTherapy.sideEffectsAndManagement.map((s, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-amber-400 font-bold shrink-0">•</span>
@@ -518,7 +515,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           </div>
 
           {/* Relevance to Post-Tamoxifen Patient */}
-          <div className="p-3.5 rounded-xl bg-rose-950/30 border-l-2 border-rose-400 text-xs sm:text-sm space-y-1">
+          <div className="p-3 rounded-xl bg-rose-950/30 border-l-2 border-rose-400 text-xs space-y-0.5">
             <strong className="text-rose-300 flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-rose-400 shrink-0" />
               <span>Ý nghĩa thực tiễn đối với trường hợp của chị:</span>
@@ -533,13 +530,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 4: CLINICAL MEDIA ATLAS & 3D ANIMATIONS */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-4" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="bc-chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 4 • Atlas Video Lâm Sàng K Vú
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Video Đồ Họa 3D & Mô Phỏng Liệu Pháp Nhắm Trúng Đích
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -594,13 +591,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 5: PERSONALIZED ONCOLOGY DECISION TOOL */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-5" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="bc-chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 5 • Cây Quyết Định Lâm Sàng
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Tự Đánh Giá Chiến Lược Điều Trị Nội Tiết K Vú Của Chị
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -609,15 +606,15 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
         {/* Interactive Decision Box */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-6">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
           
           {!isDecisionResult && currentDecisionNode && (
-            <div className="space-y-5">
-              <div className="space-y-1.5">
+            <div className="space-y-3.5">
+              <div className="space-y-1">
                 <span className="text-xs font-mono text-rose-400 font-bold uppercase">
                   Bước {decisionHistory.length} / 2
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-white">
+                <h3 className="text-sm sm:text-base font-bold text-white">
                   {currentDecisionNode.question}
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -625,14 +622,14 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
                 </p>
               </div>
 
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {currentDecisionNode.options.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => handleDecisionOption(opt)}
-                    className="w-full p-4 rounded-xl text-left bg-slate-950 border border-slate-800 hover:border-rose-500/60 hover:bg-slate-900/80 transition-all text-xs sm:text-sm group flex items-start justify-between gap-3"
+                    className="w-full p-3.5 rounded-xl text-left bg-slate-950 border border-slate-800 hover:border-rose-500/60 hover:bg-slate-900/80 transition-all text-xs sm:text-sm group flex items-start justify-between gap-3 cursor-pointer"
                   >
-                    <div className="space-y-1">
+                    <div className="space-y-0.5">
                       <div className="font-bold text-slate-200 group-hover:text-rose-300 transition-colors">
                         {opt.label}
                       </div>
@@ -648,25 +645,25 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           )}
 
           {isDecisionResult && finalDecisionRecommendation && (
-            <div className="space-y-5">
-              <div className="space-y-2">
+            <div className="space-y-4">
+              <div className="space-y-1.5">
                 <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-rose-950 text-rose-300 border border-rose-800">
                   {finalDecisionRecommendation.tier}
                 </span>
-                <h3 className="text-lg sm:text-xl font-black text-white">
+                <h3 className="text-base sm:text-lg font-black text-white">
                   {finalDecisionRecommendation.title}
                 </h3>
               </div>
 
               {/* Action Steps */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
                   <Activity className="w-3.5 h-3.5 text-rose-400" />
                   <span>Các bước hành động khuyến nghị:</span>
                 </h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-300">
+                <ul className="space-y-1.5 text-xs text-slate-300">
                   {finalDecisionRecommendation.actionSteps.map((step: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+                    <li key={i} className="flex items-start gap-2 p-2 rounded-lg bg-slate-950 border border-slate-800/80">
                       <span className="text-rose-400 font-bold shrink-0">✓</span>
                       <span>{step}</span>
                     </li>
@@ -675,14 +672,14 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </div>
 
               {/* Questions for Doctor */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <h4 className="text-xs font-bold uppercase text-amber-400 flex items-center gap-1.5">
                   <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
                   <span>Câu hỏi chuẩn bị sẵn khi gặp Bác sĩ Ung bướu:</span>
                 </h4>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {finalDecisionRecommendation.doctorQuestions.map((q: string, i: number) => (
-                    <div key={i} className="p-3 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-xs sm:text-sm text-amber-100 italic">
+                    <div key={i} className="p-2.5 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-xs text-amber-100 italic">
                       {q}
                     </div>
                   ))}
@@ -690,14 +687,14 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </div>
 
               {/* Oncology Evidence */}
-              <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs sm:text-sm text-slate-300">
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300">
                 <strong className="text-teal-300">Bằng chứng y học thực chứng: </strong>
                 {finalDecisionRecommendation.oncologyEvidence}
               </div>
 
               <button
                 onClick={handleResetDecision}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors"
+                className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Thực hiện lại đánh giá</span>
@@ -712,13 +709,13 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 6: LIFELONG SURVEILLANCE & ANTI-INFLAMMATORY LIFESTYLE */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-6" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="bc-chapter-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 6 • Theo Dõi & Lối Sống
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Chế Độ Dinh Dưỡng Giảm Viêm & Quy Trình Tầm Soát Kép Trọn Đời
           </h2>
           <ReadAloudButton
@@ -730,38 +727,38 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           />
         </div>
 
-        <div className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
           
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-rose-300 text-sm sm:text-base flex items-center gap-2">
+            <h3 className="font-bold text-rose-300 text-sm flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-rose-400" />
               <span>1. Chế độ ăn giảm viêm & kiểm soát cân nặng (BMI)</span>
             </h3>
-            <p>
+            <p className="text-xs text-slate-300">
               Mô mỡ là nơi diễn ra quá trình sản xuất Estrogen ngoại vi (thông qua men Aromatase). Do đó, duy trì cân nặng lý tưởng là "liệu pháp chống ung thư tự nhiên" hiệu quả nhất:
             </p>
-            <ul className="list-disc list-inside space-y-1 pl-2 text-slate-300">
-              <li><strong>Chế độ ăn Địa Trung Hải (Mediterranean Diet):</strong> Giàu dầu ô-liu nguyên chất, cá béo (cá hồi, cá thu giàu Omega-3), rau xanh đậm, quả mọng (việt quất, dâu tây) giàu polyphenol chống oxy hóa.</li>
-              <li><strong>Tập thể dục đều đặn:</strong> 150 phút mỗi tuần (đi bộ nhanh, bơi lội, yoga hoặc đạp xe) giúp giảm 20-30% nguy cơ tái phát K vú.</li>
+            <ul className="list-disc list-inside space-y-1 pl-2 text-slate-300 text-xs">
+              <li><strong>Chế độ ăn Địa Trung Hải:</strong> Giàu dầu ô-liu nguyên chất, cá béo giàu Omega-3, rau xanh đậm, quả mọng giàu polyphenol chống oxy hóa.</li>
+              <li><strong>Tập thể dục đều đặn:</strong> 150 phút mỗi tuần giúp giảm 20-30% nguy cơ tái phát K vú.</li>
               <li><strong>Hạn chế tối đa:</strong> Đường tinh luyện, nước ngọt có gas, thịt chế biến sẵn và rượu bia.</li>
             </ul>
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900/60 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-teal-300 text-sm sm:text-base flex items-center gap-2">
+            <h3 className="font-bold text-teal-300 text-sm flex items-center gap-2">
               <Calendar className="w-4 h-4 text-teal-400" />
               <span>2. Lịch tầm soát định kỳ chuẩn ASCO & NCCN</span>
             </h3>
-            <div className="space-y-2 pt-1">
-              <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
+            <div className="space-y-1.5 pt-0.5">
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-0.5">
                 <span className="font-bold text-rose-400 text-xs">Khám Lâm Sàng Tuyến Vú & Hạch:</span>
                 <p className="text-xs text-slate-300">Mỗi 6 - 12 tháng/lần bởi Bác sĩ chuyên khoa Ung Bướu.</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
-                <span className="font-bold text-teal-400 text-xs">Chụp Nhũ Ảnh (Mammography) & Siêu Âm Doppler Tuyến Vú:</span>
-                <p className="text-xs text-slate-300">Định kỳ 12 tháng/lần để theo dõi cả bên vú điều trị và bên vú đối diện.</p>
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-0.5">
+                <span className="font-bold text-teal-400 text-xs">Chụp Nhũ Ảnh & Siêu Âm Doppler Tuyến Vú:</span>
+                <p className="text-xs text-slate-300">Định kỳ 12 tháng/lần để theo dõi cả 2 bên vú.</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
+              <div className="p-2.5 rounded-lg bg-slate-950 border border-slate-800 space-y-0.5">
                 <span className="font-bold text-amber-400 text-xs">Siêu Âm Đầu Dò Phụ Khoa:</span>
                 <p className="text-xs text-slate-300">Định kỳ theo dõi tiến triển buồng tử cung sau 5 năm Tamoxifen.</p>
               </div>

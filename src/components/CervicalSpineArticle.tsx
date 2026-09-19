@@ -88,7 +88,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Cervical Spine Monograph */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-3xl mx-auto pt-10 pb-8 px-5 sm:px-6 space-y-6">
+      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         {/* Series Badge */}
         <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold tracking-wider uppercase">
           <Bone className="w-4 h-4" />
@@ -97,7 +97,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
 
         {/* Main Title & Unified Header Container */}
         <div className="space-y-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
             Thoát Vị Đĩa Đệm Cột Sống Cổ Chèn Ép Tủy & Phẫu Thuật ACDF
           </h1>
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
@@ -105,7 +105,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           </p>
 
           {/* Unified Preface & Metadata Panel */}
-          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <ReadAloudButton
                 id="spine-monograph-full"
@@ -125,7 +125,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </button>
             </div>
 
-            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+            <div className="pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
               <div className="flex items-center gap-1.5 text-amber-300 font-medium">
                 <ShieldCheck className="w-4 h-4 text-amber-400" />
                 <span>AANS • NASS • AOSpine • Lầu 8A BV ĐHYD TP.HCM</span>
@@ -148,12 +148,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: Phân Tích 3 Bệnh Án Thực Tế (Interactive Case Viewer) */}
       {/* ========================================================================= */}
-      <section id="spine-ch-1" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 1
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Giải Mã 3 Hồ Sơ Bệnh Án Thực Tế & Phân Tầng Cấp Bách
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -165,7 +165,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
         <CervicalSpineCaseViewer />
 
         {/* Clinical Rationale: Why Neck First, Lumbar Later */}
-        <div className="p-4 sm:p-5 bg-gradient-to-r from-amber-950/30 to-slate-900 border border-amber-500/40 rounded-2xl space-y-3">
+        <div className="p-4 bg-gradient-to-r from-amber-950/30 to-slate-900 border border-amber-500/40 rounded-2xl space-y-2">
           <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
             <Zap className="w-4 h-4 text-amber-400" />
             <span>Quy Luật Bất Biến: Cứu Tủy Sống Cổ Cấp Bách Hơn Rễ Thần Kinh Thắt Lưng</span>
@@ -181,12 +181,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: Cơ Chế Bệnh Học CSM & Dấu Hiệu Cảnh Báo Sớm */}
       {/* ========================================================================= */}
-      <section id="spine-ch-2" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 2
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Bệnh Lý Chèn Ép Tủy Cổ (CSM) & Cơ Chế Thiếu Máu Tủy
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -231,12 +231,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: So Sánh 4 Phác Đồ Điều Trị & Phẫu Thuật ACDF Chuẩn Vàng */}
       {/* ========================================================================= */}
-      <section id="spine-ch-3" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 3
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             So Sánh Toàn Diện Các Phác Đồ Can Thiệp Cột Sống Cổ
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -270,7 +270,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
         </div>
 
         {/* Selected Treatment Detail Card */}
-        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
+        <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-4 sm:p-5 space-y-4">
           {/* Header */}
           <div className="space-y-1">
             <div className="flex flex-wrap items-center justify-between gap-2">
@@ -283,7 +283,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </span>
               <span className="text-xs text-slate-400">{activeTreatment.surgicalRecovery}</span>
             </div>
-            <h3 className="text-xl sm:text-2xl font-black text-white pt-1">
+            <h3 className="text-lg sm:text-xl font-black text-white pt-1">
               {activeTreatment.name}
             </h3>
             <p className="text-xs sm:text-sm text-amber-400 font-medium">
@@ -292,7 +292,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           </div>
 
           {/* Layman Analogy */}
-          <div className="p-3.5 bg-amber-950/20 border border-amber-800/30 rounded-xl space-y-1">
+          <div className="p-3 bg-amber-950/20 border border-amber-800/30 rounded-xl space-y-1">
             <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wide">
               <Info className="w-3.5 h-3.5" />
               <span>Hình Tượng Đời Thường Dễ Hiểu</span>
@@ -303,13 +303,13 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           </div>
 
           {/* Pros & Cons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="p-3.5 bg-slate-950/60 border border-slate-800 rounded-xl space-y-2">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-xl space-y-1.5">
               <div className="text-xs font-bold text-emerald-400 uppercase tracking-wide flex items-center gap-1">
                 <Check className="w-4 h-4" />
                 Ưu Điểm Vượt Trội
               </div>
-              <ul className="text-xs text-slate-300 space-y-1.5">
+              <ul className="text-xs text-slate-300 space-y-1">
                 {activeTreatment.pros.map((p, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-emerald-400 font-bold">•</span>
@@ -319,12 +319,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </ul>
             </div>
 
-            <div className="p-3.5 bg-slate-950/60 border border-slate-800 rounded-xl space-y-2">
+            <div className="p-3 bg-slate-950/60 border border-slate-800 rounded-xl space-y-1.5">
               <div className="text-xs font-bold text-rose-400 uppercase tracking-wide flex items-center gap-1">
                 <AlertTriangle className="w-4 h-4" />
                 Hạn Chế & Lưu Ý
               </div>
-              <ul className="text-xs text-slate-300 space-y-1.5">
+              <ul className="text-xs text-slate-300 space-y-1">
                 {activeTreatment.cons.map((c, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-rose-400 font-bold">•</span>
@@ -336,13 +336,13 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           </div>
 
           {/* Elderly Safety Evaluation */}
-          <div className="p-3.5 bg-slate-950 border border-slate-800 rounded-xl space-y-1 text-xs">
+          <div className="p-3 bg-slate-950 border border-slate-800 rounded-xl space-y-1 text-xs">
             <span className="font-bold text-amber-300 uppercase tracking-wide">Đánh Giá An Toàn Người Cao Tuổi (74 Tuổi): </span>
             <span className="text-slate-300 leading-relaxed">{activeTreatment.elderlySafety74yo}</span>
           </div>
 
           {/* Guideline Recommendation */}
-          <div className="p-3 bg-emerald-950/20 border border-emerald-800/30 rounded-xl flex items-center gap-2 text-xs text-emerald-300 font-medium">
+          <div className="p-2.5 bg-emerald-950/20 border border-emerald-800/30 rounded-xl flex items-center gap-2 text-xs text-emerald-300 font-medium">
             <Award className="w-4 h-4 text-emerald-400 shrink-0" />
             <span>{activeTreatment.recommendationNote}</span>
           </div>
@@ -352,12 +352,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 4: Ma Trận An Toàn 4 Bệnh Lý Đi Kèm Tuổi 74 */}
       {/* ========================================================================= */}
-      <section id="spine-ch-4" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 4
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Ma Trận An Toàn Chu Phẫu: Kiểm Soát 4 Bệnh Lý Đi Kèm
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -372,12 +372,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 5: Video Atlas 3D & Minh Họa Quy Trình Mổ */}
       {/* ========================================================================= */}
-      <section id="spine-ch-5" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 5
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Thư Viện Video Atlas 3D & Bài Tập Phục Hồi Chức Năng
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -443,12 +443,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 6: Cây Quyết Định Lâm Sàng Cá Thể Hóa Cho Bệnh Nhân */}
       {/* ========================================================================= */}
-      <section id="spine-ch-6" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 6
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Cây Quyết Định Lâm Sàng: Hướng Đi Chuẩn Xác Cho Cụ Bà 74 Tuổi
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -457,29 +457,29 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
         </div>
 
         {/* Interactive Decision Box */}
-        <div className="p-5 sm:p-6 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-5">
+        <div className="p-4 sm:p-5 bg-slate-900/80 border border-slate-800 rounded-2xl space-y-4">
           {!isDecisionResult ? (
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="space-y-1">
                 <span className="text-xs font-mono text-amber-400 font-bold uppercase">
                   Bước {decisionHistory.length} / 2
                 </span>
-                <h3 className="text-lg sm:text-xl font-black text-white">
+                <h3 className="text-base sm:text-lg font-black text-white">
                   {currentDecisionNode.question}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-400">
+                <p className="text-xs text-slate-400">
                   {currentDecisionNode.explanation}
                 </p>
               </div>
 
-              <div className="space-y-3 pt-2">
+              <div className="space-y-2 pt-1">
                 {currentDecisionNode.options.map((option, idx) => (
                   <button
                     key={idx}
                     onClick={() => handleDecisionOption(option)}
-                    className="w-full text-left p-4 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-900/90 transition-all space-y-1 group"
+                    className="w-full text-left p-3.5 rounded-xl bg-slate-950/70 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-900/90 transition-all space-y-0.5 group"
                   >
-                    <div className="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors flex items-center justify-between">
+                    <div className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-300 transition-colors flex items-center justify-between">
                       <span>{option.label}</span>
                       <ChevronRight className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors shrink-0" />
                     </div>
@@ -491,8 +491,8 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </div>
             </div>
           ) : (
-            <div className="space-y-5">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="space-y-4">
+              <div className="flex items-center justify-between pb-2.5 border-b border-slate-800">
                 <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4" />
                   Khuyến Nghị Điều Trị Cá Thể Hóa
@@ -506,21 +506,21 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
                 </button>
               </div>
 
-              <div className="space-y-2">
-                <span className="px-3 py-1 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+              <div className="space-y-1.5">
+                <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                   {finalDecisionRecommendation?.tier}
                 </span>
-                <h3 className="text-xl sm:text-2xl font-black text-white pt-1">
+                <h3 className="text-lg sm:text-xl font-black text-white pt-1">
                   {finalDecisionRecommendation?.title}
                 </h3>
               </div>
 
               {/* Action Steps */}
-              <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+              <div className="space-y-1.5 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
                 <div className="text-xs font-bold text-amber-400 uppercase tracking-wide">
                   Các Bước Hành Động Cần Thực Hiện Ngay:
                 </div>
-                <ul className="space-y-2 text-xs sm:text-sm text-slate-300">
+                <ul className="space-y-1.5 text-xs text-slate-300">
                   {finalDecisionRecommendation?.actionSteps.map((step: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="text-amber-400 font-bold shrink-0">{i + 1}.</span>
@@ -531,11 +531,11 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </div>
 
               {/* Doctor Questions */}
-              <div className="space-y-2 bg-slate-950/60 p-4 rounded-xl border border-slate-800">
+              <div className="space-y-1.5 bg-slate-950/60 p-3.5 rounded-xl border border-slate-800">
                 <div className="text-xs font-bold text-cyan-400 uppercase tracking-wide">
                   Câu Hỏi Nên Hỏi Bác Sĩ Tại Lầu 8A BV ĐHYD:
                 </div>
-                <ul className="space-y-1.5 text-xs text-slate-300 italic">
+                <ul className="space-y-1 text-xs text-slate-300 italic">
                   {finalDecisionRecommendation?.doctorQuestions.map((q: string, i: number) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="text-cyan-400 shrink-0">"</span>
@@ -546,8 +546,8 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </div>
 
               {/* Expert Note */}
-              <div className="p-3.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2.5 text-xs text-emerald-200">
-                <ShieldCheck className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
+              <div className="p-3 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs text-emerald-200">
+                <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                 <p className="leading-relaxed">{finalDecisionRecommendation?.expertNote}</p>
               </div>
             </div>
@@ -558,12 +558,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 7: Lộ Trình Phục Hồi 6 Tuần & Lời Khuyên Tại Nhà */}
       {/* ========================================================================= */}
-      <section id="spine-ch-7" className="w-full max-w-3xl mx-auto py-8 px-5 sm:px-6 space-y-6 border-t border-slate-800/80">
-        <div className="space-y-2">
+      <section id="spine-ch-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+        <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 7
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
             Lộ Trình 6 Tuần Hậu Phẫu & Kỷ Luật Vận Động Người Cao Tuổi
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -571,48 +571,48 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           </p>
         </div>
 
-        <div className="space-y-3.5">
-          <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+          <div className="p-3.5 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
             <div className="flex items-center justify-between text-xs font-bold text-amber-400 uppercase tracking-wider">
-              <span>Giai Đoạn 1: Tuần 1 (Tại Bệnh Viện & Mới Về Nhà)</span>
+              <span>Giai Đoạn 1: Tuần 1</span>
               <span className="text-slate-400">Ngày 1 - 7</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-300 leading-relaxed">
               Ngồi dậy và đi lại nhẹ nhàng sau 24 giờ. Ăn thức ăn mềm, dễ nuốt (cháo, súp). Đeo nẹp cổ mềm liên tục khi ngồi dậy hoặc đi vệ sinh. Giữ vết mổ khô ráo tuyệt đối.
             </p>
           </div>
 
-          <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2">
+          <div className="p-3.5 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
             <div className="flex items-center justify-between text-xs font-bold text-cyan-400 uppercase tracking-wider">
-              <span>Giai Đoạn 2: Tuần 2 - 4 (Phục Hồi Sinh Hoạt Tự Chủ)</span>
+              <span>Giai Đoạn 2: Tuần 2 - 4</span>
               <span className="text-slate-400">Ngày 8 - 28</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-300 leading-relaxed">
               Cắt chỉ vết mổ (nếu dùng chỉ không tiêu) sau 7-10 ngày. Đi bộ nhẹ nhàng trong nhà 15-20 phút mỗi sáng. Thực hiện các bài tập trượt dây thần kinh ngón tay. Tiếp tục đeo nẹp cổ khi đi lại, tháo ra khi nằm nghỉ.
             </p>
           </div>
 
-          <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-xl space-y-2">
+          <div className="p-3.5 bg-slate-900/60 border border-slate-800 rounded-xl space-y-1.5">
             <div className="flex items-center justify-between text-xs font-bold text-emerald-400 uppercase tracking-wider">
-              <span>Giai Đoạn 3: Tuần 5 - 6 (Tái Khám & Cai Nẹp Cổ)</span>
+              <span>Giai Đoạn 3: Tuần 5 - 6</span>
               <span className="text-slate-400">Ngày 29 - 42</span>
             </div>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-300 leading-relaxed">
               Tái khám chụp X-quang cột sống cổ kiểm tra vị trí nẹp vít và sự hình thành can xương. Cai nẹp cổ mềm dần dần theo hướng dẫn của bác sĩ. Bắt đầu phác đồ điều trị chống loãng xương dài hạn và tập vật lý trị liệu cột sống thắt lưng L4/L5.
             </p>
           </div>
         </div>
 
         {/* Navigation CTAs */}
-        <div className="pt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="pt-4 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
           <button
             onClick={onNavigateToQA}
-            className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all text-left space-y-1 group cursor-pointer"
+            className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all text-left space-y-1 group cursor-pointer"
           >
             <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
               Tập Q&A Chi Tiết
             </div>
-            <div className="text-sm sm:text-base font-bold text-white group-hover:text-amber-300 transition-colors flex items-center justify-between">
+            <div className="text-xs sm:text-sm font-bold text-white group-hover:text-amber-300 transition-colors flex items-center justify-between">
               <span>Xem 15 Câu Hỏi & Trả Lời Cột Sống Cổ</span>
               <ArrowRight className="w-4 h-4 text-amber-400 group-hover:translate-x-1 transition-transform" />
             </div>
@@ -620,12 +620,12 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
 
           <button
             onClick={onNavigateToDoctors}
-            className="p-4 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all text-left space-y-1 group cursor-pointer"
+            className="p-3.5 rounded-2xl bg-slate-900 border border-slate-800 hover:border-amber-500/50 hover:bg-slate-850 transition-all text-left space-y-1 group cursor-pointer"
           >
             <div className="text-xs font-mono font-bold text-cyan-400 uppercase tracking-wider">
               Danh Mục Chuyên Gia
             </div>
-            <div className="text-sm sm:text-base font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
+            <div className="text-xs sm:text-sm font-bold text-white group-hover:text-cyan-300 transition-colors flex items-center justify-between">
               <span>Top 10 Bác Sĩ Cột Sống & Thần Kinh TP.HCM</span>
               <ArrowRight className="w-4 h-4 text-cyan-400 group-hover:translate-x-1 transition-transform" />
             </div>

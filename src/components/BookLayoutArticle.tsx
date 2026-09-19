@@ -82,7 +82,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Monograph for Post-Tamoxifen Patient */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-3xl mx-auto pt-10 pb-8 px-5 sm:px-6 space-y-6">
+      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         
         {/* Book Series Label */}
         <div className="flex items-center gap-2 text-teal-400 text-xs font-semibold tracking-wider uppercase">
@@ -91,16 +91,16 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* Book Main Title & Unified Header Container */}
-        <div className="space-y-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
+        <div className="space-y-3">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
             Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen (K Vú)
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
             Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế "Nghịch lý Tamoxifen", căn nguyên gây rong kinh & 4 phác đồ tối ưu hóa sức khỏe cho phụ nữ sau điều trị ung thư vú.
           </p>
 
           {/* Unified Preface & Status Panel */}
-          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <ReadAloudButton
                 id="monograph-full"
@@ -116,8 +116,8 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-emerald-100 text-xs sm:text-sm leading-relaxed space-y-1.5">
-              <span className="font-bold flex items-center gap-1.5 text-emerald-300 text-sm">
+            <div className="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-emerald-100 text-xs sm:text-sm leading-relaxed space-y-1">
+              <span className="font-bold flex items-center gap-1.5 text-emerald-300 text-xs sm:text-sm">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0" />
                 <span>Thông điệp quan trọng nhất từ Bác sĩ:</span>
               </span>
@@ -143,14 +143,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 1: THE TAMOXIFEN PARADOX (SERM MECHANISM) */}
       {/* ========================================================================= */}
-      <section id="chapter-1" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
-          <div className="space-y-2">
+          <div className="space-y-1">
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 1 • Nền Tảng Y Học
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Giải Mã "Nghịch Lý Tamoxifen": Tại Sao Chặn Ở Vú Lại Tác Động Tử Cung?
             </h2>
           </div>
@@ -163,13 +163,13 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* Storytelling & Scientific Mechanism */}
-        <div className="space-y-4 text-sm sm:text-base text-slate-300 leading-relaxed font-sans">
+        <div className="space-y-4 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
           <p>
             Để hiểu tại sao sau 5 năm uống thuốc lại xuất hiện dày niêm mạc và rong kinh, chúng ta cần tìm hiểu bản chất của phân tử Tamoxifen – một loại thuốc thuộc nhóm <strong className="text-teal-300">SERM (Selective Estrogen Receptor Modulator - Chất điều hòa thụ thể Estrogen chọn lọc)</strong>.
           </p>
 
           {/* Simple Everyday Analogy */}
-          <div className="p-4 rounded-xl bg-slate-900/80 border-l-2 border-teal-500 text-slate-200 text-xs sm:text-sm space-y-2">
+          <div className="p-3.5 rounded-xl bg-slate-900/80 border-l-2 border-teal-500 text-slate-200 text-xs sm:text-sm space-y-1.5">
             <div className="flex items-center gap-2 font-bold text-teal-300">
               <Sparkles className="w-4 h-4 text-teal-400 shrink-0" />
               <span>Hình tượng đời thường: "Chiếc chìa khóa 2 mặt"</span>
@@ -184,16 +184,16 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           </div>
 
           {/* Detailed Q&A Cards */}
-          <div className="space-y-3 pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1">
             {tamoxifenMechanisms.map((mech, idx) => (
-              <div key={idx} className="p-4 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1.5">
-                <h3 className="font-bold text-teal-300 text-sm sm:text-base flex items-center gap-2">
+              <div key={idx} className="p-3.5 rounded-xl bg-slate-900/50 border border-slate-800/80 space-y-1">
+                <h3 className="font-bold text-teal-300 text-xs sm:text-sm flex items-center gap-2">
                   <span className="w-5 h-5 rounded-full bg-teal-950 text-teal-400 text-xs flex items-center justify-center font-mono shrink-0">
                     {idx + 1}
                   </span>
                   {mech.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-300 leading-relaxed pl-7">
+                <p className="text-xs text-slate-300 leading-relaxed pl-7">
                   {mech.content}
                 </p>
               </div>
@@ -201,19 +201,19 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           </div>
 
           {/* The Stop Effect in Jan 2026 vs Sep 2026 Paradox */}
-          <div className="pt-4 space-y-3">
-            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
-              <Clock className="w-5 h-5 text-teal-400" />
+          <div className="pt-2 space-y-2.5">
+            <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+              <Clock className="w-4 h-4 text-teal-400" />
               <span>Nghịch Lý Y Khoa: Vì sao ngưng Tamoxifen từ tháng 1, đúng ra triệu chứng phải giảm dần, đằng này đến tháng 9 mới bất thường và ngày càng tăng?</span>
             </h3>
             
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-3 text-xs sm:text-sm text-slate-300">
+            <div className="p-3.5 rounded-xl bg-slate-900/90 border border-slate-800 space-y-2.5 text-xs sm:text-sm text-slate-300">
               <p>
                 Đây là thắc mắc rất phổ biến và hoàn toàn dễ hiểu của chị: <em>Nếu Tamoxifen là tác nhân kích thích tử cung, thì khi dừng thuốc từ tháng 01/2026, lẽ ra tử cung phải hồi phục và các triệu chứng phải giảm dần; tại sao đến tận tháng 9/2026 (sau 8-9 tháng) tình trạng bất thường lại rộ lên và ngày càng tăng?</em>
               </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-1">
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1.5">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 pt-1">
+                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
                   <div className="font-bold text-teal-300 text-xs flex items-center gap-1.5">
                     <span className="w-4 h-4 rounded-full bg-teal-950 text-teal-400 flex items-center justify-center text-[10px] font-mono">1</span>
                     <span>Hiện Tượng "Bung Ức Chế"</span>
@@ -223,7 +223,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                   </p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1.5">
+                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
                   <div className="font-bold text-amber-300 text-xs flex items-center gap-1.5">
                     <span className="w-4 h-4 rounded-full bg-amber-950 text-amber-400 flex items-center justify-center text-[10px] font-mono">2</span>
                     <span>Độ Trễ Tích Tụ (Lag Phase: 6-9 tháng)</span>
@@ -233,7 +233,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                   </p>
                 </div>
 
-                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1.5">
+                <div className="p-3 rounded-lg bg-slate-950 border border-slate-800 space-y-1">
                   <div className="font-bold text-rose-300 text-xs flex items-center gap-1.5">
                     <span className="w-4 h-4 rounded-full bg-rose-950 text-rose-400 flex items-center justify-center text-[10px] font-mono">3</span>
                     <span>U Xơ 45mm & Adenomyosis</span>
@@ -244,7 +244,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                 </div>
               </div>
 
-              <p className="text-emerald-300 text-xs font-medium pt-1">
+              <p className="text-emerald-300 text-xs font-medium pt-0.5">
                 ✓ <strong>Khẳng định từ chuyên gia:</strong> Sự xuất hiện triệu chứng vào tháng 9/2026 là quy luật diễn tiến tự nhiên của độ trễ mô học và nội tiết tiền mãn kinh, khẳng định 100% không phải do ung thư tái phát.
               </p>
             </div>
@@ -256,14 +256,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 2: INTERACTIVE CASE RECORD INSPECTOR */}
       {/* ========================================================================= */}
-      <section id="chapter-2" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
-          <div className="space-y-2">
+          <div className="space-y-1">
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 2 • Phân Tích Thực Tế
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Giải Mã Trực Tiếp 4 Hồ Sơ Bệnh Án & Kết Quả Giải Phẫu Bệnh
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -282,59 +282,59 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         <InteractiveCaseViewer />
 
         {/* Deep Dive: Typical vs Atypical Hyperplasia Comparison Table */}
-        <div className="pt-6 space-y-3">
-          <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+        <div className="pt-4 space-y-2.5">
+          <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-teal-400" />
             <span>Bảng So Sánh Y Học: "Tăng Sản Điển Hình" vs "Tăng Sản Không Điển Hình"</span>
           </h3>
-          <p className="text-xs sm:text-sm text-slate-300">
+          <p className="text-xs text-slate-300">
             Nhiều bệnh nhân khi đọc chữ "Tăng sản" thường lo sợ đây là ung thư. Bảng đối chiếu dưới đây theo chuẩn Tổ chức Y tế Thế giới (WHO) sẽ giúp chị nhìn rõ sự khác biệt tuyệt đối:
           </p>
 
           <div className="overflow-x-auto rounded-xl border border-slate-800">
-            <table className="w-full text-left text-xs sm:text-sm">
+            <table className="w-full text-left text-xs">
               <thead className="bg-slate-900/90 text-slate-300 font-bold border-b border-slate-800">
                 <tr>
-                  <th className="p-3">Đặc Điểm So Sánh</th>
-                  <th className="p-3 text-emerald-400 bg-emerald-950/20">KẾT QUẢ CỦA CHỊ: Tăng Sản Điển Hình (Typical / Non-atypical)</th>
-                  <th className="p-3 text-rose-400 bg-rose-950/20">Tăng Sản Không Điển Hình (Atypical / EIN)</th>
+                  <th className="p-2.5 sm:p-3">Đặc Điểm So Sánh</th>
+                  <th className="p-2.5 sm:p-3 text-emerald-400 bg-emerald-950/20">KẾT QUẢ CỦA CHỊ: Tăng Sản Điển Hình (Typical / Non-atypical)</th>
+                  <th className="p-2.5 sm:p-3 text-rose-400 bg-rose-950/20">Tăng Sản Không Điển Hình (Atypical / EIN)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-slate-800/60 bg-slate-950">
                 <tr>
-                  <td className="p-3 font-semibold text-slate-400">Hình thái nhân tế bào</td>
-                  <td className="p-3 text-emerald-300">Nhân tế bào bình thường, đồng đều, không dị dạng</td>
-                  <td className="p-3 text-rose-300">Nhân quái dị, đa hình thái, mất phân cực</td>
+                  <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Hình thái nhân tế bào</td>
+                  <td className="p-2.5 sm:p-3 text-emerald-300">Nhân tế bào bình thường, đồng đều, không dị dạng</td>
+                  <td className="p-2.5 sm:p-3 text-rose-300">Nhân quái dị, đa hình thái, mất phân cực</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-slate-400">Nguy cơ ác tính (Ung thư)</td>
-                  <td className="p-3 text-emerald-300 font-bold">&lt; 1% đến 3% (Cực kỳ thấp - Lành tính)</td>
-                  <td className="p-3 text-rose-300 font-bold">25% đến 40% (Tổn thương tiền ung thư)</td>
+                  <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Nguy cơ ác tính (Ung thư)</td>
+                  <td className="p-2.5 sm:p-3 text-emerald-300 font-bold">&lt; 1% đến 3% (Cực kỳ thấp - Lành tính)</td>
+                  <td className="p-2.5 sm:p-3 text-rose-300 font-bold">25% đến 40% (Tổn thương tiền ung thư)</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-slate-400">Ảnh hưởng từ Tamoxifen</td>
-                  <td className="p-3 text-slate-300">Dấu ấn mô học kinh điển vô hại (tuyến giãn nang)</td>
-                  <td className="p-3 text-slate-300">Hiếm gặp hơn, cần xử lý phẫu thuật triệt để</td>
+                  <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Ảnh hưởng từ Tamoxifen</td>
+                  <td className="p-2.5 sm:p-3 text-slate-300">Dấu ấn mô học kinh điển vô hại (tuyến giãn nang)</td>
+                  <td className="p-2.5 sm:p-3 text-slate-300">Hiếm gặp hơn, cần xử lý phẫu thuật triệt để</td>
                 </tr>
                 <tr>
-                  <td className="p-3 font-semibold text-slate-400">Hướng điều trị y khoa</td>
-                  <td className="p-3 text-slate-300 font-medium">Xử lý cầm máu cơ học, nội soi hoặc phẫu thuật bảo tồn buồng trứng</td>
-                  <td className="p-3 text-rose-200">Bắt buộc phẫu thuật cắt tử cung toàn phần</td>
+                  <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Hướng điều trị y khoa</td>
+                  <td className="p-2.5 sm:p-3 text-slate-300 font-medium">Xử lý cầm máu cơ học, nội soi hoặc phẫu thuật bảo tồn buồng trứng</td>
+                  <td className="p-2.5 sm:p-3 text-rose-200">Bắt buộc phẫu thuật cắt tử cung toàn phần</td>
                 </tr>
               </tbody>
             </table>
           </div>
 
           {/* Real-World Pathology Correlation Note from BV Tu Du */}
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-teal-500/30 space-y-2 text-xs sm:text-sm text-slate-300">
-            <div className="flex items-center gap-2 font-bold text-teal-300">
+          <div className="p-3.5 rounded-xl bg-slate-900/80 border border-teal-500/30 space-y-2 text-xs sm:text-sm text-slate-300">
+            <div className="flex items-center gap-2 font-bold text-teal-300 text-xs sm:text-sm">
               <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
               <span>Đối chiếu thực tế lâm sàng (Phiếu GPB BV Từ Dũ): "TĂNG SẢN ĐIỂN HÌNH = WITHOUT ATYPIA"</span>
             </div>
-            <p>
+            <p className="text-xs">
               Phiếu Giải phẫu bệnh thực tế tại các bệnh viện đầu ngành như <strong>BV Từ Dũ</strong> in rõ ràng: <strong className="text-white font-mono bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">TĂNG SẢN ĐIỂN HÌNH NỘI MẠC TỬ CUNG (HYPERPLASIA WITHOUT ATYPIA) KHU TRÚ</strong>. Đây là minh chứng vàng khẳng định 100% kết quả tại BV Hùng Vương của chị thuộc nhóm tổn thương hoàn toàn lành tính.
             </p>
-            <div className="p-3 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-amber-200 text-xs space-y-1">
+            <div className="p-2.5 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-amber-200 text-xs space-y-1">
               <strong className="text-amber-300">Về cảnh báo "Nếu không điều trị có nguy cơ tiến triển thành ung thư":</strong>
               <p>
                 Cảnh báo này của bác sĩ dành cho những trường hợp <em>bỏ mặc tổn thương nhiều năm không can thiệp</em>, khiến tế bào dưới tác động của Estrogen không đối kháng kéo dài có thể tích lũy đột biến (1-3%). Việc chị đã <strong>sinh thiết phát hiện sớm và chủ động có kế hoạch xử lý</strong> (đặc biệt là phẫu thuật nội soi cắt tử cung bảo tồn buồng trứng) sẽ <strong>chặn đứng 100% nguy cơ này, xóa bỏ vĩnh viễn nỗi lo ung thư tử cung!</strong>
@@ -351,14 +351,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 3: ROOT CAUSE OF CHRONIC MENORRHAGIA */}
       {/* ========================================================================= */}
-      <section id="chapter-3" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
-          <div className="space-y-2">
+          <div className="space-y-1">
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 3 • Căn Nguyên Bệnh Lý
             </div>
-            <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Đi Tìm Thủ Phạm Gây Rong Kinh Kéo Dài: "Bộ Tứ Tác Động"
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -374,11 +374,11 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* 4 Contributing Factors Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
           
-          <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
-            <div className="flex items-center gap-2 font-bold text-teal-300 text-sm">
-              <span className="w-6 h-6 rounded-full bg-teal-950 text-teal-400 flex items-center justify-center text-xs font-mono">1</span>
+          <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1.5">
+            <div className="flex items-center gap-2 font-bold text-teal-300 text-xs sm:text-sm">
+              <span className="w-5 h-5 rounded-full bg-teal-950 text-teal-400 flex items-center justify-center text-xs font-mono shrink-0">1</span>
               <span>Mảng Tăng Sản Tuyến Do Tamoxifen</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
@@ -386,40 +386,40 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
-            <div className="flex items-center gap-2 font-bold text-rose-300 text-sm">
-              <span className="w-6 h-6 rounded-full bg-rose-950 text-rose-400 flex items-center justify-center text-xs font-mono">2</span>
-              <span>Lạc Tuyến Cơ Tử Cung (Adenomyosis)</span>
+          <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1.5">
+            <div className="flex items-center gap-2 font-bold text-rose-300 text-xs sm:text-sm">
+              <span className="w-5 h-5 rounded-full bg-rose-950 text-rose-400 flex items-center justify-center text-xs font-mono shrink-0">2</span>
+              <span>Lạc Tuyến Cơ (Adenomyosis)</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Mô niêm mạc xâm lấn vào thành sau làm cơ tử cung dày cộm (siêu âm Tâm Anh 2025). Lớp cơ này bị xơ hóa nên <strong>không thể co bóp siết chặt các mạch máu</strong> để tự cầm máu như tử cung bình thường.
+              Mô niêm mạc xâm lấn vào thành sau làm cơ tử cung dày cộm. Lớp cơ này bị xơ hóa nên <strong>không thể co bóp siết chặt các mạch máu</strong> để tự cầm máu.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
-            <div className="flex items-center gap-2 font-bold text-amber-300 text-sm">
-              <span className="w-6 h-6 rounded-full bg-amber-950 text-amber-400 flex items-center justify-center text-xs font-mono">3</span>
-              <span>Khối Cơ / U Xơ Thành Sau 41x45mm</span>
+          <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1.5">
+            <div className="flex items-center gap-2 font-bold text-amber-300 text-xs sm:text-sm">
+              <span className="w-5 h-5 rounded-full bg-amber-950 text-amber-400 flex items-center justify-center text-xs font-mono shrink-0">3</span>
+              <span>U Xơ Thành Sau 41x45mm</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Khối nhân xơ kích thước 4cm ở thành sau (siêu âm Hùng Vương 2026) làm tăng đáng kể diện tích bề mặt lòng tử cung và gây ứ trệ tuần hoàn tĩnh mạch, khiến lượng máu kinh chảy ra nhiều hơn.
+              Khối nhân xơ kích thước 4cm ở thành sau làm tăng đáng kể diện tích bề mặt lòng tử cung và gây ứ trệ tuần hoàn tĩnh mạch, khiến lượng máu kinh chảy ra nhiều hơn.
             </p>
           </div>
 
-          <div className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 space-y-2">
-            <div className="flex items-center gap-2 font-bold text-purple-300 text-sm">
-              <span className="w-6 h-6 rounded-full bg-purple-950 text-purple-400 flex items-center justify-center text-xs font-mono">4</span>
-              <span>Độ Tuổi 45 (Tiền Mãn Kinh Sinh Lý)</span>
+          <div className="p-3.5 rounded-xl bg-slate-900/70 border border-slate-800 space-y-1.5">
+            <div className="flex items-center gap-2 font-bold text-purple-300 text-xs sm:text-sm">
+              <span className="w-5 h-5 rounded-full bg-purple-950 text-purple-400 flex items-center justify-center text-xs font-mono shrink-0">4</span>
+              <span>Độ Tuổi 45 (Tiền Mãn Kinh)</span>
             </div>
             <p className="text-xs text-slate-300 leading-relaxed">
-              Ở tuổi 45, buồng trứng bắt đầu có những chu kỳ không rụng trứng. Cơ thể có Estrogen nhưng lại thiếu hụt Progesterone để làm bong niêm mạc đồng loạt, dẫn đến niêm mạc bong rải rác kéo dài.
+              Ở tuổi 45, buồng trứng có những chu kỳ không rụng trứng. Cơ thể có Estrogen nhưng lại thiếu hụt Progesterone để làm bong niêm mạc đồng loạt.
             </p>
           </div>
 
         </div>
 
         {/* Clinical Impact: Why Action is Needed */}
-        <div className="p-4 rounded-xl bg-slate-900/90 border-l-2 border-rose-500 text-slate-300 text-xs sm:text-sm space-y-2">
+        <div className="p-3.5 rounded-xl bg-slate-900/90 border-l-2 border-rose-500 text-slate-300 text-xs sm:text-sm space-y-1.5">
           <div className="font-bold text-rose-300 flex items-center gap-2">
             <AlertTriangle className="w-4 h-4 text-rose-400 shrink-0" />
             <span>Tại sao cần giải quyết dứt điểm tình trạng rong kinh này?</span>
@@ -434,13 +434,13 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 4: COMPREHENSIVE 4 TREATMENT STRATEGIES */}
       {/* ========================================================================= */}
-      <section id="chapter-4" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 4 • Phác Đồ Điều Trị
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
             So Sánh 4 Hướng Điều Trị Tối Ưu Cho Bệnh Nhân Tiền Sử K Vú
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -456,7 +456,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               <button
                 key={opt.id}
                 onClick={() => setSelectedTreatmentId(opt.id)}
-                className={`p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-2 ${
+                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-1.5 cursor-pointer ${
                   isSelected
                     ? 'bg-teal-500/20 text-teal-200 border border-teal-500/50 shadow-md'
                     : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-slate-800'
@@ -476,9 +476,9 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* Active Treatment Card Detail */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-5">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
           
-          <div className="space-y-1.5 border-b border-slate-800 pb-4">
+          <div className="space-y-1 border-b border-slate-800 pb-3">
             <div className="flex items-center justify-between gap-2">
               <span className="text-xs font-mono text-teal-400 uppercase font-bold tracking-wider">
                 Chi Tiết Phác Đồ Lựa Chọn
@@ -487,17 +487,17 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                 {activeTreatment.suitabilityScore}
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-white">
+            <h3 className="text-base sm:text-lg font-black text-white">
               {activeTreatment.name}
             </h3>
-            <p className="text-xs sm:text-sm text-slate-400 italic">
+            <p className="text-xs text-slate-400 italic">
               {activeTreatment.subtitle}
             </p>
           </div>
 
           {/* Layman Analogy */}
           {activeTreatment.laymanAnalogy && (
-            <div className="p-3.5 rounded-xl bg-slate-950/90 border-l-2 border-teal-400 text-xs text-slate-300 space-y-1">
+            <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-teal-400 text-xs text-slate-300 space-y-1">
               <span className="font-bold text-teal-300 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-teal-400 shrink-0" />
                 <span>Hình tượng đời thường dễ hiểu:</span>
@@ -507,7 +507,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           )}
 
           {/* Mechanism */}
-          <div className="space-y-1.5">
+          <div className="space-y-1">
             <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
               <Activity className="w-3.5 h-3.5 text-teal-400" />
               <span>Cơ chế thực hiện:</span>
@@ -518,13 +518,13 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           </div>
 
           {/* Pros & Cons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-            <div className="space-y-2 p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            <div className="space-y-1.5 p-3 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
               <div className="font-bold text-xs uppercase text-emerald-400 flex items-center gap-1.5">
                 <Check className="w-4 h-4 text-emerald-400" />
                 <span>Ưu điểm vượt trội:</span>
               </div>
-              <ul className="space-y-1.5 text-xs text-slate-300">
+              <ul className="space-y-1 text-xs text-slate-300">
                 {activeTreatment.pros.map((p, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-emerald-400 font-bold shrink-0">•</span>
@@ -534,12 +534,12 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </ul>
             </div>
 
-            <div className="space-y-2 p-3.5 rounded-xl bg-amber-950/20 border border-amber-900/30">
+            <div className="space-y-1.5 p-3 rounded-xl bg-amber-950/20 border border-amber-900/30">
               <div className="font-bold text-xs uppercase text-amber-400 flex items-center gap-1.5">
                 <AlertCircle className="w-4 h-4 text-amber-400" />
                 <span>Điểm cần lưu ý & Cân nhắc:</span>
               </div>
-              <ul className="space-y-1.5 text-xs text-slate-300">
+              <ul className="space-y-1 text-xs text-slate-300">
                 {activeTreatment.cons.map((c, i) => (
                   <li key={i} className="flex items-start gap-1.5">
                     <span className="text-amber-400 font-bold shrink-0">•</span>
@@ -551,7 +551,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           </div>
 
           {/* Safety for Breast Cancer */}
-          <div className="p-3.5 rounded-xl bg-teal-950/30 border-l-2 border-teal-400 text-xs sm:text-sm space-y-1">
+          <div className="p-3 rounded-xl bg-teal-950/30 border-l-2 border-teal-400 text-xs sm:text-sm space-y-1">
             <span className="font-bold text-teal-300 flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
               <span>Độ an toàn đối với tiền sử Ung Thư Vú:</span>
@@ -562,22 +562,22 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           {/* Recovery & Clinical Recommendation */}
           <div className="text-xs text-slate-300 space-y-1 bg-slate-950/80 p-3 rounded-xl border border-slate-800">
             <div><strong className="text-slate-200">Hồi phục & Nằm viện:</strong> {activeTreatment.surgicalRecovery}</div>
-            <div className="pt-1"><strong className="text-teal-400">Khuyến nghị chuyên gia:</strong> {activeTreatment.recommendationNote}</div>
+            <div className="pt-0.5"><strong className="text-teal-400">Khuyến nghị chuyên gia:</strong> {activeTreatment.recommendationNote}</div>
           </div>
 
         </div>
 
         {/* Dedicated Oncology Safety & Recurrence Cross-Talk Matrix */}
-        <div className="pt-6 space-y-3">
+        <div className="pt-4 space-y-2.5">
           <div className="space-y-1">
             <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
               Đánh Giá Dược Lâm Sàng Ung Bướu (ASCO / NCCN)
             </span>
-            <h3 className="text-lg sm:text-xl font-black text-white flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2">
               <ShieldAlert className="w-5 h-5 text-rose-400" />
               <span>Ma Trận Đánh Giá Nguy Cơ Ảnh Hưởng Ngược Lên Ung Thư Vú</span>
             </h3>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs text-slate-300 leading-relaxed">
               Mọi giải pháp điều trị phụ khoa, thuốc cầm máu hay thực phẩm bổ sung đều được đối chiếu chặt chẽ với nguy cơ tái phát K vú theo các thử nghiệm lâm sàng quốc tế:
             </p>
           </div>
@@ -590,13 +590,13 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 5: CLINICAL MEDIA ATLAS & VIDEO SURGERY */}
       {/* ========================================================================= */}
-      <section id="chapter-5" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 5 • Atlas Video Lâm Sàng
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
             Video Thủ Thuật & Mô Phỏng Phẫu Thuật Thực Tế
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -605,7 +605,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* Video Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {tamoxifenMediaItems.map((media) => (
             <div 
               key={media.id}
@@ -619,8 +619,8 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-teal-500/90 text-slate-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-5 h-5 fill-current ml-0.5" />
+                  <div className="w-10 h-10 rounded-full bg-teal-500/90 text-slate-950 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Play className="w-4 h-4 fill-current ml-0.5" />
                   </div>
                 </div>
                 <div className="absolute bottom-2 right-2 bg-slate-950/80 backdrop-blur-sm text-slate-200 text-[10px] font-mono px-2 py-0.5 rounded">
@@ -628,9 +628,9 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                 </div>
               </div>
 
-              <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
+              <div className="p-3.5 space-y-1.5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-bold text-white text-sm group-hover:text-teal-300 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-white text-xs sm:text-sm group-hover:text-teal-300 transition-colors line-clamp-2">
                     {media.title}
                   </h3>
                   <p className="text-xs text-slate-400 mt-1 line-clamp-2">
@@ -652,13 +652,13 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 6: PERSONALIZED DECISION TOOL */}
       {/* ========================================================================= */}
-      <section id="chapter-6" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 6 • Cây Quyết Định Cá Thể Hóa
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
             Tự Đánh Giá & Chọn Hướng Đi Phù Hợp Nhất Cho Chị
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -667,15 +667,15 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         </div>
 
         {/* Interactive Decision Box */}
-        <div className="p-5 sm:p-6 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-6">
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
           
           {!isDecisionResult && currentDecisionNode && (
-            <div className="space-y-5">
-              <div className="space-y-1.5">
+            <div className="space-y-4">
+              <div className="space-y-1">
                 <span className="text-xs font-mono text-teal-400 font-bold uppercase">
                   Bước {decisionHistory.length} / 2
                 </span>
-                <h3 className="text-base sm:text-lg font-bold text-white">
+                <h3 className="text-sm sm:text-base font-bold text-white">
                   {currentDecisionNode.question}
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -683,14 +683,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                 </p>
               </div>
 
-              <div className="space-y-2.5">
+              <div className="space-y-2">
                 {currentDecisionNode.options.map((opt, i) => (
                   <button
                     key={i}
                     onClick={() => handleDecisionOption(opt)}
-                    className="w-full p-4 rounded-xl text-left bg-slate-950 border border-slate-800 hover:border-teal-500/60 hover:bg-slate-900/80 transition-all text-xs sm:text-sm group flex items-start justify-between gap-3"
+                    className="w-full p-3.5 rounded-xl text-left bg-slate-950 border border-slate-800 hover:border-teal-500/60 hover:bg-slate-900/80 transition-all text-xs sm:text-sm group flex items-start justify-between gap-3 cursor-pointer"
                   >
-                    <div className="space-y-1">
+                    <div className="space-y-0.5">
                       <div className="font-bold text-slate-200 group-hover:text-teal-300 transition-colors">
                         {opt.label}
                       </div>
@@ -706,25 +706,25 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           )}
 
           {isDecisionResult && finalDecisionRecommendation && (
-            <div className="space-y-5">
-              <div className="space-y-2">
+            <div className="space-y-4">
+              <div className="space-y-1.5">
                 <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-teal-950 text-teal-300 border border-teal-800">
                   {finalDecisionRecommendation.tier}
                 </span>
-                <h3 className="text-lg sm:text-xl font-black text-white">
+                <h3 className="text-base sm:text-lg font-black text-white">
                   {finalDecisionRecommendation.title}
                 </h3>
               </div>
 
               {/* Action Steps */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
                   <Activity className="w-3.5 h-3.5 text-teal-400" />
                   <span>Các bước hành động cụ thể:</span>
                 </h4>
-                <ul className="space-y-1.5 text-xs sm:text-sm text-slate-300">
+                <ul className="space-y-1 text-xs text-slate-300">
                   {finalDecisionRecommendation.actionSteps.map((step: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800/80">
+                    <li key={i} className="flex items-start gap-2 p-2 rounded-lg bg-slate-950 border border-slate-800/80">
                       <span className="text-teal-400 font-bold shrink-0">✓</span>
                       <span>{step}</span>
                     </li>
@@ -733,14 +733,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </div>
 
               {/* Questions for the Doctor */}
-              <div className="space-y-2">
+              <div className="space-y-1.5">
                 <h4 className="text-xs font-bold uppercase text-amber-400 flex items-center gap-1.5">
                   <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
                   <span>Câu hỏi chuẩn bị sẵn khi gặp Bác sĩ điều trị:</span>
                 </h4>
-                <div className="space-y-2">
+                <div className="space-y-1.5">
                   {finalDecisionRecommendation.doctorQuestions.map((q: string, i: number) => (
-                    <div key={i} className="p-3 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-xs sm:text-sm text-amber-100 italic">
+                    <div key={i} className="p-2.5 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-xs text-amber-100 italic">
                       {q}
                     </div>
                   ))}
@@ -748,14 +748,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </div>
 
               {/* Oncology Safety Note */}
-              <div className="p-3.5 rounded-xl bg-teal-950/40 border-l-2 border-teal-400 text-xs sm:text-sm text-teal-200">
+              <div className="p-3 rounded-xl bg-teal-950/40 border-l-2 border-teal-400 text-xs text-teal-200">
                 <strong className="text-teal-300">Lưu ý chuyên khoa Ung Bướu: </strong>
                 {finalDecisionRecommendation.oncologyNote}
               </div>
 
               <button
                 onClick={handleResetDecision}
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors cursor-pointer"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
                 <span>Thực hiện lại đánh giá</span>
@@ -770,9 +770,9 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 7: LIFESTYLE, RECOVERY & FOLLOW-UP SCHEDULE */}
       {/* ========================================================================= */}
-      <section id="chapter-7" className="w-full max-w-3xl mx-auto py-10 px-5 sm:px-6 space-y-8 border-t border-slate-900">
+      <section id="chapter-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-2">
+        <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 7 • Lối Sống & Tái Khám
           </div>
