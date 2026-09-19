@@ -1,30 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { 
   menstrualCycleLogs as initialDailyLogs, 
   cyclePhaseAnalyses, 
   symptomDecoders,
   historicalCyclesData as initialHistoricalCycles,
-  historicalCycleClinicalInsights
 } from '../data/menstrualCycleLogData';
 import type { DailyCycleLog, HistoricalCycle } from '../data/menstrualCycleLogData';
 import {
-  Calendar,
+  Calendar as CalendarIcon,
   Activity,
   CheckCircle2,
   Clock,
   Sparkles,
-  ChevronDown,
-  ChevronUp,
-  Layers,
+  ChevronLeft,
+  ChevronRight,
   HelpCircle,
   Droplets,
   Microscope,
   Info,
-  TrendingUp,
   BarChart3,
   CalendarDays,
-  Image as ImageIcon,
-  ZoomIn,
   X,
   History,
   Plus,
@@ -34,15 +29,47 @@ import {
   Upload,
   RotateCcw,
   Save,
-  Search
+  Search,
+  Sliders
 } from 'lucide-react';
 
 const STORAGE_KEY_CYCLES = 'mom_health_menstrual_cycles_v2';
 const STORAGE_KEY_LOGS = 'mom_health_daily_logs_v2';
 
+// Helper: Parse DD/MM/YYYY into JS Date object
+function parseVNtoDate(dateStr: string): Date | null {
+  if (!dateStr) return null;
+  const parts = dateStr.trim().split('/');
+  if (parts.length === 3) {
+    const day = parseInt(parts[0], 10);
+    const month = parseInt(parts[1], 10) - 1;
+    const year = parseInt(parts[2], 10);
+    if (!isNaN(day) && !isNaN(month) && !isNaN(year)) {
+      return new Date(year, month, day);
+    }
+  }
+  // Try fallback Date.parse
+  const d = new Date(dateStr);
+  return isNaN(d.getTime()) ? null : d;
+}
+
+// Helper: Format Date object to DD/MM/YYYY
+function formatDateToVN(d: Date): string {
+  const day = String(d.getDate()).padStart(2, '0');
+  const month = String(d.getMonth() + 1).padStart(2, '0');
+  const year = d.getFullYear();
+  return `${day}/${month}/${year}`;
+}
+
+// Helper: Get weekday name in Vietnamese
+function getWeekdayVN(d: Date): string {
+  const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+  return days[d.getDay()];
+}
+
 export const MenstrualCycleTrackerSection: React.FC = () => {
-  // Main view mode: 'recent_log' (Daily logs), 'longitudinal_history' (43 cycles list)
-  const [mainViewMode, setMainViewMode] = useState<'recent_log' | 'longitudinal_history'>('recent_log');
+  // Main View: 'calendar' (WomanLog style), 'daily_logs' (Timeline list), 'cycle_history' (43 cycles list & stats), 'medical_decoder' (Pathology & Physiology)
+  const [activeTab, setActiveTab] = useState<'calendar' | 'daily_logs' | 'cycle_history' | 'medical_decoder'>('calendar');
 
   // Persistence State: Cycles & Daily Logs
   const [cycles, setCycles] = useState<HistoricalCycle[]>(() => {
@@ -76,7 +103,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     try {
       localStorage.setItem(STORAGE_KEY_CYCLES, JSON.stringify(cycles));
     } catch (e) {
-      console.error('Failed to save cycles to localStorage', e);
+      console.error('Failed to save cycles', e);
     }
   }, [cycles]);
 
@@ -84,40 +111,41 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     try {
       localStorage.setItem(STORAGE_KEY_LOGS, JSON.stringify(dailyLogs));
     } catch (e) {
-      console.error('Failed to save logs to localStorage', e);
+      console.error('Failed to save logs', e);
     }
   }, [dailyLogs]);
 
-  // Recent Log States
-  const [activeFilter, setActiveFilter] = useState<'all' | 'milestones' | 'menstrual' | 'ovulatory' | 'secretory'>('all');
-  const [selectedLog, setSelectedLog] = useState<DailyCycleLog | null>(dailyLogs[0] || null);
-  const [expandedDecoder, setExpandedDecoder] = useState<number | null>(0);
-  const [activePhaseTab, setActivePhaseTab] = useState<string>('secretory-phase');
-  const [logSearchQuery, setLogSearchQuery] = useState<string>('');
+  // Calendar State: Default to 09/2026 (the focal month of biopsy & logs)
+  const [currentCalYear, setCurrentCalYear] = useState<number>(2026);
+  const [currentCalMonth, setCurrentCalMonth] = useState<number>(8); // 8 is September (0-indexed)
 
-  // Longitudinal History States
-  const [historyYearFilter, setHistoryYearFilter] = useState<number | 'all'>('all');
-  const [selectedHistoricalCycle, setSelectedHistoricalCycle] = useState<HistoricalCycle | null>(cycles[0] || null);
-  const [cycleSearchQuery, setCycleSearchQuery] = useState<string>('');
-  const [activeImageModal, setActiveImageModal] = useState<string | null>(null);
+  // Selected date in Calendar (e.g. "15/09/2026")
+  const [selectedCalendarDateStr, setSelectedCalendarDateStr] = useState<string>('15/09/2026');
 
-  // Modals States
+  // Interactive Day Drawer / Quick Edit state
+  const [isQuickEditing, setIsQuickEditing] = useState<boolean>(false);
+  const [quickEditLog, setQuickEditLog] = useState<Partial<DailyCycleLog>>({});
+
+  // Cycle Modals
   const [isCycleModalOpen, setIsCycleModalOpen] = useState<boolean>(false);
   const [editingCycle, setEditingCycle] = useState<HistoricalCycle | null>(null);
 
-  const [isLogModalOpen, setIsLogModalOpen] = useState<boolean>(false);
-  const [editingLog, setEditingLog] = useState<DailyCycleLog | null>(null);
+  // Search & Filters
+  const [logFilter, setLogFilter] = useState<'all' | 'spotting' | 'period' | 'milestones'>('all');
+  const [logSearchQuery, setLogSearchQuery] = useState<string>('');
+  const [historyYearFilter, setHistoryYearFilter] = useState<number | 'all'>('all');
 
+  // Notifications
   const [notification, setNotification] = useState<{ message: string; type: 'success' | 'info' | 'error' } | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const showNotification = (message: string, type: 'success' | 'info' | 'error' = 'success') => {
     setNotification({ message, type });
-    setTimeout(() => setNotification(null), 4000);
+    setTimeout(() => setNotification(null), 3500);
   };
 
   // Real-time Dynamic Statistics from Current Cycles
-  const dynamicStats = React.useMemo(() => {
+  const dynamicStats = useMemo(() => {
     const total = cycles.length;
     if (total === 0) {
       return {
@@ -131,7 +159,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     }
     const sumCycleLength = cycles.reduce((acc, c) => acc + (c.cycleLengthDays || 0), 0);
     const sumPeriod = cycles.reduce((acc, c) => acc + (c.periodDurationDays || 0), 0);
-    const regularCount = cycles.filter(c => (c.cycleLengthDays >= 28 && c.cycleLengthDays <= 42)).length;
+    const regularLongCount = cycles.filter(c => (c.cycleLengthDays >= 30 && c.cycleLengthDays <= 42)).length;
     const years = cycles.map(c => c.year).filter(y => Boolean(y));
     const minYear = years.length > 0 ? Math.min(...years) : 2022;
     const maxYear = years.length > 0 ? Math.max(...years) : 2026;
@@ -140,53 +168,293 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
       totalTrackedCycles: total,
       averageCycleLength: Number((sumCycleLength / total).toFixed(1)),
       averagePeriodDuration: Number((sumPeriod / total).toFixed(1)),
-      longCyclePercentage: Math.round((regularCount / total) * 100),
+      longCyclePercentage: Math.round((regularLongCount / total) * 100),
       minYear,
       maxYear
     };
   }, [cycles]);
 
-  // Filtered Logs
-  const filteredRecentLogs = dailyLogs.filter(log => {
-    if (logSearchQuery.trim()) {
-      const q = logSearchQuery.toLowerCase();
-      const match = log.date.toLowerCase().includes(q) ||
-                    log.summary.toLowerCase().includes(q) ||
-                    log.symptoms.some(s => s.toLowerCase().includes(q)) ||
-                    log.clinicalInterpretation.toLowerCase().includes(q);
-      if (!match) return false;
-    }
-    if (activeFilter === 'milestones') return log.isKeyMilestone;
-    if (activeFilter === 'menstrual') return log.phase === 'menstrual';
-    if (activeFilter === 'ovulatory') return log.phase === 'ovulatory';
-    if (activeFilter === 'secretory') return log.phase === 'secretory';
-    return true;
-  });
+  // Map of daily logs by date string (DD/MM/YYYY)
+  const dailyLogsMap = useMemo(() => {
+    const map = new Map<string, DailyCycleLog>();
+    dailyLogs.forEach(log => {
+      map.set(log.date.trim(), log);
+    });
+    return map;
+  }, [dailyLogs]);
 
-  // Filtered Cycles
-  const filteredHistoricalCycles = cycles.filter(c => {
-    if (historyYearFilter !== 'all' && c.year !== historyYearFilter) return false;
-    if (cycleSearchQuery.trim()) {
-      const q = cycleSearchQuery.toLowerCase();
-      const match = c.dateRangeDisplay.toLowerCase().includes(q) ||
-                    c.clinicalNote.toLowerCase().includes(q) ||
-                    c.cycleTypeLabel.toLowerCase().includes(q);
-      if (!match) return false;
-    }
-    return true;
-  });
+  // Compute Period & Ovulation intervals across all cycles
+  const calculatedCycleEvents = useMemo(() => {
+    const periodDaysSet = new Map<string, { dayNumber: number; cycleId: string }>();
+    const ovulationDaysSet = new Map<string, { isPeak: boolean; cycleId: string }>();
 
-  // Unique Years from current cycles
-  const availableYears = React.useMemo(() => {
-    const ySet = new Set<number>();
-    cycles.forEach(c => { if (c.year) ySet.add(c.year); });
-    return Array.from(ySet).sort((a, b) => b - a);
+    cycles.forEach(cycle => {
+      let sDate: Date | null = null;
+      if (cycle.startDate.includes('/')) {
+        sDate = parseVNtoDate(cycle.startDate);
+      } else {
+        const parsed = new Date(cycle.startDate);
+        if (!isNaN(parsed.getTime())) sDate = parsed;
+      }
+
+      if (sDate) {
+        const periodLen = cycle.periodDurationDays || 5;
+        for (let i = 0; i < periodLen; i++) {
+          const pDay = new Date(sDate.getFullYear(), sDate.getMonth(), sDate.getDate() + i);
+          const pStr = formatDateToVN(pDay);
+          periodDaysSet.set(pStr, { dayNumber: i + 1, cycleId: cycle.id });
+        }
+
+        const cycleLen = cycle.cycleLengthDays || 35;
+        const ovulationOffset = Math.max(10, cycleLen - 14);
+        
+        for (let o = -3; o <= 1; o++) {
+          const ovDay = new Date(sDate.getFullYear(), sDate.getMonth(), sDate.getDate() + ovulationOffset + o);
+          const ovStr = formatDateToVN(ovDay);
+          if (!periodDaysSet.has(ovStr)) {
+            ovulationDaysSet.set(ovStr, { isPeak: o === 0, cycleId: cycle.id });
+          }
+        }
+      }
+    });
+
+    return { periodDaysSet, ovulationDaysSet };
   }, [cycles]);
 
-  // Export Data JSON
+  // Build Calendar Matrix for currentCalMonth & currentCalYear
+  const calendarMatrix = useMemo(() => {
+    const firstDayOfMonth = new Date(currentCalYear, currentCalMonth, 1);
+    const lastDayOfMonth = new Date(currentCalYear, currentCalMonth + 1, 0);
+    const daysInMonth = lastDayOfMonth.getDate();
+    
+    let startingDay = firstDayOfMonth.getDay() - 1;
+    if (startingDay === -1) startingDay = 6; // Sunday
+
+    const matrix: Array<{
+      date: Date;
+      dateStr: string;
+      isCurrentMonth: boolean;
+      dayNumber: number;
+      isPeriod: boolean;
+      periodDayNumber?: number;
+      isOvulation: boolean;
+      isOvulationPeak: boolean;
+      hasLog: boolean;
+      log?: DailyCycleLog;
+      dischargeType?: DailyCycleLog['dischargeType'];
+      painLevel?: DailyCycleLog['painLevel'];
+    }> = [];
+
+    const prevMonthLastDay = new Date(currentCalYear, currentCalMonth, 0).getDate();
+    for (let i = startingDay - 1; i >= 0; i--) {
+      const d = new Date(currentCalYear, currentCalMonth - 1, prevMonthLastDay - i);
+      const dStr = formatDateToVN(d);
+      const log = dailyLogsMap.get(dStr);
+      const periodInfo = calculatedCycleEvents.periodDaysSet.get(dStr);
+      const ovInfo = calculatedCycleEvents.ovulationDaysSet.get(dStr);
+
+      matrix.push({
+        date: d,
+        dateStr: dStr,
+        isCurrentMonth: false,
+        dayNumber: d.getDate(),
+        isPeriod: Boolean(periodInfo || (log && log.phase === 'menstrual')),
+        periodDayNumber: periodInfo?.dayNumber,
+        isOvulation: Boolean(ovInfo),
+        isOvulationPeak: Boolean(ovInfo?.isPeak),
+        hasLog: Boolean(log),
+        log,
+        dischargeType: log?.dischargeType,
+        painLevel: log?.painLevel
+      });
+    }
+
+    for (let i = 1; i <= daysInMonth; i++) {
+      const d = new Date(currentCalYear, currentCalMonth, i);
+      const dStr = formatDateToVN(d);
+      const log = dailyLogsMap.get(dStr);
+      const periodInfo = calculatedCycleEvents.periodDaysSet.get(dStr);
+      const ovInfo = calculatedCycleEvents.ovulationDaysSet.get(dStr);
+
+      matrix.push({
+        date: d,
+        dateStr: dStr,
+        isCurrentMonth: true,
+        dayNumber: i,
+        isPeriod: Boolean(periodInfo || (log && log.phase === 'menstrual')),
+        periodDayNumber: periodInfo?.dayNumber,
+        isOvulation: Boolean(ovInfo),
+        isOvulationPeak: Boolean(ovInfo?.isPeak),
+        hasLog: Boolean(log),
+        log,
+        dischargeType: log?.dischargeType,
+        painLevel: log?.painLevel
+      });
+    }
+
+    const remainingCells = 42 - matrix.length;
+    if (remainingCells > 0 && remainingCells < 7) {
+      for (let i = 1; i <= remainingCells; i++) {
+        const d = new Date(currentCalYear, currentCalMonth + 1, i);
+        const dStr = formatDateToVN(d);
+        const log = dailyLogsMap.get(dStr);
+        const periodInfo = calculatedCycleEvents.periodDaysSet.get(dStr);
+        const ovInfo = calculatedCycleEvents.ovulationDaysSet.get(dStr);
+
+        matrix.push({
+          date: d,
+          dateStr: dStr,
+          isCurrentMonth: false,
+          dayNumber: i,
+          isPeriod: Boolean(periodInfo || (log && log.phase === 'menstrual')),
+          periodDayNumber: periodInfo?.dayNumber,
+          isOvulation: Boolean(ovInfo),
+          isOvulationPeak: Boolean(ovInfo?.isPeak),
+          hasLog: Boolean(log),
+          log,
+          dischargeType: log?.dischargeType,
+          painLevel: log?.painLevel
+        });
+      }
+    }
+
+    return matrix;
+  }, [currentCalYear, currentCalMonth, dailyLogsMap, calculatedCycleEvents]);
+
+  // Selected date log or virtual log for empty days
+  const activeSelectedDayData = useMemo(() => {
+    const existing = dailyLogsMap.get(selectedCalendarDateStr);
+    const parsedDate = parseVNtoDate(selectedCalendarDateStr) || new Date();
+    const isPeriod = calculatedCycleEvents.periodDaysSet.get(selectedCalendarDateStr);
+    const isOvulation = calculatedCycleEvents.ovulationDaysSet.get(selectedCalendarDateStr);
+
+    if (existing) {
+      return {
+        ...existing,
+        isVirtual: false
+      };
+    }
+
+    return {
+      date: selectedCalendarDateStr,
+      dayOfWeek: getWeekdayVN(parsedDate),
+      cycleDayText: isPeriod ? `Ngày ${isPeriod.dayNumber} kỳ kinh` : isOvulation ? 'Cửa sổ rụng trứng (Dự đoán)' : 'Ngày theo dõi sinh lý',
+      phase: isPeriod ? 'menstrual' : isOvulation ? 'ovulatory' : 'secretory',
+      phaseLabel: isPeriod ? 'Pha Hành Kinh' : isOvulation ? 'Pha Rụng Trứng' : 'Ngày Sinh Lý Bình Thường',
+      summary: isPeriod ? 'Ngày có kinh nguyệt' : 'Chưa có ghi nhận bất thường trong ngày này.',
+      symptoms: isPeriod ? ['Hành kinh'] : [],
+      dischargeType: isPeriod ? 'fresh_blood' : 'none',
+      dischargeLabel: isPeriod ? 'Máu kinh đỏ' : 'Sạch / Không ra dịch',
+      painLevel: 'none',
+      clinicalInterpretation: 'Sinh lý phụ khoa ổn định.',
+      isVirtual: true
+    } as DailyCycleLog & { isVirtual: boolean };
+  }, [selectedCalendarDateStr, dailyLogsMap, calculatedCycleEvents]);
+
+  const handlePrevMonth = () => {
+    if (currentCalMonth === 0) {
+      setCurrentCalMonth(11);
+      setCurrentCalYear(y => y - 1);
+    } else {
+      setCurrentCalMonth(m => m - 1);
+    }
+  };
+
+  const handleNextMonth = () => {
+    if (currentCalMonth === 11) {
+      setCurrentCalMonth(0);
+      setCurrentCalYear(y => y + 1);
+    } else {
+      setCurrentCalMonth(m => m + 1);
+    }
+  };
+
+  const handleJumpToToday = () => {
+    const now = new Date();
+    setCurrentCalYear(now.getFullYear());
+    setCurrentCalMonth(now.getMonth());
+    const todayStr = formatDateToVN(now);
+    setSelectedCalendarDateStr(todayStr);
+  };
+
+  const handleSelectDay = (dateStr: string) => {
+    setSelectedCalendarDateStr(dateStr);
+    setIsQuickEditing(false);
+  };
+
+  const handleStartQuickEdit = () => {
+    setQuickEditLog({
+      date: activeSelectedDayData.date,
+      dayOfWeek: activeSelectedDayData.dayOfWeek,
+      cycleDayText: activeSelectedDayData.cycleDayText,
+      phase: activeSelectedDayData.phase,
+      phaseLabel: activeSelectedDayData.phaseLabel,
+      summary: activeSelectedDayData.isVirtual ? '' : activeSelectedDayData.summary,
+      symptoms: [...activeSelectedDayData.symptoms],
+      dischargeType: activeSelectedDayData.dischargeType,
+      dischargeLabel: activeSelectedDayData.dischargeLabel,
+      painLevel: activeSelectedDayData.painLevel,
+      eventNote: activeSelectedDayData.eventNote || '',
+      clinicalInterpretation: activeSelectedDayData.clinicalInterpretation || ''
+    });
+    setIsQuickEditing(true);
+  };
+
+  const handleSaveQuickEdit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!quickEditLog.date) return;
+
+    const fullLog: DailyCycleLog = {
+      date: quickEditLog.date,
+      dayOfWeek: quickEditLog.dayOfWeek || getWeekdayVN(parseVNtoDate(quickEditLog.date) || new Date()),
+      cycleDayText: quickEditLog.cycleDayText || 'Ngày theo dõi',
+      phase: quickEditLog.phase || 'secretory',
+      phaseLabel: quickEditLog.phaseLabel || 'Pha Phân Tiết',
+      summary: quickEditLog.summary?.trim() || 'Ghi nhận bình thường, không có bất thường.',
+      symptoms: quickEditLog.symptoms || [],
+      dischargeType: quickEditLog.dischargeType || 'none',
+      dischargeLabel: quickEditLog.dischargeLabel || 'Sạch hoàn toàn',
+      painLevel: quickEditLog.painLevel || 'none',
+      eventNote: quickEditLog.eventNote?.trim() || undefined,
+      clinicalInterpretation: quickEditLog.clinicalInterpretation?.trim() || 'Sinh lý phụ khoa ổn định.',
+      isKeyMilestone: Boolean(quickEditLog.eventNote?.trim())
+    };
+
+    const existsIndex = dailyLogs.findIndex(l => l.date === fullLog.date);
+    let updated: DailyCycleLog[];
+    if (existsIndex >= 0) {
+      updated = [...dailyLogs];
+      updated[existsIndex] = fullLog;
+      showNotification(`Đã cập nhật nhật ký ngày ${fullLog.date}!`, 'success');
+    } else {
+      updated = [fullLog, ...dailyLogs];
+      showNotification(`Đã ghi nhận nhật ký ngày mới ${fullLog.date}!`, 'success');
+    }
+
+    setDailyLogs(updated);
+    setIsQuickEditing(false);
+  };
+
+  const handleDeleteLogForDay = (dateStr: string) => {
+    if (window.confirm(`Bạn có chắc muốn xóa nhật ký của ngày ${dateStr}?`)) {
+      const updated = dailyLogs.filter(l => l.date !== dateStr);
+      setDailyLogs(updated);
+      showNotification(`Đã xóa nhật ký ngày ${dateStr}!`, 'info');
+    }
+  };
+
+  const handleToggleSymptom = (tag: string) => {
+    const curr = quickEditLog.symptoms || [];
+    if (curr.includes(tag)) {
+      setQuickEditLog({ ...quickEditLog, symptoms: curr.filter(s => s !== tag) });
+    } else {
+      setQuickEditLog({ ...quickEditLog, symptoms: [...curr, tag] });
+    }
+  };
+
   const handleExportData = () => {
     const exportObj = {
-      version: '2.0',
+      version: '2.5_womanlog',
       exportDate: new Date().toISOString(),
       patientName: 'NGUYỄN THỊ THÚY NGA',
       patientBirthYear: 1981,
@@ -201,10 +469,9 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     document.body.appendChild(downloadAnchor);
     downloadAnchor.click();
     downloadAnchor.remove();
-    showNotification('Đã xuất toàn bộ dữ liệu 43 chu kỳ & nhật ký thành file JSON an toàn!', 'success');
+    showNotification('Đã xuất toàn bộ 43 chu kỳ & nhật ký thành file JSON!', 'success');
   };
 
-  // Import Data JSON
   const handleImportFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -218,12 +485,12 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
           if (Array.isArray(parsed.dailyLogs)) {
             setDailyLogs(parsed.dailyLogs);
           }
-          showNotification(`Nhập thành công ${parsed.cycles.length} chu kỳ và ${parsed.dailyLogs?.length || 0} nhật ký!`, 'success');
+          showNotification(`Đã nạp ${parsed.cycles.length} chu kỳ và ${parsed.dailyLogs?.length || 0} nhật ký!`, 'success');
         } else if (Array.isArray(parsed)) {
           setCycles(parsed);
-          showNotification(`Đã nhập thành công ${parsed.length} chu kỳ!`, 'success');
+          showNotification(`Đã nạp ${parsed.length} chu kỳ!`, 'success');
         } else {
-          showNotification('File không đúng cấu trúc dữ liệu theo dõi chu kỳ!', 'error');
+          showNotification('File không đúng cấu trúc dữ liệu chu kỳ!', 'error');
         }
       } catch (err) {
         console.error('Import error', err);
@@ -234,226 +501,56 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     e.target.value = '';
   };
 
-  // Reset to Default Pre-imported
   const handleResetToDefault = () => {
-    if (window.confirm('Bạn có chắc chắn muốn khôi phục toàn bộ dữ liệu gốc (43 chu kỳ chuẩn 2022-2026 & nhật ký tháng 8-9/2026)? Mọi chỉnh sửa tự tạo sẽ được đặt lại.')) {
+    if (window.confirm('Khôi phục toàn bộ 43 chu kỳ gốc (2022-2026) và nhật ký tháng 8-9/2026?')) {
       setCycles(initialHistoricalCycles);
       setDailyLogs(initialDailyLogs);
-      setSelectedHistoricalCycle(initialHistoricalCycles[0]);
-      setSelectedLog(initialDailyLogs[0]);
       localStorage.removeItem(STORAGE_KEY_CYCLES);
       localStorage.removeItem(STORAGE_KEY_LOGS);
-      showNotification('Đã khôi phục dữ liệu y khoa gốc thành công!', 'info');
-    }
-  };
-
-  // Cycle Modal Handlers
-  const handleOpenAddCycle = () => {
-    setEditingCycle({
-      id: `cycle-${Date.now()}`,
-      startDate: new Date().toLocaleDateString('vi-VN'),
-      endDate: '',
-      dateRangeDisplay: '',
-      year: new Date().getFullYear(),
-      cycleLengthDays: 35,
-      periodDurationDays: 5,
-      cycleType: 'normal_long',
-      cycleTypeLabel: 'Chu kỳ dài sinh lý (35 ngày)',
-      clinicalNote: ''
-    });
-    setIsCycleModalOpen(true);
-  };
-
-  const handleOpenEditCycle = (cycle: HistoricalCycle, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    setEditingCycle({ ...cycle });
-    setIsCycleModalOpen(true);
-  };
-
-  const handleDeleteCycle = (cycleId: string, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (window.confirm('Bạn có chắc chắn muốn xóa chu kỳ này khỏi danh sách theo dõi?')) {
-      const updated = cycles.filter(c => c.id !== cycleId);
-      setCycles(updated);
-      if (selectedHistoricalCycle?.id === cycleId) {
-        setSelectedHistoricalCycle(updated[0] || null);
-      }
-      showNotification('Đã xóa chu kỳ thành công!', 'info');
+      showNotification('Đã khôi phục dữ liệu y khoa gốc!', 'info');
     }
   };
 
   const handleSaveCycle = (e: React.FormEvent) => {
     e.preventDefault();
     if (!editingCycle) return;
-
-    const displayRange = editingCycle.dateRangeDisplay.trim() || 
-      `${editingCycle.startDate} – ${editingCycle.endDate || 'Hiện tại'}`;
-
-    const cycleToSave: HistoricalCycle = {
+    const range = editingCycle.dateRangeDisplay.trim() || `${editingCycle.startDate} – ${editingCycle.endDate || 'Hiện tại'}`;
+    const toSave: HistoricalCycle = {
       ...editingCycle,
-      dateRangeDisplay: displayRange,
+      dateRangeDisplay: range,
       year: editingCycle.year || new Date().getFullYear()
     };
-
-    const existsIndex = cycles.findIndex(c => c.id === cycleToSave.id);
+    const existsIndex = cycles.findIndex(c => c.id === toSave.id);
     let updated: HistoricalCycle[];
     if (existsIndex >= 0) {
       updated = [...cycles];
-      updated[existsIndex] = cycleToSave;
+      updated[existsIndex] = toSave;
       showNotification('Đã cập nhật thông tin chu kỳ!', 'success');
     } else {
-      updated = [cycleToSave, ...cycles];
-      showNotification('Đã thêm chu kỳ mới thành công!', 'success');
+      updated = [toSave, ...cycles];
+      showNotification('Đã thêm chu kỳ mới!', 'success');
     }
     setCycles(updated);
-    setSelectedHistoricalCycle(cycleToSave);
     setIsCycleModalOpen(false);
     setEditingCycle(null);
   };
 
-  // Daily Log Modal Handlers
-  const handleOpenAddLog = () => {
-    setEditingLog({
-      date: new Date().toLocaleDateString('vi-VN'),
-      dayOfWeek: 'Hôm nay',
-      cycleDayText: 'Ngày chu kỳ mới',
-      cycleDayNumber: 1,
-      phase: 'menstrual',
-      phaseLabel: 'Pha Hành Kinh',
-      summary: '',
-      symptoms: [],
-      dischargeType: 'none',
-      dischargeLabel: 'Sạch / Không ra dịch',
-      painLevel: 'none',
-      painDescription: '',
-      eventNote: '',
-      clinicalInterpretation: 'Ghi nhận sinh lý bình thường.',
-      isKeyMilestone: false
-    });
-    setIsLogModalOpen(true);
-  };
-
-  const handleOpenEditLog = (log: DailyCycleLog, e?: React.MouseEvent) => {
+  const handleDeleteCycle = (id: string, e?: React.MouseEvent) => {
     if (e) e.stopPropagation();
-    setEditingLog({ ...log });
-    setIsLogModalOpen(true);
-  };
-
-  const handleDeleteLog = (logDate: string, e?: React.MouseEvent) => {
-    if (e) e.stopPropagation();
-    if (window.confirm(`Bạn có chắc muốn xóa nhật ký ngày ${logDate}?`)) {
-      const updated = dailyLogs.filter(l => l.date !== logDate);
-      setDailyLogs(updated);
-      if (selectedLog?.date === logDate) {
-        setSelectedLog(updated[0] || null);
-      }
-      showNotification('Đã xóa nhật ký ngày thành công!', 'info');
+    if (window.confirm('Bạn có chắc muốn xóa chu kỳ này?')) {
+      const updated = cycles.filter(c => c.id !== id);
+      setCycles(updated);
+      showNotification('Đã xóa chu kỳ!', 'info');
     }
   };
 
-  const handleSaveLog = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!editingLog) return;
-
-    const existsIndex = dailyLogs.findIndex(l => l.date === editingLog.date);
-    let updated: DailyCycleLog[];
-    if (existsIndex >= 0) {
-      updated = [...dailyLogs];
-      updated[existsIndex] = editingLog;
-      showNotification('Đã cập nhật nhật ký ngày!', 'success');
-    } else {
-      updated = [editingLog, ...dailyLogs];
-      showNotification('Đã thêm nhật ký ngày mới!', 'success');
-    }
-    setDailyLogs(updated);
-    setSelectedLog(editingLog);
-    setIsLogModalOpen(false);
-    setEditingLog(null);
-  };
-
-  const getDischargeBadge = (type: DailyCycleLog['dischargeType'], label: string) => {
-    switch (type) {
-      case 'none':
-        return <span className="px-2 py-0.5 rounded-full text-[11px] bg-emerald-950/80 text-emerald-300 border border-emerald-800/50">{label}</span>;
-      case 'orange_spotting':
-        return <span className="px-2 py-0.5 rounded-full text-[11px] bg-amber-950/80 text-amber-300 border border-amber-800/50 flex items-center gap-1"><Droplets className="w-3 h-3 text-amber-400" />{label}</span>;
-      case 'fresh_blood':
-        return <span className="px-2 py-0.5 rounded-full text-[11px] bg-rose-950/80 text-rose-300 border border-rose-800/50">{label}</span>;
-      case 'brown_blood':
-        return <span className="px-2 py-0.5 rounded-full text-[11px] bg-amber-900/60 text-amber-200 border border-amber-700/50">{label}</span>;
-      case 'post_procedure_bleeding':
-        return <span className="px-2 py-0.5 rounded-full text-[11px] bg-purple-950/80 text-purple-300 border border-purple-800/50 font-bold">{label}</span>;
-      default:
-        return <span className="px-2 py-0.5 rounded-full text-[11px] bg-slate-800 text-slate-300">{label}</span>;
-    }
-  };
-
-  const getPainBadge = (level: DailyCycleLog['painLevel']) => {
-    switch (level) {
-      case 'none':
-        return <span className="text-emerald-400 text-xs font-medium">Không đau</span>;
-      case 'mild':
-        return <span className="text-amber-400 text-xs font-medium">Đau nhẹ</span>;
-      case 'moderate':
-        return <span className="text-orange-400 text-xs font-semibold">Đau vừa</span>;
-      case 'severe':
-        return <span className="text-rose-400 text-xs font-bold">Đau quặn (Do thủ thuật)</span>;
-    }
-  };
-
-  const appScreenshots = [
-    {
-      title: 'Nhật ký Năm 2026 (27 - 43 ngày • Hậu Tamoxifen)',
-      src: '/records/cycle_history_2026.jpg',
-      period: '03/2026 – 08/2026',
-      desc: '6 chu kỳ gần nhất: Chu kỳ 27-33 ngày, chu kỳ hiện tại bắt đầu 24/08 (đang ở ngày 23/24).'
-    },
-    {
-      title: 'Nhật ký Cuối 2025 – Đầu 2026 (30 - 43 ngày)',
-      src: '/records/cycle_history_2025_late_2026_early.jpg',
-      period: '09/2025 – 03/2026',
-      desc: 'Thời điểm ngưng Tamoxifen (01/2026): Chu kỳ 30 ngày, 1 chu kỳ thưa 43 ngày sau ngưng thuốc 1 tháng.'
-    },
-    {
-      title: 'Nhật ký Giữa Năm 2025 (31 - 40 ngày)',
-      src: '/records/cycle_history_2025_mid.jpg',
-      period: '02/2025 – 09/2025',
-      desc: 'Năm thứ 5 Tamoxifen: Chu kỳ 31-40 ngày, hành kinh chuẩn 5 ngày.'
-    },
-    {
-      title: 'Nhật ký Cuối 2024 – Đầu 2025 (17 - 41 ngày)',
-      src: '/records/cycle_history_2024_late_2025_early.jpg',
-      period: '07/2024 – 02/2025',
-      desc: 'Cuối năm thứ 4 Tamoxifen: Dao động 34-41 ngày, 1 chu kỳ ngắn 17 ngày không phóng noãn.'
-    },
-    {
-      title: 'Nhật ký Đầu & Giữa Năm 2024 (31 - 50 ngày)',
-      src: '/records/cycle_history_2024.jpg',
-      period: '01/2024 – 07/2024',
-      desc: 'Theo dõi 6 chu kỳ năm 2024: Chu kỳ 31-39 ngày, 1 chu kỳ trễ 50 ngày, hành kinh chuẩn 5 ngày.'
-    },
-    {
-      title: 'Nhật ký Cuối Năm 2023 (19 - 43 ngày)',
-      src: '/records/cycle_history_2023_late.jpg',
-      period: '07/2023 – 01/2024',
-      desc: 'Theo dõi 6 chu kỳ cuối 2023: Chu kỳ 30-37 ngày, cá biệt 1 chu kỳ 19 ngày và 43 ngày.'
-    },
-    {
-      title: 'Nhật ký Giữa Năm 2023 (36 - 41 ngày)',
-      src: '/records/cycle_history_2023_mid.jpg',
-      period: '12/2022 – 08/2023',
-      desc: 'Theo dõi 6 chu kỳ đều đặn: Dao động 36-41 ngày, hành kinh đều 5 ngày.'
-    },
-    {
-      title: 'Nhật ký Năm 2022 (36 - 42 ngày)',
-      src: '/records/cycle_history_2022.jpg',
-      period: '06/2022 – 12/2022',
-      desc: 'Khởi đầu theo dõi: Chu kỳ dài sinh lý 36-42 ngày cực kỳ ổn định trong thời gian uống Tamoxifen.'
-    }
+  const monthNamesVN = [
+    'Tháng 1', 'Tháng 2', 'Tháng 3', 'Tháng 4', 'Tháng 5', 'Tháng 6',
+    'Tháng 7', 'Tháng 8', 'Tháng 9', 'Tháng 10', 'Tháng 11', 'Tháng 12'
   ];
 
   return (
-    <div className="w-full space-y-6 my-8 font-sans">
+    <div className="w-full space-y-6 my-6 font-sans">
       
       {/* Toast Notification */}
       {notification && (
@@ -479,716 +576,972 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
         className="hidden" 
       />
 
-      {/* Section Header & Global Action Toolbar */}
-      <div className="p-5 sm:p-6 rounded-2xl bg-gradient-to-br from-slate-900 via-slate-900 to-teal-950/50 border border-teal-500/30 space-y-4">
+      {/* ========================================================================= */}
+      {/* TOP HEADER: WOMANLOG DASHBOARD HERO */}
+      {/* ========================================================================= */}
+      <div className="p-5 sm:p-6 rounded-3xl bg-gradient-to-br from-slate-900 via-rose-950/20 to-slate-900 border border-rose-500/30 space-y-4 shadow-xl">
         <div className="flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2 text-teal-400 text-xs font-bold uppercase tracking-wider">
-            <Calendar className="w-4 h-4 text-teal-400" />
-            <span>Công Cụ Theo Dõi Chu Kỳ & Nhật Ký Triệu Chứng (2022 Đến Nay)</span>
+          <div className="flex items-center gap-2 text-rose-400 text-xs font-black uppercase tracking-wider">
+            <CalendarIcon className="w-4 h-4 text-rose-400 animate-pulse" />
+            <span>WOMANLOG CLINICAL TRACKER • MOM HEALTH ATLAS</span>
           </div>
 
           {/* Action Buttons: Import, Export, Reset */}
           <div className="flex items-center gap-1.5 text-xs">
             <button
               onClick={handleExportData}
-              title="Tải về file sao lưu JSON của toàn bộ chu kỳ & nhật ký"
-              className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer"
+              title="Xuất file sao lưu JSON toàn bộ dữ liệu"
+              className="px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
             >
-              <Download className="w-3.5 h-3.5 text-teal-400" />
+              <Download className="w-3.5 h-3.5 text-rose-400" />
               <span className="hidden sm:inline">Xuất Dữ Liệu</span>
             </button>
             <button
               onClick={() => fileInputRef.current?.click()}
-              title="Nhập file sao lưu JSON trước đó"
-              className="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer"
+              title="Nhập file JSON đã lưu"
+              className="px-2.5 py-1.5 rounded-xl bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 flex items-center gap-1.5 transition-all cursor-pointer shadow-sm"
             >
               <Upload className="w-3.5 h-3.5 text-amber-400" />
               <span className="hidden sm:inline">Nhập JSON</span>
             </button>
             <button
               onClick={handleResetToDefault}
-              title="Khôi phục về dữ liệu 43 chu kỳ gốc"
-              className="p-1.5 rounded-lg bg-slate-800/80 hover:bg-rose-950 text-slate-400 hover:text-rose-300 border border-slate-700 transition-all cursor-pointer"
+              title="Khôi phục dữ liệu gốc"
+              className="p-1.5 rounded-xl bg-slate-800/80 hover:bg-rose-950 text-slate-400 hover:text-rose-300 border border-slate-700 transition-all cursor-pointer"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
           </div>
         </div>
 
-        <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-          Bộ Công Cụ Tương Tác Theo Dõi Chu Kỳ Kinh & Quản Lý Triệu Chứng Sinh Lý
-        </h3>
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Đã tích hợp sẵn toàn bộ <strong>{dynamicStats.totalTrackedCycles} chu kỳ thực tế từ năm {dynamicStats.minYear} đến {dynamicStats.maxYear}</strong> cùng nhật ký biến thiên triệu chứng. Bệnh nhân có thể tra cứu, xem đối chiếu hình thái mô học, tự do <strong>thêm mới, chỉnh sửa</strong> hoặc <strong>sao lưu</strong> dữ liệu mọi lúc.
-        </p>
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div>
+            <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
+              <span>Nhật Ký & Lịch Theo Dõi Chu Kỳ Tương Tác</span>
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-rose-500/20 text-rose-300 border border-rose-500/40 font-bold">
+                WomanLog Style
+              </span>
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl leading-relaxed">
+              Tương tác trực quan 100% trên lịch tháng: Click vào bất kỳ ngày nào để xem, ghi nhận triệu chứng (đốm cam, lượng máu, đau ngực PMS, thuốc). Đã tích hợp sẵn <strong>{dynamicStats.totalTrackedCycles} chu kỳ từ {dynamicStats.minYear} đến {dynamicStats.maxYear}</strong>.
+            </p>
+          </div>
+
+          {/* Quick Stats Pill */}
+          <div className="flex items-center gap-2 sm:gap-3 bg-slate-950/80 p-2.5 sm:p-3 rounded-2xl border border-slate-800 text-xs shrink-0">
+            <div className="text-center px-2 border-r border-slate-800">
+              <div className="text-[10px] text-slate-400 font-bold uppercase">Chu kỳ TB</div>
+              <div className="text-base sm:text-lg font-black text-rose-400">{dynamicStats.averageCycleLength} <span className="text-[10px] font-normal text-slate-400">ngày</span></div>
+            </div>
+            <div className="text-center px-2 border-r border-slate-800">
+              <div className="text-[10px] text-slate-400 font-bold uppercase">Hành kinh</div>
+              <div className="text-base sm:text-lg font-black text-amber-400">{dynamicStats.averagePeriodDuration} <span className="text-[10px] font-normal text-slate-400">ngày</span></div>
+            </div>
+            <div className="text-center px-2">
+              <div className="text-[10px] text-slate-400 font-bold uppercase">Chu kỳ dài sinh lý</div>
+              <div className="text-base sm:text-lg font-black text-teal-400">{dynamicStats.longCyclePercentage}%</div>
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Main View Mode Selector (2 Tabs + Add Buttons) */}
-      <div className="flex flex-wrap items-center justify-between gap-2 p-1.5 bg-slate-900/90 rounded-xl border border-slate-800">
-        <div className="flex items-center gap-1 flex-1 min-w-[280px]">
+      {/* ========================================================================= */}
+      {/* 4 INTERACTIVE VIEW TABS */}
+      {/* ========================================================================= */}
+      <div className="flex flex-wrap items-center justify-between gap-2 p-1.5 bg-slate-900 rounded-2xl border border-slate-800">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-1 flex-1">
           <button
-            onClick={() => setMainViewMode('recent_log')}
-            className={`flex-1 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
-              mainViewMode === 'recent_log'
-                ? 'bg-teal-500 text-slate-950 shadow-md'
+            onClick={() => setActiveTab('calendar')}
+            className={`py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTab === 'calendar'
+                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/20'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
             }`}
           >
             <CalendarDays className="w-4 h-4" />
-            <span>Nhật Ký Từng Ngày (08–09/2026) ({dailyLogs.length})</span>
+            <span>Lịch Tháng WomanLog</span>
           </button>
 
           <button
-            onClick={() => setMainViewMode('longitudinal_history')}
-            className={`flex-1 py-2.5 px-3 rounded-lg text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-2 cursor-pointer ${
-              mainViewMode === 'longitudinal_history'
-                ? 'bg-teal-500 text-slate-950 shadow-md'
+            onClick={() => setActiveTab('daily_logs')}
+            className={`py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTab === 'daily_logs'
+                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/20'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
+            }`}
+          >
+            <Clock className="w-4 h-4" />
+            <span>Nhật Ký Từng Ngày ({dailyLogs.length})</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('cycle_history')}
+            className={`py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTab === 'cycle_history'
+                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/20'
                 : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
             }`}
           >
             <History className="w-4 h-4" />
-            <span>Toàn Bộ {cycles.length} Chu Kỳ</span>
+            <span>43 Chu Kỳ (2022–2026)</span>
+          </button>
+
+          <button
+            onClick={() => setActiveTab('medical_decoder')}
+            className={`py-2 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTab === 'medical_decoder'
+                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/20'
+                : 'text-slate-400 hover:text-slate-200 hover:bg-slate-850'
+            }`}
+          >
+            <Microscope className="w-4 h-4" />
+            <span>Giải Mã 4 Pha & GPB</span>
           </button>
         </div>
 
-        {/* Quick Add Button dependent on active tab */}
-        <div className="flex items-center gap-1.5">
-          {mainViewMode === 'recent_log' ? (
-            <button
-              onClick={handleOpenAddLog}
-              className="px-3 py-2 rounded-lg bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/50 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
-            >
-              <Plus className="w-3.5 h-3.5 text-teal-400" />
-              <span>Ghi Nhật Ký Ngày Mới</span>
-            </button>
-          ) : (
-            <button
-              onClick={handleOpenAddCycle}
-              className="px-3 py-2 rounded-lg bg-teal-500/20 hover:bg-teal-500/30 text-teal-300 border border-teal-500/50 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer"
-            >
-              <Plus className="w-3.5 h-3.5 text-teal-400" />
-              <span>Thêm Chu Kỳ Mới</span>
-            </button>
-          )}
-        </div>
+        {/* Global Quick Add Cycle Button */}
+        <button
+          onClick={() => {
+            setEditingCycle({
+              id: `cycle-${Date.now()}`,
+              startDate: formatDateToVN(new Date()),
+              endDate: '',
+              dateRangeDisplay: '',
+              year: new Date().getFullYear(),
+              cycleLengthDays: 35,
+              periodDurationDays: 5,
+              cycleType: 'normal_long',
+              cycleTypeLabel: 'Chu kỳ dài sinh lý (35 ngày)',
+              clinicalNote: ''
+            });
+            setIsCycleModalOpen(true);
+          }}
+          className="px-3 py-2 rounded-xl bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-xs font-bold flex items-center gap-1.5 transition-all cursor-pointer shrink-0"
+        >
+          <Plus className="w-3.5 h-3.5 text-rose-400" />
+          <span>Thêm Chu Kỳ</span>
+        </button>
       </div>
 
       {/* ========================================================================= */}
-      {/* TAB 1: RECENT DETAILED LOGS (08 - 09/2026) */}
+      {/* TAB 1: INTERACTIVE MONTHLY CALENDAR (WOMANLOG STYLE) */}
       {/* ========================================================================= */}
-      {mainViewMode === 'recent_log' && (
-        <div className="space-y-8">
+      {activeTab === 'calendar' && (
+        <div className="space-y-6">
           
-          {/* Crucial Clinical Insight Box */}
-          <div className="p-4 sm:p-5 rounded-xl bg-teal-950/40 border-l-4 border-teal-400 text-teal-100 space-y-3 text-xs sm:text-sm">
-            <div className="flex items-center gap-2 font-bold text-teal-300 text-sm">
-              <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0" />
-              <span>Thông Điệp Chẩn Đoán Cốt Lõi Từ Bác Sĩ Chuyên Khoa:</span>
-            </div>
-            <div className="space-y-2 leading-relaxed text-slate-200">
-              <p>
-                • <strong>Vì sao nội mạc dày và tuyến giãn bọc?</strong> Ngày 17 chu kỳ (sau rụng trứng ~3 ngày), hormone Progesterone làm nội mạc dày lên gấp 3 lần bình thường, các tuyến cuộn xoắn và chứa đầy chất nhầy. Kết hợp với tác động tích tụ 5 năm Tamoxifen, hình ảnh vi thể tại BV Hùng Vương (15/09) mô tả <em>"tuyến giãn rộng, lót biểu mô trụ cao"</em> là <strong>hoàn toàn phù hợp với sinh lý pha phân tiết bình thường</strong>, tuyệt đối <strong>không phải ung thư</strong>.
-              </p>
-              <p>
-                • <strong>Đau vú 2 bên ngày 15/09:</strong> Ngày 23 chu kỳ (pha hoàng thể muộn), nồng độ Progesterone đạt đỉnh gây ứ dịch mô tuyến vú (Hội chứng tiền kinh nguyệt - PMS Mastalgia). Đây là sinh lý nội tiết buồng trứng, hoàn toàn không phải K vú tái phát!
-              </p>
-            </div>
-          </div>
-
-          {/* Phase Deep-Dive Tabs */}
-          <div className="space-y-3">
-            <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-              <Layers className="w-4 h-4 text-teal-400" />
-              <span>Phân Tích 4 Pha Chu Kỳ & Tương Tác Tamoxifen:</span>
-            </div>
+          {/* Main Grid: Calendar on Left (8 cols on desktop), Day Detail on Right (4 cols) */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {cyclePhaseAnalyses.map(phase => {
-                const isSelected = activePhaseTab === phase.id;
-                return (
-                  <button
-                    key={phase.id}
-                    onClick={() => setActivePhaseTab(phase.id)}
-                    className={`p-3 rounded-xl text-left transition-all flex flex-col justify-between gap-1 text-xs cursor-pointer ${
-                      isSelected 
-                        ? 'bg-teal-500/20 text-teal-200 border border-teal-500/60 shadow-lg' 
-                        : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-slate-800'
-                    }`}
-                  >
-                    <span className="font-bold line-clamp-1">{phase.title.split('.')[1]}</span>
-                    <span className="text-[10px] text-slate-400">{phase.cycleDays.split('(')[0]}</span>
-                  </button>
-                );
-              })}
-            </div>
-
-            {/* Active Phase Card */}
-            {(() => {
-              const phase = cyclePhaseAnalyses.find(p => p.id === activePhaseTab) || cyclePhaseAnalyses[3];
-              return (
-                <div className="p-4 sm:p-5 rounded-xl bg-slate-900/80 border border-slate-800 space-y-3 text-xs sm:text-sm">
-                  <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-                    <h4 className="font-bold text-teal-300 text-sm sm:text-base flex items-center gap-2">
-                      <Activity className="w-4 h-4 text-teal-400" />
-                      {phase.title}
-                    </h4>
-                    <div className="flex items-center gap-2 text-xs">
-                      <span className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 font-mono">{phase.timeRange}</span>
-                      <span className="px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800/50">{phase.cycleDays}</span>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-slate-300">
-                    <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-850 space-y-1">
-                      <span className="text-slate-400 text-[11px] font-bold uppercase tracking-wider block">Trạng Thái Sinh Lý & Độ Dày Niêm Mạc</span>
-                      <p className="leading-relaxed">{phase.physiologicState}</p>
-                      <p className="text-teal-300 pt-1 font-medium">Độ dày niêm mạc: <strong>{phase.endometrialThickness}</strong></p>
-                    </div>
-
-                    <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-850 space-y-1">
-                      <span className="text-slate-400 text-[11px] font-bold uppercase tracking-wider block">Tương Tác Tamoxifen & Triệu Chứng Của Chị</span>
-                      <p className="leading-relaxed">{phase.tamoxifenInteraction}</p>
-                      <p className="text-amber-200/90 pt-1 text-xs">Đối chiếu nhật ký: {phase.patientCorrelation}</p>
-                    </div>
-                  </div>
-
-                  <div className="p-2.5 rounded-lg bg-emerald-950/30 border border-emerald-800/40 text-emerald-200 text-xs flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                    <span><strong>Kết luận y khoa:</strong> {phase.safetyVerdict}</span>
-                  </div>
-                </div>
-              );
-            })()}
-          </div>
-
-          {/* Interactive Timeline & Daily Log Explorer */}
-          <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                <Clock className="w-4 h-4 text-teal-400" />
-                <span>Nhật Ký Triệu Chứng Chi Tiết Từng Ngày ({filteredRecentLogs.length} ngày):</span>
-              </div>
-
-              {/* Filters & Search */}
-              <div className="flex flex-wrap items-center gap-1.5 text-xs">
-                <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" />
-                  <input
-                    type="text"
-                    placeholder="Tìm triệu chứng, ngày..."
-                    value={logSearchQuery}
-                    onChange={(e) => setLogSearchQuery(e.target.value)}
-                    className="pl-8 pr-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-500 w-36 sm:w-44"
-                  />
-                  {logSearchQuery && (
-                    <button onClick={() => setLogSearchQuery('')} className="absolute right-2 top-1.5 text-slate-400 hover:text-white cursor-pointer">
-                      <X className="w-3 h-3" />
-                    </button>
-                  )}
-                </div>
-
-                <button
-                  onClick={() => setActiveFilter('all')}
-                  className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                    activeFilter === 'all' 
-                      ? 'bg-teal-500 text-slate-950 font-bold' 
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
-                  }`}
-                >
-                  Tất Cả ({dailyLogs.length})
-                </button>
-                <button
-                  onClick={() => setActiveFilter('milestones')}
-                  className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 cursor-pointer ${
-                    activeFilter === 'milestones' 
-                      ? 'bg-amber-500 text-slate-950 font-bold' 
-                      : 'bg-slate-900 text-amber-300/80 hover:text-amber-200 border border-slate-800'
-                  }`}
-                >
-                  <Sparkles className="w-3 h-3" />
-                  Cột Mốc
-                </button>
-                <button
-                  onClick={() => setActiveFilter('secretory')}
-                  className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                    activeFilter === 'secretory' 
-                      ? 'bg-teal-500 text-slate-950 font-bold' 
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
-                  }`}
-                >
-                  Sau Pipelle (09-15/09)
-                </button>
-                <button
-                  onClick={() => setActiveFilter('ovulatory')}
-                  className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                    activeFilter === 'ovulatory' 
-                      ? 'bg-teal-500 text-slate-950 font-bold' 
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
-                  }`}
-                >
-                  Rụng Trứng & Cam
-                </button>
-                <button
-                  onClick={() => setActiveFilter('menstrual')}
-                  className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                    activeFilter === 'menstrual' 
-                      ? 'bg-teal-500 text-slate-950 font-bold' 
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
-                  }`}
-                >
-                  Hành Kinh (24-30/08)
-                </button>
-              </div>
-            </div>
-
-            {/* Timeline Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
+            {/* Calendar Container */}
+            <div className="lg:col-span-7 xl:col-span-8 bg-slate-900/90 border border-slate-800 rounded-3xl p-4 sm:p-6 space-y-4 shadow-xl">
               
-              {/* Scrollable Days List */}
-              <div className="lg:col-span-5 max-h-[480px] overflow-y-auto space-y-2 pr-1 custom-scrollbar">
-                {filteredRecentLogs.map((log, idx) => {
-                  const isSelected = selectedLog?.date === log.date;
+              {/* Calendar Month/Year Navigator */}
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-800 pb-4">
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-500 animate-ping" />
+                  <h4 className="text-base sm:text-lg font-black text-white">
+                    {monthNamesVN[currentCalMonth]} Năm {currentCalYear}
+                  </h4>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  {/* Quick Jump to Important Months */}
+                  <div className="flex items-center gap-1 bg-slate-950 p-1 rounded-xl border border-slate-850 text-xs">
+                    <button
+                      onClick={() => { setCurrentCalYear(2026); setCurrentCalMonth(8); setSelectedCalendarDateStr('15/09/2026'); }}
+                      className={`px-2 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                        currentCalYear === 2026 && currentCalMonth === 8 ? 'bg-rose-500 text-white' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Thg 9/2026 (Pipelle)
+                    </button>
+                    <button
+                      onClick={() => { setCurrentCalYear(2026); setCurrentCalMonth(7); setSelectedCalendarDateStr('24/08/2026'); }}
+                      className={`px-2 py-1 rounded-lg font-bold transition-all cursor-pointer ${
+                        currentCalYear === 2026 && currentCalMonth === 7 ? 'bg-rose-500 text-white' : 'text-slate-400 hover:text-white'
+                      }`}
+                    >
+                      Thg 8/2026
+                    </button>
+                    <button
+                      onClick={handleJumpToToday}
+                      className="px-2 py-1 rounded-lg text-slate-400 hover:text-teal-300 font-bold transition-all cursor-pointer"
+                    >
+                      Hôm nay
+                    </button>
+                  </div>
+
+                  {/* Prev/Next Buttons */}
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={handlePrevMonth}
+                      className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white transition-colors cursor-pointer"
+                      title="Tháng trước"
+                    >
+                      <ChevronLeft className="w-4 h-4" />
+                    </button>
+                    <button
+                      onClick={handleNextMonth}
+                      className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-white transition-colors cursor-pointer"
+                      title="Tháng sau"
+                    >
+                      <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Legend Bar (WomanLog Icons Explained) */}
+              <div className="flex flex-wrap items-center gap-2 sm:gap-4 p-2.5 rounded-2xl bg-slate-950/80 border border-slate-850 text-[11px] text-slate-300">
+                <span className="font-bold text-slate-400 flex items-center gap-1">
+                  <Sliders className="w-3.5 h-3.5 text-rose-400" />
+                  Ký hiệu:
+                </span>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-rose-500 shadow-sm shadow-rose-500/50 inline-block" />
+                  <span>Hành kinh (Máu đỏ)</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-amber-500 shadow-sm shadow-amber-500/50 inline-block" />
+                  <span>Đốm cam / Cam tươi</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-3 rounded-full bg-teal-400 shadow-sm shadow-teal-400/50 inline-block" />
+                  <span>Rụng trứng 🌸</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-purple-400 inline-block" />
+                  <span>Thủ thuật Pipelle</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-indigo-400 inline-block" />
+                  <span>Căng ngực PMS</span>
+                </div>
+              </div>
+
+              {/* Weekday Headers */}
+              <div className="grid grid-cols-7 gap-1 sm:gap-2 text-center text-xs font-black text-slate-400">
+                <div className="py-1">T2</div>
+                <div className="py-1">T3</div>
+                <div className="py-1">T4</div>
+                <div className="py-1">T5</div>
+                <div className="py-1">T6</div>
+                <div className="py-1 text-amber-400">T7</div>
+                <div className="py-1 text-rose-400">CN</div>
+              </div>
+
+              {/* Calendar 7x6 Day Cells Grid */}
+              <div className="grid grid-cols-7 gap-1 sm:gap-2">
+                {calendarMatrix.map((cell, idx) => {
+                  const isSelected = cell.dateStr === selectedCalendarDateStr;
+                  const isToday = cell.dateStr === formatDateToVN(new Date());
+                  const hasSpotting = cell.dischargeType === 'orange_spotting';
+                  const hasFreshBlood = cell.dischargeType === 'fresh_blood' || cell.isPeriod;
+                  const hasPostProc = cell.dischargeType === 'post_procedure_bleeding';
+                  const hasBrown = cell.dischargeType === 'brown_blood';
+                  const hasMastalgia = cell.log?.symptoms?.some(s => s.toLowerCase().includes('vú') || s.toLowerCase().includes('ngực'));
+
                   return (
                     <div
                       key={idx}
-                      onClick={() => setSelectedLog(log)}
-                      className={`p-3 rounded-xl cursor-pointer transition-all border text-xs space-y-1.5 group relative ${
+                      onClick={() => handleSelectDay(cell.dateStr)}
+                      className={`min-h-[64px] sm:min-h-[82px] p-1.5 sm:p-2 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between relative group ${
                         isSelected
-                          ? 'bg-teal-950/40 border-teal-500 shadow-md ring-1 ring-teal-500/40'
-                          : log.isKeyMilestone
-                          ? 'bg-slate-900/90 border-amber-500/40 hover:bg-slate-850'
-                          : 'bg-slate-900/50 border-slate-800/80 hover:bg-slate-850'
+                          ? 'ring-2 ring-rose-400 border-rose-500 bg-rose-950/40 shadow-lg scale-[1.02] z-10'
+                          : cell.isCurrentMonth
+                          ? cell.isPeriod
+                            ? 'bg-rose-950/30 border-rose-900/60 hover:bg-rose-950/50'
+                            : cell.isOvulation
+                            ? 'bg-teal-950/20 border-teal-900/50 hover:bg-teal-950/40'
+                            : 'bg-slate-950/60 border-slate-800/80 hover:bg-slate-850 hover:border-slate-700'
+                          : 'bg-slate-950/20 border-slate-900 text-slate-600 opacity-40 hover:opacity-80'
                       }`}
                     >
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex items-center gap-1.5 font-bold text-white">
-                          <span>{log.date}</span>
-                          <span className="text-[10px] text-slate-400 font-normal">({log.dayOfWeek.split(' ')[0]})</span>
-                        </div>
-                        <div className="flex items-center gap-1">
-                          {getDischargeBadge(log.dischargeType, log.dischargeLabel)}
-                          <button
-                            onClick={(e) => handleOpenEditLog(log, e)}
-                            title="Chỉnh sửa ngày này"
-                            className="p-1 rounded text-slate-400 hover:text-teal-300 hover:bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                          >
-                            <Edit3 className="w-3 h-3" />
-                          </button>
-                          <button
-                            onClick={(e) => handleDeleteLog(log.date, e)}
-                            title="Xóa ngày này"
-                            className="p-1 rounded text-slate-400 hover:text-rose-400 hover:bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                          >
-                            <Trash2 className="w-3 h-3" />
-                          </button>
-                        </div>
+                      {/* Top Day Number & Badges */}
+                      <div className="flex items-center justify-between">
+                        <span className={`text-xs sm:text-sm font-bold ${
+                          isSelected ? 'text-rose-300 font-black' :
+                          isToday ? 'px-1.5 py-0.5 rounded-md bg-teal-500 text-slate-950 font-black' :
+                          cell.isCurrentMonth ? 'text-slate-200' : 'text-slate-500'
+                        }`}>
+                          {cell.dayNumber}
+                        </span>
+
+                        {cell.periodDayNumber && (
+                          <span className="text-[9px] px-1 rounded bg-rose-500/30 text-rose-300 font-black border border-rose-500/40">
+                            K{cell.periodDayNumber}
+                          </span>
+                        )}
+
+                        {cell.isOvulationPeak && !cell.isPeriod && (
+                          <span className="text-xs" title="Đỉnh Rụng Trứng">🌸</span>
+                        )}
                       </div>
 
-                      <div className="text-[11px] text-slate-300 line-clamp-2 leading-relaxed">
-                        {log.summary}
+                      {/* Middle Visual Status Dots/Pills */}
+                      <div className="my-1 flex flex-col gap-0.5">
+                        {hasFreshBlood && (
+                          <div className="h-1.5 w-full rounded-full bg-gradient-to-r from-rose-500 to-red-600 shadow-sm shadow-rose-500/40" />
+                        )}
+
+                        {hasSpotting && (
+                          <div className="flex items-center gap-1">
+                            <span className="w-2 h-2 rounded-full bg-amber-500 shadow-sm shadow-amber-500/60 animate-pulse shrink-0" />
+                            <span className="text-[9px] text-amber-300 font-bold truncate hidden sm:inline">Cam</span>
+                          </div>
+                        )}
+
+                        {hasBrown && !hasFreshBlood && (
+                          <div className="h-1 w-3/4 rounded-full bg-amber-800" />
+                        )}
+
+                        {hasPostProc && (
+                          <div className="h-1.5 w-full rounded-full bg-purple-500 animate-pulse" title="Máu sau sinh thiết Pipelle" />
+                        )}
                       </div>
 
-                      <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1 border-t border-slate-800/60">
-                        <span className="text-teal-300/90">{log.cycleDayText.split('(')[0]}</span>
-                        <span>{getPainBadge(log.painLevel)}</span>
+                      {/* Bottom Icon Badges */}
+                      <div className="flex items-center justify-between text-[10px] text-slate-400">
+                        <div className="flex items-center gap-0.5">
+                          {cell.log?.isKeyMilestone && (
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-400" title="Cột mốc quan trọng" />
+                          )}
+                          {hasMastalgia && (
+                            <span className="text-[10px]" title="Căng đau vú PMS">⚡</span>
+                          )}
+                          {cell.log?.eventNote && (
+                            <span className="text-[10px]" title={cell.log.eventNote}>🏥</span>
+                          )}
+                        </div>
+
+                        {cell.hasLog && (
+                          <span className="w-1.5 h-1.5 rounded-full bg-teal-400" title="Có ghi nhật ký" />
+                        )}
                       </div>
                     </div>
                   );
                 })}
               </div>
 
-              {/* Detailed Selected Day Card */}
-              <div className="lg:col-span-7">
-                {selectedLog ? (
-                  <div className="p-5 rounded-xl bg-slate-900 border border-slate-800 space-y-4 text-xs sm:text-sm h-full flex flex-col justify-between">
-                    <div className="space-y-3">
-                      
-                      {/* Top Day Header */}
-                      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
-                        <div>
-                          <div className="flex items-center gap-2">
-                            <span className="text-lg font-black text-white">{selectedLog.date}</span>
-                            <span className="text-xs text-slate-400">({selectedLog.dayOfWeek})</span>
-                          </div>
-                          <span className="text-xs text-teal-400 font-medium">{selectedLog.cycleDayText}</span>
-                        </div>
-                        <div className="flex items-center gap-2">
-                          {getDischargeBadge(selectedLog.dischargeType, selectedLog.dischargeLabel)}
-                          <button
-                            onClick={() => handleOpenEditLog(selectedLog)}
-                            className="px-2.5 py-1 rounded-lg bg-slate-800 hover:bg-slate-700 text-teal-300 border border-slate-700 text-xs font-semibold flex items-center gap-1 transition-all cursor-pointer"
-                          >
-                            <Edit3 className="w-3.5 h-3.5" />
-                            <span>Sửa</span>
-                          </button>
-                        </div>
-                      </div>
+              {/* Bottom Tip for Patient */}
+              <div className="p-3 rounded-2xl bg-slate-950 border border-slate-850 flex items-center gap-2 text-xs text-slate-300">
+                <Info className="w-4 h-4 text-teal-400 shrink-0" />
+                <span>Mẹo: Chạm vào bất kỳ ô ngày nào trên lịch để mở bảng xem nhanh và ghi nhận nhật ký triệu chứng ngay lập tức.</span>
+              </div>
+            </div>
 
-                      {/* Milestone Banner if any */}
-                      {selectedLog.eventNote && (
-                        <div className="p-3 rounded-lg bg-amber-950/40 border border-amber-600/50 text-amber-200 text-xs flex items-start gap-2">
-                          <Sparkles className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
-                          <div>
-                            <span className="font-bold block">SỰ KIỆN QUAN TRỌNG:</span>
-                            <span>{selectedLog.eventNote}</span>
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Summary */}
-                      <div className="space-y-1.5">
-                        <span className="text-slate-400 text-xs font-bold uppercase tracking-wider block">Ghi Nhận Triệu Chứng Thực Tế:</span>
-                        <p className="text-slate-200 bg-slate-950 p-3 rounded-lg border border-slate-850 leading-relaxed">
-                          {selectedLog.summary}
-                        </p>
-                      </div>
-
-                      {/* Symptoms Tags */}
-                      <div className="space-y-1">
-                        <span className="text-slate-400 text-[11px] font-medium block">Triệu chứng chi tiết:</span>
-                        <div className="flex flex-wrap gap-1.5">
-                          {selectedLog.symptoms.map((s, i) => (
-                            <span key={i} className="px-2 py-0.5 rounded bg-slate-800 text-slate-300 text-xs border border-slate-700">
-                              {s}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      {/* Pain Description */}
-                      {selectedLog.painDescription && (
-                        <div className="p-2.5 rounded bg-slate-950/60 border border-slate-800 text-xs text-slate-300 flex items-center justify-between">
-                          <span className="text-slate-400">Mức độ đau / Cảm giác:</span>
-                          <span className="text-amber-300 font-medium">{selectedLog.painDescription}</span>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Clinical Interpretation Footer */}
-                    <div className="p-3.5 rounded-xl bg-teal-950/30 border border-teal-800/40 space-y-1 mt-4">
-                      <span className="text-teal-300 font-bold text-xs flex items-center gap-1.5">
-                        <Microscope className="w-3.5 h-3.5 text-teal-400" />
-                        Phân Tích Cơ Chế Y Khoa & Ý Nghĩa Lâm Sàng:
-                      </span>
-                      <p className="text-xs text-slate-300 leading-relaxed">
-                        {selectedLog.clinicalInterpretation}
-                      </p>
-                    </div>
-
+            {/* ========================================================================= */}
+            {/* RIGHT SIDEBAR: DAY DETAIL & QUICK LOG INTERACTIVE DRAWER */}
+            {/* ========================================================================= */}
+            <div className="lg:col-span-5 xl:col-span-4 bg-slate-900/95 border border-slate-800 rounded-3xl p-5 sm:p-6 space-y-4 shadow-xl sticky top-20">
+              
+              <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                <div className="flex items-center gap-2">
+                  <div className="p-2 rounded-xl bg-rose-500/20 text-rose-400 border border-rose-500/30">
+                    <CalendarIcon className="w-5 h-5" />
                   </div>
+                  <div>
+                    <h4 className="text-base font-black text-white">
+                      {activeSelectedDayData.date}
+                    </h4>
+                    <span className="text-xs text-slate-400 font-medium">
+                      {activeSelectedDayData.dayOfWeek} • {activeSelectedDayData.cycleDayText}
+                    </span>
+                  </div>
+                </div>
+
+                {!isQuickEditing ? (
+                  <button
+                    onClick={handleStartQuickEdit}
+                    className="px-3 py-1.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white font-bold text-xs flex items-center gap-1 transition-all cursor-pointer shadow-sm"
+                  >
+                    <Edit3 className="w-3.5 h-3.5" />
+                    <span>{activeSelectedDayData.isVirtual ? '+ Ghi Ngày' : 'Sửa Ngày'}</span>
+                  </button>
                 ) : (
-                  <div className="h-full flex items-center justify-center p-8 rounded-xl bg-slate-900/40 border border-slate-800 text-slate-500 text-xs">
-                    Chọn một ngày trong danh sách hoặc bấm "Ghi Nhật Ký Ngày Mới" để thêm
-                  </div>
+                  <button
+                    onClick={() => setIsQuickEditing(false)}
+                    className="p-1 text-slate-400 hover:text-white cursor-pointer"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
                 )}
               </div>
 
-            </div>
-          </div>
+              {/* READ MODE */}
+              {!isQuickEditing ? (
+                <div className="space-y-4 text-xs">
+                  
+                  {/* Status Badges Row */}
+                  <div className="flex flex-wrap items-center gap-2">
+                    <span className={`px-2.5 py-1 rounded-full font-bold flex items-center gap-1 ${
+                      activeSelectedDayData.dischargeType === 'none' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800/50' :
+                      activeSelectedDayData.dischargeType === 'orange_spotting' ? 'bg-amber-950 text-amber-300 border border-amber-800/50' :
+                      activeSelectedDayData.dischargeType === 'fresh_blood' ? 'bg-rose-950 text-rose-300 border border-rose-800/50' :
+                      activeSelectedDayData.dischargeType === 'post_procedure_bleeding' ? 'bg-purple-950 text-purple-300 border border-purple-800/50' :
+                      'bg-slate-800 text-slate-300'
+                    }`}>
+                      <Droplets className="w-3 h-3" />
+                      <span>{activeSelectedDayData.dischargeLabel}</span>
+                    </span>
 
-          {/* Symptom Decoder Accordion */}
-          <div className="space-y-3 pt-2">
-            <div className="flex items-center gap-2 text-sm font-bold text-white">
-              <HelpCircle className="w-4 h-4 text-teal-400" />
-              <span>Giải Mã 3 Hiện Tượng Lâm Sàng Thường Gây Hoang Mang:</span>
-            </div>
+                    <span className={`px-2.5 py-1 rounded-full font-bold ${
+                      activeSelectedDayData.painLevel === 'none' ? 'bg-slate-800 text-slate-300' :
+                      activeSelectedDayData.painLevel === 'mild' ? 'bg-amber-950 text-amber-300 border border-amber-800/50' :
+                      activeSelectedDayData.painLevel === 'moderate' ? 'bg-orange-950 text-orange-300 border border-orange-800/50' :
+                      'bg-rose-950 text-rose-300 border border-rose-800/50 font-black'
+                    }`}>
+                      Đau: {
+                        activeSelectedDayData.painLevel === 'none' ? 'Không đau' :
+                        activeSelectedDayData.painLevel === 'mild' ? 'Đau nhẹ âm ỉ' :
+                        activeSelectedDayData.painLevel === 'moderate' ? 'Đau vừa / Mỏi lưng' : 'Đau quặn'
+                      }
+                    </span>
 
-            <div className="space-y-2">
-              {symptomDecoders.map((item, idx) => {
-                const isExpanded = expandedDecoder === idx;
-                return (
-                  <div 
-                    key={idx}
-                    className="rounded-xl bg-slate-900/70 border border-slate-800 overflow-hidden transition-all"
-                  >
-                    <button
-                      onClick={() => setExpandedDecoder(isExpanded ? null : idx)}
-                      className="w-full p-4 text-left flex items-center justify-between gap-3 hover:bg-slate-850/80 transition-all cursor-pointer"
-                    >
-                      <span className="font-bold text-slate-200 text-xs sm:text-sm flex items-center gap-2">
-                        <span className="w-5 h-5 rounded-full bg-teal-950 text-teal-400 text-xs flex items-center justify-center font-mono">
-                          {idx + 1}
-                        </span>
-                        {item.symptom}
-                      </span>
-                      {isExpanded ? (
-                        <ChevronUp className="w-4 h-4 text-teal-400 shrink-0" />
-                      ) : (
-                        <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
-                      )}
-                    </button>
-
-                    {isExpanded && (
-                      <div className="p-4 pt-0 space-y-3 text-xs sm:text-sm text-slate-300 border-t border-slate-800/50">
-                        <div className="p-3 rounded-lg bg-slate-950/70 space-y-1">
-                          <span className="text-teal-300 font-bold block">1. Nôm na đời thường:</span>
-                          <p className="leading-relaxed">{item.laymanExplanation}</p>
-                        </div>
-
-                        <div className="space-y-1">
-                          <span className="text-slate-400 font-bold text-xs uppercase tracking-wider block">2. Cơ chế sinh học & Hóa học:</span>
-                          <p className="leading-relaxed">{item.scientificMechanism}</p>
-                        </div>
-
-                        <div className="p-3 rounded-lg bg-emerald-950/30 border border-emerald-800/40 text-emerald-200 space-y-1">
-                          <span className="font-bold flex items-center gap-1.5 text-emerald-300">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-                            Vì sao chắc chắn không phải ung thư?
-                          </span>
-                          <p className="leading-relaxed">{item.whyNotCancer}</p>
-                        </div>
-
-                        <div className="p-2.5 rounded-lg bg-slate-800/50 text-slate-300 text-xs flex items-center gap-2">
-                          <Info className="w-4 h-4 text-teal-400 shrink-0" />
-                          <span><strong>Lời khuyên chăm sóc:</strong> {item.actionGuidance}</span>
-                        </div>
-                      </div>
-                    )}
+                    <span className="px-2.5 py-1 rounded-full bg-teal-950 text-teal-300 border border-teal-800/50 font-medium">
+                      {activeSelectedDayData.phaseLabel}
+                    </span>
                   </div>
-                );
-              })}
-            </div>
-          </div>
 
+                  {/* Summary Box */}
+                  <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-850 space-y-1.5">
+                    <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                      Diễn biến trong ngày:
+                    </div>
+                    <p className="text-slate-200 leading-relaxed text-xs sm:text-[13px]">
+                      {activeSelectedDayData.summary}
+                    </p>
+                  </div>
+
+                  {/* Symptoms Tags */}
+                  {activeSelectedDayData.symptoms.length > 0 && (
+                    <div className="space-y-1.5">
+                      <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider">
+                        Triệu chứng ghi nhận:
+                      </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        {activeSelectedDayData.symptoms.map((sym, sIdx) => (
+                          <span key={sIdx} className="px-2.5 py-1 rounded-lg bg-slate-800/90 text-slate-200 border border-slate-700 font-medium">
+                            {sym}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Event Note */}
+                  {activeSelectedDayData.eventNote && (
+                    <div className="p-3 rounded-2xl bg-amber-950/40 border border-amber-500/40 text-amber-200 space-y-1">
+                      <div className="font-bold flex items-center gap-1.5 text-amber-300">
+                        <Sparkles className="w-3.5 h-3.5" />
+                        <span>Sự kiện y tế / Cột mốc:</span>
+                      </div>
+                      <p className="text-xs leading-relaxed">{activeSelectedDayData.eventNote}</p>
+                    </div>
+                  )}
+
+                  {/* Clinical Interpretation */}
+                  {activeSelectedDayData.clinicalInterpretation && (
+                    <div className="p-3 rounded-2xl bg-teal-950/40 border border-teal-500/40 text-teal-200 space-y-1">
+                      <div className="font-bold flex items-center gap-1.5 text-teal-300">
+                        <CheckCircle2 className="w-3.5 h-3.5" />
+                        <span>Đối chiếu cơ chế y học:</span>
+                      </div>
+                      <p className="text-xs leading-relaxed text-slate-300">{activeSelectedDayData.clinicalInterpretation}</p>
+                    </div>
+                  )}
+
+                  {/* Delete Button */}
+                  {!activeSelectedDayData.isVirtual && (
+                    <div className="pt-2 flex justify-end">
+                      <button
+                        onClick={() => handleDeleteLogForDay(activeSelectedDayData.date)}
+                        className="text-xs text-rose-400 hover:text-rose-300 flex items-center gap-1 cursor-pointer"
+                      >
+                        <Trash2 className="w-3.5 h-3.5" />
+                        <span>Xóa nhật ký ngày này</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+              ) : (
+                /* EDIT MODE */
+                <form onSubmit={handleSaveQuickEdit} className="space-y-4 text-xs">
+                  
+                  <div className="space-y-1">
+                    <label className="text-slate-300 font-bold">Ngày ghi nhận:</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="DD/MM/YYYY (VD: 15/09/2026)"
+                      value={quickEditLog.date || ''}
+                      onChange={(e) => setQuickEditLog({ ...quickEditLog, date: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-slate-300 font-bold">Tình trạng xuất huyết / Dịch:</label>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      {[
+                        { type: 'none', label: 'Sạch hoàn toàn' },
+                        { type: 'orange_spotting', label: 'Đốm cam / Cam tươi' },
+                        { type: 'fresh_blood', label: 'Máu đỏ tươi (Kinh)' },
+                        { type: 'brown_blood', label: 'Máu nâu sẫm' },
+                        { type: 'post_procedure_bleeding', label: 'Máu sau thủ thuật' }
+                      ].map((item) => {
+                        const isSelected = quickEditLog.dischargeType === item.type;
+                        return (
+                          <button
+                            key={item.type}
+                            type="button"
+                            onClick={() => setQuickEditLog({ 
+                              ...quickEditLog, 
+                              dischargeType: item.type as DailyCycleLog['dischargeType'],
+                              dischargeLabel: item.label
+                            })}
+                            className={`p-2 rounded-xl text-left font-medium transition-all cursor-pointer border ${
+                              isSelected
+                                ? 'bg-rose-500/20 border-rose-500 text-rose-200 font-bold shadow-sm'
+                                : 'bg-slate-950 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-850'
+                            }`}
+                          >
+                            {item.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-slate-300 font-bold">Mức độ đau:</label>
+                    <div className="grid grid-cols-4 gap-1">
+                      {[
+                        { level: 'none', label: 'Không' },
+                        { level: 'mild', label: 'Nhẹ' },
+                        { level: 'moderate', label: 'Vừa' },
+                        { level: 'severe', label: 'Quặn' }
+                      ].map((p) => {
+                        const isSelected = quickEditLog.painLevel === p.level;
+                        return (
+                          <button
+                            key={p.level}
+                            type="button"
+                            onClick={() => setQuickEditLog({ ...quickEditLog, painLevel: p.level as DailyCycleLog['painLevel'] })}
+                            className={`py-1.5 rounded-xl font-bold transition-all text-center cursor-pointer border ${
+                              isSelected
+                                ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
+                                : 'bg-slate-950 border-slate-800 text-slate-400 hover:bg-slate-850'
+                            }`}
+                          >
+                            {p.label}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-slate-300 font-bold">Chọn nhanh triệu chứng (Click để bật/tắt):</label>
+                    <div className="flex flex-wrap gap-1.5">
+                      {[
+                        'Căng đau vú PMS',
+                        'Đau mỏi thắt lưng',
+                        'Đau bụng dưới',
+                        'Dính cam băng daily',
+                        'Dính cam sau quan hệ',
+                        'Sau tập thể dục',
+                        'Người khỏe khoắn',
+                        'Ra máu nhiều K1-K2'
+                      ].map((tag) => {
+                        const isSelected = quickEditLog.symptoms?.includes(tag);
+                        return (
+                          <button
+                            key={tag}
+                            type="button"
+                            onClick={() => handleToggleSymptom(tag)}
+                            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all cursor-pointer border ${
+                              isSelected
+                                ? 'bg-rose-500 text-white border-rose-400 font-bold shadow-sm'
+                                : 'bg-slate-950 text-slate-400 border-slate-800 hover:text-white'
+                            }`}
+                          >
+                            {isSelected ? '✓ ' : '+ '}{tag}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-slate-300 font-bold">Ghi chú diễn biến trong ngày:</label>
+                    <textarea
+                      rows={2}
+                      required
+                      placeholder="VD: Cả ngày sạch không ra cam, tối hơi mỏi lưng nhẹ..."
+                      value={quickEditLog.summary || ''}
+                      onChange={(e) => setQuickEditLog({ ...quickEditLog, summary: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
+                    />
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-slate-300 font-bold">Sự kiện đặc biệt / Đi khám (nếu có):</label>
+                    <input
+                      type="text"
+                      placeholder="VD: Sinh thiết Pipelle BV Hùng Vương..."
+                      value={quickEditLog.eventNote || ''}
+                      onChange={(e) => setQuickEditLog({ ...quickEditLog, eventNote: e.target.value })}
+                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
+                    <button
+                      type="button"
+                      onClick={() => setIsQuickEditing(false)}
+                      className="px-3 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
+                    >
+                      Hủy Bỏ
+                    </button>
+                    <button
+                      type="submit"
+                      className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-black hover:opacity-90 flex items-center gap-1.5 cursor-pointer shadow-md"
+                    >
+                      <Save className="w-3.5 h-3.5" />
+                      <span>Lưu Nhật Ký Ngày</span>
+                    </button>
+                  </div>
+                </form>
+              )}
+            </div>
+
+          </div>
         </div>
       )}
 
       {/* ========================================================================= */}
-      {/* TAB 2: LONGITUDINAL HISTORY (43 CYCLES - EDITABLE) */}
+      {/* TAB 2: DAILY TIMELINE LIST (DETAILED DAYS) */}
       {/* ========================================================================= */}
-      {mainViewMode === 'longitudinal_history' && (
-        <div className="space-y-8">
+      {activeTab === 'daily_logs' && (
+        <div className="space-y-4">
           
-          {/* Dynamic Real-Time Statistical Highlights */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-              <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1">
-                <BarChart3 className="w-3.5 h-3.5 text-teal-400" />
-                Chu Kỳ Theo Dõi
-              </span>
-              <div className="text-2xl font-black text-teal-300">{dynamicStats.totalTrackedCycles} chu kỳ</div>
-              <span className="text-[10px] text-slate-400">Năm {dynamicStats.minYear} – {dynamicStats.maxYear}</span>
+          <div className="flex flex-wrap items-center justify-between gap-3 p-4 bg-slate-900/90 rounded-2xl border border-slate-800">
+            <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
+              <Clock className="w-4 h-4 text-rose-400" />
+              <span>Danh Sách Nhật Ký Chi Tiết ({dailyLogs.length} ngày ghi nhận):</span>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-              <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1">
-                <TrendingUp className="w-3.5 h-3.5 text-amber-400" />
-                Độ Dài Trung Bình
-              </span>
-              <div className="text-2xl font-black text-amber-300">{dynamicStats.averageCycleLength} ngày</div>
-              <span className="text-[10px] text-amber-200/80">Chu kỳ dài sinh lý (30 - 42d)</span>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-              <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1">
-                <Droplets className="w-3.5 h-3.5 text-rose-400" />
-                Số Ngày Hành Kinh
-              </span>
-              <div className="text-2xl font-black text-rose-300">{dynamicStats.averagePeriodDuration} ngày</div>
-              <span className="text-[10px] text-emerald-300 font-medium">Cực kỳ ổn định</span>
-            </div>
-
-            <div className="p-4 rounded-xl bg-slate-900/90 border border-slate-800 space-y-1">
-              <span className="text-[11px] text-slate-400 font-bold uppercase tracking-wider flex items-center gap-1">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                Tính Ổn Định
-              </span>
-              <div className="text-2xl font-black text-emerald-300">{dynamicStats.longCyclePercentage}%</div>
-              <span className="text-[10px] text-slate-400">Chu kỳ trong chuẩn 28-42 ngày</span>
-            </div>
-          </div>
-
-          {/* Clinical Insights from Long-term History */}
-          <div className="p-5 rounded-xl bg-slate-900/90 border border-teal-500/30 space-y-4">
-            <h4 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
-              <Microscope className="w-4 h-4 text-teal-400" />
-              <span>Ý Nghĩa Y Khoa Cốt Lõi Của Chu Kỳ 35 – 40 Ngày Dài Hạn:</span>
-            </h4>
-
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs sm:text-sm">
-              {historicalCycleClinicalInsights.map((insight, idx) => (
-                <div key={idx} className="p-3.5 rounded-lg bg-slate-950/70 border border-slate-800 space-y-1.5">
-                  <span className="font-bold text-teal-300 text-xs block">{insight.title}</span>
-                  <p className="text-slate-300 text-xs leading-relaxed">{insight.content}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* App Screenshots Gallery */}
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                <ImageIcon className="w-4 h-4 text-teal-400" />
-                <span>Hình Ảnh Đối Chiếu Từ Nhật Ký Ứng Dụng Theo Dõi:</span>
+            <div className="flex flex-wrap items-center gap-2 text-xs">
+              <div className="relative">
+                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" />
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm ngày, triệu chứng..."
+                  value={logSearchQuery}
+                  onChange={(e) => setLogSearchQuery(e.target.value)}
+                  className="pl-8 pr-2.5 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 w-44 sm:w-56"
+                />
+                {logSearchQuery && (
+                  <button onClick={() => setLogSearchQuery('')} className="absolute right-2.5 top-2 text-slate-400 hover:text-white cursor-pointer">
+                    <X className="w-3.5 h-3.5" />
+                  </button>
+                )}
               </div>
-              <span className="text-xs text-slate-400">Nhấn vào ảnh để phóng to</span>
-            </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {appScreenshots.map((shot, idx) => (
+              <button
+                onClick={() => setLogFilter('all')}
+                className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                  logFilter === 'all' ? 'bg-rose-500 text-white' : 'bg-slate-950 text-slate-400 border border-slate-800'
+                }`}
+              >
+                Tất Cả
+              </button>
+              <button
+                onClick={() => setLogFilter('spotting')}
+                className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                  logFilter === 'spotting' ? 'bg-amber-500 text-slate-950' : 'bg-slate-950 text-amber-300 border border-slate-800'
+                }`}
+              >
+                Đốm Cam
+              </button>
+              <button
+                onClick={() => setLogFilter('period')}
+                className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                  logFilter === 'period' ? 'bg-rose-500 text-white' : 'bg-slate-950 text-rose-300 border border-slate-800'
+                }`}
+              >
+                Hành Kinh
+              </button>
+              <button
+                onClick={() => setLogFilter('milestones')}
+                className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                  logFilter === 'milestones' ? 'bg-purple-500 text-white' : 'bg-slate-950 text-purple-300 border border-slate-800'
+                }`}
+              >
+                Cột Mốc / Pipelle
+              </button>
+            </div>
+          </div>
+
+          <div className="space-y-3">
+            {dailyLogs
+              .filter(l => {
+                if (logSearchQuery.trim()) {
+                  const q = logSearchQuery.toLowerCase();
+                  const match = l.date.includes(q) ||
+                                l.summary.toLowerCase().includes(q) ||
+                                l.symptoms.some(s => s.toLowerCase().includes(q)) ||
+                                l.clinicalInterpretation.toLowerCase().includes(q);
+                  if (!match) return false;
+                }
+                if (logFilter === 'spotting') return l.dischargeType === 'orange_spotting';
+                if (logFilter === 'period') return l.dischargeType === 'fresh_blood' || l.phase === 'menstrual';
+                if (logFilter === 'milestones') return Boolean(l.isKeyMilestone || l.eventNote);
+                return true;
+              })
+              .map((log, idx) => (
                 <div
                   key={idx}
-                  onClick={() => setActiveImageModal(shot.src)}
-                  className="group relative rounded-xl overflow-hidden bg-slate-900 border border-slate-800 hover:border-teal-500/60 cursor-pointer transition-all space-y-2 p-2"
+                  className="p-4 sm:p-5 rounded-2xl bg-slate-900/80 border border-slate-800 hover:border-slate-700 transition-all space-y-3"
                 >
-                  <div className="aspect-[9/16] w-full rounded-lg overflow-hidden bg-slate-950 relative">
-                    <img
-                      src={shot.src}
-                      alt={shot.title}
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-opacity flex items-center justify-center">
-                      <span className="p-2 rounded-full bg-teal-500 text-slate-950 shadow-lg">
-                        <ZoomIn className="w-4 h-4" />
+                  <div className="flex flex-wrap items-center justify-between gap-2">
+                    <div className="flex items-center gap-2">
+                      <span className="text-base font-black text-white">{log.date}</span>
+                      <span className="text-xs text-slate-400 font-medium">({log.dayOfWeek})</span>
+                      <span className="px-2 py-0.5 rounded-md bg-slate-800 text-teal-300 text-xs font-bold">
+                        {log.cycleDayText}
                       </span>
                     </div>
-                  </div>
-                  <div className="px-1 pb-1 space-y-0.5">
-                    <span className="font-bold text-white text-[11px] line-clamp-1 group-hover:text-teal-300 transition-colors">
-                      {shot.title}
-                    </span>
-                    <span className="text-[10px] text-teal-400 block font-mono">{shot.period}</span>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
 
-          {/* Historical Cycles List & Interactive Visualizer with CRUD */}
-          <div className="space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-3">
-              <div className="flex items-center gap-2 text-sm font-bold text-slate-200">
-                <Calendar className="w-4 h-4 text-teal-400" />
-                <span>Danh Sách Chu Kỳ Kinh Nguyệt ({filteredHistoricalCycles.length} chu kỳ):</span>
-              </div>
+                    <div className="flex items-center gap-2">
+                      <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold ${
+                        log.dischargeType === 'none' ? 'bg-emerald-950 text-emerald-300 border border-emerald-800/50' :
+                        log.dischargeType === 'orange_spotting' ? 'bg-amber-950 text-amber-300 border border-amber-800/50' :
+                        log.dischargeType === 'fresh_blood' ? 'bg-rose-950 text-rose-300 border border-rose-800/50' :
+                        'bg-purple-950 text-purple-300 border border-purple-800/50'
+                      }`}>
+                        {log.dischargeLabel}
+                      </span>
 
-              {/* Year Filter & Search */}
-              <div className="flex flex-wrap items-center gap-1.5 text-xs">
-                <div className="relative">
-                  <Search className="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2" />
-                  <input
-                    type="text"
-                    placeholder="Tìm ngày, ghi chú..."
-                    value={cycleSearchQuery}
-                    onChange={(e) => setCycleSearchQuery(e.target.value)}
-                    className="pl-8 pr-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs text-slate-200 placeholder-slate-500 focus:outline-none focus:border-teal-500 w-36 sm:w-44"
-                  />
-                  {cycleSearchQuery && (
-                    <button onClick={() => setCycleSearchQuery('')} className="absolute right-2 top-1.5 text-slate-400 hover:text-white cursor-pointer">
-                      <X className="w-3 h-3" />
-                    </button>
+                      <button
+                        onClick={() => {
+                          setSelectedCalendarDateStr(log.date);
+                          const parsed = parseVNtoDate(log.date);
+                          if (parsed) {
+                            setCurrentCalYear(parsed.getFullYear());
+                            setCurrentCalMonth(parsed.getMonth());
+                          }
+                          setActiveTab('calendar');
+                          handleStartQuickEdit();
+                        }}
+                        className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
+                        title="Chỉnh sửa ngày này"
+                      >
+                        <Edit3 className="w-3.5 h-3.5" />
+                      </button>
+                    </div>
+                  </div>
+
+                  <p className="text-xs sm:text-sm text-slate-200 leading-relaxed">
+                    {log.summary}
+                  </p>
+
+                  {log.symptoms.length > 0 && (
+                    <div className="flex flex-wrap gap-1.5">
+                      {log.symptoms.map((s, sIdx) => (
+                        <span key={sIdx} className="px-2 py-0.5 rounded bg-slate-950 text-slate-300 border border-slate-800 text-[11px]">
+                          {s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {log.clinicalInterpretation && (
+                    <div className="p-2.5 rounded-xl bg-teal-950/30 border border-teal-800/40 text-xs text-teal-200 flex items-start gap-2">
+                      <CheckCircle2 className="w-4 h-4 text-teal-400 shrink-0 mt-0.5" />
+                      <span>{log.clinicalInterpretation}</span>
+                    </div>
                   )}
                 </div>
+              ))}
+          </div>
+        </div>
+      )}
 
+      {/* ========================================================================= */}
+      {/* TAB 3: 43 CYCLES HISTORY & STATS (2022–2026) */}
+      {/* ========================================================================= */}
+      {activeTab === 'cycle_history' && (
+        <div className="space-y-6">
+          
+          <div className="p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <div className="flex items-center gap-2 text-sm font-bold text-white">
+                <BarChart3 className="w-4 h-4 text-rose-400" />
+                <span>Toàn Bộ 43 Chu Kỳ Kinh Nguyệt (2022 – 2026):</span>
+              </div>
+
+              <div className="flex items-center gap-1.5 text-xs">
                 <button
                   onClick={() => setHistoryYearFilter('all')}
-                  className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                    historyYearFilter === 'all' 
-                      ? 'bg-teal-500 text-slate-950 font-bold' 
-                      : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                  className={`px-3 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                    historyYearFilter === 'all' ? 'bg-rose-500 text-white' : 'bg-slate-950 text-slate-400 border border-slate-800'
                   }`}
                 >
                   Tất Cả ({cycles.length})
                 </button>
-                {availableYears.map(year => (
+                {[2026, 2025, 2024, 2023, 2022].map((y) => (
                   <button
-                    key={year}
-                    onClick={() => setHistoryYearFilter(year)}
-                    className={`px-2.5 py-1 rounded-lg transition-all cursor-pointer ${
-                      historyYearFilter === year 
-                        ? 'bg-teal-500 text-slate-950 font-bold' 
-                        : 'bg-slate-900 text-slate-400 hover:text-slate-200 border border-slate-800'
+                    key={y}
+                    onClick={() => setHistoryYearFilter(y)}
+                    className={`px-2.5 py-1.5 rounded-xl font-bold transition-all cursor-pointer ${
+                      historyYearFilter === y ? 'bg-rose-500 text-white' : 'bg-slate-950 text-slate-400 border border-slate-800'
                     }`}
                   >
-                    {year} ({cycles.filter(c => c.year === year).length})
+                    {y}
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Cycles Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-              {filteredHistoricalCycles.map((cycle) => {
-                const isSelected = selectedHistoricalCycle?.id === cycle.id;
-                return (
-                  <div
-                    key={cycle.id}
-                    onClick={() => setSelectedHistoricalCycle(cycle)}
-                    className={`p-4 rounded-xl cursor-pointer transition-all border text-xs space-y-2.5 group relative ${
-                      isSelected
-                        ? 'bg-teal-950/40 border-teal-500 shadow-md ring-1 ring-teal-500/40'
-                        : 'bg-slate-900/60 border-slate-800 hover:bg-slate-850'
-                    }`}
-                  >
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <span className="font-bold text-white text-sm">{cycle.dateRangeDisplay}</span>
-                        <span className="px-1.5 py-0.5 rounded bg-slate-800 text-[10px] text-slate-400 font-mono">
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs border-collapse">
+                <thead>
+                  <tr className="border-b border-slate-800 text-slate-400 uppercase text-[10px] font-bold tracking-wider">
+                    <th className="py-2.5 px-3">Khoảng Thời Gian</th>
+                    <th className="py-2.5 px-3">Năm</th>
+                    <th className="py-2.5 px-3 text-center">Độ Dài Chu Kỳ</th>
+                    <th className="py-2.5 px-3 text-center">Hành Kinh</th>
+                    <th className="py-2.5 px-3">Phân Loại Sinh Lý</th>
+                    <th className="py-2.5 px-3">Ghi Chú Diễn Biến</th>
+                    <th className="py-2.5 px-3 text-right">Thao Tác</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60">
+                  {cycles
+                    .filter(c => historyYearFilter === 'all' || c.year === historyYearFilter)
+                    .map((cycle) => (
+                      <tr key={cycle.id} className="hover:bg-slate-850/80 transition-colors group">
+                        <td className="py-3 px-3 font-bold text-white whitespace-nowrap">
+                          {cycle.dateRangeDisplay}
+                        </td>
+                        <td className="py-3 px-3 text-slate-400 font-mono">
                           {cycle.year}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1.5">
-                        <span className="px-2 py-0.5 rounded-full text-[11px] font-bold bg-teal-950 text-teal-300 border border-teal-800/50">
-                          {cycle.cycleLengthDays} ngày
-                        </span>
-                        <button
-                          onClick={(e) => handleOpenEditCycle(cycle, e)}
-                          title="Chỉnh sửa chu kỳ này"
-                          className="p-1 rounded text-slate-400 hover:text-teal-300 hover:bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                        >
-                          <Edit3 className="w-3.5 h-3.5" />
-                        </button>
-                        <button
-                          onClick={(e) => handleDeleteCycle(cycle.id, e)}
-                          title="Xóa chu kỳ này"
-                          className="p-1 rounded text-slate-400 hover:text-rose-400 hover:bg-slate-800 opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer"
-                        >
-                          <Trash2 className="w-3.5 h-3.5" />
-                        </button>
-                      </div>
-                    </div>
+                        </td>
+                        <td className="py-3 px-3 text-center font-mono">
+                          <span className={`px-2 py-0.5 rounded-full font-bold ${
+                            cycle.cycleLengthDays >= 30 && cycle.cycleLengthDays <= 42
+                              ? 'bg-teal-950 text-teal-300 border border-teal-800/40'
+                              : cycle.cycleLengthDays < 26
+                              ? 'bg-amber-950 text-amber-300 border border-amber-800/40'
+                              : 'bg-indigo-950 text-indigo-300 border border-indigo-800/40'
+                          }`}>
+                            {cycle.cycleLengthDays} ngày
+                          </span>
+                        </td>
+                        <td className="py-3 px-3 text-center text-rose-300 font-bold">
+                          {cycle.periodDurationDays} ngày
+                        </td>
+                        <td className="py-3 px-3 text-slate-300">
+                          {cycle.cycleTypeLabel}
+                        </td>
+                        <td className="py-3 px-3 text-slate-400 max-w-xs truncate">
+                          {cycle.clinicalNote || '—'}
+                        </td>
+                        <td className="py-3 px-3 text-right whitespace-nowrap">
+                          <div className="flex items-center justify-end gap-1.5 opacity-80 group-hover:opacity-100">
+                            <button
+                              onClick={() => {
+                                setEditingCycle({ ...cycle });
+                                setIsCycleModalOpen(true);
+                              }}
+                              className="p-1 rounded bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-teal-300 cursor-pointer"
+                              title="Sửa chu kỳ này"
+                            >
+                              <Edit3 className="w-3.5 h-3.5" />
+                            </button>
+                            <button
+                              onClick={(e) => handleDeleteCycle(cycle.id, e)}
+                              className="p-1 rounded bg-slate-800 hover:bg-rose-950 text-slate-400 hover:text-rose-400 cursor-pointer"
+                              title="Xóa chu kỳ này"
+                            >
+                              <Trash2 className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      )}
 
-                    {/* Visual Cycle Representation */}
-                    <div className="space-y-1">
-                      <div className="flex items-center gap-1 overflow-hidden py-1">
-                        {Array.from({ length: Math.min(cycle.periodDurationDays, 6) }).map((_, i) => (
-                          <div key={`p-${i}`} className="h-3 w-2 rounded-full bg-rose-500 shrink-0" title={`Ngày hành kinh ${i+1}`} />
-                        ))}
-                        {Array.from({ length: Math.max(0, Math.floor((cycle.cycleLengthDays - 19) / 2)) }).map((_, i) => (
-                          <div key={`g-${i}`} className="h-3 w-2 rounded-full bg-slate-700 shrink-0" />
-                        ))}
-                        {Array.from({ length: 6 }).map((_, i) => (
-                          <div key={`o-${i}`} className="h-3 w-2 rounded-full bg-purple-500 shrink-0" title="Cửa sổ rụng trứng & hoàng thể" />
-                        ))}
-                        {Array.from({ length: 4 }).map((_, i) => (
-                          <div key={`l-${i}`} className="h-3 w-2 rounded-full bg-slate-600 shrink-0" />
-                        ))}
-                      </div>
+      {/* ========================================================================= */}
+      {/* TAB 4: MEDICAL DECODER & PATHOLOGY INSIGHTS */}
+      {/* ========================================================================= */}
+      {activeTab === 'medical_decoder' && (
+        <div className="space-y-6">
+          
+          <div className="p-5 sm:p-6 rounded-2xl bg-teal-950/40 border-l-4 border-teal-400 text-teal-100 space-y-3">
+            <div className="flex items-center gap-2 font-bold text-teal-300 text-base">
+              <CheckCircle2 className="w-5 h-5 text-teal-400 shrink-0" />
+              <span>Đối Chiếu Kết Quả GPB BV Hùng Vương (15/09/2026) & Sinh Lý Pha Phân Tiết:</span>
+            </div>
+            <div className="space-y-2 leading-relaxed text-slate-200 text-xs sm:text-sm">
+              <p>
+                • <strong>Mô tả vi thể:</strong> <em>"Nội mạc tử cung tăng sản điển hình khu trú (tuyến giãn rộng, lót biểu mô trụ cao, không dị dạng)"</em>.
+              </p>
+              <p>
+                • <strong>Giải mã sinh lý:</strong> Ngày làm sinh thiết Pipelle (09/09) là <strong>Ngày 17 của chu kỳ</strong> (ngay sau đỉnh rụng trứng). Ở pha này, hormone Progesterone kích thích niêm mạc phì đại tối đa, các tuyến nội mạc giãn to chứa đầy chất nhầy. Đây là phản ánh sinh lý pha phân tiết bình thường kết hợp tác động mô đệm 5 năm Tamoxifen, <strong>hoàn toàn lành tính 100%</strong>.
+              </p>
+            </div>
+          </div>
 
-                      <div className="flex items-center justify-between text-[10px] text-slate-400 pt-1">
-                        <span className="text-rose-300 flex items-center gap-1">
-                          <span className="w-2 h-2 rounded-full bg-rose-500 inline-block" />
-                          Hành kinh: {cycle.periodDurationDays} ngày
-                        </span>
-                        <span className="text-purple-300 flex items-center gap-1">
-                          <span className="w-2 h-2 rounded-full bg-purple-500 inline-block" />
-                          Rụng trứng & Hoàng thể
-                        </span>
-                        <span className="text-slate-400 font-mono">
-                          {cycle.cycleTypeLabel.split('(')[0]}
-                        </span>
-                      </div>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {cyclePhaseAnalyses.map((phase) => (
+              <div key={phase.id} className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-3">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-2">
+                  <h4 className="font-bold text-rose-300 text-sm flex items-center gap-1.5">
+                    <Activity className="w-4 h-4 text-rose-400" />
+                    <span>{phase.title}</span>
+                  </h4>
+                  <span className="text-[11px] font-mono text-slate-400">{phase.timeRange}</span>
+                </div>
 
-                    {/* Clinical Note */}
-                    <p className="text-[11px] text-slate-300 leading-relaxed border-t border-slate-800/60 pt-1.5">
-                      {cycle.clinicalNote}
-                    </p>
+                <div className="space-y-2 text-xs text-slate-300">
+                  <div>
+                    <span className="font-bold text-slate-400 uppercase text-[10px]">Sinh lý & Độ dày:</span>
+                    <p className="mt-0.5">{phase.physiologicState} (Độ dày: <strong>{phase.endometrialThickness}</strong>)</p>
                   </div>
-                );
-              })}
+                  <div>
+                    <span className="font-bold text-slate-400 uppercase text-[10px]">Tương tác Tamoxifen:</span>
+                    <p className="mt-0.5">{phase.tamoxifenInteraction}</p>
+                  </div>
+                  <div className="p-2 rounded-xl bg-emerald-950/40 border border-emerald-800/40 text-emerald-200">
+                    <strong>Kết luận an toàn:</strong> {phase.safetyVerdict}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="p-5 rounded-2xl bg-slate-900 border border-slate-800 space-y-4">
+            <h4 className="font-black text-white text-sm flex items-center gap-2">
+              <HelpCircle className="w-4 h-4 text-amber-400" />
+              <span>Giải Mã 3 Hiện Tượng Thường Gặp Của Bệnh Nhân:</span>
+            </h4>
+
+            <div className="space-y-3">
+              {symptomDecoders.map((dec, idx) => (
+                <div key={idx} className="p-4 rounded-xl bg-slate-950 border border-slate-850 space-y-2 text-xs">
+                  <div className="font-bold text-amber-300 text-sm">{dec.symptom}</div>
+                  <p className="text-slate-300 leading-relaxed">{dec.scientificMechanism}</p>
+                  <div className="text-emerald-300 font-medium">✓ Vì sao không phải K: {dec.whyNotCancer}</div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -1200,10 +1553,10 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
       {/* ========================================================================= */}
       {isCycleModalOpen && editingCycle && (
         <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full p-6 space-y-4 shadow-2xl animate-in zoom-in-95 duration-200">
+          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-lg w-full p-6 space-y-4 shadow-2xl animate-in zoom-in-95 duration-200">
             <div className="flex items-center justify-between border-b border-slate-800 pb-3">
               <h3 className="font-black text-white text-base flex items-center gap-2">
-                <Calendar className="w-4 h-4 text-teal-400" />
+                <CalendarIcon className="w-4 h-4 text-rose-400" />
                 <span>{cycles.some(c => c.id === editingCycle.id) ? 'Chỉnh Sửa Chu Kỳ Kinh' : 'Thêm Chu Kỳ Kinh Mới'}</span>
               </h3>
               <button onClick={() => setIsCycleModalOpen(false)} className="p-1 text-slate-400 hover:text-white cursor-pointer">
@@ -1214,18 +1567,18 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
             <form onSubmit={handleSaveCycle} className="space-y-4 text-xs">
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Khoảng thời gian hiển thị:</label>
+                  <label className="text-slate-300 font-bold">Khoảng thời gian (Hiển thị):</label>
                   <input
                     type="text"
                     required
                     placeholder="VD: 24/08/2026 – 28/09/2026"
                     value={editingCycle.dateRangeDisplay}
                     onChange={(e) => setEditingCycle({ ...editingCycle, dateRangeDisplay: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Năm theo dõi:</label>
+                  <label className="text-slate-300 font-bold">Năm:</label>
                   <input
                     type="number"
                     required
@@ -1233,14 +1586,14 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                     max={2030}
                     value={editingCycle.year}
                     onChange={(e) => setEditingCycle({ ...editingCycle, year: Number(e.target.value) })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
                   />
                 </div>
               </div>
 
               <div className="grid grid-cols-2 gap-3">
                 <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Độ dài chu kỳ (ngày):</label>
+                  <label className="text-slate-300 font-bold">Độ dài chu kỳ (ngày):</label>
                   <input
                     type="number"
                     required
@@ -1248,11 +1601,11 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                     max={90}
                     value={editingCycle.cycleLengthDays}
                     onChange={(e) => setEditingCycle({ ...editingCycle, cycleLengthDays: Number(e.target.value) })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
                   />
                 </div>
                 <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Số ngày hành kinh (ngày):</label>
+                  <label className="text-slate-300 font-bold">Số ngày hành kinh (ngày):</label>
                   <input
                     type="number"
                     required
@@ -1260,13 +1613,13 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                     max={20}
                     value={editingCycle.periodDurationDays}
                     onChange={(e) => setEditingCycle({ ...editingCycle, periodDurationDays: Number(e.target.value) })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
+                    className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
                   />
                 </div>
               </div>
 
               <div className="space-y-1">
-                <label className="text-slate-300 font-medium">Phân loại chu kỳ:</label>
+                <label className="text-slate-300 font-bold">Phân loại chu kỳ:</label>
                 <select
                   value={editingCycle.cycleType}
                   onChange={(e) => {
@@ -1283,7 +1636,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                       cycleTypeLabel: labelMap[val] || 'Chu kỳ bình thường'
                     });
                   }}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
+                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
                 >
                   <option value="normal_long">Chu kỳ dài sinh lý (30 - 42 ngày)</option>
                   <option value="standard">Chu kỳ chuẩn (26 - 30 ngày)</option>
@@ -1293,13 +1646,13 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
               </div>
 
               <div className="space-y-1">
-                <label className="text-slate-300 font-medium">Ghi chú lâm sàng / Diễn biến:</label>
+                <label className="text-slate-300 font-bold">Ghi chú diễn biến:</label>
                 <textarea
-                  rows={3}
+                  rows={2}
                   value={editingCycle.clinicalNote}
                   onChange={(e) => setEditingCycle({ ...editingCycle, clinicalNote: e.target.value })}
-                  placeholder="Ghi nhận triệu chứng, mức độ máu kinh, can thiệp y tế..."
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
+                  placeholder="Triệu chứng, lượng máu..."
+                  className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
                 />
               </div>
 
@@ -1307,234 +1660,19 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                 <button
                   type="button"
                   onClick={() => setIsCycleModalOpen(false)}
-                  className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
                 >
                   Hủy Bỏ
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-teal-500 text-slate-950 font-bold hover:bg-teal-400 flex items-center gap-1.5 cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold hover:opacity-90 flex items-center gap-1.5 cursor-pointer shadow-md"
                 >
                   <Save className="w-3.5 h-3.5" />
                   <span>Lưu Chu Kỳ</span>
                 </button>
               </div>
             </form>
-          </div>
-        </div>
-      )}
-
-      {/* ========================================================================= */}
-      {/* MODAL: ADD / EDIT DAILY LOG */}
-      {/* ========================================================================= */}
-      {isLogModalOpen && editingLog && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-          <div className="bg-slate-900 border border-slate-800 rounded-2xl max-w-lg w-full max-h-[90vh] overflow-y-auto p-6 space-y-4 shadow-2xl animate-in zoom-in-95 duration-200 custom-scrollbar">
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <h3 className="font-black text-white text-base flex items-center gap-2">
-                <Clock className="w-4 h-4 text-teal-400" />
-                <span>{dailyLogs.some(l => l.date === editingLog.date) ? 'Chỉnh Sửa Nhật Ký Ngày' : 'Ghi Nhật Ký Ngày Mới'}</span>
-              </h3>
-              <button onClick={() => setIsLogModalOpen(false)} className="p-1 text-slate-400 hover:text-white cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            <form onSubmit={handleSaveLog} className="space-y-4 text-xs">
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Ngày ghi nhận (DD/MM/YYYY):</label>
-                  <input
-                    type="text"
-                    required
-                    placeholder="VD: 16/09/2026"
-                    value={editingLog.date}
-                    onChange={(e) => setEditingLog({ ...editingLog, date: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Thứ trong tuần:</label>
-                  <input
-                    type="text"
-                    placeholder="VD: Thứ Tư (Wednesday)"
-                    value={editingLog.dayOfWeek}
-                    onChange={(e) => setEditingLog({ ...editingLog, dayOfWeek: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                  />
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Vị trí ngày trong chu kỳ:</label>
-                  <input
-                    type="text"
-                    placeholder="VD: Ngày 24 chu kỳ (Pha hoàng thể)"
-                    value={editingLog.cycleDayText}
-                    onChange={(e) => setEditingLog({ ...editingLog, cycleDayText: e.target.value })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Pha chu kỳ:</label>
-                  <select
-                    value={editingLog.phase}
-                    onChange={(e) => {
-                      const val = e.target.value as DailyCycleLog['phase'];
-                      const map = {
-                        'menstrual': 'Pha Hành Kinh',
-                        'proliferative': 'Pha Tăng Sinh',
-                        'ovulatory': 'Pha Rụng Trứng',
-                        'secretory': 'Pha Phân Tiết (Hoàng Thể)',
-                        'prior_cycle': 'Chu Kỳ Trước'
-                      };
-                      setEditingLog({ ...editingLog, phase: val, phaseLabel: map[val] });
-                    }}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                  >
-                    <option value="menstrual">Pha Hành Kinh</option>
-                    <option value="proliferative">Pha Tăng Sinh</option>
-                    <option value="ovulatory">Pha Rụng Trứng</option>
-                    <option value="secretory">Pha Phân Tiết (Hoàng Thể)</option>
-                    <option value="prior_cycle">Chu Kỳ Trước</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Dạng xuất huyết / Dịch tiết:</label>
-                  <select
-                    value={editingLog.dischargeType}
-                    onChange={(e) => {
-                      const val = e.target.value as DailyCycleLog['dischargeType'];
-                      const labels = {
-                        'none': 'Không ra (Sạch)',
-                        'orange_spotting': 'Đốm cam / Huyết trắng cam',
-                        'fresh_blood': 'Máu đỏ tươi',
-                        'brown_blood': 'Máu nâu sẫm',
-                        'post_procedure_bleeding': 'Chảy máu sau thủ thuật',
-                        'normal': 'Bình thường'
-                      };
-                      setEditingLog({ ...editingLog, dischargeType: val, dischargeLabel: labels[val] || 'Bình thường' });
-                    }}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                  >
-                    <option value="none">Sạch hoàn toàn / Không ra</option>
-                    <option value="orange_spotting">Đốm cam / Huyết trắng cam nhạt</option>
-                    <option value="fresh_blood">Máu đỏ tươi (Hành kinh / Ra máu)</option>
-                    <option value="brown_blood">Máu nâu sẫm / Cuối kỳ</option>
-                    <option value="post_procedure_bleeding">Chảy máu sau sinh thiết / thủ thuật</option>
-                  </select>
-                </div>
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-medium">Mức độ đau bụng / lưng:</label>
-                  <select
-                    value={editingLog.painLevel}
-                    onChange={(e) => setEditingLog({ ...editingLog, painLevel: e.target.value as DailyCycleLog['painLevel'] })}
-                    className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                  >
-                    <option value="none">Không đau (Êm)</option>
-                    <option value="mild">Đau nhẹ (Âm ỉ)</option>
-                    <option value="moderate">Đau vừa (Mỏi lưng/đau bụng)</option>
-                    <option value="severe">Đau quặn nhiều</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-slate-300 font-medium">Tóm tắt diễn biến trong ngày:</label>
-                <textarea
-                  rows={2}
-                  required
-                  value={editingLog.summary}
-                  onChange={(e) => setEditingLog({ ...editingLog, summary: e.target.value })}
-                  placeholder="VD: Cả ngày sạch không ra cam, tối hơi mỏi lưng nhẹ, người khỏe..."
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-slate-300 font-medium">Các triệu chứng chi tiết (cách nhau dấu phẩy):</label>
-                <input
-                  type="text"
-                  placeholder="VD: Đau ngực PMS, Đau lưng, Dính ít cam daily"
-                  value={editingLog.symptoms.join(', ')}
-                  onChange={(e) => setEditingLog({ 
-                    ...editingLog, 
-                    symptoms: e.target.value.split(',').map(s => s.trim()).filter(Boolean) 
-                  })}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-slate-300 font-medium">Sự kiện đặc biệt / Cột mốc (nếu có):</label>
-                <input
-                  type="text"
-                  placeholder="VD: Làm sinh thiết Pipelle BV Hùng Vương, Nhận kết quả GPB..."
-                  value={editingLog.eventNote || ''}
-                  onChange={(e) => setEditingLog({ 
-                    ...editingLog, 
-                    eventNote: e.target.value,
-                    isKeyMilestone: Boolean(e.target.value.trim())
-                  })}
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                />
-              </div>
-
-              <div className="space-y-1">
-                <label className="text-slate-300 font-medium">Phân tích cơ chế y khoa:</label>
-                <textarea
-                  rows={2}
-                  value={editingLog.clinicalInterpretation}
-                  onChange={(e) => setEditingLog({ ...editingLog, clinicalInterpretation: e.target.value })}
-                  placeholder="Giải thích cơ chế sinh lý hoặc tác động..."
-                  className="w-full px-3 py-2 rounded-lg bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-teal-500"
-                />
-              </div>
-
-              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
-                <button
-                  type="button"
-                  onClick={() => setIsLogModalOpen(false)}
-                  className="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
-                >
-                  Hủy Bỏ
-                </button>
-                <button
-                  type="submit"
-                  className="px-4 py-2 rounded-lg bg-teal-500 text-slate-950 font-bold hover:bg-teal-400 flex items-center gap-1.5 cursor-pointer"
-                >
-                  <Save className="w-3.5 h-3.5" />
-                  <span>Lưu Nhật Ký</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
-
-      {/* Image Zoom Modal */}
-      {activeImageModal && (
-        <div 
-          onClick={() => setActiveImageModal(null)}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 animate-in fade-in duration-200"
-        >
-          <div className="relative max-w-lg w-full max-h-[90vh] flex flex-col items-center">
-            <button
-              onClick={() => setActiveImageModal(null)}
-              className="absolute -top-12 right-0 p-2 rounded-full bg-slate-800 text-white hover:bg-slate-700 transition-colors cursor-pointer"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            <img
-              src={activeImageModal}
-              alt="Chi tiết chu kỳ kinh nguyệt"
-              className="max-h-[85vh] w-auto rounded-xl shadow-2xl border border-slate-700 object-contain"
-              onClick={(e) => e.stopPropagation()}
-            />
           </div>
         </div>
       )}
