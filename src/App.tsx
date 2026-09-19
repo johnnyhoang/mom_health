@@ -4,6 +4,7 @@ import { CervicalSpineArticle } from './components/CervicalSpineArticle';
 import { BreastCancerArticle } from './components/BreastCancerArticle';
 import { BookLayoutArticle } from './components/BookLayoutArticle';
 import { ChronicBackPainArticle } from './components/ChronicBackPainArticle';
+import { VisionMyopiaArticle } from './components/VisionMyopiaArticle';
 import { MenstrualCycleTrackerSection } from './components/MenstrualCycleTrackerSection';
 import { QAPage } from './components/QAPage';
 import { DoctorsDirectoryPage } from './components/DoctorsDirectoryPage';
@@ -13,12 +14,12 @@ import { AudioPlayerBar } from './components/AudioPlayerBar';
 import { AudioReaderProvider } from './context/AudioReaderContext';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
-import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity, Calendar } from 'lucide-react';
+import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity, Calendar, Eye } from 'lucide-react';
 
 export function App() {
-  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker'>('cycle_tracker');
+  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker'>('vision_myopia');
   const [selectedVideo, setSelectedVideo] = useState<MediaItem | null>(null);
-  const [activeSection, setActiveSection] = useState<string>('ankle-ch-1');
+  const [activeSection, setActiveSection] = useState<string>('vision-ch-1');
   const [scrollProgress, setScrollProgress] = useState<number>(0);
 
   useEffect(() => {
@@ -29,7 +30,27 @@ export function App() {
         setScrollProgress(progress);
       }
 
-      if (currentView === 'ankle_trauma') {
+      if (currentView === 'vision_myopia') {
+        const visionChapters = [
+          'vision-ch-1',
+          'vision-ch-2',
+          'vision-ch-3',
+          'vision-ch-4',
+          'vision-ch-5',
+          'vision-ch-6',
+          'vision-ch-7'
+        ];
+        for (const chId of visionChapters) {
+          const el = document.getElementById(chId);
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            if (rect.top <= 250 && rect.bottom >= 250) {
+              setActiveSection(chId);
+              break;
+            }
+          }
+        }
+      } else if (currentView === 'ankle_trauma') {
         const ankleChapters = [
           'ankle-ch-1', 
           'ankle-ch-2', 
@@ -152,20 +173,20 @@ export function App() {
     }
   };
 
-  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker') => {
+  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker') => {
     setCurrentView(view);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   return (
     <AudioReaderProvider>
-      <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-rose-500 selection:text-white">
+      <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
         {/* Top Sticky Header */}
       <header className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 transition-all">
         {/* Reading Progress Line */}
-        {(currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'monograph' || currentView === 'breast_cancer' || currentView === 'chronic_back_pain') && (
+        {(currentView === 'vision_myopia' || currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'monograph' || currentView === 'breast_cancer' || currentView === 'chronic_back_pain') && (
           <div 
-            className="h-1 bg-gradient-to-r from-rose-500 via-amber-500 to-teal-400 transition-all duration-150"
+            className="h-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-rose-500 transition-all duration-150"
             style={{ width: `${scrollProgress}%` }}
           />
         )}
@@ -173,34 +194,60 @@ export function App() {
         <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 h-14 py-2 flex items-center justify-between gap-2">
           {/* Logo & Brand */}
           <div 
-            onClick={() => handleSwitchView('ankle_trauma')}
+            onClick={() => handleSwitchView('vision_myopia')}
             className="flex items-center gap-2 cursor-pointer select-none shrink-0"
           >
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-rose-500 to-amber-500 flex items-center justify-center text-white font-black text-xs shadow-sm">
-              <Footprints className="w-4 h-4" />
+            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xs shadow-sm">
+              <Eye className="w-4 h-4" />
             </div>
             <span className="font-extrabold text-xs sm:text-sm tracking-tight text-slate-100 hidden md:inline">
-              MOM HEALTH ATLAS
+              HEALTH ATLAS
             </span>
           </div>
 
           {/* Smart Categorized Navigation Header */}
           <div className="flex items-center gap-1.5 overflow-x-auto max-w-full text-xs font-bold py-1">
-            {/* 1. Công Cụ Theo Dõi Chu Kỳ (Nổi Bật Nhất) */}
+            {/* 1. Module Thị Lực Học Đường - Nổi Bật */}
+            <button
+              onClick={() => handleSwitchView('vision_myopia')}
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+                currentView === 'vision_myopia'
+                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-md shadow-cyan-500/30 ring-1 ring-cyan-400'
+                  : 'text-cyan-300 hover:text-white bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-900/50'
+              }`}
+            >
+              <Eye className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
+              <span>Thị Lực Học Đường</span>
+            </button>
+
+            {/* 2. Công Cụ Theo Dõi Chu Kỳ */}
             <button
               onClick={() => handleSwitchView('cycle_tracker')}
-              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+              className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
                 currentView === 'cycle_tracker'
-                  ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/30 ring-1 ring-rose-400 font-black'
-                  : 'text-rose-300 hover:text-white bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/50'
+                  ? 'bg-rose-500 text-white shadow-md font-black'
+                  : 'text-rose-300 hover:text-white bg-rose-950/30 hover:bg-rose-900/50 border border-rose-900/40'
               }`}
             >
               <Calendar className="w-3.5 h-3.5 text-rose-300 shrink-0" />
-              <span>Nhập Chu Kỳ (43)</span>
+              <span>Chu Kỳ</span>
             </button>
 
-            {/* 2. 5 Chuyên Khảo Bệnh Học (Group Segmented Tabs) */}
+            {/* 3. Chuyên Khảo Bệnh Học (Group Segmented Tabs) */}
             <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 gap-0.5">
+              <button
+                onClick={() => handleSwitchView('chronic_back_pain')}
+                title="Chuyên khảo Đau Lưng Kinh Niên"
+                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                  currentView === 'chronic_back_pain'
+                    ? 'bg-indigo-500 text-white shadow-sm font-black'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                <Activity className="w-3.5 h-3.5 shrink-0" />
+                <span>Đau Lưng</span>
+              </button>
+
               <button
                 onClick={() => handleSwitchView('ankle_trauma')}
                 title="Chuyên khảo Mắt Cá Chân"
@@ -225,19 +272,6 @@ export function App() {
               >
                 <Bone className="w-3.5 h-3.5 shrink-0" />
                 <span>Cổ ACDF</span>
-              </button>
-
-              <button
-                onClick={() => handleSwitchView('chronic_back_pain')}
-                title="Chuyên khảo Đau Lưng Kinh Niên"
-                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                  currentView === 'chronic_back_pain'
-                    ? 'bg-indigo-500 text-white shadow-sm font-black'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                }`}
-              >
-                <Activity className="w-3.5 h-3.5 shrink-0" />
-                <span>Đau Lưng</span>
               </button>
 
               <button
@@ -267,7 +301,7 @@ export function App() {
               </button>
             </div>
 
-            {/* 3. Hỏi Đáp Q&A */}
+            {/* 4. Hỏi Đáp Q&A */}
             <button
               onClick={() => handleSwitchView('qa')}
               className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
@@ -277,10 +311,10 @@ export function App() {
               }`}
             >
               <HelpCircle className="w-3.5 h-3.5 shrink-0 text-amber-400" />
-              <span>Q&A (68)</span>
+              <span>Q&A</span>
             </button>
 
-            {/* 4. Danh Bạ Bác Sĩ */}
+            {/* 5. Danh Bạ Bác Sĩ */}
             <button
               onClick={() => handleSwitchView('doctors')}
               className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
@@ -298,6 +332,14 @@ export function App() {
 
       {/* Main Content Router */}
       <main className="flex-1 w-full">
+        {currentView === 'vision_myopia' && (
+          <VisionMyopiaArticle
+            onOpenVideoModal={(video) => setSelectedVideo(video)}
+            onNavigateToDoctors={() => handleSwitchView('doctors')}
+            onNavigateToQA={() => handleSwitchView('qa')}
+          />
+        )}
+
         {currentView === 'cycle_tracker' && (
           <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6">
             <MenstrualCycleTrackerSection />
@@ -344,14 +386,14 @@ export function App() {
         
         {currentView === 'qa' && (
           <QAPage 
-            onBackToBook={() => handleSwitchView('chronic_back_pain')}
-            defaultTopic="back_pain"
+            onBackToBook={() => handleSwitchView('vision_myopia')}
+            defaultTopic="vision"
           />
         )}
 
         {currentView === 'doctors' && (
           <DoctorsDirectoryPage
-            onBackToBook={() => handleSwitchView('ankle_trauma')}
+            onBackToBook={() => handleSwitchView('vision_myopia')}
             onOpenQA={() => handleSwitchView('qa')}
             defaultTopic="ankle"
           />

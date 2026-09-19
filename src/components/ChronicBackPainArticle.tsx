@@ -235,7 +235,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
               <div className="p-2.5 rounded-xl bg-indigo-950/30 border-l-2 border-indigo-400 text-xs space-y-0.5">
                 <span className="font-bold text-indigo-300 flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-indigo-400 shrink-0" />
-                  <span>Hình tượng đời thường dễ hiểu:</span>
+                  <span>Minh họa trực quan:</span>
                 </span>
                 <p className="text-slate-200">{item.laymanExplanation}</p>
               </div>

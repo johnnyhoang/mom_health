@@ -361,7 +361,7 @@ export const LongFormArticle: React.FC<LongFormArticleProps> = ({ onOpenVideoMod
             </div>
             <h3 className="text-2xl sm:text-3xl font-black text-white">{activeDisease.title}</h3>
             <div className="bg-slate-950 p-3 rounded-xl border border-slate-800 text-xs sm:text-sm text-teal-300 font-medium italic">
-              💡 <strong>Hình tượng dễ hiểu: </strong> {activeDisease.simpleAnalogy}
+              💡 <strong>Minh họa trực quan: </strong> {activeDisease.simpleAnalogy}
             </div>
           </div>
 

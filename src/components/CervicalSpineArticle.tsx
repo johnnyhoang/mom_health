@@ -295,7 +295,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="p-3 bg-amber-950/20 border border-amber-800/30 rounded-xl space-y-1">
             <div className="flex items-center gap-1.5 text-xs font-bold text-amber-400 uppercase tracking-wide">
               <Info className="w-3.5 h-3.5" />
-              <span>Hình Tượng Đời Thường Dễ Hiểu</span>
+              <span>Minh Họa Trực Quan</span>
             </div>
             <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
               "{activeTreatment.laymanAnalogy}"

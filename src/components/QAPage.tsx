@@ -3,6 +3,7 @@ import { tamoxifenQADataset } from '../data/tamoxifenQAData';
 import { cervicalSpineQAList } from '../data/cervicalSpineQAData';
 import { ankleFractureQAList } from '../data/ankleFractureQAData';
 import { chronicBackPainQAItems } from '../data/chronicBackPainQAData';
+import { visionQAItems, visionScientificReferences } from '../data/visionMyopiaData';
 import { ReadAloudButton } from './ReadAloudButton';
 import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
 import { ReferencesSection } from './ReferencesSection';
@@ -23,25 +24,34 @@ import {
   Bone, 
   Ribbon, 
   ShieldCheck, 
-  Award,
-  Footprints,
-  Activity,
-  Tag
+  Award, 
+  Footprints, 
+  Activity, 
+  Tag, 
+  Eye 
 } from 'lucide-react';
 
 interface QAPageProps {
   onBackToBook: () => void;
-  defaultTopic?: 'ankle' | 'spine' | 'gynecology' | 'back_pain';
+  defaultTopic?: 'ankle' | 'spine' | 'gynecology' | 'back_pain' | 'vision';
 }
 
-export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'ankle' }) => {
-  const [activeTopic, setActiveTopic] = useState<'ankle' | 'spine' | 'gynecology' | 'back_pain'>(defaultTopic);
+export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vision' }) => {
+  const [activeTopic, setActiveTopic] = useState<'ankle' | 'spine' | 'gynecology' | 'back_pain' | 'vision'>(defaultTopic);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedAnkleCategory, setSelectedAnkleCategory] = useState<string>('all');
   const [selectedSpineCategory, setSelectedSpineCategory] = useState<string>('all');
   const [selectedGynCategory, setSelectedGynCategory] = useState<string>('all');
   const [selectedBackPainCategory, setSelectedBackPainCategory] = useState<string>('all');
+  const [selectedVisionCategory, setSelectedVisionCategory] = useState<string>('all');
   
+  const [expandedVisionIds, setExpandedVisionIds] = useState<Record<string, boolean>>({
+    'qa-vision-1': true,
+    'qa-vision-2': true,
+    'qa-vision-3': true,
+    'qa-vision-5': true
+  });
+
   const [expandedBackPainIds, setExpandedBackPainIds] = useState<Record<string, boolean>>({
     'bp-qa-01': true,
     'bp-qa-02': true,
@@ -71,6 +81,15 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
   });
 
   const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const visionCategories = [
+    { id: 'all', label: 'Tất Cả (6 Câu Hỏi)' },
+    { id: 'Cơ Chế & Độ Cận', label: 'Cơ Chế & Trục Mắt' },
+    { id: 'Độ Loạn Thị Đi Kèm', label: 'Độ Loạn Thị Đi Kèm' },
+    { id: 'Công Nghệ & Nghiên Cứu', label: 'Nghiên Cứu & Công Nghệ' },
+    { id: 'Màn Hình & Lối Sống', label: 'Màn Hình & Lối Sống' },
+    { id: 'Lựa Chọn Thương Hiệu', label: 'Top Thương Hiệu' }
+  ];
 
   const ankleCategories = [
     { id: 'all', label: 'Tất Cả (12 Câu Hỏi)' },
@@ -106,6 +125,23 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
     { id: 'Tư Thế & Giấc Ngủ', label: 'Tư Thế & Kê Gối Ngủ' },
     { id: 'Phục Hồi & Điều Trị', label: 'Phục Hồi & Dinh Dưỡng' }
   ];
+
+  // Filter Vision QA
+  const filteredVisionQA = useMemo(() => {
+    return visionQAItems.filter((item) => {
+      const matchCat = selectedVisionCategory === 'all' || item.category === selectedVisionCategory;
+      if (!matchCat) return false;
+
+      if (!searchQuery.trim()) return true;
+      const q = searchQuery.toLowerCase();
+      return (
+        item.question.toLowerCase().includes(q) ||
+        item.shortSummary.toLowerCase().includes(q) ||
+        item.detailedPoints.some(p => p.toLowerCase().includes(q)) ||
+        item.clinicalHighlight.toLowerCase().includes(q)
+      );
+    });
+  }, [selectedVisionCategory, searchQuery]);
 
   // Filter Back Pain QA
   const filteredBackPainQA = useMemo(() => {
@@ -248,8 +284,38 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
           </p>
         </div>
 
-        {/* 4 Topic Switcher Pills */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+        {/* 5 Topic Switcher Pills */}
+        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+          <button
+            onClick={() => {
+              setActiveTopic('vision');
+              setSearchQuery('');
+            }}
+            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTopic === 'vision'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-md shadow-cyan-500/20'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Eye className="w-4 h-4 shrink-0 text-cyan-300" />
+            <span className="truncate">Thị Lực (6)</span>
+          </button>
+
+          <button
+            onClick={() => {
+              setActiveTopic('back_pain');
+              setSearchQuery('');
+            }}
+            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+              activeTopic === 'back_pain'
+                ? 'bg-indigo-500 text-white shadow-md shadow-indigo-500/20'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+          >
+            <Activity className="w-4 h-4 shrink-0" />
+            <span className="truncate">Đau Lưng (15)</span>
+          </button>
+
           <button
             onClick={() => {
               setActiveTopic('ankle');
@@ -294,21 +360,6 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
             <Ribbon className="w-4 h-4 shrink-0" />
             <span className="truncate">Tử Cung (26)</span>
           </button>
-
-          <button
-            onClick={() => {
-              setActiveTopic('back_pain');
-              setSearchQuery('');
-            }}
-            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
-              activeTopic === 'back_pain'
-                ? 'bg-indigo-500 text-white shadow-md shadow-indigo-500/20'
-                : 'text-slate-400 hover:text-slate-200'
-            }`}
-          >
-            <Activity className="w-4 h-4 shrink-0" />
-            <span className="truncate">Đau Lưng (15)</span>
-          </button>
         </div>
 
         {/* Search Bar */}
@@ -319,7 +370,9 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={
-              activeTopic === 'ankle' 
+              activeTopic === 'vision'
+                ? "Tìm kiếm về độ cận, độ loạn thị, tròng Stellest, MiYOSMART, MyoCare, trục mắt, quy tắc 20-20-20..."
+                : activeTopic === 'ankle' 
                 ? "Tìm kiếm về nẹp vít mắt cá, đứt dây chằng ATFL, giày CAM boot, loãng xương, tiêm chống đông DVT..."
                 : activeTopic === 'spine' 
                 ? "Tìm kiếm về mổ ACDF, chèn ép tủy, loãng xương, tê tay, BV ĐHYD..." 
@@ -327,13 +380,27 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                 ? "Tìm kiếm về u xơ, rong kinh, sinh thiết Hùng Vương, phẫu thuật nội soi..."
                 : "Tìm kiếm về ngứa ran khi đấm lưng, đau tăng trước kỳ kinh, kê gối ngủ, di căn xương, bài tập McGill..."
             }
-            className="w-full pl-11 pr-4 py-2.5 bg-slate-900/90 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-hidden focus:border-indigo-500 transition-colors"
+            className="w-full pl-11 pr-4 py-2.5 bg-slate-900/90 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-hidden focus:border-cyan-500 transition-colors"
           />
         </div>
 
         {/* Category Filters */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
-          {activeTopic === 'ankle' ? (
+          {activeTopic === 'vision' ? (
+            visionCategories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedVisionCategory(cat.id)}
+                className={`px-3 py-1.5 rounded-lg whitespace-nowrap font-medium transition-all cursor-pointer ${
+                  selectedVisionCategory === cat.id
+                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/50 font-bold'
+                    : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 border border-slate-800'
+                }`}
+              >
+                {cat.label}
+              </button>
+            ))
+          ) : activeTopic === 'ankle' ? (
             ankleCategories.map((cat) => (
               <button
                 key={cat.id}
@@ -395,7 +462,118 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
 
       {/* Main Q&A Content Area */}
       <div className="w-full max-w-5xl sm:max-w-6xl mx-auto px-4 sm:px-6 space-y-3.5">
-        {activeTopic === 'ankle' ? (
+        {activeTopic === 'vision' ? (
+          // ==================== VISION QA LIST ====================
+          filteredVisionQA.length > 0 ? (
+            filteredVisionQA.map((item, idx) => {
+              const isExpanded = expandedVisionIds[item.id] || false;
+              return (
+                <div
+                  key={item.id}
+                  className={`border rounded-2xl transition-all duration-200 overflow-hidden ${
+                    isExpanded 
+                      ? 'bg-slate-900/90 border-cyan-500/40 shadow-lg' 
+                      : 'bg-slate-900/40 border-slate-800 hover:border-slate-700'
+                  }`}
+                >
+                  <button
+                    onClick={() => setExpandedVisionIds(prev => ({ ...prev, [item.id]: !prev[item.id] }))}
+                    className="w-full p-3.5 sm:p-4 text-left flex items-start justify-between gap-3 cursor-pointer"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="flex items-center justify-center w-6 h-6 rounded-full bg-cyan-500/20 text-cyan-300 text-xs font-bold shrink-0 mt-0.5">
+                        {idx + 1}
+                      </span>
+                      <div className="space-y-1">
+                        <span className="text-[11px] font-mono text-cyan-400/90 uppercase font-semibold">
+                          {item.category}
+                        </span>
+                        <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                          {item.question}
+                        </h3>
+                        {!isExpanded && (
+                          <p className="text-xs text-slate-400 line-clamp-2 pt-0.5">
+                            {item.shortSummary}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="shrink-0 p-1 rounded-lg bg-slate-800/80 text-slate-400">
+                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                    </div>
+                  </button>
+
+                  {isExpanded && (
+                    <div className="p-3.5 sm:p-4 pt-0 border-t border-slate-800 space-y-3">
+                      {/* Short summary callout */}
+                      <div className="p-3 bg-cyan-950/30 border border-cyan-800/40 rounded-xl space-y-1.5">
+                        <div className="flex items-center justify-between gap-2">
+                          <div className="text-xs font-bold text-cyan-300 uppercase tracking-wide">
+                            Tóm Tắt:
+                          </div>
+                          <ReadAloudButton
+                            id={`qa-vision-${item.id}`}
+                            title={item.question}
+                            text={`${item.question}. ${item.shortSummary}. Phân tích chi tiết: ${item.detailedPoints.join(' ')}. ${item.clinicalHighlight ? `Lời khuyên lâm sàng: ${item.clinicalHighlight}` : ''}`}
+                            variant="card"
+                            label="Nghe trả lời"
+                          />
+                        </div>
+                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                          {item.shortSummary}
+                        </p>
+                      </div>
+
+                      {/* Detailed Bullet Points */}
+                      <div className="space-y-1.5">
+                        <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
+                          Phân Tích Chi Tiết Chuẩn Nhãn Khoa:
+                        </div>
+                        <div className="space-y-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                          {item.detailedPoints.map((p, i) => (
+                            <p key={i} className="pl-3 border-l-2 border-slate-700">
+                              {p}
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Clinical Highlight */}
+                      {item.clinicalHighlight && (
+                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs text-emerald-200">
+                          <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
+                          <p className="leading-relaxed"><strong className="text-emerald-300">Điểm Nhấn Lâm Sàng: </strong>{item.clinicalHighlight}</p>
+                        </div>
+                      )}
+
+                      {/* Doctor Question to ask */}
+                      {item.doctorQuestionToAsk && (
+                        <div className="p-2.5 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between gap-3">
+                          <div className="text-xs text-slate-300 italic">
+                            <span className="text-cyan-400 font-bold not-italic">Câu hỏi nên mang đi hỏi Bác sĩ: </span>
+                            {item.doctorQuestionToAsk}
+                          </div>
+                          <button
+                            onClick={() => handleCopyText(item.id, item.doctorQuestionToAsk!)}
+                            className="px-2.5 py-1 rounded bg-slate-800 hover:bg-slate-700 text-xs text-cyan-300 transition-colors shrink-0 flex items-center gap-1 cursor-pointer"
+                          >
+                            {copiedId === item.id ? <Check className="w-3.5 h-3.5" /> : <Copy className="w-3.5 h-3.5" />}
+                            <span>{copiedId === item.id ? 'Đã sao chép' : 'Sao chép'}</span>
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <div className="p-12 text-center text-slate-500 bg-slate-900/30 border border-slate-800 rounded-2xl space-y-2">
+              <HelpCircle className="w-8 h-8 mx-auto text-slate-600" />
+              <p>Không tìm thấy câu hỏi phù hợp với từ khóa "{searchQuery}"</p>
+            </div>
+          )
+        ) : activeTopic === 'ankle' ? (
           // ==================== ANKLE QA LIST ====================
           filteredAnkleQA.length > 0 ? (
             filteredAnkleQA.map((item, idx) => {
@@ -442,7 +620,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                       <div className="p-3 bg-rose-950/30 border border-rose-800/40 rounded-xl space-y-1.5">
                         <div className="flex items-center justify-between gap-2">
                           <div className="text-xs font-bold text-rose-300 uppercase tracking-wide">
-                            Tóm Tắt Nhanh (Dễ Nhớ):
+                            Tóm Tắt:
                           </div>
                           <ReadAloudButton
                             id={`qa-ankle-${item.id}`}
@@ -544,7 +722,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                       <div className="p-3 bg-amber-950/30 border border-amber-800/40 rounded-xl space-y-1.5">
                         <div className="flex items-center justify-between gap-2">
                           <div className="text-xs font-bold text-amber-300 uppercase tracking-wide">
-                            Tóm Tắt Nhanh (Dễ Nhớ):
+                            Tóm Tắt:
                           </div>
                           <ReadAloudButton
                             id={`qa-spine-${item.id}`}
@@ -646,7 +824,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                       <div className="p-3 bg-teal-950/30 border border-teal-800/40 rounded-xl space-y-1.5">
                         <div className="flex items-center justify-between gap-2">
                           <div className="text-xs font-bold text-teal-300 uppercase tracking-wide">
-                            Tóm Tắt Nhanh (Dễ Hiểu):
+                            Tóm Tắt:
                           </div>
                           <ReadAloudButton
                             id={`qa-gyn-${item.id}`}
@@ -757,7 +935,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
                       <div className="p-3 bg-indigo-950/30 border border-indigo-800/40 rounded-xl space-y-1.5">
                         <div className="flex items-center justify-between gap-2">
                           <div className="text-xs font-bold text-indigo-300 uppercase tracking-wide">
-                            Tóm Tắt Nhanh (Dễ Hiểu):
+                            Tóm Tắt:
                           </div>
                           <ReadAloudButton
                             id={`qa-bp-${item.id}`}
@@ -826,7 +1004,9 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
       {/* References Section */}
       <ReferencesSection
         references={
-          activeTopic === 'ankle'
+          activeTopic === 'vision'
+            ? visionScientificReferences
+            : activeTopic === 'ankle'
             ? ankleFractureReferences
             : activeTopic === 'spine'
             ? cervicalSpineReferences
@@ -835,7 +1015,9 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'an
             : chronicBackPainReferences
         }
         diseaseTitle={
-          activeTopic === 'ankle'
+          activeTopic === 'vision'
+            ? 'Q&A Kiểm Soát Cận Thị & Loạn Thị (Nhãn Khoa Nhi)'
+            : activeTopic === 'ankle'
             ? 'Q&A Chấn Thương Khớp Cổ Chân'
             : activeTopic === 'spine'
             ? 'Q&A Cột Sống Cổ (ACDF)'

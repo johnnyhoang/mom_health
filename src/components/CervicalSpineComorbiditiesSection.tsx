@@ -95,7 +95,7 @@ export const CervicalSpineComorbiditiesSection: React.FC = () => {
                   <div className="p-3.5 bg-amber-950/20 border border-amber-800/30 rounded-xl space-y-1.5">
                     <div className="flex items-center gap-2 text-amber-400 font-bold text-xs uppercase tracking-wide">
                       <Info className="w-4 h-4" />
-                      <span>Hình Tượng Đời Thường Dễ Hiểu</span>
+                      <span>Minh Họa Trực Quan</span>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
                       "{item.laymanExplanation}"

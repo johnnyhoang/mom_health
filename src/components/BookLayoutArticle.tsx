@@ -172,7 +172,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <div className="p-3.5 rounded-xl bg-slate-900/80 border-l-2 border-teal-500 text-slate-200 text-xs sm:text-sm space-y-1.5">
             <div className="flex items-center gap-2 font-bold text-teal-300">
               <Sparkles className="w-4 h-4 text-teal-400 shrink-0" />
-              <span>Hình tượng đời thường: "Chiếc chìa khóa 2 mặt"</span>
+              <span>Cơ chế trực quan: "Chiếc chìa khóa 2 mặt"</span>
             </div>
             <p>
               Hãy hình dung thụ thể Estrogen như những ổ khóa trên tế bào. Tamoxifen là chiếc chìa khóa đặc biệt:
@@ -500,7 +500,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-teal-400 text-xs text-slate-300 space-y-1">
               <span className="font-bold text-teal-300 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-                <span>Hình tượng đời thường dễ hiểu:</span>
+                <span>Minh họa trực quan:</span>
               </span>
               <p className="text-slate-200">{activeTreatment.laymanAnalogy}</p>
             </div>

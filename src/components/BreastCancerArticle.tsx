@@ -248,7 +248,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-rose-400 text-xs space-y-1 text-slate-300">
               <span className="font-bold text-rose-300 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-rose-400 shrink-0" />
-                <span>Hình tượng đời thường giúp giải mã 4 chỉ số:</span>
+                <span>Giải mã trực quan 4 chỉ số:</span>
               </span>
               <ul className="grid grid-cols-1 sm:grid-cols-3 gap-2 text-[11px] pt-1">
                 <li className="p-2 rounded-lg bg-slate-900 border border-slate-800/80">
@@ -453,7 +453,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-amber-400 text-xs text-slate-300 space-y-0.5">
               <span className="font-bold text-amber-300 flex items-center gap-1.5">
                 <Sparkles className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                <span>Hình tượng đời thường dễ hiểu:</span>
+                <span>Minh họa trực quan:</span>
               </span>
               <p className="text-slate-200">{activeTherapy.laymanAnalogy}</p>
             </div>

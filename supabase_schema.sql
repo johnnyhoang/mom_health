@@ -47,9 +47,21 @@ CREATE TABLE IF NOT EXISTS public.mh_daily_logs (
   event_note TEXT,
   clinical_interpretation TEXT,
   is_key_milestone BOOLEAN DEFAULT false,
+  has_intercourse BOOLEAN DEFAULT false,
+  intercourse_protection TEXT,
+  intercourse_orgasm BOOLEAN,
+  intercourse_count INTEGER DEFAULT 1,
+  intercourse_note TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW(),
   updated_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Migration helpers if table already exists
+ALTER TABLE public.mh_daily_logs ADD COLUMN IF NOT EXISTS has_intercourse BOOLEAN DEFAULT false;
+ALTER TABLE public.mh_daily_logs ADD COLUMN IF NOT EXISTS intercourse_protection TEXT;
+ALTER TABLE public.mh_daily_logs ADD COLUMN IF NOT EXISTS intercourse_orgasm BOOLEAN;
+ALTER TABLE public.mh_daily_logs ADD COLUMN IF NOT EXISTS intercourse_count INTEGER DEFAULT 1;
+ALTER TABLE public.mh_daily_logs ADD COLUMN IF NOT EXISTS intercourse_note TEXT;
 
 -- Enable RLS for daily logs
 ALTER TABLE public.mh_daily_logs ENABLE ROW LEVEL SECURITY;

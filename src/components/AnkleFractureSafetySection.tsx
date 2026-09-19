@@ -100,7 +100,7 @@ export const AnkleFractureSafetySection: React.FC = () => {
                   <div className="p-3.5 bg-rose-950/20 border border-rose-800/30 rounded-xl space-y-1.5">
                     <div className="flex items-center gap-2 text-rose-400 font-bold text-xs uppercase tracking-wide">
                       <Info className="w-4 h-4" />
-                      <span>Hình Tượng Đời Thường Dễ Hiểu</span>
+                      <span>Minh Họa Trực Quan</span>
                     </div>
                     <p className="text-xs sm:text-sm text-slate-200 leading-relaxed italic">
                       "{item.laymanExplanation}"

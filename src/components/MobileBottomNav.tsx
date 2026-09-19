@@ -10,23 +10,34 @@ import {
   Bone,
   Footprints,
   Activity,
-  Calendar
+  Calendar,
+  Eye
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
   onJumpToSection: (sectionId: string) => void;
   activeSection: string;
-  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker';
-  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'qa' | 'doctors' | 'cycle_tracker') => void;
+  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker';
+  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker') => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
   onJumpToSection,
   activeSection,
-  currentView = 'ankle_trauma',
+  currentView = 'vision_myopia',
   onSwitchView
 }) => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+
+  const visionChapters = [
+    { id: 'vision-ch-1', title: 'Chương 1: Bản Chất Thật Sự Của Tăng Độ Cận & Trục Nhãn Cầu', desc: 'Sự dài ra trục mắt (Axial Elongation), nghịch lý kính đơn tròng gây Defocus võng mạc ngoại vi' },
+    { id: 'vision-ch-2', title: 'Chương 2: Giải Mã Độ Loạn Thị Đi Kèm & Canh Tâm 3D', desc: 'Khúc xạ hình trụ, hiệu chỉnh Cylinder/Axis và yêu cầu lấy tâm đồng tử PD/FH chính xác 0.1mm' },
+    { id: 'vision-ch-3', title: 'Chương 3: Nghiên Cứu Y Học & 4 Công Nghệ Tròng Defocus', desc: 'JAMA Ophthalmology & BJO: H.A.L.T (67%), D.I.M.S (60%), C.A.R.E, so sánh Ortho-K & Atropine' },
+    { id: 'vision-ch-4', title: 'Chương 4: Top Thương Hiệu Tròng Kính Tại VN (2026)', desc: 'Essilor Stellest, Hoya MiYOSMART, Zeiss MyoCare S, Rodenstock MyCon, Chemi Myo' },
+    { id: 'vision-ch-5', title: 'Chương 5: Phác Đồ "Tam Giác Vàng" Cá Thể Hóa Tuổi Dậy Thì', desc: 'Tròng Stellest/MyoCare S + Quy tắc 20-20-20 + Hoạt động ngoài trời >= 2h/ngày + Đo trục nhãn cầu' },
+    { id: 'vision-ch-6', title: 'Chương 6: Cẩm Nang Hỏi Đáp & Câu Hỏi Chuẩn Bị Cho Bác Sĩ', desc: 'Giải đáp thắc mắc thường gặp và câu hỏi chuyên sâu mang theo khi đi khám khúc xạ' },
+    { id: 'vision-ch-7', title: 'Chương 7: Dinh Dưỡng Nuôi Võng Mạc & Tài Liệu Quốc Tế', desc: 'Lutein, Zeaxanthin, Omega-3 DHA, hướng dẫn IMI 2024 & AAO' }
+  ];
 
   const backPainChapters = [
     { id: 'bp-ch-1', title: 'Chương 1: Giải Mã Hiện Tượng Ngứa Ran & Bệnh Sử Tuổi 25', desc: 'Thuyết cổng kiểm soát, nhánh thần kinh bì lưng sau (Notalgia Paresthetica)' },
@@ -77,7 +88,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     { id: 'chapter-7', title: 'Chương 7: Chăm Sóc Sức Khỏe & Tái Khám', desc: 'Dinh dưỡng bổ máu, bảo vệ xương khớp & tầm soát kép định kỳ' }
   ];
 
-  const handleJump = (id: string, targetModule: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain') => {
+  const handleJump = (id: string, targetModule: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia') => {
     setIsDrawerOpen(false);
     if (currentView !== targetModule && onSwitchView) {
       onSwitchView(targetModule);
@@ -96,32 +107,32 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       {/* Floating Bottom Nav Bar */}
       <div className="fixed bottom-3 inset-x-0 z-40 px-2 sm:px-6 pointer-events-none flex justify-center">
         <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 text-white max-w-xl w-full justify-between">
-          {/* Nhập Chu Kỳ Button (Nổi Bật) */}
+          {/* Thị Lực Minh Anh Button */}
           <button
             onClick={() => {
-              if (onSwitchView) onSwitchView('cycle_tracker');
+              if (onSwitchView) onSwitchView('vision_myopia');
             }}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all flex-1 cursor-pointer ${
-              currentView === 'cycle_tracker'
-                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold shadow-md shadow-rose-500/30'
-                : 'text-rose-300 hover:text-white hover:bg-slate-800'
+              currentView === 'vision_myopia'
+                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold shadow-md shadow-cyan-500/30'
+                : 'text-cyan-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <Calendar className={`w-4 h-4 ${currentView === 'cycle_tracker' ? 'text-white' : 'text-rose-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Nhập Chu Kỳ</span>
+            <Eye className={`w-4 h-4 ${currentView === 'vision_myopia' ? 'text-slate-950' : 'text-cyan-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">Thị Lực</span>
           </button>
 
-          {/* Mục Lục 5 Chuyên Khảo */}
+          {/* Mục Lục Chuyên Khảo */}
           <button
             onClick={() => setIsDrawerOpen(true)}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all flex-1 cursor-pointer ${
-              currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'chronic_back_pain' || currentView === 'breast_cancer' || currentView === 'monograph'
-                ? 'bg-slate-800 text-teal-300 font-bold border border-teal-500/40'
+              currentView === 'vision_myopia' || currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'chronic_back_pain' || currentView === 'breast_cancer' || currentView === 'monograph'
+                ? 'bg-slate-800 text-cyan-300 font-bold border border-cyan-500/40'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <ListOrdered className="w-4 h-4 text-teal-400" />
-            <span className="text-[10px] font-bold mt-0.5">5 Chuyên Khảo</span>
+            <ListOrdered className="w-4 h-4 text-cyan-400" />
+            <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
           </button>
 
           {/* Q&A Button */}
@@ -136,7 +147,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             }`}
           >
             <HelpCircle className={`w-4 h-4 ${currentView === 'qa' ? 'text-slate-950' : 'text-amber-300'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Q&A (68)</span>
+            <span className="text-[10px] font-bold mt-0.5">Q&A</span>
           </button>
 
           {/* Doctors Button */}
@@ -197,8 +208,49 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
                   Mở Tool
                 </button>
               </div>
-              {/* Back Pain Chapters (MỚI) */}
+
+              {/* Vision Chapters (Minh Anh) */}
               <div className="space-y-2">
+                <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 px-2">
+                  <Eye className="w-3.5 h-3.5" />
+                  <span>Chuyên Khảo Thị Lực (Minh Anh - 7 Chương)</span>
+                </div>
+                <div className="space-y-1">
+                  {visionChapters.map((ch, idx) => {
+                    const isActive = activeSection === ch.id;
+                    return (
+                      <button
+                        key={ch.id}
+                        onClick={() => handleJump(ch.id, 'vision_myopia')}
+                        className={`w-full text-left p-2.5 rounded-xl transition-all group flex items-start gap-2.5 cursor-pointer ${
+                          isActive 
+                            ? 'bg-cyan-500/20 border border-cyan-500/40 text-cyan-300' 
+                            : 'hover:bg-slate-800/80 border border-transparent'
+                        }`}
+                      >
+                        <span className={`flex items-center justify-center w-5 h-5 rounded-full text-[10px] font-bold shrink-0 mt-0.5 ${
+                          isActive ? 'bg-cyan-500 text-slate-950' : 'bg-cyan-500/20 text-cyan-300'
+                        }`}>
+                          {idx + 1}
+                        </span>
+                        <div>
+                          <div className={`text-xs font-bold transition-colors ${
+                            isActive ? 'text-cyan-300' : 'text-slate-200 group-hover:text-cyan-300'
+                          }`}>
+                            {ch.title}
+                          </div>
+                          <div className="text-[11px] text-slate-400 line-clamp-1">
+                            {ch.desc}
+                          </div>
+                        </div>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Back Pain Chapters */}
+              <div className="space-y-2 pt-2 border-t border-slate-800">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-400 px-2">
                   <Activity className="w-3.5 h-3.5" />
                   <span>Chuyên Khảo Đau Lưng Kinh Niên (7 Chương)</span>
