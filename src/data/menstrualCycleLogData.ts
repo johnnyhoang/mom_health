@@ -14,6 +14,12 @@ export interface DailyCycleLog {
   eventNote?: string;
   clinicalInterpretation: string;
   isKeyMilestone?: boolean;
+  // Sexual intimacy / Intimacy tracking (WomanLog)
+  hasIntercourse?: boolean;
+  intercourseProtection?: 'protected' | 'unprotected' | 'none';
+  intercourseOrgasm?: boolean;
+  intercourseCount?: number;
+  intercourseNote?: string;
 }
 
 export interface CyclePhaseAnalysis {
@@ -39,8 +45,8 @@ export interface SymptomDecoder {
 export const menstrualCycleLogs: DailyCycleLog[] = [
   {
     date: '15/09/2026',
-    dayOfWeek: 'Thứ Ba (Tuesday)',
-    cycleDayText: 'Ngày 23 chu kỳ (Pha hoàng thể muộn / Tiền kinh nguyệt)',
+    dayOfWeek: 'Thứ Ba',
+    cycleDayText: 'Ngày 23 (Hoàng thể muộn)',
     cycleDayNumber: 23,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Hoàng Thể)',
@@ -56,8 +62,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '14/09/2026',
-    dayOfWeek: 'Thứ Hai (Monday)',
-    cycleDayText: 'Ngày 22 chu kỳ (Pha hoàng thể)',
+    dayOfWeek: 'Thứ Hai',
+    cycleDayText: 'Ngày 22 (Hoàng thể)',
     cycleDayNumber: 22,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Hoàng Thể)',
@@ -70,8 +76,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '13/09/2026',
-    dayOfWeek: 'Chủ Nhật (Sunday)',
-    cycleDayText: 'Ngày 21 chu kỳ (Pha hoàng thể)',
+    dayOfWeek: 'Chủ Nhật',
+    cycleDayText: 'Ngày 21 (Hoàng thể)',
     cycleDayNumber: 21,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Hoàng Thể)',
@@ -84,8 +90,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '12/09/2026',
-    dayOfWeek: 'Thứ Bảy (Saturday)',
-    cycleDayText: 'Ngày 20 chu kỳ (Pha hoàng thể)',
+    dayOfWeek: 'Thứ Bảy',
+    cycleDayText: 'Ngày 20 (Hoàng thể)',
     cycleDayNumber: 20,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Hoàng Thể)',
@@ -98,8 +104,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '11/09/2026',
-    dayOfWeek: 'Thứ Sáu (Friday)',
-    cycleDayText: 'Ngày 19 chu kỳ (Pha hoàng thể)',
+    dayOfWeek: 'Thứ Sáu',
+    cycleDayText: 'Ngày 19 (Hoàng thể)',
     cycleDayNumber: 19,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Hoàng Thể)',
@@ -113,8 +119,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '10/09/2026',
-    dayOfWeek: 'Thứ Năm (Thursday)',
-    cycleDayText: 'Ngày 18 chu kỳ (Pha hoàng thể / 1 ngày sau Pipelle)',
+    dayOfWeek: 'Thứ Năm',
+    cycleDayText: 'Ngày 18 (Hoàng thể)',
     cycleDayNumber: 18,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Hoàng Thể)',
@@ -128,8 +134,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '09/09/2026',
-    dayOfWeek: 'Thứ Tư (Wednesday)',
-    cycleDayText: 'Ngày 17 chu kỳ (Thời điểm sinh thiết Pipelle)',
+    dayOfWeek: 'Thứ Tư',
+    cycleDayText: 'Ngày 17 (Sinh thiết Pipelle)',
     cycleDayNumber: 17,
     phase: 'secretory',
     phaseLabel: 'Pha Phân Tiết (Sinh Thiết Pipelle)',
@@ -145,8 +151,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '08/09/2026',
-    dayOfWeek: 'Thứ Ba (Tuesday)',
-    cycleDayText: 'Ngày 16 chu kỳ (Cuối pha rụng trứng)',
+    dayOfWeek: 'Thứ Ba',
+    cycleDayText: 'Ngày 16 (Cuối rụng trứng)',
     cycleDayNumber: 16,
     phase: 'ovulatory',
     phaseLabel: 'Pha Rụng Trứng (Quanh Ovulation)',
@@ -159,8 +165,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '07/09/2026',
-    dayOfWeek: 'Thứ Hai (Monday)',
-    cycleDayText: 'Ngày 15 chu kỳ (Pha rụng trứng)',
+    dayOfWeek: 'Thứ Hai',
+    cycleDayText: 'Ngày 15 (Rụng trứng)',
     cycleDayNumber: 15,
     phase: 'ovulatory',
     phaseLabel: 'Pha Rụng Trứng (Quanh Ovulation)',
@@ -170,11 +176,16 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
     dischargeLabel: 'Dính cam sau quan hệ',
     painLevel: 'none',
     clinicalInterpretation: 'Cổ tử cung và niêm mạc đang xung huyết trong pha rụng trứng; cọ sát cơ học khi sinh hoạt tạo ra vài đốm vi thể màu cam vô hại.',
+    hasIntercourse: true,
+    intercourseProtection: 'protected',
+    intercourseCount: 1,
+    intercourseOrgasm: true,
+    intercourseNote: 'Dính cam nhẹ sau sinh hoạt vợ chồng'
   },
   {
     date: '06/09/2026',
-    dayOfWeek: 'Chủ Nhật (Sunday)',
-    cycleDayText: 'Ngày 14 chu kỳ (Thời điểm rụng trứng - Ovulation Peak)',
+    dayOfWeek: 'Chủ Nhật',
+    cycleDayText: 'Ngày 14 (Đỉnh rụng trứng)',
     cycleDayNumber: 14,
     phase: 'ovulatory',
     phaseLabel: 'Pha Rụng Trứng (Đỉnh Phóng Noãn)',
@@ -188,8 +199,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '05/09/2026',
-    dayOfWeek: 'Thứ Bảy (Saturday)',
-    cycleDayText: 'Ngày 13 chu kỳ (Tiền rụng trứng)',
+    dayOfWeek: 'Thứ Bảy',
+    cycleDayText: 'Ngày 13 (Tiền rụng trứng)',
     cycleDayNumber: 13,
     phase: 'ovulatory',
     phaseLabel: 'Pha Rụng Trứng',
@@ -202,8 +213,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '04/09/2026',
-    dayOfWeek: 'Thứ Sáu (Friday)',
-    cycleDayText: 'Ngày 12 chu kỳ (Tiền rụng trứng)',
+    dayOfWeek: 'Thứ Sáu',
+    cycleDayText: 'Ngày 12 (Tiền rụng trứng)',
     cycleDayNumber: 12,
     phase: 'ovulatory',
     phaseLabel: 'Pha Rụng Trứng',
@@ -216,8 +227,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '03/09/2026',
-    dayOfWeek: 'Thứ Năm (Thursday)',
-    cycleDayText: 'Ngày 11 chu kỳ (Pha tăng sinh muộn)',
+    dayOfWeek: 'Thứ Năm',
+    cycleDayText: 'Ngày 11 (Tăng sinh muộn)',
     cycleDayNumber: 11,
     phase: 'ovulatory',
     phaseLabel: 'Pha Rụng Trứng',
@@ -230,8 +241,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '02/09/2026',
-    dayOfWeek: 'Thứ Tư (Wednesday)',
-    cycleDayText: 'Ngày 10 chu kỳ (Sạch kinh hoàn toàn)',
+    dayOfWeek: 'Thứ Tư',
+    cycleDayText: 'Ngày 10 (Sạch kinh)',
     cycleDayNumber: 10,
     phase: 'proliferative',
     phaseLabel: 'Pha Tăng Sinh (Sạch Kinh)',
@@ -244,8 +255,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '01/09/2026',
-    dayOfWeek: 'Thứ Ba (Tuesday)',
-    cycleDayText: 'Ngày 9 chu kỳ (Dư âm cuối kỳ kinh)',
+    dayOfWeek: 'Thứ Ba',
+    cycleDayText: 'Ngày 9 (Cuối kỳ kinh)',
     cycleDayNumber: 9,
     phase: 'proliferative',
     phaseLabel: 'Pha Tăng Sinh',
@@ -258,8 +269,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '31/08/2026',
-    dayOfWeek: 'Thứ Hai (Monday)',
-    cycleDayText: 'Ngày 8 chu kỳ (Vận động thể thao)',
+    dayOfWeek: 'Thứ Hai',
+    cycleDayText: 'Ngày 8 (Tập aerobic)',
     cycleDayNumber: 8,
     phase: 'proliferative',
     phaseLabel: 'Pha Tăng Sinh',
@@ -272,8 +283,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '30/08/2026',
-    dayOfWeek: 'Chủ Nhật (Sunday)',
-    cycleDayText: 'Ngày 7 chu kỳ (Kinh ngày 7)',
+    dayOfWeek: 'Chủ Nhật',
+    cycleDayText: 'Ngày 7 (Kinh ngày 7)',
     cycleDayNumber: 7,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh',
@@ -286,8 +297,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '29/08/2026',
-    dayOfWeek: 'Thứ Bảy (Saturday)',
-    cycleDayText: 'Ngày 6 chu kỳ (Kinh ngày 6)',
+    dayOfWeek: 'Thứ Bảy',
+    cycleDayText: 'Ngày 6 (Kinh ngày 6)',
     cycleDayNumber: 6,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh',
@@ -300,8 +311,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '28/08/2026',
-    dayOfWeek: 'Thứ Sáu (Friday)',
-    cycleDayText: 'Ngày 5 chu kỳ (Kinh ngày 5)',
+    dayOfWeek: 'Thứ Sáu',
+    cycleDayText: 'Ngày 5 (Kinh ngày 5)',
     cycleDayNumber: 5,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh',
@@ -314,8 +325,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '27/08/2026',
-    dayOfWeek: 'Thứ Năm (Thursday)',
-    cycleDayText: 'Ngày 4 chu kỳ (Kinh ngày 4)',
+    dayOfWeek: 'Thứ Năm',
+    cycleDayText: 'Ngày 4 (Kinh ngày 4)',
     cycleDayNumber: 4,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh',
@@ -329,8 +340,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '26/08/2026',
-    dayOfWeek: 'Thứ Tư (Wednesday)',
-    cycleDayText: 'Ngày 3 chu kỳ (Kinh ngày 3)',
+    dayOfWeek: 'Thứ Tư',
+    cycleDayText: 'Ngày 3 (Kinh ngày 3)',
     cycleDayNumber: 3,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh',
@@ -344,8 +355,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '25/08/2026',
-    dayOfWeek: 'Thứ Ba (Tuesday)',
-    cycleDayText: 'Ngày 2 chu kỳ (Kinh ngày 2 - Đỉnh hành kinh)',
+    dayOfWeek: 'Thứ Ba',
+    cycleDayText: 'Ngày 2 (Kinh ngày 2)',
     cycleDayNumber: 2,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh',
@@ -359,8 +370,8 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   },
   {
     date: '24/08/2026',
-    dayOfWeek: 'Thứ Hai (Monday)',
-    cycleDayText: 'Ngày 1 chu kỳ (BẮT ĐẦU KỲ KINH NGUYỆT - Start Period)',
+    dayOfWeek: 'Thứ Hai',
+    cycleDayText: 'Ngày 1 (Bắt đầu kỳ kinh)',
     cycleDayNumber: 1,
     phase: 'menstrual',
     phaseLabel: 'Pha Hành Kinh (Bắt Đầu Chu Kỳ)',
@@ -377,7 +388,7 @@ export const menstrualCycleLogs: DailyCycleLog[] = [
   {
     date: '01/08 - 23/08/2026',
     dayOfWeek: 'Giai đoạn trước',
-    cycleDayText: 'Chu kỳ trước / Giai đoạn tiền hành kinh',
+    cycleDayText: 'Chu kỳ trước',
     phase: 'prior_cycle',
     phaseLabel: 'Chu Kỳ Trước',
     summary: 'Giai đoạn sinh hoạt bình thường, xen kẽ vài ngày có đốm cam nhẹ sau vận động/quan hệ, chuẩn bị bước vào kỳ kinh 24/08.',

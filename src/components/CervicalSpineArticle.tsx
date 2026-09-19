@@ -95,8 +95,8 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <span>Chuyên Khảo Phẫu Thuật Cột Sống & Thần Kinh • Cập Nhật 2026</span>
         </div>
 
-        {/* Main Title */}
-        <div className="space-y-3">
+        {/* Main Title & Unified Header Container */}
+        <div className="space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
             Thoát Vị Đĩa Đệm Cột Sống Cổ Chèn Ép Tủy & Phẫu Thuật ACDF
           </h1>
@@ -104,53 +104,44 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
             Nghiên cứu chuyên sâu phân tích 3 bệnh án thực tế (MRI Cột sống cổ CIH, MRI Thắt lưng Saigon Medic, Giấy giới thiệu Lầu 8A BV ĐHYD), giải pháp phẫu thuật vi phẫu ACDF lối trước và ma trận an toàn chu phẫu cho cụ bà 74 tuổi.
           </p>
 
-          {/* Read Aloud Full Article Button */}
-          <div className="pt-2">
-            <ReadAloudButton
-              id="spine-monograph-full"
-              title="Thoát Vị Cột Sống Cổ Chèn Ép Tủy & Phẫu Thuật ACDF"
-              text="Chuyên khảo: Thoát vị đĩa đệm cột sống cổ chèn ép tủy và phẫu thuật hàn xương liên thân đốt lối trước ACDF. Phân tích 3 bệnh án thực tế tại bệnh viện CIH, Saigon Medic và bệnh viện Đại học Y Dược thành phố Hồ Chí Minh. Phẫu thuật vi phẫu ACDF giúp giải ép tủy sống khẩn cấp, ngăn chặn nguy cơ yếu liệt tứ chi, kết hợp nẹp khóa góc và thuốc chống đông an toàn cho người cao tuổi."
-              variant="hero"
-              label="Bấm để nghe đọc chuyên khảo"
-              durationEstimate="~15 phút"
-            />
-          </div>
-        </div>
-
-        {/* Evidence & Guidelines Meta Banner */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-b border-slate-800/80 pb-6">
-          <div className="flex items-center gap-1.5 text-amber-300 font-medium">
-            <ShieldCheck className="w-4 h-4 text-amber-400" />
-            <span>Tiêu chuẩn AANS • NASS • AOSpine • BV ĐHYD TP.HCM</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>Thời lượng đọc: 15 phút</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
-            <span>Hồ sơ y khoa: Tháng 06/2026</span>
-          </div>
-        </div>
-
-        {/* Quick Author / Medical Team Callout */}
-        <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 font-bold text-sm">
-              <Stethoscope className="w-5 h-5" />
+          {/* Unified Preface & Metadata Panel */}
+          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <ReadAloudButton
+                id="spine-monograph-full"
+                title="Thoát Vị Cột Sống Cổ Chèn Ép Tủy & Phẫu Thuật ACDF"
+                text="Chuyên khảo: Thoát vị đĩa đệm cột sống cổ chèn ép tủy và phẫu thuật hàn xương liên thân đốt lối trước ACDF. Phân tích 3 bệnh án thực tế tại bệnh viện CIH, Saigon Medic và bệnh viện Đại học Y Dược thành phố Hồ Chí Minh. Phẫu thuật vi phẫu ACDF giúp giải ép tủy sống khẩn cấp, ngăn chặn nguy cơ yếu liệt tứ chi, kết hợp nẹp khóa góc và thuốc chống đông an toàn cho người cao tuổi."
+                variant="hero"
+                label="Bấm để nghe đọc chuyên khảo"
+                durationEstimate="~15 phút"
+              />
+              <button 
+                onClick={onNavigateToDoctors}
+                className="px-3.5 py-2 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <Stethoscope className="w-4 h-4 text-amber-400" />
+                <span>Top Bác Sĩ Cột Sống & Thần Kinh</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
-            <div>
-              <div className="text-sm font-bold text-white">Đơn Vị Ngoại Thần Kinh & Cột Sống</div>
-              <div className="text-xs text-slate-400">Khoa Ngoại Thần Kinh (Lầu 8A) • BV Đại Học Y Dược TP.HCM</div>
+
+            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+              <div className="flex items-center gap-1.5 text-amber-300 font-medium">
+                <ShieldCheck className="w-4 h-4 text-amber-400" />
+                <span>AANS • NASS • AOSpine • Lầu 8A BV ĐHYD TP.HCM</span>
+              </div>
+              <div className="flex items-center gap-4 text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Thời lượng: 15 phút</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Tháng 06/2026</span>
+                </span>
+              </div>
             </div>
           </div>
-          <button 
-            onClick={onNavigateToDoctors}
-            className="px-3 py-1.5 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 text-amber-300 border border-amber-500/30 text-xs font-semibold transition-all flex items-center gap-1 shrink-0"
-          >
-            <span>Top 10 Bác Sĩ</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
         </div>
       </header>
 

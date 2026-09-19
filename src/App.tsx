@@ -184,109 +184,112 @@ export function App() {
             </span>
           </div>
 
-          {/* View Mode Toggle Pill (8 Navigation Tabs) */}
-          <div className="flex items-center p-1 rounded-xl bg-slate-900 border border-slate-800 text-[11px] sm:text-xs font-bold overflow-x-auto max-w-full gap-0.5">
-            {/* Theo Dõi Chu Kỳ (MỚI & NỔI BẬT) */}
+          {/* Smart Categorized Navigation Header */}
+          <div className="flex items-center gap-1.5 overflow-x-auto max-w-full text-xs font-bold py-1">
+            {/* 1. Công Cụ Theo Dõi Chu Kỳ (Nổi Bật Nhất) */}
             <button
               onClick={() => handleSwitchView('cycle_tracker')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
+              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
                 currentView === 'cycle_tracker'
-                  ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/30 ring-1 ring-rose-400 font-extrabold'
-                  : 'text-rose-300 hover:text-rose-100 bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/50'
+                  ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/30 ring-1 ring-rose-400 font-black'
+                  : 'text-rose-300 hover:text-white bg-rose-950/40 hover:bg-rose-900/60 border border-rose-900/50'
               }`}
             >
-              <Calendar className="w-3.5 h-3.5 shrink-0 text-rose-300" />
+              <Calendar className="w-3.5 h-3.5 text-rose-300 shrink-0" />
               <span>Nhập Chu Kỳ (43)</span>
             </button>
 
-            {/* Mắt Cá Chân */}
-            <button
-              onClick={() => handleSwitchView('ankle_trauma')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
-                currentView === 'ankle_trauma'
-                  ? 'bg-rose-500 text-white shadow-sm shadow-rose-500/30'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Footprints className="w-3.5 h-3.5 shrink-0" />
-              <span>Mắt Cá</span>
-            </button>
+            {/* 2. 5 Chuyên Khảo Bệnh Học (Group Segmented Tabs) */}
+            <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 gap-0.5">
+              <button
+                onClick={() => handleSwitchView('ankle_trauma')}
+                title="Chuyên khảo Mắt Cá Chân"
+                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                  currentView === 'ankle_trauma'
+                    ? 'bg-rose-500 text-white shadow-sm font-black'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                <Footprints className="w-3.5 h-3.5 shrink-0" />
+                <span>Mắt Cá</span>
+              </button>
 
-            {/* Cột Sống Cổ */}
-            <button
-              onClick={() => handleSwitchView('cervical_spine')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
-                currentView === 'cervical_spine'
-                  ? 'bg-amber-500 text-slate-950 shadow-sm shadow-amber-500/30'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Bone className="w-3.5 h-3.5 shrink-0" />
-              <span>Cổ ACDF</span>
-            </button>
+              <button
+                onClick={() => handleSwitchView('cervical_spine')}
+                title="Chuyên khảo Cột Sống Cổ ACDF"
+                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                  currentView === 'cervical_spine'
+                    ? 'bg-amber-500 text-slate-950 shadow-sm font-black'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                <Bone className="w-3.5 h-3.5 shrink-0" />
+                <span>Cổ ACDF</span>
+              </button>
 
-            {/* Đau Lưng Kinh Niên */}
-            <button
-              onClick={() => handleSwitchView('chronic_back_pain')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
-                currentView === 'chronic_back_pain'
-                  ? 'bg-indigo-500 text-white shadow-sm shadow-indigo-500/30 ring-1 ring-indigo-400'
-                  : 'text-indigo-400 hover:text-indigo-200 bg-indigo-950/30'
-              }`}
-            >
-              <Activity className="w-3.5 h-3.5 shrink-0" />
-              <span>Đau Lưng</span>
-            </button>
+              <button
+                onClick={() => handleSwitchView('chronic_back_pain')}
+                title="Chuyên khảo Đau Lưng Kinh Niên"
+                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                  currentView === 'chronic_back_pain'
+                    ? 'bg-indigo-500 text-white shadow-sm font-black'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                <Activity className="w-3.5 h-3.5 shrink-0" />
+                <span>Đau Lưng</span>
+              </button>
 
-            {/* K Vú */}
-            <button
-              onClick={() => handleSwitchView('breast_cancer')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
-                currentView === 'breast_cancer'
-                  ? 'bg-rose-500 text-white shadow-sm shadow-rose-500/30'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Ribbon className="w-3.5 h-3.5 shrink-0" />
-              <span>K Vú</span>
-            </button>
+              <button
+                onClick={() => handleSwitchView('breast_cancer')}
+                title="Chuyên khảo K Vú"
+                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                  currentView === 'breast_cancer'
+                    ? 'bg-rose-500 text-white shadow-sm font-black'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                <Ribbon className="w-3.5 h-3.5 shrink-0" />
+                <span>K Vú</span>
+              </button>
 
-            {/* Tử Cung */}
-            <button
-              onClick={() => handleSwitchView('monograph')}
-              className={`px-2.5 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
-                currentView === 'monograph'
-                  ? 'bg-teal-500 text-slate-950 shadow-sm shadow-teal-500/30'
-                  : 'text-slate-400 hover:text-slate-200'
-              }`}
-            >
-              <Stethoscope className="w-3.5 h-3.5 shrink-0" />
-              <span>Tử Cung</span>
-            </button>
+              <button
+                onClick={() => handleSwitchView('monograph')}
+                title="Chuyên khảo Phụ Khoa & Tử Cung"
+                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                  currentView === 'monograph'
+                    ? 'bg-teal-500 text-slate-950 shadow-sm font-black'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                }`}
+              >
+                <Stethoscope className="w-3.5 h-3.5 shrink-0" />
+                <span>Tử Cung</span>
+              </button>
+            </div>
 
-            {/* Q&A */}
+            {/* 3. Hỏi Đáp Q&A */}
             <button
               onClick={() => handleSwitchView('qa')}
-              className={`px-2 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
+              className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
                 currentView === 'qa'
-                  ? 'bg-amber-400 text-slate-950 shadow-sm shadow-amber-400/30'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-amber-400 text-slate-950 font-black shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-800'
               }`}
             >
-              <HelpCircle className="w-3.5 h-3.5 shrink-0" />
+              <HelpCircle className="w-3.5 h-3.5 shrink-0 text-amber-400" />
               <span>Q&A (68)</span>
             </button>
 
-            {/* Bác Sĩ */}
+            {/* 4. Danh Bạ Bác Sĩ */}
             <button
               onClick={() => handleSwitchView('doctors')}
-              className={`px-2 sm:px-3 py-1 rounded-lg transition-all flex items-center gap-1 sm:gap-1.5 whitespace-nowrap cursor-pointer ${
+              className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
                 currentView === 'doctors'
-                  ? 'bg-purple-500 text-white shadow-sm shadow-purple-500/30'
-                  : 'text-slate-400 hover:text-slate-200'
+                  ? 'bg-purple-500 text-white font-black shadow-sm'
+                  : 'text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-800'
               }`}
             >
-              <UserCheck className="w-3.5 h-3.5 shrink-0" />
+              <UserCheck className="w-3.5 h-3.5 shrink-0 text-purple-400" />
               <span>Bác Sĩ</span>
             </button>
           </div>

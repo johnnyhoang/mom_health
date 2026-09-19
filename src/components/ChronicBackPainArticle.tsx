@@ -105,8 +105,8 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <span>Chuyên Khảo Thần Kinh Cột Sống & Cơ Sinh Học • Cập Nhật 2026</span>
         </div>
 
-        {/* Main Title */}
-        <div className="space-y-3">
+        {/* Main Title & Unified Header Container */}
+        <div className="space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
             Đau Lưng Kinh Niên & Hội Chứng Thần Kinh Cân Cơ: Từ Hiện Tượng Ngứa Ran Đến Tương Quan Tử Cung - K Vú
           </h1>
@@ -114,88 +114,73 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
             Nghiên cứu chuyên sâu về bệnh sử từ năm 25 tuổi, giải mã nghịch lý đấm lưng đỡ nhưng ngứa ran (Notalgia Paresthetica), cơ chế đau bùng phát trước kỳ kinh (Adenomyosis/U xơ 45mm), bí mật kê gối khi ngủ và phác đồ phục hồi đa mô thức.
           </p>
 
-          {/* Hero ReadAloudButton */}
-          <div className="pt-2">
-            <ReadAloudButton
-              id="back-pain-hero"
-              title="Chuyên Khảo Đau Lưng Kinh Niên & Hội Chứng Thần Kinh Cân Cơ"
-              text="Chuyên khảo đau lưng kinh niên và hội chứng thần kinh cân cơ: từ hiện tượng ngứa ran đến tương quan tử cung và ung thư vú. Nghiên cứu chuyên sâu giải mã bệnh sử từ năm 25 tuổi, nghịch lý đấm lưng đỡ nhưng ngứa ran do kích thích nhánh thần kinh bì lưng sau Notalgia Paresthetica, cơ chế đau bùng phát trước chu kỳ kinh do đau quy chiếu từ lạc tuyến cơ tử cung và u xơ 45mm thành sau, cơ chế kê gối khi ngủ và khẳng định an tâm 100% không phải di căn xương."
-              variant="hero"
-              label="Bấm để nghe đọc cẩm nang Đau Lưng"
-              durationEstimate="~14 phút"
-            />
+          {/* Unified Preface & Case Profile Panel */}
+          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <ReadAloudButton
+                id="back-pain-hero"
+                title="Chuyên Khảo Đau Lưng Kinh Niên & Hội Chứng Thần Kinh Cân Cơ"
+                text="Chuyên khảo đau lưng kinh niên và hội chứng thần kinh cân cơ: từ hiện tượng ngứa ran đến tương quan tử cung và ung thư vú. Nghiên cứu chuyên sâu giải mã bệnh sử từ năm 25 tuổi, nghịch lý đấm lưng đỡ nhưng ngứa ran do kích thích nhánh thần kinh bì lưng sau Notalgia Paresthetica, cơ chế đau bùng phát trước chu kỳ kinh do đau quy chiếu từ lạc tuyến cơ tử cung và u xơ 45mm thành sau, cơ chế kê gối khi ngủ và khẳng định an tâm 100% không phải di căn xương."
+                variant="hero"
+                label="Bấm để nghe đọc cẩm nang Đau Lưng"
+                durationEstimate="~14 phút"
+              />
+              <div className="flex items-center gap-1.5 text-indigo-300 font-medium text-xs">
+                <ShieldCheck className="w-4 h-4 text-indigo-400" />
+                <span>NASS • AAPM&R • IMS • ACOG</span>
+              </div>
+            </div>
+
+            <div className="space-y-2 text-xs text-slate-300">
+              <div className="flex items-center gap-2 text-indigo-300 font-bold text-sm">
+                <HeartPulse className="w-4 h-4 text-indigo-400" />
+                <span>Tóm Tắt Bệnh Cảnh & Tương Quan Lâm Sàng:</span>
+              </div>
+              <p className="leading-relaxed">
+                Khởi phát từ <strong>{chronicBackPainCaseSummary.onsetAge}</strong> tại <strong>{chronicBackPainCaseSummary.currentLocation}</strong>. Phản ứng xoa bóp: <em>{chronicBackPainCaseSummary.massagingResponse}</em>. Tương quan tiền kinh: <em>{chronicBackPainCaseSummary.premenstrualCorrelation}</em>.
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Thời lượng: ~14 phút</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Cập nhật 2026</span>
+                </span>
+              </div>
+
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={onSwitchToGynecologyModule}
+                  className="text-xs text-teal-300 hover:text-teal-200 font-medium hover:underline flex items-center gap-1"
+                >
+                  <Stethoscope className="w-3.5 h-3.5" />
+                  <span>Tử Cung</span>
+                </button>
+                <span>•</span>
+                <button
+                  onClick={onSwitchToBreastCancerModule}
+                  className="text-xs text-rose-300 hover:text-rose-200 font-medium hover:underline flex items-center gap-1"
+                >
+                  <Ribbon className="w-3.5 h-3.5" />
+                  <span>K Vú</span>
+                </button>
+                <span>•</span>
+                <button
+                  onClick={onSwitchToCervicalSpineModule}
+                  className="text-xs text-amber-300 hover:text-amber-200 font-medium hover:underline flex items-center gap-1"
+                >
+                  <Bone className="w-3.5 h-3.5" />
+                  <span>Cổ ACDF</span>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-
-        {/* Meta Banner */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-b border-slate-800/80 pb-6">
-          <div className="flex items-center gap-1.5 text-indigo-300 font-medium">
-            <ShieldCheck className="w-4 h-4 text-indigo-400" />
-            <span>Chuẩn Y Học Thực Chứng: NASS • AAPM&R • IMS • ACOG</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>Thời lượng đọc: ~14 phút</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
-            <span>Cập nhật phân tích đa chuyên khoa 2026</span>
-          </div>
-        </div>
-
-        {/* Patient Profile Summary Card */}
-        <div className="p-5 rounded-2xl bg-gradient-to-br from-indigo-950/40 via-slate-900 to-slate-950 border border-indigo-800/40 space-y-4">
-          <div className="flex items-center gap-2 text-indigo-300 font-bold text-sm">
-            <HeartPulse className="w-4 h-4 text-indigo-400" />
-            <span>Tóm Tắt Bệnh Cảnh Thực Tế Của Chị:</span>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-            <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-semibold block">Khởi phát bệnh:</span>
-              <span className="text-indigo-200 font-bold">{chronicBackPainCaseSummary.onsetAge}</span>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-semibold block">Vị trí cơn đau:</span>
-              <span className="text-indigo-200 font-bold">{chronicBackPainCaseSummary.currentLocation}</span>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-semibold block">Phản ứng khi xoa bóp / đấm bóp:</span>
-              <span className="text-amber-300 font-bold">{chronicBackPainCaseSummary.massagingResponse}</span>
-            </div>
-            <div className="p-3 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1">
-              <span className="text-slate-400 font-semibold block">Ảnh hưởng chu kỳ kinh:</span>
-              <span className="text-rose-300 font-bold">{chronicBackPainCaseSummary.premenstrualCorrelation}</span>
-            </div>
-          </div>
-
-          {/* Cross-Module Switchers */}
-          <div className="pt-2 border-t border-slate-800 flex flex-wrap items-center gap-2">
-            <span className="text-xs text-slate-400 font-medium">Xem các chuyên khảo liên kết:</span>
-            <button
-              onClick={onSwitchToGynecologyModule}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-teal-950 hover:bg-teal-900 border border-teal-700/60 text-teal-300 text-xs font-bold transition-all"
-            >
-              <Stethoscope className="w-3.5 h-3.5 text-teal-400" />
-              <span>Chuyên Khảo Tử Cung (U Xơ & Adenomyosis)</span>
-            </button>
-            <button
-              onClick={onSwitchToBreastCancerModule}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-rose-950 hover:bg-rose-900 border border-rose-700/60 text-rose-300 text-xs font-bold transition-all"
-            >
-              <Ribbon className="w-3.5 h-3.5 text-rose-400" />
-              <span>Chuyên Khảo K Vú & Tamoxifen</span>
-            </button>
-            <button
-              onClick={onSwitchToCervicalSpineModule}
-              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-950 hover:bg-amber-900 border border-amber-700/60 text-amber-300 text-xs font-bold transition-all"
-            >
-              <Bone className="w-3.5 h-3.5 text-amber-400" />
-              <span>Chuyên Khảo Cột Sống Cổ (ACDF)</span>
-            </button>
-          </div>
-        </div>
-
       </header>
 
       {/* ========================================================================= */}

@@ -96,73 +96,32 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
       {/* Floating Bottom Nav Bar */}
       <div className="fixed bottom-3 inset-x-0 z-40 px-2 sm:px-6 pointer-events-none flex justify-center">
         <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 text-white max-w-xl w-full justify-between">
-          {/* Mục Lục Button */}
+          {/* Nhập Chu Kỳ Button (Nổi Bật) */}
+          <button
+            onClick={() => {
+              if (onSwitchView) onSwitchView('cycle_tracker');
+            }}
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all flex-1 cursor-pointer ${
+              currentView === 'cycle_tracker'
+                ? 'bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold shadow-md shadow-rose-500/30'
+                : 'text-rose-300 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <Calendar className={`w-4 h-4 ${currentView === 'cycle_tracker' ? 'text-white' : 'text-rose-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">Nhập Chu Kỳ</span>
+          </button>
+
+          {/* Mục Lục 5 Chuyên Khảo */}
           <button
             onClick={() => setIsDrawerOpen(true)}
-            className="flex flex-col items-center justify-center py-1 px-1.5 rounded-xl text-slate-300 hover:text-white hover:bg-slate-800 transition-colors flex-1 cursor-pointer"
-          >
-            <ListOrdered className="w-4 h-4 text-rose-400" />
-            <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
-          </button>
-
-          {/* Mắt Cá Chân (MỚI) */}
-          <button
-            onClick={() => {
-              if (onSwitchView) onSwitchView('ankle_trauma');
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
-              currentView === 'ankle_trauma' 
-                ? 'bg-rose-500 text-white font-bold shadow-md shadow-rose-500/30' 
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all flex-1 cursor-pointer ${
+              currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'chronic_back_pain' || currentView === 'breast_cancer' || currentView === 'monograph'
+                ? 'bg-slate-800 text-teal-300 font-bold border border-teal-500/40'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <Footprints className={`w-4 h-4 ${currentView === 'ankle_trauma' ? 'text-white' : 'text-rose-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5 truncate">Mắt Cá (Mới)</span>
-          </button>
-
-          {/* Cột Sống Cổ */}
-          <button
-            onClick={() => {
-              if (onSwitchView) onSwitchView('cervical_spine');
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
-              currentView === 'cervical_spine' 
-                ? 'bg-amber-500 text-slate-950 font-bold shadow-md shadow-amber-500/30' 
-                : 'text-slate-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Bone className={`w-4 h-4 ${currentView === 'cervical_spine' ? 'text-slate-950' : 'text-amber-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5 truncate">Cổ ACDF</span>
-          </button>
-
-          {/* Đau Lưng Kinh Niên (MỚI) */}
-          <button
-            onClick={() => {
-              if (onSwitchView) onSwitchView('chronic_back_pain');
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
-              currentView === 'chronic_back_pain' 
-                ? 'bg-indigo-500 text-white font-bold shadow-md shadow-indigo-500/30 ring-1 ring-indigo-400' 
-                : 'text-indigo-400 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Activity className={`w-4 h-4 ${currentView === 'chronic_back_pain' ? 'text-white' : 'text-indigo-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5 truncate">Đau Lưng</span>
-          </button>
-
-          {/* K Vú Module */}
-          <button
-            onClick={() => {
-              if (onSwitchView) onSwitchView('breast_cancer');
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
-              currentView === 'breast_cancer' 
-                ? 'bg-rose-500 text-white font-bold shadow-md shadow-rose-500/30' 
-                : 'text-slate-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Ribbon className={`w-4 h-4 ${currentView === 'breast_cancer' ? 'text-white' : 'text-rose-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5 truncate">K Vú</span>
+            <ListOrdered className="w-4 h-4 text-teal-400" />
+            <span className="text-[10px] font-bold mt-0.5">5 Chuyên Khảo</span>
           </button>
 
           {/* Q&A Button */}
@@ -192,7 +151,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             }`}
           >
             <UserCheck className={`w-4 h-4 ${currentView === 'doctors' ? 'text-white' : 'text-purple-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Bác Sĩ (30)</span>
+            <span className="text-[10px] font-bold mt-0.5">Bác Sĩ</span>
           </button>
         </nav>
       </div>

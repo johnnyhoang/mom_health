@@ -97,8 +97,8 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <span>Chuyên Khảo Chấn Thương Chỉnh Hình & Phục Hồi Chức Năng • Cập Nhật 2026</span>
         </div>
 
-        {/* Main Title */}
-        <div className="space-y-3">
+        {/* Book Main Title & Unified Header Container */}
+        <div className="space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
             Té Ngã Gãy Mắt Cá Chân, Đứt Dây Chằng & Phục Hồi Toàn Diện Từ A - Z
           </h1>
@@ -106,62 +106,48 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
             Cẩm nang y khoa thực chứng giải mã chấn thương gãy 2 mắt cá (Bimalleolar), đứt phức hợp dây chằng ATFL và toác khớp chày mác; kỹ thuật phẫu thuật nẹp vít Titanium (ORIF), ma trận chống huyết khối DVT và cẩm nang phục hồi 4 giai đoạn chi tiết cho người cao tuổi.
           </p>
 
-          {/* Read Aloud Full Article Button */}
-          <div className="pt-2">
-            <ReadAloudButton
-              id="ankle-monograph-full"
-              title="Té Ngã Gãy Mắt Cá Chân & Phục Hồi Toàn Diện"
-              text="Chuyên khảo: Té ngã gãy mắt cá chân, đứt dây chằng và phục hồi toàn diện từ A đến Z. Cẩm nang giải mã chấn thương gãy hai mắt cá, đứt dây chằng mác sên trước ATFL và toác khớp chày mác. Phẫu thuật kết hợp xương nẹp vít ORIF là chuẩn vàng giúp phục hồi giải phẫu vững chắc. Lộ trình phục hồi 4 giai đoạn cùng giày bảo hộ CAM Boot giúp người bệnh tự tin đi lại bình thường."
-              variant="hero"
-              label="Bấm để nghe đọc chuyên khảo"
-              durationEstimate="~18 phút"
-            />
-          </div>
-        </div>
-
-        {/* Privacy Shield Banner */}
-        <div className="p-3 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-center justify-between gap-3 text-xs text-emerald-200">
-          <div className="flex items-center gap-2">
-            <Lock className="w-4 h-4 text-emerald-400 shrink-0" />
-            <span>Toàn bộ thông tin định danh và hồ sơ y khoa đã được bảo mật & ẩn danh hóa 100%.</span>
-          </div>
-          <span className="text-[11px] font-mono text-emerald-400 font-bold">Bệnh nhân P.T.X.L (74 tuổi)</span>
-        </div>
-
-        {/* Guidelines Meta Banner */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-b border-slate-800/80 pb-6">
-          <div className="flex items-center gap-1.5 text-rose-300 font-medium">
-            <ShieldCheck className="w-4 h-4 text-rose-400" />
-            <span>Tiêu chuẩn AO Trauma • AAOS • AOFAS • BV CTCH TP.HCM</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>Thời lượng đọc: 18 phút</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
-            <span>Chuyên đề: Tháng 09/2026</span>
-          </div>
-        </div>
-
-        {/* Quick Medical Team Callout */}
-        <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-300 font-bold text-sm">
-              <Stethoscope className="w-5 h-5" />
+          {/* Unified Preface & Metadata Panel */}
+          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <ReadAloudButton
+                id="ankle-monograph-full"
+                title="Té Ngã Gãy Mắt Cá Chân & Phục Hồi Toàn Diện"
+                text="Chuyên khảo: Té ngã gãy mắt cá chân, đứt dây chằng và phục hồi toàn diện từ A đến Z. Cẩm nang giải mã chấn thương gãy hai mắt cá, đứt dây chằng mác sên trước ATFL và toác khớp chày mác. Phẫu thuật kết hợp xương nẹp vít ORIF là chuẩn vàng giúp phục hồi giải phẫu vững chắc. Lộ trình phục hồi 4 giai đoạn cùng giày bảo hộ CAM Boot giúp người bệnh tự tin đi lại bình thường."
+                variant="hero"
+                label="Bấm để nghe đọc chuyên khảo"
+                durationEstimate="~18 phút"
+              />
+              <button 
+                onClick={onNavigateToDoctors}
+                className="px-3.5 py-2 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer"
+              >
+                <Stethoscope className="w-4 h-4 text-rose-400" />
+                <span>Top Bác Sĩ CTCH & Chi Dưới</span>
+                <ChevronRight className="w-3.5 h-3.5" />
+              </button>
             </div>
-            <div>
-              <div className="text-sm font-bold text-white">Chuyên Khoa Chấn Thương Chỉnh Hình & Chi Dưới</div>
-              <div className="text-xs text-slate-400">BV Chấn Thương Chỉnh Hình TP.HCM • BV Đại Học Y Dược TP.HCM</div>
+
+            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+              <div className="flex items-center gap-1.5 text-rose-300 font-medium">
+                <ShieldCheck className="w-4 h-4 text-rose-400" />
+                <span>AO Trauma • AAOS • AOFAS • BV CTCH TP.HCM</span>
+              </div>
+              <div className="flex items-center gap-4 text-slate-400">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Thời lượng: 18 phút</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Tháng 09/2026</span>
+                </span>
+                <span className="flex items-center gap-1.5 text-emerald-300 font-mono">
+                  <Lock className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Bệnh nhân P.T.X.L (74 tuổi)</span>
+                </span>
+              </div>
             </div>
           </div>
-          <button 
-            onClick={onNavigateToDoctors}
-            className="px-3 py-1.5 rounded-xl bg-rose-500/10 hover:bg-rose-500/20 text-rose-300 border border-rose-500/30 text-xs font-semibold transition-all flex items-center gap-1 shrink-0 cursor-pointer"
-          >
-            <span>Top Bác Sĩ</span>
-            <ChevronRight className="w-3.5 h-3.5" />
-          </button>
         </div>
       </header>
 
@@ -212,41 +198,35 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-2.5">
+        <div className="p-5 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-5">
+          <div className="space-y-3">
             <div className="text-xs font-bold text-rose-400 uppercase tracking-wide flex items-center gap-1.5">
               <Activity className="w-4 h-4" />
-              Phân Loại Gãy Xương Mác (Danis-Weber)
+              <span>Phân Loại Gãy Xương Mác Theo Danis-Weber</span>
             </div>
-            <ul className="text-xs text-slate-300 space-y-2">
-              <li className="p-2 bg-slate-950/60 rounded-lg">
-                <strong className="text-emerald-400">Weber A (Dưới khớp): </strong>Gãy mỏm xương mác dưới mức khe khớp, khớp chày mác nguyên vẹn, thường điều trị bó bột.
-              </li>
-              <li className="p-2 bg-slate-950/60 rounded-lg border border-rose-500/30">
-                <strong className="text-rose-400">Weber B (Ngang mức khớp - Ca của cụ Loan): </strong>Đường gãy chéo xoắn ngang mức khe khớp sên cẳng chân, tổn thương 50% khớp chày mác và rách dây chằng ATFL $\rightarrow$ Cần phẫu thuật nẹp vít.
-              </li>
-              <li className="p-2 bg-slate-950/60 rounded-lg">
-                <strong className="text-amber-400">Weber C (Trên khớp): </strong>Gãy thân xương mác cao, toác toàn bộ màng gian cốt chày mác $\rightarrow$ Phẫu thuật nẹp vít + siết khớp chày mác.
-              </li>
-            </ul>
+            <div className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <div className="p-3 bg-slate-950/70 rounded-xl border border-slate-800/80">
+                <strong className="text-emerald-400">Weber A (Dưới khớp): </strong>Gãy mỏm xương mác dưới mức khe khớp, khớp chày mác nguyên vẹn, thường điều trị bó bột bảo tồn.
+              </div>
+              <div className="p-3 bg-slate-950/70 rounded-xl border border-rose-500/30">
+                <strong className="text-rose-400">Weber B (Ngang mức khớp - Ca của cụ Loan): </strong>Đường gãy chéo xoắn ngang mức khe khớp sên cẳng chân, tổn thương 50% khớp chày mác và rách dây chằng ATFL $\rightarrow$ Cần phẫu thuật nẹp vít để phục hồi vững chắc.
+              </div>
+              <div className="p-3 bg-slate-950/70 rounded-xl border border-slate-800/80">
+                <strong className="text-amber-400">Weber C (Trên khớp): </strong>Gãy thân xương mác cao, toác toàn bộ màng gian cốt chày mác $\rightarrow$ Phẫu thuật nẹp vít kết hợp siết khớp chày mác.
+              </div>
+            </div>
           </div>
 
-          <div className="p-4 bg-slate-900/60 border border-slate-800 rounded-2xl space-y-2.5">
+          <div className="pt-4 border-t border-slate-800/80 space-y-3">
             <div className="text-xs font-bold text-cyan-400 uppercase tracking-wide flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4" />
-              Hệ Thống Dây Chằng Khớp Cổ Chân
+              <span>Hệ Thống Dây Chằng Giữ Vững Cổ Chân</span>
             </div>
-            <ul className="text-xs text-slate-300 space-y-2">
-              <li className="p-2 bg-slate-950/60 rounded-lg">
-                <strong className="text-rose-300">Dây chằng ATFL (Mác sên trước): </strong>Dây chằng giữ bờ ngoài, khi bị đứt làm lỏng khớp xoay trong. Cần khâu phục hồi hoặc gia cố bằng chỉ sinh học.
-              </li>
-              <li className="p-2 bg-slate-950/60 rounded-lg">
-                <strong className="text-amber-300">Dây chằng CFL (Mác gót): </strong>Giữ vững gót chân khi nghiêng trong. Rách bán phần sẽ tự lành sẹo khi mang giày CAM boot.
-              </li>
-              <li className="p-2 bg-slate-950/60 rounded-lg">
-                <strong className="text-cyan-300">Khớp nối chày - mác (Syndesmosis): </strong>Giữ 2 xương cẳng chân khép sát nhau. Khi bị toác cần siết bằng dây neo TightRope hoặc vít định vị.
-              </li>
-            </ul>
+            <div className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p><strong className="text-rose-300">• Dây chằng ATFL (Mác sên trước): </strong>Dây chằng giữ bờ ngoài, khi bị đứt làm lỏng khớp xoay trong. Cần khâu phục hồi hoặc gia cố bằng chỉ sinh học.</p>
+              <p><strong className="text-amber-300">• Dây chằng CFL (Mác gót): </strong>Giữ vững gót chân khi nghiêng trong. Rách bán phần sẽ tự lành sẹo khi mang giày CAM boot.</p>
+              <p><strong className="text-cyan-300">• Khớp nối chày - mác (Syndesmosis): </strong>Giữ 2 xương cẳng chân khép sát nhau. Khi bị toác cần siết bằng dây neo TightRope hoặc vít định vị.</p>
+            </div>
           </div>
         </div>
       </section>

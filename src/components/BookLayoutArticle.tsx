@@ -90,8 +90,8 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <span>Chuyên Khảo Y Khoa Cá Thể Hóa • Tháng 09/2026</span>
         </div>
 
-        {/* Book Main Title */}
-        <div className="space-y-3">
+        {/* Book Main Title & Unified Header Container */}
+        <div className="space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
             Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen (K Vú)
           </h1>
@@ -99,51 +99,43 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế "Nghịch lý Tamoxifen", căn nguyên gây rong kinh & 4 phác đồ tối ưu hóa sức khỏe cho phụ nữ sau điều trị ung thư vú.
           </p>
 
-          {/* Read Aloud Full Article Button */}
-          <div className="pt-2">
-            <ReadAloudButton
-              id="monograph-full"
-              title="Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen"
-              text="Bảo vệ nội mạc tử cung sau 5 năm Tamoxifen. Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế nghịch lý Tamoxifen, căn nguyên gây rong kinh và 4 phác đồ điều trị tối ưu. Kết quả giải phẫu bệnh tại bệnh viện Hùng Vương ngày 15 tháng 9 năm 2026 kết luận tăng sản điển hình khu trú, đây là thương tổn hoàn toàn lành tính, nguy cơ ung thư dưới một phần trăm, tuyệt đối không phải ung thư vú di căn và không phải ung thư nội mạc tử cung."
-              variant="hero"
-              label="Bấm để nghe đọc cẩm nang"
-              durationEstimate="~12 phút"
-            />
-          </div>
-        </div>
+          {/* Unified Preface & Status Panel */}
+          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <ReadAloudButton
+                id="monograph-full"
+                title="Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen"
+                text="Bảo vệ nội mạc tử cung sau 5 năm Tamoxifen. Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế nghịch lý Tamoxifen, căn nguyên gây rong kinh và 4 phác đồ điều trị tối ưu. Kết quả giải phẫu bệnh tại bệnh viện Hùng Vương ngày 15 tháng 9 năm 2026 kết luận tăng sản điển hình khu trú, đây là thương tổn hoàn toàn lành tính, nguy cơ ung thư dưới một phần trăm, tuyệt đối không phải ung thư vú di căn và không phải ung thư nội mạc tử cung."
+                variant="hero"
+                label="Bấm để nghe đọc cẩm nang"
+                durationEstimate="~12 phút"
+              />
+              <div className="flex items-center gap-1.5 text-teal-300 font-medium text-xs">
+                <ShieldCheck className="w-4 h-4 text-teal-400" />
+                <span>ACOG • ASCO • NCCN • FIGO</span>
+              </div>
+            </div>
 
-        {/* Meta & Case Context Banner */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-b border-slate-800/80 pb-6">
-          <div className="flex items-center gap-1.5 text-teal-300 font-medium">
-            <ShieldCheck className="w-4 h-4 text-teal-400" />
-            <span>Chuẩn Y Học Thực Chứng: ACOG • ASCO • NCCN • FIGO</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>Thời lượng đọc: ~12 phút</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
-            <span>Cập nhật theo kết quả GPB BV Hùng Vương 09/2026</span>
-          </div>
-        </div>
+            <div className="p-4 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-emerald-100 text-xs sm:text-sm leading-relaxed space-y-1.5">
+              <span className="font-bold flex items-center gap-1.5 text-emerald-300 text-sm">
+                <Check className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>Thông điệp quan trọng nhất từ Bác sĩ:</span>
+              </span>
+              <p>
+                Kết quả Giải Phẫu Bệnh tại BV Hùng Vương (15/09/2026) kết luận <strong>"TĂNG SẢN ĐIỂN HÌNH KHU TRÚ"</strong> – Thương tổn <strong>HOÀN TOÀN LÀNH TÍNH</strong> (nguy cơ ung thư &lt; 1%), tuyệt đối <strong>KHÔNG PHẢI</strong> ung thư vú di căn và <strong>KHÔNG PHẢI</strong> ung thư nội mạc tử cung.
+              </p>
+            </div>
 
-        {/* Personalized Clinical Preface */}
-        <div className="pt-2 text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
-          <p>
-            Chúc mừng chị đã hoàn thành trọn vẹn chặng đường 5 năm kiên cường điều trị Tamoxifen bảo vệ tuyến vú (2021 – 01/2026). Đây là một cột mốc vàng son khẳng định sự chiến thắng của chị trước căn bệnh ung thư vú.
-          </p>
-          <p>
-            Tuy nhiên, trong những tháng gần đây, sự xuất hiện của tình trạng <strong>rong kinh kéo dài, dày nội mạc tử cung</strong> và các kết quả siêu âm cho thấy có <strong>Lạc tuyến trong cơ tử cung (Adenomyosis) kèm khối cơ thành sau 45mm</strong> chắc hẳn đã khiến chị trải qua những ngày tháng vô cùng hoang mang, lo lắng về nguy cơ bệnh tái phát.
-          </p>
-          <div className="p-4 rounded-xl bg-emerald-950/40 border-l-4 border-emerald-400 text-emerald-100 text-sm font-sans space-y-1">
-            <span className="font-bold flex items-center gap-1.5 text-emerald-300">
-              <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-              Thông điệp quan trọng nhất từ các Bác sĩ chuyên khoa:
-            </span>
-            <p>
-              Kết quả Giải Phẫu Bệnh tại BV Hùng Vương (15/09/2026) kết luận <strong>"TĂNG SẢN ĐIỂN HÌNH KHU TRÚ"</strong> – Đây là một thương tổn <strong>HOÀN TOÀN LÀNH TÍNH</strong> (nguy cơ ung thư &lt; 1-3%), tuyệt đối <strong>KHÔNG PHẢI</strong> ung thư vú di căn và <strong>KHÔNG PHẢI</strong> ung thư nội mạc tử cung. Cuốn sách này sẽ giúp chị hiểu rõ từng chi tiết và tìm ra hướng đi an tâm nhất!
-            </p>
+            <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
+              <span className="flex items-center gap-1.5">
+                <Clock className="w-3.5 h-3.5 text-slate-500" />
+                <span>Thời lượng: ~12 phút</span>
+              </span>
+              <span className="flex items-center gap-1.5">
+                <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                <span>Hồ sơ y khoa: Tháng 09/2026</span>
+              </span>
+            </div>
           </div>
         </div>
       </header>

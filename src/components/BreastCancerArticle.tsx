@@ -97,7 +97,8 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
         {/* Main Title */}
-        <div className="space-y-3">
+        {/* Book Main Title & Unified Header Container */}
+        <div className="space-y-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight">
             Ung Thư Vú Thể Nội Tiết: Từ Tamoxifen Đến Các Đột Phá Mới Nhất
           </h1>
@@ -105,62 +106,51 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua 5 năm, thử nghiệm kéo dài (EET) và toàn cảnh các vũ khí điều trị mới (CDK4/6i, Oral SERD, PROTAC, ADCs).
           </p>
 
-          {/* Read Aloud Full Monograph */}
-          <div className="pt-2">
-            <ReadAloudButton
-              id="bc-hero"
-              title="Chuyên Khảo Ung Thư Vú Thể Nội Tiết"
-              text="Ung thư vú thể nội tiết: từ Tamoxifen đến các đột phá mới nhất. Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua năm năm, thử nghiệm kéo dài và toàn cảnh các vũ khí điều trị mới như thuốc ức chế CDK4/6, SERD đường uống, PROTAC và kháng thể liên hợp thuốc ADCs. Hơn bảy mươi phần trăm bệnh nhân ung thư vú thuộc nhóm thụ thể nội tiết dương tính. Bước sang giai đoạn 2024 đến 2026, các liệu pháp nhắm trúng đích thế hệ mới mở ra kỷ nguyên kiểm soát triệt để và nâng cao chất lượng cuộc sống cho người bệnh."
-              variant="hero"
-              label="Bấm để nghe đọc cẩm nang K vú"
-              durationEstimate="~15 phút"
-            />
+          {/* Unified Preface & Status Panel */}
+          <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <ReadAloudButton
+                id="bc-hero"
+                title="Chuyên Khảo Ung Thư Vú Thể Nội Tiết"
+                text="Ung thư vú thể nội tiết: từ Tamoxifen đến các đột phá mới nhất. Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua năm năm, thử nghiệm kéo dài và toàn cảnh các vũ khí điều trị mới như thuốc ức chế CDK4/6, SERD đường uống, PROTAC và kháng thể liên hợp thuốc ADCs. Hơn bảy mươi phần trăm bệnh nhân ung thư vú thuộc nhóm thụ thể nội tiết dương tính. Bước sang giai đoạn 2024 đến 2026, các liệu pháp nhắm trúng đích thế hệ mới mở ra kỷ nguyên kiểm soát triệt để và nâng cao chất lượng cuộc sống cho người bệnh."
+                variant="hero"
+                label="Bấm để nghe đọc cẩm nang K vú"
+                durationEstimate="~15 phút"
+              />
+              <div className="flex items-center gap-1.5 text-rose-300 font-medium text-xs">
+                <ShieldCheck className="w-4 h-4 text-rose-400" />
+                <span>ASCO • NCCN 2024/2026 • ESMO • St. Gallen</span>
+              </div>
+            </div>
+
+            <div className="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-2">
+              <p>
+                Hơn 70% bệnh nhân ung thư vú thuộc nhóm <strong>thụ thể nội tiết dương tính (HR+ / HER2-)</strong>. Sau 5 năm hoàn thành Tamoxifen (2021 – 01/2026), cơ thể tiếp tục được bảo vệ bởi hiệu ứng kế thừa lâu dài. Các đột phá mới 2024–2026 mở ra kỷ nguyên kiểm soát tối ưu và ngăn chặn tái phát muộn.
+              </p>
+            </div>
+
+            <div className="pt-3 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Thời lượng: ~15 phút</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Cập nhật FDA 09/2024</span>
+                </span>
+              </div>
+
+              <button
+                onClick={onSwitchToGynecologyModule}
+                className="text-xs text-teal-300 hover:text-teal-200 font-medium hover:underline flex items-center gap-1"
+              >
+                <span>Xem Chuyên Khảo Tử Cung (U Xơ & Tamoxifen)</span>
+                <ArrowRight className="w-3.5 h-3.5" />
+              </button>
+            </div>
           </div>
         </div>
-
-        {/* Evidence & Guidelines Meta Banner */}
-        <div className="pt-2 flex flex-wrap items-center gap-4 text-xs text-slate-400 border-b border-slate-800/80 pb-6">
-          <div className="flex items-center gap-1.5 text-rose-300 font-medium">
-            <ShieldCheck className="w-4 h-4 text-rose-400" />
-            <span>Y Học Thực Chứng: ASCO • NCCN 2024/2026 • ESMO • St. Gallen</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Clock className="w-3.5 h-3.5 text-slate-500" />
-            <span>Thời lượng đọc: ~15 phút</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <Calendar className="w-3.5 h-3.5 text-slate-500" />
-            <span>Cập nhật phê duyệt FDA mới nhất (09/2024)</span>
-          </div>
-        </div>
-
-        {/* Clinical Preface */}
-        <div className="pt-2 text-slate-300 text-sm sm:text-base leading-relaxed space-y-4">
-          <p>
-            Hơn 70% bệnh nhân ung thư vú thuộc nhóm <strong>thụ thể nội tiết dương tính (HR+ / HER2-)</strong>. Trong suốt 4 thập kỷ qua, <strong>Tamoxifen</strong> là "viên gạch nền tảng" vĩ đại cứu sống hàng triệu phụ nữ trên toàn thế giới nhờ khả năng khóa chặt con đường nuôi dưỡng khối u của hormone Estrogen.
-          </p>
-          <p>
-            Tuy nhiên, y học ung thư không dừng lại ở đó. Bước sang giai đoạn <strong>2024 – 2026</strong>, sự bùng nổ của các liệu pháp nhắm trúng đích thế hệ mới – đặc biệt là <strong>thuốc ức chế CDK4/6 (Ribociclib vừa được FDA phê duyệt 09/2024 cho giai đoạn sớm)</strong>, <strong>thuốc phân hủy thụ thể SERD đường uống (Elacestrant)</strong>, và <strong>kháng thể liên hợp thuốc ADCs (T-DXd / Enhertu)</strong> – đã mở ra một kỷ nguyên hoàn toàn mới: <em>kiểm soát triệt để, ngăn chặn tái phát muộn và nâng cao tối đa chất lượng cuộc sống cho người bệnh</em>.
-          </p>
-
-          <div className="p-4 rounded-xl bg-rose-950/40 border-l-4 border-rose-400 text-rose-100 text-sm space-y-1.5">
-            <span className="font-bold flex items-center gap-1.5 text-rose-300">
-              <Sparkles className="w-4 h-4 text-rose-400 shrink-0" />
-              Chuyển tiếp giữa 2 chuyên khảo liên kết:
-            </span>
-            <p>
-              Nếu chị đang gặp các triệu chứng phụ khoa sau 5 năm dùng Tamoxifen (như rong kinh, dày niêm mạc, u xơ tử cung), chị có thể bấm chuyển sang xem chuyên khảo chuyên sâu về tử cung bất kỳ lúc nào:
-            </p>
-            <button
-              onClick={onSwitchToGynecologyModule}
-              className="mt-2 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-teal-500 hover:bg-teal-400 text-slate-950 font-bold text-xs transition-colors shadow-sm"
-            >
-              <span>Xem Chuyên Khảo: Xử Trí Biến Chứng Tử Cung Sau 5 Năm Tamoxifen</span>
-              <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-        </div>
-
       </header>
 
       {/* ========================================================================= */}

@@ -48,3 +48,26 @@
 .rose-gradient {
   background: linear-gradient(135deg, #be123c 0%, #881337 50%, #4c0519 100%);
 }
+
+/* Flat Book Editorial Typography */
+.book-prose {
+  font-size: 1.05rem; /* ~16.8px */
+  line-height: 1.75;
+  color: #e2e8f0;
+}
+
+.book-prose p {
+  margin-bottom: 1rem;
+}
+
+.book-prose strong {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.book-card-flat {
+  background-color: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  border-radius: 1rem;
+}
+
