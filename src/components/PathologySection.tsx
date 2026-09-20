@@ -200,8 +200,26 @@ export const PathologySection: React.FC<PathologySectionProps> = ({ searchQuery 
                   <span>{sys.name}</span>
                   <span className="text-[11px] text-teal-300 font-normal">Tiêu chuẩn quốc tế chuẩn mực</span>
                 </div>
-                <div className="overflow-x-auto">
-                  <table className="w-full text-left border-collapse text-xs">
+                {/* Mobile View: Consolidated 2-Column Responsive Layout (< sm) */}
+                <div className="block sm:hidden p-3 bg-white space-y-3">
+                  {sys.details.map((row, rIdx) => (
+                    <div key={rIdx} className="border-b border-slate-100 pb-2.5 last:border-b-0 last:pb-0 space-y-1.5 text-xs sm:text-sm">
+                      <div className="font-bold text-slate-900 text-xs sm:text-sm">
+                        {rIdx + 1}. {row.category}
+                      </div>
+                      <div className="text-slate-600 leading-relaxed text-xs">
+                        <strong className="text-slate-800">Tiêu chuẩn: </strong>{row.criteria}
+                      </div>
+                      <div className="p-2 rounded-lg bg-rose-50 border border-rose-100 text-rose-900 font-semibold text-xs">
+                        <span>Tiên lượng / Nguy cơ: </span>{row.malignancyRiskOrPrognosis}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop / Tablet View: Full 3-Column Table (>= sm) */}
+                <div className="hidden sm:block overflow-x-auto">
+                  <table className="w-full text-left border-collapse text-xs sm:text-sm">
                     <thead>
                       <tr className="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
                         <th className="p-3 w-1/4">Phân nhóm / Giai đoạn</th>

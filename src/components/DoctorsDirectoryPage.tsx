@@ -313,7 +313,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <Stethoscope className="w-3.5 h-3.5" />
                       Lĩnh Vực Chuyên Sâu:
                     </div>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                    <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
                       {doc.coreSpecialties.map((s, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
                           <span className="text-cyan-400 font-bold shrink-0">•</span>
@@ -329,7 +329,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <ShieldCheck className="w-3.5 h-3.5" />
                       Thế Mạnh Lâm Sàng:
                     </div>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                    <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
                       {doc.clinicalStrengths.map((c, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
                           <span className="text-emerald-400 font-bold shrink-0">•</span>
@@ -434,7 +434,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <Stethoscope className="w-3.5 h-3.5" />
                       Lĩnh Vực Chuyên Sâu:
                     </div>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                    <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
                       {doc.coreSpecialties.map((s, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
                           <span className="text-cyan-400 font-bold shrink-0">•</span>
@@ -450,7 +450,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <ShieldCheck className="w-3.5 h-3.5" />
                       Thế Mạnh Lâm Sàng:
                     </div>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                    <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
                       {doc.clinicalStrengths.map((c, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
                           <span className="text-emerald-400 font-bold shrink-0">•</span>
@@ -555,7 +555,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <Stethoscope className="w-3.5 h-3.5" />
                       Lĩnh Vực Chuyên Sâu:
                     </div>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                    <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
                       {doc.coreSpecialties.map((s, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
                           <span className="text-cyan-400 font-bold shrink-0">•</span>
@@ -571,7 +571,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <ShieldCheck className="w-3.5 h-3.5" />
                       Thế Mạnh Lâm Sàng:
                     </div>
-                    <ul className="space-y-1 text-xs text-slate-300">
+                    <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
                       {doc.clinicalStrengths.map((c, idx) => (
                         <li key={idx} className="flex items-start gap-1.5 leading-relaxed">
                           <span className="text-emerald-400 font-bold shrink-0">•</span>

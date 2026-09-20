@@ -165,8 +165,26 @@ export const DiagnosticsSection: React.FC = () => {
               Bảng Đối Chiếu Hình Thái Bất Thường & Hướng Xử Trí Lâm Sàng
             </h5>
 
-            <div className="border border-slate-200 rounded-xl overflow-hidden">
-              <table className="w-full text-left text-xs">
+            {/* Mobile View: Consolidated 2-Column Responsive Layout (< sm) */}
+            <div className="block sm:hidden border border-slate-200 rounded-xl p-3 bg-white space-y-3">
+              {currentModality.keyAbnormalFindings.map((ab, i) => (
+                <div key={i} className="border-b border-slate-100 pb-2.5 last:border-b-0 last:pb-0 space-y-1.5 text-xs sm:text-sm">
+                  <div className="font-bold text-slate-900 text-xs sm:text-sm">
+                    {i + 1}. {ab.pattern}
+                  </div>
+                  <div className="p-2 rounded-lg bg-rose-50 border border-rose-100 text-rose-900 text-xs">
+                    <span className="font-bold">Gợi ý: </span>{ab.suggestiveOf}
+                  </div>
+                  <div className="p-2 rounded-lg bg-teal-50 border border-teal-100 text-teal-900 text-xs">
+                    <span className="font-bold">Xử trí: </span>{ab.clinicalAction}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Desktop / Tablet View: Full 3-Column Table (>= sm) */}
+            <div className="hidden sm:block border border-slate-200 rounded-xl overflow-hidden">
+              <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
                   <tr className="bg-slate-100 border-b border-slate-200 text-slate-700 font-bold">
                     <th className="p-3 w-1/3">Hình thái bất thường phát hiện</th>

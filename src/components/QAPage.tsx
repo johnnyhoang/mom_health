@@ -488,11 +488,11 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <span className="text-[11px] font-mono text-cyan-400/90 uppercase font-semibold">
                           {item.category}
                         </span>
-                        <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                        <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
                           {item.question}
                         </h3>
                         {!isExpanded && (
-                          <p className="text-xs text-slate-400 line-clamp-2 pt-0.5">
+                          <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 pt-0.5">
                             {item.shortSummary}
                           </p>
                         )}
@@ -519,7 +519,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                             label="Nghe trả lời"
                           />
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
                           {item.shortSummary}
                         </p>
                       </div>
@@ -529,7 +529,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                           Phân Tích Chi Tiết Chuẩn Nhãn Khoa:
                         </div>
-                        <div className="space-y-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <div className="space-y-1.5 text-sm sm:text-base text-slate-300 leading-relaxed">
                           {item.detailedPoints.map((p, i) => (
                             <p key={i} className="pl-3 border-l-2 border-slate-700">
                               {p}
@@ -540,7 +540,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
 
                       {/* Clinical Highlight */}
                       {item.clinicalHighlight && (
-                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs text-emerald-200">
+                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs sm:text-sm text-emerald-200">
                           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                           <p className="leading-relaxed"><strong className="text-emerald-300">Điểm Nhấn Lâm Sàng: </strong>{item.clinicalHighlight}</p>
                         </div>
@@ -549,7 +549,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                       {/* Doctor Question to ask */}
                       {item.doctorQuestionToAsk && (
                         <div className="p-2.5 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between gap-3">
-                          <div className="text-xs text-slate-300 italic">
+                          <div className="text-xs sm:text-sm text-slate-300 italic">
                             <span className="text-cyan-400 font-bold not-italic">Câu hỏi nên mang đi hỏi Bác sĩ: </span>
                             {item.doctorQuestionToAsk}
                           </div>
@@ -599,11 +599,11 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <span className="text-[11px] font-mono text-rose-400/90 uppercase font-semibold">
                           {item.category}
                         </span>
-                        <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                        <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
                           {item.question}
                         </h3>
                         {!isExpanded && (
-                          <p className="text-xs text-slate-400 line-clamp-2 pt-0.5">
+                          <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 pt-0.5">
                             {item.shortAnswer}
                           </p>
                         )}
@@ -630,7 +630,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                             label="Nghe trả lời"
                           />
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
                           {item.shortAnswer}
                         </p>
                       </div>
@@ -640,7 +640,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                           Phân Tích Chi Tiết Chuẩn Y Khoa:
                         </div>
-                        <div className="space-y-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <div className="space-y-1.5 text-sm sm:text-base text-slate-300 leading-relaxed">
                           {item.detailedAnswer.map((p, i) => (
                             <p key={i} className="pl-3 border-l-2 border-slate-700">
                               {p}
@@ -651,7 +651,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
 
                       {/* Patient Advice */}
                       {item.patientTips && (
-                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs text-emerald-200">
+                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs sm:text-sm text-emerald-200">
                           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                           <p className="leading-relaxed"><strong className="text-emerald-300">Lời Khuyên Cho Gia Đình: </strong>{item.patientTips}</p>
                         </div>
@@ -659,7 +659,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
 
                       {/* Guideline / Evidence citation */}
                       {item.guidelineEvidence && (
-                        <div className="text-[11px] text-slate-500 italic flex items-center gap-1.5 pt-0.5">
+                        <div className="text-xs text-slate-500 italic flex items-center gap-1.5 pt-0.5">
                           <Award className="w-3.5 h-3.5 text-rose-400 shrink-0" />
                           <span>{item.guidelineEvidence}</span>
                         </div>
@@ -701,18 +701,18 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <span className="text-[11px] font-mono text-amber-400/90 uppercase font-semibold">
                           {item.category}
                         </span>
-                        <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                        <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
                           {item.question}
                         </h3>
                         {!isExpanded && (
-                          <p className="text-xs text-slate-400 line-clamp-2 pt-0.5">
+                          <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 pt-0.5">
                             {item.shortAnswer}
                           </p>
                         )}
                       </div>
                     </div>
                     <div className="shrink-0 p-1 rounded-lg bg-slate-800/80 text-slate-400">
-                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </div>
                   </button>
 
@@ -732,7 +732,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                             label="Nghe trả lời"
                           />
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
                           {item.shortAnswer}
                         </p>
                       </div>
@@ -742,7 +742,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                           Phân Tích Chi Tiết Chuẩn Y Khoa:
                         </div>
-                        <div className="space-y-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <div className="space-y-1.5 text-sm sm:text-base text-slate-300 leading-relaxed">
                           {item.detailedAnswer.map((p, i) => (
                             <p key={i} className="pl-3 border-l-2 border-slate-700">
                               {p}
@@ -753,7 +753,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
 
                       {/* Patient Advice */}
                       {item.patientTips && (
-                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs text-emerald-200">
+                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs sm:text-sm text-emerald-200">
                           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                           <p className="leading-relaxed"><strong className="text-emerald-300">Lời Khuyên Cho Gia Đình: </strong>{item.patientTips}</p>
                         </div>
@@ -761,7 +761,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
 
                       {/* Guideline / Evidence citation */}
                       {item.guidelineEvidence && (
-                        <div className="text-[11px] text-slate-500 italic flex items-center gap-1.5 pt-0.5">
+                        <div className="text-xs text-slate-500 italic flex items-center gap-1.5 pt-0.5">
                           <Award className="w-3.5 h-3.5 text-amber-400 shrink-0" />
                           <span>{item.guidelineEvidence}</span>
                         </div>
@@ -803,18 +803,18 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <span className="text-[11px] font-mono text-teal-400/90 uppercase font-semibold">
                           {item.categoryLabel}
                         </span>
-                        <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                        <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
                           {item.question}
                         </h3>
                         {!isExpanded && (
-                          <p className="text-xs text-slate-400 line-clamp-2 pt-0.5">
+                          <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 pt-0.5">
                             {item.shortSummary}
                           </p>
                         )}
                       </div>
                     </div>
                     <div className="shrink-0 p-1 rounded-lg bg-slate-800/80 text-slate-400">
-                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </div>
                   </button>
 
@@ -834,7 +834,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                             label="Nghe trả lời"
                           />
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
                           {item.shortSummary}
                         </p>
                       </div>
@@ -844,7 +844,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                           Phân Tích Chi Tiết:
                         </div>
-                        <div className="space-y-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed">
+                        <div className="space-y-1.5 text-sm sm:text-base text-slate-300 leading-relaxed">
                           {item.detailedAnswer.map((p, i) => (
                             <p key={i} className="pl-3 border-l-2 border-slate-700">
                               {p}
@@ -855,7 +855,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
 
                       {/* Clinical Highlight */}
                       {item.clinicalHighlight && (
-                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs text-emerald-200">
+                        <div className="p-2.5 bg-emerald-950/30 border border-emerald-800/40 rounded-xl flex items-start gap-2 text-xs sm:text-sm text-emerald-200">
                           <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0 mt-0.5" />
                           <p className="leading-relaxed"><strong className="text-emerald-300">Điểm Nhấn Lâm Sàng: </strong>{item.clinicalHighlight}</p>
                         </div>
@@ -864,7 +864,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                       {/* Doctor Question to ask */}
                       {item.doctorQuestionToAsk && (
                         <div className="p-2.5 bg-slate-950 border border-slate-800 rounded-xl flex items-center justify-between gap-3">
-                          <div className="text-xs text-slate-300 italic">
+                          <div className="text-xs sm:text-sm text-slate-300 italic">
                             <span className="text-teal-400 font-bold not-italic">Câu hỏi nên mang đi hỏi Bác sĩ: </span>
                             {item.doctorQuestionToAsk}
                           </div>
@@ -914,18 +914,18 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <span className="text-[11px] font-mono text-indigo-400/90 uppercase font-semibold">
                           {item.category}
                         </span>
-                        <h3 className="text-sm sm:text-base font-bold text-white leading-snug">
+                        <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
                           {item.question}
                         </h3>
                         {!isExpanded && (
-                          <p className="text-xs text-slate-400 line-clamp-2 pt-0.5">
+                          <p className="text-xs sm:text-sm text-slate-400 line-clamp-2 pt-0.5">
                             {item.shortAnswer}
                           </p>
                         )}
                       </div>
                     </div>
                     <div className="shrink-0 p-1 rounded-lg bg-slate-800/80 text-slate-400">
-                      {isExpanded ? <ChevronUp className="w-5 h-5" /> : <ChevronDown className="w-5 h-5" />}
+                      {isExpanded ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
                     </div>
                   </button>
 
@@ -945,7 +945,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                             label="Nghe trả lời"
                           />
                         </div>
-                        <p className="text-xs sm:text-sm text-slate-200 leading-relaxed font-medium">
+                        <p className="text-sm sm:text-base text-slate-200 leading-relaxed font-medium">
                           {item.shortAnswer}
                         </p>
                       </div>
@@ -955,15 +955,15 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                         <div className="text-xs font-bold text-slate-400 uppercase tracking-wider">
                           Phân Tích Chi Tiết:
                         </div>
-                        <div className="text-xs sm:text-sm text-slate-300 leading-relaxed whitespace-pre-line">
+                        <div className="space-y-1.5 text-sm sm:text-base text-slate-300 leading-relaxed whitespace-pre-line">
                           {item.detailedAnswer}
                         </div>
                       </div>
 
                       {/* Clinical Pearls */}
                       {item.clinicalPearls.length > 0 && (
-                        <div className="p-3 bg-emerald-950/30 border border-emerald-800/40 rounded-xl space-y-1 text-xs text-emerald-200">
-                          <div className="font-bold text-emerald-300 flex items-center gap-1.5 uppercase">
+                        <div className="p-3 bg-emerald-950/30 border border-emerald-800/40 rounded-xl space-y-1 text-xs sm:text-sm text-emerald-200">
+                          <div className="font-bold text-emerald-300 flex items-center gap-1.5 uppercase text-xs">
                             <ShieldCheck className="w-4 h-4 text-emerald-400 shrink-0" />
                             <span>Lời Khuyên Cốt Lõi Từ Chuyên Gia:</span>
                           </div>
@@ -982,7 +982,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
                       <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                         <Tag className="w-3.5 h-3.5 text-slate-500" />
                         {item.tags.map((tag, i) => (
-                          <span key={i} className="text-[10px] px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">
+                          <span key={i} className="text-[10px] sm:text-xs px-2 py-0.5 rounded-full bg-slate-800 text-slate-400 font-mono">
                             #{tag}
                           </span>
                         ))}

@@ -291,8 +291,49 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             Nhiều bệnh nhân khi đọc chữ "Tăng sản" thường lo sợ đây là ung thư. Bảng đối chiếu dưới đây theo chuẩn Tổ chức Y tế Thế giới (WHO) sẽ giúp chị nhìn rõ sự khác biệt tuyệt đối:
           </p>
 
-          <div className="overflow-x-auto rounded-xl border border-slate-800">
-            <table className="w-full text-left text-xs">
+          {/* Mobile View: Consolidated 2-Column Responsive Layout (< sm) */}
+          <div className="block sm:hidden rounded-xl border border-slate-800 bg-slate-950 p-3 space-y-3">
+            {[
+              {
+                feature: 'Hình thái nhân tế bào',
+                typical: 'Nhân tế bào bình thường, đồng đều, không dị dạng',
+                atypical: 'Nhân quái dị, đa hình thái, mất phân cực'
+              },
+              {
+                feature: 'Nguy cơ ác tính (Ung thư)',
+                typical: '< 1% đến 3% (Cực kỳ thấp - Lành tính)',
+                atypical: '25% đến 40% (Tổn thương tiền ung thư)'
+              },
+              {
+                feature: 'Ảnh hưởng từ Tamoxifen',
+                typical: 'Dấu ấn mô học kinh điển vô hại (tuyến giãn nang)',
+                atypical: 'Hiếm gặp hơn, cần xử lý phẫu thuật triệt để'
+              },
+              {
+                feature: 'Hướng điều trị y khoa',
+                typical: 'Xử lý cầm máu cơ học, nội soi hoặc phẫu thuật bảo tồn buồng trứng',
+                atypical: 'Bắt buộc phẫu thuật cắt tử cung toàn phần'
+              }
+            ].map((row, idx) => (
+              <div key={idx} className="border-b border-slate-800/80 pb-3 last:border-b-0 last:pb-0 space-y-1.5 text-xs sm:text-sm">
+                <div className="font-bold text-white uppercase tracking-wide text-xs">
+                  {idx + 1}. {row.feature}
+                </div>
+                <div className="p-2 rounded-lg bg-emerald-950/30 border border-emerald-800/40 text-emerald-200">
+                  <div className="text-[11px] font-bold uppercase text-emerald-400">✓ CỦA CHỊ: Tăng Sản Điển Hình:</div>
+                  <div className="font-medium text-xs mt-0.5">{row.typical}</div>
+                </div>
+                <div className="p-2 rounded-lg bg-rose-950/20 border border-rose-900/30 text-rose-300">
+                  <div className="text-[11px] font-bold uppercase text-rose-400">⚠ Tăng Sản Không Điển Hình (Atypical):</div>
+                  <div className="text-xs mt-0.5">{row.atypical}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop / Tablet View: Full 3-Column Table (>= sm) */}
+          <div className="hidden sm:block overflow-x-auto rounded-xl border border-slate-800">
+            <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-slate-900/90 text-slate-300 font-bold border-b border-slate-800">
                 <tr>
                   <th className="p-2.5 sm:p-3">Đặc Điểm So Sánh</th>
@@ -303,7 +344,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               <tbody className="divide-y divide-slate-800/60 bg-slate-950">
                 <tr>
                   <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Hình thái nhân tế bào</td>
-                  <td className="p-2.5 sm:p-3 text-emerald-300">Nhân tế bào bình thường, đồng đều, không dị dạng</td>
+                  <td className="p-2.5 sm:p-3 text-emerald-300 font-medium">Nhân tế bào bình thường, đồng đều, không dị dạng</td>
                   <td className="p-2.5 sm:p-3 text-rose-300">Nhân quái dị, đa hình thái, mất phân cực</td>
                 </tr>
                 <tr>

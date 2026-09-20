@@ -317,8 +317,28 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
             Giúp bệnh nhân và gia đình hoàn toàn trút bỏ sự lo lắng về nguy cơ di căn xương:
           </p>
 
-          <div className="overflow-x-auto rounded-xl border border-slate-800 bg-slate-950">
-            <table className="w-full text-left text-xs border-collapse">
+          {/* Mobile View: Consolidated 2-Column Responsive Layout (< sm) */}
+          <div className="block sm:hidden rounded-xl border border-slate-800 bg-slate-950 p-3 space-y-3">
+            {differentiateDiagnosisTable.map((row, i) => (
+              <div key={i} className="border-b border-slate-800/80 pb-3 last:border-b-0 last:pb-0 space-y-1.5 text-xs sm:text-sm">
+                <div className="font-bold text-white uppercase tracking-wide text-xs">
+                  {i + 1}. {row.feature}
+                </div>
+                <div className="p-2 rounded-lg bg-teal-950/30 border border-teal-800/40 text-teal-200">
+                  <div className="text-[11px] font-bold uppercase text-teal-400">✓ Trường Hợp Của Chị (Lành tính):</div>
+                  <div className="font-medium text-xs mt-0.5">{row.patientCondition}</div>
+                </div>
+                <div className="p-2 rounded-lg bg-rose-950/20 border border-rose-900/30 text-rose-300">
+                  <div className="text-[11px] font-bold uppercase text-rose-400">⚠ Đau Do Di Căn Xương (K Vú):</div>
+                  <div className="text-xs mt-0.5">{row.boneMetastasisCancer}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Desktop / Tablet View: Full 3-Column Table (>= sm) */}
+          <div className="hidden sm:block overflow-x-auto rounded-xl border border-slate-800 bg-slate-950">
+            <table className="w-full text-left text-xs sm:text-sm border-collapse">
               <thead>
                 <tr className="bg-slate-900/90 text-slate-300 border-b border-slate-800 font-bold">
                   <th className="p-2.5 sm:p-3">Đặc Điểm Phân Biệt</th>
@@ -329,9 +349,9 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
               <tbody className="divide-y divide-slate-800/80 text-slate-300">
                 {differentiateDiagnosisTable.map((row, i) => (
                   <tr key={i} className="hover:bg-slate-900/40 transition-colors">
-                    <td className="p-2.5 font-semibold text-slate-200 align-top">{row.feature}</td>
-                    <td className="p-2.5 text-slate-200 bg-teal-950/10 align-top">{row.patientCondition}</td>
-                    <td className="p-2.5 text-slate-400 bg-rose-950/10 align-top">{row.boneMetastasisCancer}</td>
+                    <td className="p-2.5 sm:p-3 font-semibold text-slate-200 align-top">{row.feature}</td>
+                    <td className="p-2.5 sm:p-3 text-slate-200 bg-teal-950/10 align-top">{row.patientCondition}</td>
+                    <td className="p-2.5 sm:p-3 text-slate-400 bg-rose-950/10 align-top">{row.boneMetastasisCancer}</td>
                   </tr>
                 ))}
               </tbody>

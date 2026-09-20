@@ -372,8 +372,49 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               <span>Đối Chiếu 4 Phương Pháp Kiểm Soát Cận Thị Hiện Nay</span>
             </h3>
             
-            <div className="overflow-x-auto border-t border-b border-slate-800 py-2">
-              <table className="w-full text-left text-xs font-sans">
+            {/* Mobile View: Consolidated 2-Column Responsive Layout (< sm) */}
+            <div className="block sm:hidden border-t border-b border-slate-800 py-2">
+              <div className="space-y-3">
+                {myopiaInterventionsComparison.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className={`p-3 rounded-xl border text-sm space-y-2 ${
+                      idx === 0 
+                        ? 'bg-cyan-950/30 border-cyan-500/40 text-cyan-100' 
+                        : 'bg-slate-900/50 border-slate-800 text-slate-300'
+                    }`}
+                  >
+                    <div className="flex items-start justify-between gap-2 border-b border-slate-800/80 pb-1.5">
+                      <div>
+                        <div className="font-bold text-white text-sm">{item.vietnameseName}</div>
+                        <div className="text-xs text-slate-400 font-mono">{item.method}</div>
+                      </div>
+                      <span className="text-xs font-mono font-bold text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/50 shrink-0">
+                        {item.costVND}
+                      </span>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-1.5 text-xs sm:text-sm">
+                      <div className="flex items-center gap-2">
+                        <span className="text-slate-400 font-medium shrink-0">Hiệu quả:</span>
+                        <span className="font-semibold text-emerald-400">{item.efficacy}</span>
+                      </div>
+                      <div>
+                        <span className="text-slate-400 font-medium">Độ an toàn: </span>
+                        <span className="text-slate-200">{item.safetyProfile}</span>
+                      </div>
+                      <div className="pt-1 text-slate-300 text-xs leading-relaxed border-t border-slate-800/40">
+                        <strong className="text-cyan-300">Đánh giá: </strong>{item.suitabilityForMinhAnh}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Desktop / Tablet View: Full 5-Column Table (>= sm) */}
+            <div className="hidden sm:block overflow-x-auto border-t border-b border-slate-800 py-2">
+              <table className="w-full text-left text-xs sm:text-sm font-sans">
                 <thead>
                   <tr className="text-cyan-400 font-mono uppercase border-b border-slate-800/80">
                     <th className="py-2.5 pr-3">Phương Pháp</th>
@@ -389,7 +430,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                       <td className="py-3 pr-3 font-bold text-slate-100">{item.vietnameseName}</td>
                       <td className="py-3 px-3 font-semibold text-emerald-400">{item.efficacy}</td>
                       <td className="py-3 px-3">{item.safetyProfile}</td>
-                      <td className="py-3 px-3 font-mono">{item.costVND}</td>
+                      <td className="py-3 px-3 font-mono text-cyan-300">{item.costVND}</td>
                       <td className="py-3 pl-3 text-xs leading-relaxed">{item.suitabilityForMinhAnh}</td>
                     </tr>
                   ))}
