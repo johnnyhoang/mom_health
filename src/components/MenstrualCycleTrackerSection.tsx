@@ -10,7 +10,6 @@ import {
   Calendar as CalendarIcon,
   Activity,
   CheckCircle2,
-  Clock,
   Sparkles,
   ChevronLeft,
   ChevronRight,
@@ -209,48 +208,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
   const [quickEditLog, setQuickEditLog] = useState<Partial<DailyCycleLog>>({});
   const [customSymptomInput, setCustomSymptomInput] = useState<string>('');
 
-  // Start Cycle Modal State (triggered directly from calendar day or tree view)
-  const [isStartCycleModalOpen, setIsStartCycleModalOpen] = useState<boolean>(false);
-  const [startCycleForm, setStartCycleForm] = useState<{
-    startDate: string;
-    periodDurationDays: number;
-    cycleLengthDays: number;
-    cycleType: HistoricalCycle['cycleType'];
-    cycleTypeLabel: string;
-    clinicalNote: string;
-    // Day 1 Log info
-    dischargeType: DailyCycleLog['dischargeType'];
-    dischargeLabel: string;
-    painLevel: DailyCycleLog['painLevel'];
-    painDescription: string;
-    symptoms: string[];
-    daySummary: string;
-    // Intimacy info
-    hasIntercourse: boolean;
-    intercourseProtection: DailyCycleLog['intercourseProtection'];
-    intercourseOrgasm: boolean;
-    intercourseCount: number;
-    intercourseNote: string;
-  }>({
-    startDate: '15/09/2026',
-    periodDurationDays: 5,
-    cycleLengthDays: 35,
-    cycleType: 'normal_long',
-    cycleTypeLabel: 'Chu kỳ dài sinh lý (35 ngày)',
-    clinicalNote: '',
-    dischargeType: 'fresh_blood',
-    dischargeLabel: 'Máu đỏ tươi (Kinh)',
-    painLevel: 'moderate',
-    painDescription: '',
-    symptoms: ['Bắt đầu ra kinh', 'Đau thắt lưng', 'Đau bụng dưới'],
-    daySummary: 'Bắt đầu chu kỳ kinh nguyệt mới (Ngày 1).',
-    hasIntercourse: false,
-    intercourseProtection: 'protected',
-    intercourseOrgasm: false,
-    intercourseCount: 1,
-    intercourseNote: ''
-  });
-  const [startCycleCustomSymptom, setStartCycleCustomSymptom] = useState<string>('');
+
 
   // Edit Existing Cycle Modal & DB Modal
   const [isCycleModalOpen, setIsCycleModalOpen] = useState<boolean>(false);
@@ -615,92 +573,57 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     setIsQuickEditing(false);
   };
 
-  // Open the Start Cycle Modal from Calendar Day
-  const handleOpenStartCycleModal = (dateStr: string) => {
+  // Quick 1-click Start Cycle on Selected Date (No modal, no lengthy explanations)
+  const handleQuickStartCycle = (dateStr: string) => {
     const parsed = parseDateUnified(dateStr) || new Date();
-    const dateFormatted = formatDateToVN(parsed);
-    
-    setStartCycleForm({
-      startDate: dateFormatted,
-      periodDurationDays: 5,
-      cycleLengthDays: 35,
-      cycleType: 'normal_long',
-      cycleTypeLabel: 'Chu kỳ dài sinh lý (35 ngày)',
-      clinicalNote: '',
-      dischargeType: 'fresh_blood',
-      dischargeLabel: 'Máu đỏ tươi (Kinh)',
-      painLevel: 'moderate',
-      painDescription: '',
-      symptoms: ['Bắt đầu ra kinh', 'Đau thắt lưng', 'Đau bụng dưới'],
-      daySummary: `Bắt đầu chu kỳ kinh nguyệt mới (Ngày 1) lúc ${dateFormatted}.`,
-      hasIntercourse: false,
-      intercourseProtection: 'protected',
-      intercourseOrgasm: false,
-      intercourseCount: 1,
-      intercourseNote: ''
-    });
-    setStartCycleCustomSymptom('');
-    setIsStartCycleModalOpen(true);
-  };
-
-  // Handle Submit Start Cycle
-  const handleSaveStartCycle = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!startCycleForm.startDate) return;
-
-    const parsedStart = parseDateUnified(startCycleForm.startDate);
-    if (!parsedStart) {
-      showNotification('Định dạng ngày bắt đầu không hợp lệ!', 'error');
-      return;
-    }
-
-    const startVN = formatDateToVN(parsedStart);
+    const dateVN = formatDateToVN(parsed);
     const newCycleId = `cycle-${Date.now()}`;
 
-    // 1. Create New Cycle Object
+    // 1. Create New Cycle Object (defaults: 35 days, 5 days period)
     const newCycle: HistoricalCycle = {
       id: newCycleId,
-      startDate: startVN,
+      startDate: dateVN,
       endDate: 'Hiện tại',
-      dateRangeDisplay: `${startVN} – [Đang diễn ra]`,
-      year: parsedStart.getFullYear(),
-      cycleLengthDays: startCycleForm.cycleLengthDays || 35,
-      periodDurationDays: startCycleForm.periodDurationDays || 5,
-      cycleType: startCycleForm.cycleType,
-      cycleTypeLabel: startCycleForm.cycleTypeLabel,
-      clinicalNote: startCycleForm.clinicalNote?.trim() || `Chu kỳ bắt đầu ngày ${startVN}.`
+      dateRangeDisplay: `${dateVN} – [Đang diễn ra]`,
+      year: parsed.getFullYear(),
+      cycleLengthDays: 35,
+      periodDurationDays: 5,
+      cycleType: 'normal_long',
+      cycleTypeLabel: 'Chu kỳ dài sinh lý (35 ngày)',
+      clinicalNote: `Chu kỳ bắt đầu ngày ${dateVN}.`
     };
 
     // 2. Add and Recalibrate all cycles (automatically closes previous cycle)
-    const combinedCycles = [newCycle, ...cycles.filter(c => c.id !== newCycleId)];
+    const combinedCycles = [newCycle, ...cycles.filter(c => c.startDate !== dateVN && c.id !== newCycleId)];
     const recalibrated = recalibrateCycles(combinedCycles);
     setCycles(recalibrated);
 
-    // 3. Automatically Create Day 1 Daily Log for this cycle start date
+    // 3. Ensure Day 1 Daily Log exists for this start date
+    const existingLog = dailyLogsMap.get(dateVN);
     const day1Log: DailyCycleLog = {
-      date: startVN,
-      dayOfWeek: getWeekdayVN(parsedStart),
-      cycleDayText: 'Ngày 1 (Bắt đầu kỳ kinh)',
+      date: dateVN,
+      dayOfWeek: getWeekdayVN(parsed),
+      cycleDayText: 'Ngày 1 (K1)',
       cycleDayNumber: 1,
       phase: 'menstrual',
       phaseLabel: 'Pha Hành Kinh',
-      summary: startCycleForm.daySummary?.trim() || 'Bắt đầu chu kỳ kinh nguyệt mới (Ngày 1).',
-      symptoms: startCycleForm.symptoms || ['Bắt đầu ra kinh'],
-      dischargeType: startCycleForm.dischargeType,
-      dischargeLabel: startCycleForm.dischargeLabel,
-      painLevel: startCycleForm.painLevel,
-      painDescription: startCycleForm.painDescription?.trim() || undefined,
-      eventNote: 'Bắt đầu kỳ kinh mới',
-      clinicalInterpretation: `Ngày 1 của chu kỳ kinh nguyệt mới (${startVN}). Mốc tính toán sinh lý toàn bộ chu kỳ.`,
+      summary: existingLog?.summary || `Bắt đầu chu kỳ kinh nguyệt mới (${dateVN}).`,
+      symptoms: existingLog?.symptoms?.length ? existingLog.symptoms : ['Bắt đầu ra kinh'],
+      dischargeType: existingLog?.dischargeType && existingLog.dischargeType !== 'none' ? existingLog.dischargeType : 'fresh_blood',
+      dischargeLabel: existingLog?.dischargeLabel && existingLog.dischargeLabel !== 'Sạch / Không ra dịch' ? existingLog.dischargeLabel : 'Máu đỏ tươi (Kinh)',
+      painLevel: existingLog?.painLevel || 'moderate',
+      painDescription: existingLog?.painDescription,
+      eventNote: existingLog?.eventNote || 'Bắt đầu chu kỳ mới',
+      clinicalInterpretation: `Ngày 1 của chu kỳ kinh nguyệt mới (${dateVN}). Mốc tính toán sinh lý toàn bộ chu kỳ.`,
       isKeyMilestone: true,
-      hasIntercourse: Boolean(startCycleForm.hasIntercourse),
-      intercourseProtection: startCycleForm.hasIntercourse ? startCycleForm.intercourseProtection : undefined,
-      intercourseOrgasm: startCycleForm.hasIntercourse ? startCycleForm.intercourseOrgasm : undefined,
-      intercourseCount: startCycleForm.hasIntercourse ? startCycleForm.intercourseCount : undefined,
-      intercourseNote: startCycleForm.hasIntercourse ? startCycleForm.intercourseNote?.trim() : undefined
+      hasIntercourse: Boolean(existingLog?.hasIntercourse),
+      intercourseProtection: existingLog?.intercourseProtection,
+      intercourseOrgasm: existingLog?.intercourseOrgasm,
+      intercourseCount: existingLog?.intercourseCount,
+      intercourseNote: existingLog?.intercourseNote
     };
 
-    const existsLogIdx = dailyLogs.findIndex(l => l.date === startVN);
+    const existsLogIdx = dailyLogs.findIndex(l => l.date === dateVN);
     let updatedLogs: DailyCycleLog[];
     if (existsLogIdx >= 0) {
       updatedLogs = [...dailyLogs];
@@ -714,9 +637,8 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     upsertCyclesToDB(recalibrated);
     upsertDailyLogsToDB([day1Log]);
 
-    showNotification(`Đã bắt đầu chu kỳ mới từ ngày ${startVN}! Chu kỳ trước đã được tự động kết thúc.`, 'success');
-    setIsStartCycleModalOpen(false);
-    setSelectedCalendarDateStr(startVN);
+    showNotification(`Đã ghi nhận ${dateVN} là Ngày 1 (K1) bắt đầu chu kỳ mới!`, 'success');
+    setSelectedCalendarDateStr(dateVN);
   };
 
   const handleStartQuickEdit = () => {
@@ -815,24 +737,6 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
     setCustomSymptomInput('');
   };
 
-  const handleToggleStartCycleSymptom = (tag: string) => {
-    const curr = startCycleForm.symptoms || [];
-    if (curr.includes(tag)) {
-      setStartCycleForm({ ...startCycleForm, symptoms: curr.filter(s => s !== tag) });
-    } else {
-      setStartCycleForm({ ...startCycleForm, symptoms: [...curr, tag] });
-    }
-  };
-
-  const handleAddStartCycleCustomSymptom = () => {
-    if (!startCycleCustomSymptom.trim()) return;
-    const tag = startCycleCustomSymptom.trim();
-    const curr = startCycleForm.symptoms || [];
-    if (!curr.includes(tag)) {
-      setStartCycleForm({ ...startCycleForm, symptoms: [...curr, tag] });
-    }
-    setStartCycleCustomSymptom('');
-  };
 
   const handleExportData = () => {
     const exportObj = {
@@ -1090,7 +994,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
 
         {/* Quick Add Button */}
         <button
-          onClick={() => handleOpenStartCycleModal(selectedCalendarDateStr)}
+          onClick={() => handleQuickStartCycle(selectedCalendarDateStr)}
           className="px-2.5 py-1.5 rounded-lg bg-rose-500/20 hover:bg-rose-500/30 text-rose-300 border border-rose-500/40 text-xs font-bold flex items-center gap-1 transition-all cursor-pointer shrink-0"
         >
           <Plus className="w-3.5 h-3.5 text-rose-400" />
@@ -1342,14 +1246,37 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                 )}
               </div>
 
-              {/* Action Button: Start Cycle on Selected Date */}
-              <button
-                onClick={() => handleOpenStartCycleModal(activeSelectedDayData.date)}
-                className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all active:scale-95"
-              >
-                <Plus className="w-3.5 h-3.5" />
-                <span>+ Bắt Đầu Chu Kỳ (K1)</span>
-              </button>
+              {/* Action Button: Start Cycle on Selected Date (Single clean option, no modal) */}
+              {activeSelectedDayData.isCycleStart ? (
+                <div className="flex items-center justify-between p-2 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs font-bold">
+                  <span className="flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-rose-400" />
+                    <span>Ngày Bắt Đầu Chu Kỳ (K1)</span>
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const cycleToRemove = cycles.find(c => {
+                        const cd = parseDateUnified(c.startDate);
+                        return cd ? formatDateToVN(cd) === activeSelectedDayData.date : false;
+                      });
+                      if (cycleToRemove) handleDeleteCycle(cycleToRemove.id);
+                    }}
+                    className="text-[11px] text-slate-400 hover:text-rose-400 font-normal underline cursor-pointer"
+                  >
+                    Hủy mốc này
+                  </button>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => handleQuickStartCycle(activeSelectedDayData.date)}
+                  className="w-full py-2 px-3 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-bold text-xs flex items-center justify-center gap-1.5 shadow-sm cursor-pointer transition-all active:scale-95"
+                >
+                  <Plus className="w-3.5 h-3.5" />
+                  <span>Start Chu Kỳ Tại Ngày Này</span>
+                </button>
+              )}
 
               {/* READ MODE */}
               {!isQuickEditing ? (
@@ -1415,7 +1342,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                   {/* Summary Box */}
                   <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-850 space-y-1">
                     <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
-                      Diễn biến trong ngày:
+                      Ghi chú:
                     </div>
                     <p className="text-slate-200 leading-relaxed text-xs">
                       {activeSelectedDayData.summary}
@@ -1481,10 +1408,21 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                     />
                   </div>
 
-                  {/* 1. Tình trạng xuất huyết + Textbox trường hợp khác */}
+                  {/* 1. Tình trạng xuất huyết (Textbox trước, options sau) */}
                   <div className="space-y-1.5">
                     <label className="text-slate-300 font-bold">Tình trạng xuất huyết / Dịch:</label>
-                    <div className="grid grid-cols-2 gap-1.5">
+                    {/* Textbox nhập mô tả */}
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Nhập tình trạng dịch / máu (hoặc chọn nhanh bên dưới)..."
+                        value={quickEditLog.dischargeLabel || ''}
+                        onChange={(e) => setQuickEditLog({ ...quickEditLog, dischargeLabel: e.target.value })}
+                        className="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 text-xs"
+                      />
+                    </div>
+                    {/* Options chọn nhanh */}
+                    <div className="grid grid-cols-2 gap-1.5 pt-0.5">
                       {[
                         { type: 'none', label: 'Sạch hoàn toàn' },
                         { type: 'orange_spotting', label: 'Đốm cam / Cam tươi' },
@@ -1513,22 +1451,23 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                         );
                       })}
                     </div>
-                    {/* Textbox nhập thêm mô tả trường hợp khác */}
-                    <div className="pt-1">
-                      <input
-                        type="text"
-                        placeholder="Hoặc nhập trường hợp khác (VD: Dịch nhầy trong, đốm cam sau sinh hoạt...)"
-                        value={quickEditLog.dischargeLabel || ''}
-                        onChange={(e) => setQuickEditLog({ ...quickEditLog, dischargeLabel: e.target.value })}
-                        className="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 text-xs"
-                      />
-                    </div>
                   </div>
 
-                  {/* 2. Mức độ đau + Textbox trường hợp khác */}
+                  {/* 2. Mức độ đau (Textbox trước, options sau) */}
                   <div className="space-y-1.5">
                     <label className="text-slate-300 font-bold">Mức độ đau:</label>
-                    <div className="grid grid-cols-4 gap-1">
+                    {/* Textbox mô tả đau chi tiết */}
+                    <div>
+                      <input
+                        type="text"
+                        placeholder="Mô tả đau chi tiết (VD: Đau căng vú phải, đau âm ỉ hạ vị, mỏi lưng...)"
+                        value={quickEditLog.painDescription || ''}
+                        onChange={(e) => setQuickEditLog({ ...quickEditLog, painDescription: e.target.value })}
+                        className="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 text-xs"
+                      />
+                    </div>
+                    {/* Options chọn mức độ */}
+                    <div className="grid grid-cols-4 gap-1 pt-0.5">
                       {[
                         { level: 'none', label: 'Không' },
                         { level: 'mild', label: 'Nhẹ' },
@@ -1552,22 +1491,37 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                         );
                       })}
                     </div>
-                    {/* Textbox nhập mô tả chi tiết mức độ đau */}
-                    <div className="pt-1">
-                      <input
-                        type="text"
-                        placeholder="Mô tả đau chi tiết (VD: Đau căng vú phải, đau âm ỉ hạ vị, mỏi lưng...)"
-                        value={quickEditLog.painDescription || ''}
-                        onChange={(e) => setQuickEditLog({ ...quickEditLog, painDescription: e.target.value })}
-                        className="w-full px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-amber-500 text-xs"
-                      />
-                    </div>
                   </div>
 
-                  {/* 3. Chọn nhanh triệu chứng + Textbox nhập thêm triệu chứng khác */}
+                  {/* 3. Triệu chứng (Textbox trước, options sau) */}
                   <div className="space-y-1.5">
-                    <label className="text-slate-300 font-bold">Chọn nhanh triệu chứng (Click để bật/tắt):</label>
-                    <div className="flex flex-wrap gap-1.5">
+                    <label className="text-slate-300 font-bold">Triệu chứng (Click để bật/tắt):</label>
+                    {/* Textbox thêm triệu chứng khác */}
+                    <div className="flex items-center gap-1.5">
+                      <input
+                        type="text"
+                        placeholder="Nhập thêm triệu chứng khác..."
+                        value={customSymptomInput}
+                        onChange={(e) => setCustomSymptomInput(e.target.value)}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter') {
+                            e.preventDefault();
+                            handleAddCustomSymptom();
+                          }
+                        }}
+                        className="flex-1 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 text-xs"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleAddCustomSymptom}
+                        className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-300 font-bold text-xs border border-slate-700 transition-all cursor-pointer"
+                      >
+                        + Thêm
+                      </button>
+                    </div>
+
+                    {/* Options chọn nhanh triệu chứng */}
+                    <div className="flex flex-wrap gap-1.5 pt-0.5">
                       {[
                         'Căng đau vú PMS',
                         'Đau mỏi thắt lưng',
@@ -1616,30 +1570,6 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                           <X className="w-3 h-3 text-teal-200 hover:text-white" />
                         </button>
                       ))}
-                    </div>
-
-                    {/* Textbox thêm triệu chứng khác */}
-                    <div className="flex items-center gap-1.5 pt-1">
-                      <input
-                        type="text"
-                        placeholder="Nhập thêm triệu chứng khác..."
-                        value={customSymptomInput}
-                        onChange={(e) => setCustomSymptomInput(e.target.value)}
-                        onKeyDown={(e) => {
-                          if (e.key === 'Enter') {
-                            e.preventDefault();
-                            handleAddCustomSymptom();
-                          }
-                        }}
-                        className="flex-1 px-3 py-1.5 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-rose-500 text-xs"
-                      />
-                      <button
-                        type="button"
-                        onClick={handleAddCustomSymptom}
-                        className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-300 font-bold text-xs border border-slate-700 transition-all cursor-pointer"
-                      >
-                        + Thêm
-                      </button>
                     </div>
                   </div>
 
@@ -1720,7 +1650,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                   </div>
 
                   <div className="space-y-1">
-                    <label className="text-slate-300 font-bold">Ghi chú diễn biến trong ngày:</label>
+                    <label className="text-slate-300 font-bold">Ghi chú:</label>
                     <textarea
                       rows={2}
                       required
@@ -1731,31 +1661,20 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                     />
                   </div>
 
-                  <div className="space-y-1">
-                    <label className="text-slate-300 font-bold">Sự kiện đặc biệt / Đi khám (nếu có):</label>
-                    <input
-                      type="text"
-                      placeholder="VD: Sinh thiết Pipelle BV Hùng Vương..."
-                      value={quickEditLog.eventNote || ''}
-                      onChange={(e) => setQuickEditLog({ ...quickEditLog, eventNote: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-950 border border-slate-800 text-white focus:outline-none focus:border-rose-500"
-                    />
-                  </div>
-
                   <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
                     <button
                       type="button"
                       onClick={() => setIsQuickEditing(false)}
                       className="px-3 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
                     >
-                      Hủy Bỏ
+                      Hủy
                     </button>
                     <button
                       type="submit"
                       className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-black hover:opacity-90 flex items-center gap-1.5 cursor-pointer shadow-md"
                     >
                       <Save className="w-3.5 h-3.5" />
-                      <span>Lưu Nhật Ký Ngày</span>
+                      <span>Lưu</span>
                     </button>
                   </div>
                 </form>
@@ -1795,11 +1714,14 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                   Thu Gọn
                 </button>
                 <button
-                  onClick={() => handleOpenStartCycleModal(formatDateToVN(new Date()))}
+                  onClick={() => {
+                    setActiveTab('calendar');
+                    handleJumpToToday();
+                  }}
                   className="px-3 py-1.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white text-xs font-bold flex items-center gap-1.5 shadow-md shadow-rose-500/20 cursor-pointer"
                 >
                   <Plus className="w-3.5 h-3.5" />
-                  <span>+ Thêm Chu Kỳ Mới</span>
+                  <span>+ Start Chu Kỳ Mới</span>
                 </button>
               </div>
             </div>
@@ -2165,376 +2087,7 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
         </div>
       )}
 
-      {/* ========================================================================= */}
-      {/* MODAL: START NEW CYCLE (FROM CALENDAR OR TREE) */}
-      {/* ========================================================================= */}
-      {isStartCycleModalOpen && (
-        <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-          <div className="bg-slate-900 border border-slate-800 rounded-3xl max-w-xl w-full p-6 space-y-5 shadow-2xl animate-in zoom-in-95 duration-200 my-8 max-h-[90vh] overflow-y-auto">
-            
-            <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-md shadow-rose-500/30">
-                  <Sparkles className="w-5 h-5" />
-                </div>
-                <div>
-                  <h3 className="font-black text-white text-base sm:text-lg">
-                    Bắt Đầu Chu Kỳ Kinh Nguyệt Mới
-                  </h3>
-                  <p className="text-xs text-slate-400">
-                    Thiết lập Ngày 1 (K1) và tự động quản lý chuỗi chu kỳ
-                  </p>
-                </div>
-              </div>
-              <button onClick={() => setIsStartCycleModalOpen(false)} className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white cursor-pointer">
-                <X className="w-5 h-5" />
-              </button>
-            </div>
 
-            {/* Smart Auto-closing notice */}
-            <div className="p-3.5 rounded-2xl bg-teal-950/40 border border-teal-500/40 text-xs text-teal-200 space-y-1.5">
-              <div className="font-bold flex items-center gap-1.5 text-teal-300">
-                <CheckCircle2 className="w-4 h-4 text-teal-400" />
-                <span>Quy tắc tự động thông minh:</span>
-              </div>
-              <p className="text-slate-300 leading-relaxed">
-                • <strong>Không cần nhập ngày kết thúc:</strong> Tool sẽ tự động dự đoán và khi bạn bắt đầu chu kỳ tiếp theo trong tương lai, ngày kết thúc thực tế của chu kỳ này sẽ tự động được ghi nhận.
-              </p>
-              <p className="text-slate-300 leading-relaxed">
-                • Chu kỳ liền trước sẽ tự động được đóng lại vào 1 ngày trước ngày bắt đầu này.
-              </p>
-            </div>
-
-            <form onSubmit={handleSaveStartCycle} className="space-y-4 text-xs">
-              
-              {/* SECTION 1: CYCLE METADATA */}
-              <div className="p-4 rounded-2xl bg-slate-950 border border-slate-850 space-y-3">
-                <div className="text-[11px] font-bold text-rose-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <CalendarDays className="w-3.5 h-3.5" />
-                  <span>1. Thông Tin Đầu Chu Kỳ</span>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-slate-300 font-bold">Ngày bắt đầu chu kỳ (K1):</label>
-                    <input
-                      type="text"
-                      required
-                      placeholder="DD/MM/YYYY (VD: 24/08/2026)"
-                      value={startCycleForm.startDate}
-                      onChange={(e) => setStartCycleForm({ ...startCycleForm, startDate: e.target.value })}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white font-bold focus:outline-none focus:border-rose-500"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-slate-300 font-bold">Số ngày hành kinh dự kiến:</label>
-                    <input
-                      type="number"
-                      required
-                      min={1}
-                      max={15}
-                      value={startCycleForm.periodDurationDays}
-                      onChange={(e) => setStartCycleForm({ ...startCycleForm, periodDurationDays: Number(e.target.value) })}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-rose-500"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  <div className="space-y-1">
-                    <label className="text-slate-300 font-bold">Độ dài chu kỳ dự kiến (ngày):</label>
-                    <input
-                      type="number"
-                      required
-                      min={15}
-                      max={90}
-                      value={startCycleForm.cycleLengthDays}
-                      onChange={(e) => setStartCycleForm({ ...startCycleForm, cycleLengthDays: Number(e.target.value) })}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-rose-500"
-                    />
-                  </div>
-
-                  <div className="space-y-1">
-                    <label className="text-slate-300 font-bold">Phân loại chu kỳ:</label>
-                    <select
-                      value={startCycleForm.cycleType}
-                      onChange={(e) => {
-                        const val = e.target.value as HistoricalCycle['cycleType'];
-                        const labelMap = {
-                          'normal_long': `Chu kỳ dài sinh lý (${startCycleForm.cycleLengthDays} ngày)`,
-                          'standard': `Chu kỳ chuẩn (${startCycleForm.cycleLengthDays} ngày)`,
-                          'delayed_long': `Chu kỳ thưa (${startCycleForm.cycleLengthDays} ngày)`,
-                          'short_breakthrough': `Chu kỳ ngắn không phóng noãn (${startCycleForm.cycleLengthDays} ngày)`
-                        };
-                        setStartCycleForm({
-                          ...startCycleForm,
-                          cycleType: val,
-                          cycleTypeLabel: labelMap[val] || 'Chu kỳ bình thường'
-                        });
-                      }}
-                      className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-rose-500"
-                    >
-                      <option value="normal_long">Chu kỳ dài sinh lý (30 - 42 ngày)</option>
-                      <option value="standard">Chu kỳ chuẩn (26 - 30 ngày)</option>
-                      <option value="delayed_long">Chu kỳ thưa (&gt; 43 ngày)</option>
-                      <option value="short_breakthrough">Chu kỳ ngắn (&lt; 25 ngày)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-bold">Ghi chú chu kỳ (tùy chọn):</label>
-                  <input
-                    type="text"
-                    placeholder="VD: Kỳ kinh bắt đầu đúng dự kiến, mệt mỏi nhẹ..."
-                    value={startCycleForm.clinicalNote}
-                    onChange={(e) => setStartCycleForm({ ...startCycleForm, clinicalNote: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-rose-500"
-                  />
-                </div>
-              </div>
-
-              {/* SECTION 2: DAY 1 LOG INFO */}
-              <div className="p-4 rounded-2xl bg-slate-950 border border-slate-850 space-y-3">
-                <div className="text-[11px] font-bold text-amber-400 uppercase tracking-wider flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5" />
-                  <span>2. Nhật Ký Ngày Đầu Tiên (Ngày 1 - K1)</span>
-                </div>
-
-                {/* Xuất huyết */}
-                <div className="space-y-1.5">
-                  <label className="text-slate-300 font-bold">Lượng kinh / Xuất huyết:</label>
-                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-1.5">
-                    {[
-                      { type: 'fresh_blood', label: 'Máu đỏ tươi (Kinh)' },
-                      { type: 'orange_spotting', label: 'Đốm cam lợt' },
-                      { type: 'brown_blood', label: 'Máu nâu sẫm' }
-                    ].map((item) => {
-                      const isSelected = startCycleForm.dischargeType === item.type;
-                      return (
-                        <button
-                          key={item.type}
-                          type="button"
-                          onClick={() => setStartCycleForm({
-                            ...startCycleForm,
-                            dischargeType: item.type as DailyCycleLog['dischargeType'],
-                            dischargeLabel: item.label
-                          })}
-                          className={`p-2 rounded-xl text-left font-medium transition-all cursor-pointer border ${
-                            isSelected
-                              ? 'bg-rose-500/20 border-rose-500 text-rose-200 font-bold shadow-sm'
-                              : 'bg-slate-900 border-slate-700 text-slate-400 hover:text-slate-200'
-                          }`}
-                        >
-                          {item.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Hoặc nhập trường hợp khác..."
-                    value={startCycleForm.dischargeLabel}
-                    onChange={(e) => setStartCycleForm({ ...startCycleForm, dischargeLabel: e.target.value })}
-                    className="w-full px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs mt-1"
-                  />
-                </div>
-
-                {/* Mức độ đau */}
-                <div className="space-y-1.5">
-                  <label className="text-slate-300 font-bold">Mức độ đau:</label>
-                  <div className="grid grid-cols-4 gap-1">
-                    {[
-                      { level: 'none', label: 'Không' },
-                      { level: 'mild', label: 'Nhẹ' },
-                      { level: 'moderate', label: 'Vừa' },
-                      { level: 'severe', label: 'Quặn' }
-                    ].map((p) => {
-                      const isSelected = startCycleForm.painLevel === p.level;
-                      return (
-                        <button
-                          key={p.level}
-                          type="button"
-                          onClick={() => setStartCycleForm({ ...startCycleForm, painLevel: p.level as DailyCycleLog['painLevel'] })}
-                          className={`py-1.5 rounded-xl font-bold transition-all text-center cursor-pointer border ${
-                            isSelected
-                              ? 'bg-amber-500 text-slate-950 border-amber-400 shadow-sm'
-                              : 'bg-slate-900 border-slate-700 text-slate-400 hover:bg-slate-850'
-                          }`}
-                        >
-                          {p.label}
-                        </button>
-                      );
-                    })}
-                  </div>
-                  <input
-                    type="text"
-                    placeholder="Mô tả đau chi tiết khác..."
-                    value={startCycleForm.painDescription}
-                    onChange={(e) => setStartCycleForm({ ...startCycleForm, painDescription: e.target.value })}
-                    className="w-full px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs mt-1"
-                  />
-                </div>
-
-                {/* Triệu chứng nhanh */}
-                <div className="space-y-1.5">
-                  <label className="text-slate-300 font-bold">Triệu chứng nhanh:</label>
-                  <div className="flex flex-wrap gap-1.5">
-                    {[
-                      'Bắt đầu ra kinh',
-                      'Đau thắt lưng',
-                      'Đau bụng dưới',
-                      'Mệt mỏi',
-                      'Căng ngực PMS',
-                      'Đau đầu nhẹ'
-                    ].map((tag) => {
-                      const isSelected = startCycleForm.symptoms?.includes(tag);
-                      return (
-                        <button
-                          key={tag}
-                          type="button"
-                          onClick={() => handleToggleStartCycleSymptom(tag)}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all cursor-pointer border ${
-                            isSelected
-                              ? 'bg-rose-500 text-white border-rose-400 font-bold shadow-sm'
-                              : 'bg-slate-900 text-slate-400 border-slate-700 hover:text-white'
-                          }`}
-                        >
-                          {isSelected ? '✓ ' : '+ '}{tag}
-                        </button>
-                      );
-                    })}
-
-                    {startCycleForm.symptoms?.filter(s => ![
-                      'Bắt đầu ra kinh',
-                      'Đau thắt lưng',
-                      'Đau bụng dưới',
-                      'Mệt mỏi',
-                      'Căng ngực PMS',
-                      'Đau đầu nhẹ'
-                    ].includes(s)).map((tag) => (
-                      <button
-                        key={tag}
-                        type="button"
-                        onClick={() => handleToggleStartCycleSymptom(tag)}
-                        className="px-2.5 py-1 rounded-lg text-[11px] font-medium bg-teal-600 text-white border-teal-500 font-bold shadow-sm flex items-center gap-1"
-                      >
-                        <span>✓ {tag}</span>
-                        <X className="w-3 h-3 text-teal-200" />
-                      </button>
-                    ))}
-                  </div>
-
-                  {/* Textbox thêm triệu chứng khác */}
-                  <div className="flex items-center gap-1.5 pt-1">
-                    <input
-                      type="text"
-                      placeholder="Nhập thêm triệu chứng khác..."
-                      value={startCycleCustomSymptom}
-                      onChange={(e) => setStartCycleCustomSymptom(e.target.value)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                          e.preventDefault();
-                          handleAddStartCycleCustomSymptom();
-                        }
-                      }}
-                      className="flex-1 px-3 py-1.5 rounded-xl bg-slate-900 border border-slate-700 text-slate-200 placeholder-slate-500 text-xs"
-                    />
-                    <button
-                      type="button"
-                      onClick={handleAddStartCycleCustomSymptom}
-                      className="px-3 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-teal-300 font-bold text-xs border border-slate-700 cursor-pointer"
-                    >
-                      + Thêm
-                    </button>
-                  </div>
-                </div>
-
-                {/* Sinh hoạt vợ chồng ngày 1 */}
-                <div className="p-3 rounded-2xl bg-rose-950/20 border border-rose-500/30 space-y-2">
-                  <div className="flex items-center justify-between">
-                    <label className="text-rose-300 font-bold flex items-center gap-1.5 cursor-pointer">
-                      <Heart className="w-3.5 h-3.5 text-rose-500 fill-rose-500" />
-                      <span>Sinh hoạt vợ chồng:</span>
-                    </label>
-                    <button
-                      type="button"
-                      onClick={() => setStartCycleForm({ ...startCycleForm, hasIntercourse: !startCycleForm.hasIntercourse })}
-                      className={`px-3 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer border ${
-                        startCycleForm.hasIntercourse
-                          ? 'bg-rose-500 text-white border-rose-400 shadow-sm'
-                          : 'bg-slate-900 text-slate-400 border-slate-700'
-                      }`}
-                    >
-                      {startCycleForm.hasIntercourse ? '❤️ Có quan hệ' : 'Không'}
-                    </button>
-                  </div>
-
-                  {startCycleForm.hasIntercourse && (
-                    <div className="space-y-2 pt-2 border-t border-rose-900/40">
-                      <div className="grid grid-cols-2 gap-2">
-                        <div>
-                          <label className="text-[11px] text-slate-400">Số lần trong ngày:</label>
-                          <select
-                            value={startCycleForm.intercourseCount || 1}
-                            onChange={(e) => setStartCycleForm({ ...startCycleForm, intercourseCount: Number(e.target.value) })}
-                            className="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-xs mt-0.5"
-                          >
-                            <option value={1}>1 lần</option>
-                            <option value={2}>2 lần</option>
-                            <option value={3}>3 lần</option>
-                          </select>
-                        </div>
-                        <div>
-                          <label className="text-[11px] text-slate-400">Biện pháp:</label>
-                          <select
-                            value={startCycleForm.intercourseProtection || 'protected'}
-                            onChange={(e) => setStartCycleForm({ ...startCycleForm, intercourseProtection: e.target.value as DailyCycleLog['intercourseProtection'] })}
-                            className="w-full px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-700 text-white text-xs mt-0.5"
-                          >
-                            <option value="protected">Có bảo vệ (Bao cao su)</option>
-                            <option value="unprotected">Không bảo vệ</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className="space-y-1">
-                  <label className="text-slate-300 font-bold">Diễn biến ngày 1:</label>
-                  <textarea
-                    rows={2}
-                    required
-                    placeholder="VD: Bắt đầu ra kinh lúc 22h, đau lưng nhiều, đau quặn bụng..."
-                    value={startCycleForm.daySummary}
-                    onChange={(e) => setStartCycleForm({ ...startCycleForm, daySummary: e.target.value })}
-                    className="w-full px-3 py-2 rounded-xl bg-slate-900 border border-slate-700 text-white focus:outline-none focus:border-rose-500"
-                  />
-                </div>
-              </div>
-
-              <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-800">
-                <button
-                  type="button"
-                  onClick={() => setIsStartCycleModalOpen(false)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
-                >
-                  Hủy Bỏ
-                </button>
-                <button
-                  type="submit"
-                  className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white font-black flex items-center gap-2 cursor-pointer shadow-lg shadow-rose-500/30"
-                >
-                  <Save className="w-4 h-4" />
-                  <span>Lưu & Bắt Đầu Chu Kỳ Mới</span>
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      )}
 
       {/* ========================================================================= */}
       {/* MODAL: EDIT CYCLE METADATA */}
@@ -2650,14 +2203,14 @@ export const MenstrualCycleTrackerSection: React.FC = () => {
                   onClick={() => setIsCycleModalOpen(false)}
                   className="px-4 py-2 rounded-xl bg-slate-800 text-slate-300 hover:bg-slate-700 cursor-pointer"
                 >
-                  Hủy Bỏ
+                  Hủy
                 </button>
                 <button
                   type="submit"
                   className="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 text-white font-bold hover:opacity-90 flex items-center gap-1.5 cursor-pointer shadow-md"
                 >
                   <Save className="w-3.5 h-3.5" />
-                  <span>Lưu Chu Kỳ</span>
+                  <span>Lưu</span>
                 </button>
               </div>
             </form>
