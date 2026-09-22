@@ -5,6 +5,8 @@ import {
   minhAnhVisionProfile, 
   myopiaControlLensesList, 
   myopiaInterventionsComparison, 
+  singleVsDefocusComparison,
+  decisionTreeMatrix,
   visionScientificReferences,
   visionQAItems,
   deepScientificInsights
@@ -23,7 +25,11 @@ import {
   Stethoscope,
   ArrowRight,
   ChevronDown,
-  ChevronUp
+  ChevronUp,
+  Scale,
+  GitFork,
+  CheckCircle2,
+  AlertCircle
 } from 'lucide-react';
 
 interface VisionMyopiaArticleProps {
@@ -82,7 +88,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </h1>
           
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed italic border-l-2 border-cyan-500/60 pl-4 py-1">
-            Giải mã cơ chế sinh lý trục nhãn cầu, phân tích các nghiên cứu khoa học quốc tế về tròng kính Defocus thế hệ mới, so sánh phác đồ và hướng dẫn lựa chọn cho học sinh 14 tuổi (sinh ngày 19/01/2012).
+            Giải mã cơ chế sinh lý trục nhãn cầu, so sánh kính cận thường với kính kiểm soát độ cận, phân tích các nghiên cứu quốc tế về tròng kính Defocus và hướng dẫn lựa chọn cho học sinh 14 tuổi (sinh ngày 19/01/2012).
           </p>
         </div>
 
@@ -92,17 +98,17 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <ReadAloudButton
               id="vision-monograph-full"
               title="Cẩm nang Kiểm Soát Cận Thị và Loạn Thị Tiến Triển"
-              text="Chuyên khảo nhãn khoa nhi: Kiểm soát cận thị và loạn thị tiến triển tuổi dậy thì. Phân tích cơ chế trục nhãn cầu, nghiên cứu tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss và lộ trình bảo vệ mắt cho học sinh 14 tuổi, sinh ngày 19 tháng 1 năm 2012."
+              text="Chuyên khảo nhãn khoa nhi: Kiểm soát cận thị và loạn thị tiến triển tuổi dậy thì. Phân tích cơ chế trục nhãn cầu, so sánh kính cận thường với tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss và lộ trình bảo vệ mắt cho học sinh 14 tuổi, sinh ngày 19 tháng 1 năm 2012."
               variant="hero"
               label="Nghe đọc toàn bộ chuyên khảo"
-              durationEstimate="~14 phút"
+              durationEstimate="~16 phút"
             />
           </div>
 
           <div className="flex items-center gap-4 text-slate-400">
             <span className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Thời lượng: ~14 phút</span>
+              <span>Thời lượng: ~16 phút</span>
             </span>
             <span className="flex items-center gap-1.5">
               <ShieldCheck className="w-3.5 h-3.5 text-cyan-400" />
@@ -235,23 +241,157 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 3: SCIENTIFIC RESEARCH & DEFOCUS TECHNOLOGIES */}
+      {/* CHAPTER 3: COMPARISON & DECISION MATRIX (SINGLE VISION VS DEFOCUS LENSES) */}
       {/* ========================================================================= */}
       <section id="vision-ch-3" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
         
         <div className="flex items-start justify-between gap-4 font-sans">
           <div className="space-y-1">
+            <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest flex items-center gap-1.5">
+              <Scale className="w-4 h-4 text-cyan-400" />
+              <span>Chương 3 • So Sánh & Cây Quyết Định Lâm Sàng</span>
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              So Sánh Ưu Khuyết Điểm: Kính Cận Đơn Tròng Thường vs. Kính Kiểm Soát Độ Cận
+            </h2>
+          </div>
+          <ReadAloudButton
+            id="vision-ch-3-audio"
+            title="Chương 3: So sánh ưu khuyết và cây quyết định lựa chọn tròng kính"
+            text="Chương 3: So sánh ưu khuyết điểm và tiêu chí quyết định giữa cắt kính cận bình thường và kính kiểm soát độ cận. Kính đơn tròng thông thường chỉ giúp nhìn rõ tức thời nhưng tạo Defocus viễn thị ngoại vi kích thích nhãn cầu tiếp tục dài ra, độ cận tăng liên tục. Kính kiểm soát độ cận công nghệ Defocus tạo phanh sinh học kìm hãm 60 đến 67% độ tăng cận, bảo vệ trục mắt vĩnh viễn và dự phòng thoái hóa võng mạc."
+            variant="chapter"
+          />
+        </div>
+
+        <div className="space-y-4 text-slate-300 text-sm sm:text-base leading-relaxed">
+          <p>
+            Khi được chẩn đoán cận thị tiến triển ở lứa tuổi học đường, câu hỏi lớn nhất của đa số phụ huynh là: <strong className="text-white">"Nên cắt kính cận bình thường hay đầu tư tròng kính kiểm soát độ cận công nghệ mới?"</strong>. Việc so sánh đối chiếu đa chiều giúp gia đình đưa ra quyết định y khoa sáng suốt nhất.
+          </p>
+
+          {/* Detailed Multi-Dimensional Comparison Table */}
+          <div className="pt-2 font-sans space-y-3">
+            <h3 className="text-base font-bold text-white flex items-center gap-2">
+              <Sparkles className="w-4 h-4 text-cyan-400" />
+              <span>Bảng Đối Chiếu Đa Chiều: Kính Cận Thường vs Kính Kiểm Soát Độ Cận (Defocus)</span>
+            </h3>
+
+            <div className="overflow-x-auto border border-slate-800 rounded-xl bg-slate-900/40">
+              <table className="w-full text-left text-xs sm:text-sm font-sans">
+                <thead>
+                  <tr className="bg-slate-900 text-cyan-400 font-mono uppercase border-b border-slate-800">
+                    <th className="py-3 px-3 min-w-[130px]">Tiêu Chí So Sánh</th>
+                    <th className="py-3 px-3 text-slate-300 min-w-[200px]">Kính Cận Thường (Single Vision)</th>
+                    <th className="py-3 px-3 text-cyan-200 bg-cyan-950/30 border-l border-cyan-800/40 min-w-[220px]">Kính Kiểm Soát Độ Cận (Defocus)</th>
+                    <th className="py-3 px-3 text-emerald-400 min-w-[200px]">Tác Động Lâm Sàng</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                  {singleVsDefocusComparison.map((item, idx) => (
+                    <tr key={idx} className={idx % 2 === 0 ? "bg-slate-950/40" : "bg-slate-900/20"}>
+                      <td className="py-3 px-3 font-bold text-slate-100">{item.criteria}</td>
+                      <td className="py-3 px-3 text-slate-400 leading-relaxed">{item.singleVisionLens}</td>
+                      <td className="py-3 px-3 text-cyan-100 bg-cyan-950/20 border-l border-cyan-900/40 font-medium leading-relaxed">
+                        {item.myopiaControlLens}
+                      </td>
+                      <td className="py-3 px-3 text-xs leading-relaxed text-slate-300">
+                        {item.clinicalImpact}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          {/* Decision Tree / Clinical Recommendation Matrix */}
+          <div className="pt-6 font-sans space-y-4">
+            <div className="border-b border-slate-900 pb-2 flex items-center gap-2">
+              <GitFork className="w-5 h-5 text-cyan-400" />
+              <h3 className="text-base sm:text-lg font-bold text-white">
+                Cây Quyết Định Lâm Sàng: Khi Nào Nên Chọn Loại Nào?
+              </h3>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {decisionTreeMatrix.map((opt, idx) => (
+                <div 
+                  key={idx}
+                  className={`p-5 rounded-2xl border space-y-3 flex flex-col justify-between ${
+                    idx === 0 
+                      ? 'bg-cyan-950/30 border-cyan-500/50 shadow-lg shadow-cyan-950/40' 
+                      : 'bg-slate-900/40 border-slate-800'
+                  }`}
+                >
+                  <div className="space-y-2">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className={`px-2.5 py-1 rounded-md text-[11px] font-bold font-mono border ${opt.badgeColor}`}>
+                        {opt.badge}
+                      </span>
+                    </div>
+
+                    <h4 className="text-base font-black text-white leading-snug">
+                      {opt.recommendation}
+                    </h4>
+
+                    <div className="text-xs text-slate-300">
+                      <strong className="text-slate-100">Đối tượng mục tiêu: </strong>
+                      {opt.targetGroup}
+                    </div>
+
+                    <div className="pt-2 border-t border-slate-800/80 space-y-1.5 text-xs">
+                      <div className="font-bold text-cyan-300 uppercase">Tiêu chí nhận biết then chốt:</div>
+                      <ul className="space-y-1 text-slate-300">
+                        {opt.keyCriteria.map((c, i) => (
+                          <li key={i} className="flex items-start gap-1.5">
+                            <CheckCircle2 className="w-3.5 h-3.5 text-cyan-400 shrink-0 mt-0.5" />
+                            <span>{c}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="p-3 bg-slate-950/80 border border-slate-800/80 rounded-xl text-xs text-cyan-200 mt-2">
+                    <strong className="text-white">Lý do y khoa: </strong>
+                    {opt.rationale}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="p-4 bg-amber-950/20 border-l-2 border-amber-500 text-amber-200 text-xs sm:text-sm font-sans space-y-1 rounded-r-xl">
+            <div className="font-bold text-amber-400 flex items-center gap-1.5">
+              <AlertCircle className="w-4 h-4" />
+              <span>Kết Luận Lâm Sàng Dành Cho Học Sinh 14 Tuổi (Sinh 19/01/2012)</span>
+            </div>
+            <p className="leading-relaxed">
+              Với hồ sơ phát hiện cận từ 11 tuổi, cận tăng liên tục kèm độ loạn thị và tần suất nhìn màn hình nhiều, <strong className="text-white">việc chỉ cắt kính cận bình thường là một sai lầm phổ biến</strong> khiến trục nhãn cầu tiếp tục dài ra vĩnh viễn. Quyết định chuyển sang <strong className="text-cyan-300">tròng kính kiểm soát độ cận (Essilor Stellest hoặc Zeiss MyoCare S)</strong> là khoản đầu tư y khoa thiết yếu để bảo vệ cấu trúc mắt trước khi kết thúc giai đoạn dậy thì.
+            </p>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 4: SCIENTIFIC RESEARCH & DEFOCUS TECHNOLOGIES */}
+      {/* ========================================================================= */}
+      <section id="vision-ch-4" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
+        
+        <div className="flex items-start justify-between gap-4 font-sans">
+          <div className="space-y-1">
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
-              Chương 3 • Y Học Thực Chứng
+              Chương 4 • Y Học Thực Chứng
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Phân Tích Các Nghiên Cứu Khoa Học & Công Nghệ Tròng Kính Defocus
             </h2>
           </div>
           <ReadAloudButton
-            id="vision-ch-3-audio"
-            title="Chương 3: Nghiên cứu khoa học và công nghệ tròng kính Defocus"
-            text="Chương 3: Phân tích các nghiên cứu khoa học và công nghệ tròng kính Defocus. Công nghệ H.A.L.T của Essilor Stellest với 1021 vi thấu kính phi cầu giúp giảm 67% tiến triển độ cận trên JAMA Ophthalmology. Công nghệ D.I.M.S của Hoya MiYOSMART với nghiên cứu 6 năm khẳng định giảm 60% dài trục mắt. Công nghệ C.A.R.E của Carl Zeiss tối ưu hóa cho lứa tuổi trên 10 tuổi."
+            id="vision-ch-4-audio"
+            title="Chương 4: Nghiên cứu khoa học và công nghệ tròng kính Defocus"
+            text="Chương 4: Phân tích các nghiên cứu khoa học và công nghệ tròng kính Defocus. Công nghệ H.A.L.T của Essilor Stellest với 1021 vi thấu kính phi cầu giúp giảm 67% tiến triển độ cận trên JAMA Ophthalmology. Công nghệ D.I.M.S của Hoya MiYOSMART với nghiên cứu 6 năm khẳng định giảm 60% dài trục mắt. Công nghệ C.A.R.E của Carl Zeiss tối ưu hóa cho lứa tuổi trên 10 tuổi."
             variant="chapter"
           />
         </div>
@@ -443,23 +583,23 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 4: TOP BRANDS IN VIETNAM MARKET (FLAT SELECTOR) */}
+      {/* CHAPTER 5: TOP BRANDS IN VIETNAM MARKET (FLAT SELECTOR) */}
       {/* ========================================================================= */}
-      <section id="vision-ch-4" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
+      <section id="vision-ch-5" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
         
         <div className="flex items-start justify-between gap-4 font-sans">
           <div className="space-y-1">
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
-              Chương 4 • Khảo Sát Thị Trường Việt Nam
+              Chương 5 • Khảo Sát Thị Trường Việt Nam
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Top Thương Hiệu Tròng Kính Kiểm Soát Cận Thị Tại Việt Nam (2026)
             </h2>
           </div>
           <ReadAloudButton
-            id="vision-ch-4-audio"
-            title="Chương 4: Top thương hiệu tròng kính kiểm soát cận thị tại Việt Nam"
-            text="Chương 4: Top thương hiệu tròng kính kiểm soát cận thị tại Việt Nam. Đứng đầu là Essilor Stellest của Pháp với công nghệ HALT giá từ 3 triệu 9 đến 4 triệu 9. Hoya MiYOSMART của Nhật Bản với công nghệ DIMS giá từ 4 triệu 5 đến 5 triệu 5. Carl Zeiss MyoCare của Đức giá từ 3 triệu 8 đến 5 triệu 2."
+            id="vision-ch-5-audio"
+            title="Chương 5: Top thương hiệu tròng kính kiểm soát cận thị tại Việt Nam"
+            text="Chương 5: Top thương hiệu tròng kính kiểm soát cận thị tại Việt Nam. Đứng đầu là Essilor Stellest của Pháp với công nghệ HALT giá từ 3 triệu 9 đến 4 triệu 9. Hoya MiYOSMART của Nhật Bản với công nghệ DIMS giá từ 4 triệu 5 đến 5 triệu 5. Carl Zeiss MyoCare của Đức giá từ 3 triệu 8 đến 5 triệu 2."
             variant="chapter"
           />
         </div>
@@ -553,23 +693,23 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 5: TAILORED ACTION PLAN FOR ADOLESCENTS */}
+      {/* CHAPTER 6: TAILORED ACTION PLAN FOR ADOLESCENTS */}
       {/* ========================================================================= */}
-      <section id="vision-ch-5" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
+      <section id="vision-ch-6" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
         
         <div className="flex items-start justify-between gap-4 font-sans">
           <div className="space-y-1">
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
-              Chương 5 • Lộ Trình Can Thiệp Cá Thể Hóa
+              Chương 6 • Lộ Trình Can Thiệp Cá Thể Hóa
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Phác Đồ "Tam Giác Vàng" Toàn Diện Dành Cho Tuổi Dậy Thì
             </h2>
           </div>
           <ReadAloudButton
-            id="vision-ch-5-audio"
-            title="Chương 5: Phác đồ Tam Giác Vàng cho học sinh 14 tuổi"
-            text="Chương 5: Phác đồ Tam Giác Vàng toàn diện dành cho học sinh 14 tuổi. Một là trang bị tròng kính Defocus Essilor Stellest hoặc Zeiss MyoCare S có lọc ánh sáng xanh và cắt đúng trục loạn. Hai là thiết lập kỷ luật công thái học 20-20-20 khi dùng điện thoại và máy tính. Ba là duy trì thời gian hoạt động ngoài trời ban ngày tối thiểu 90 đến 120 phút mỗi ngày."
+            id="vision-ch-6-audio"
+            title="Chương 6: Phác đồ Tam Giác Vàng cho học sinh 14 tuổi"
+            text="Chương 6: Phác đồ Tam Giác Vàng toàn diện dành cho học sinh 14 tuổi. Một là trang bị tròng kính Defocus Essilor Stellest hoặc Zeiss MyoCare S có lọc ánh sáng xanh và cắt đúng trục loạn. Hai là thiết lập kỷ luật công thái học 20-20-20 khi dùng điện thoại và máy tính. Ba là duy trì thời gian hoạt động ngoài trời ban ngày tối thiểu 90 đến 120 phút mỗi ngày."
             variant="chapter"
           />
         </div>
@@ -663,23 +803,23 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 6: FAQS & CLINICAL QUESTIONS FOR THE DOCTOR */}
+      {/* CHAPTER 7: FAQS & CLINICAL QUESTIONS FOR THE DOCTOR */}
       {/* ========================================================================= */}
-      <section id="vision-ch-6" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
+      <section id="vision-ch-7" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80">
         
         <div className="flex items-start justify-between gap-4 font-sans">
           <div className="space-y-1">
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
-              Chương 6 • Cẩm Nang Hỏi Đáp Lâm Sàng
+              Chương 7 • Cẩm Nang Hỏi Đáp Lâm Sàng
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Những Câu Hỏi Trọng Tâm Dành Cho Phụ Huynh & Bác Sĩ
             </h2>
           </div>
           <ReadAloudButton
-            id="vision-ch-6-audio"
-            title="Chương 6: Hỏi đáp lâm sàng và câu hỏi dành cho bác sĩ"
-            text="Chương 6: Những câu hỏi trọng tâm dành cho phụ huynh và bác sĩ. Hướng dẫn giải đáp thắc mắc về độ loạn thị, thích nghi với tròng kính mới và danh sách câu hỏi cần mang đi khi khám tại các bệnh viện mắt chuyên khoa."
+            id="vision-ch-7-audio"
+            title="Chương 7: Hỏi đáp lâm sàng và câu hỏi dành cho bác sĩ"
+            text="Chương 7: Những câu hỏi trọng tâm dành cho phụ huynh và bác sĩ. Hướng dẫn giải đáp thắc mắc về độ loạn thị, thích nghi với tròng kính mới và danh sách câu hỏi cần mang đi khi khám tại các bệnh viện mắt chuyên khoa."
             variant="chapter"
           />
         </div>
@@ -757,13 +897,13 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 7: NUTRITION & SCIENTIFIC REFERENCES */}
+      {/* CHAPTER 8: NUTRITION & SCIENTIFIC REFERENCES */}
       {/* ========================================================================= */}
-      <section id="vision-ch-7" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80 font-sans">
+      <section id="vision-ch-8" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-800/80 font-sans">
         
         <div className="space-y-1">
           <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
-            Chương 7 • Dinh Dưỡng & Thư Mục Tài Liệu
+            Chương 8 • Dinh Dưỡng & Thư Mục Tài Liệu
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
             Dinh Dưỡng Nuôi Dưỡng Võng Mạc & Tài Liệu Y Khoa Quốc Tế

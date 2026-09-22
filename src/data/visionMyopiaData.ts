@@ -423,6 +423,105 @@ export const deepScientificInsights: DeepScientificInsight[] = [
   }
 ];
 
+export interface SingleVsDefocusComparisonItem {
+  criteria: string;
+  singleVisionLens: string;
+  myopiaControlLens: string;
+  clinicalImpact: string;
+  isDefocusAdvantage: boolean;
+}
+
+export const singleVsDefocusComparison: SingleVsDefocusComparisonItem[] = [
+  {
+    criteria: "Cơ chế quang học võng mạc",
+    singleVisionLens: "Tạo hiện tượng Defocus viễn thị ngoại vi (Peripheral Hyperopic Defocus) – tiêu điểm rìa rơi ra sau võng mạc.",
+    myopiaControlLens: "Tạo hiện tượng Defocus cận thị ngoại vi (Peripheral Myopic Defocus) – tiêu điểm rìa rơi trước võng mạc.",
+    clinicalImpact: "Kính thường kích thích củng mạc tiếp tục giãn dài; Kính Defocus tạo 'phanh sinh học' ngăn dài trục nhãn cầu.",
+    isDefocusAdvantage: true
+  },
+  {
+    criteria: "Hiệu quả kiểm soát tăng độ cận",
+    singleVisionLens: "0% (Độ cận tăng liên tục trung bình 0.75D – 1.50D/năm ở lứa tuổi 11–16).",
+    myopiaControlLens: "Giảm 60% – 67% tiến triển độ cận (Được chứng minh lâm sàng qua JAMA & BJO).",
+    clinicalImpact: "Kính Defocus giữ độ cận không tăng vọt, bảo vệ mắt khỏi mốc cận thị nặng (> -6.00D).",
+    isDefocusAdvantage: true
+  },
+  {
+    criteria: "Bảo vệ cấu trúc trục nhãn cầu (Axial Length)",
+    singleVisionLens: "Không kiểm soát. Trục mắt tiếp tục kéo dài nhanh vĩnh viễn (~0.2 - 0.4mm/năm).",
+    myopiaControlLens: "Làm chậm 60% tốc độ kéo dài trục nhãn cầu (khi đeo >= 12 tiếng/ngày).",
+    clinicalImpact: "Ngăn chặn sự thoái hóa mỏng biểu mô sắc tố võng mạc và màng củng mạc vĩnh viễn.",
+    isDefocusAdvantage: true
+  },
+  {
+    criteria: "Dự phòng biến chứng mù lòa tương lai",
+    singleVisionLens: "Nguy cơ cao mắc thoái hóa hoàng điểm cận thị, bong võng mạc, Glaucoma khi trưởng thành.",
+    myopiaControlLens: "Giảm 40% nguy cơ bệnh võng mạc cận thị cho mỗi 1.00D độ cận được giữ lại (Quy luật Bullimore).",
+    clinicalImpact: "Giảm đáng kể tỷ lệ suy giảm thị lực vĩnh viễn ở tuổi trung niên và về già.",
+    isDefocusAdvantage: true
+  },
+  {
+    criteria: "Hỗ trợ độ loạn thị & Lọc ánh sáng xanh",
+    singleVisionLens: "Có tròng cắt độ loạn; tính năng lọc ánh sáng xanh tùy thuộc dòng tròng nâng cấp.",
+    myopiaControlLens: "Hỗ trợ độ loạn (Cyl) đến -4.00D xoay đúng trục; tích hợp sẵn váng lọc ánh sáng xanh kỹ thuật số cao cấp (Stellest/MyoCare S).",
+    clinicalImpact: "Bảo vệ mắt toàn diện khi học máy tính/điện thoại và nhìn sắc nét 10/10.",
+    isDefocusAdvantage: true
+  },
+  {
+    criteria: "Chi phí đầu tư ban đầu",
+    singleVisionLens: "Thấp: 300.000 – 1.200.000 VNĐ / cặp (Tuy nhiên phải thay tròng liên tục 6-12 tháng/lần do tăng độ).",
+    myopiaControlLens: "Cao hơn: 3.800.000 – 5.500.000 VNĐ / cặp (Dùng ổn định 1 - 2 năm nhờ độ cận được giữ vững).",
+    clinicalImpact: "Tính trên chu kỳ 2-3 năm, chi phí kính Defocus không chênh lệch quá nhiều so với việc thay tròng thường liên tục kèm nguy cơ tăng độ.",
+    isDefocusAdvantage: false
+  },
+  {
+    criteria: "Yêu cầu kỹ thuật mài lắp & Thời gian thích nghi",
+    singleVisionLens: "Kỹ thuật mài lắp cơ bản; trẻ thích nghi ngay lập tức.",
+    myopiaControlLens: "Yêu cầu đo tâm đồng tử (PD/FH) chính xác đến 0.1mm; trẻ mất 1 - 3 ngày để thích nghi với vùng vi thấu kính.",
+    clinicalImpact: "Đòi hỏi đo khám tại trung tâm nhãn khoa uy tín; 99% trẻ thích nghi hoàn toàn sau vài ngày.",
+    isDefocusAdvantage: false
+  }
+];
+
+export interface DecisionTreeOption {
+  recommendation: string;
+  badge: string;
+  badgeColor: string;
+  targetGroup: string;
+  keyCriteria: string[];
+  rationale: string;
+}
+
+export const decisionTreeMatrix: DecisionTreeOption[] = [
+  {
+    recommendation: "BẮT BUỘC CHỌN KÍNH KIỂM SOÁT ĐỘ CẬN (DEFOCUS LENSES)",
+    badge: "Khuyến Nghị Số 1 (Ưu Tiên Hàng Đầu)",
+    badgeColor: "bg-cyan-950 text-cyan-300 border-cyan-700",
+    targetGroup: "Học sinh từ 8 đến 18 tuổi (Đặc biệt giai đoạn dậy thì 11 - 16 tuổi như trường hợp học sinh 14 tuổi)",
+    keyCriteria: [
+      "Độ cận có xu hướng nhích tăng nhanh (>= 0.75 Diop / năm)",
+      "Trẻ bị cận từ sớm (khởi phát năm 11 tuổi trở xuống)",
+      "Thời gian nhìn gần & màn hình thiết bị số cao (> 3-4 giờ/ngày)",
+      "Có kèm độ loạn thị và ít có thời gian hoạt động ngoài trời",
+      "Gia đình mong muốn bảo vệ trục mắt vĩnh viễn, ngăn chặn mốc cận nặng (> -6.00D)"
+    ],
+    rationale: "Đây là giải pháp can thiệp y học thực chứng duy nhất qua kính gọng giúp hãm 67% độ cận mà 100% an toàn, không nguy cơ nhiễm trùng giác mạc như kính tiếp xúc."
+  },
+  {
+    recommendation: "CÓ THỂ DÙNG KÍNH CẬN ĐƠN TRÒNG BÌNH THƯỜNG",
+    badge: "Chỉ Dành Cho Người Trưởng Thành Hoặc Độ Cận Đã Ổn Định",
+    badgeColor: "bg-slate-900 text-slate-300 border-slate-700",
+    targetGroup: "Người lớn (> 18 - 20 tuổi) hoặc trẻ cận rất nhẹ có độ cận không tăng",
+    keyCriteria: [
+      "Người trên 18 - 20 tuổi có trục nhãn cầu đã ngừng phát triển",
+      "Độ cận hoàn toàn ổn định (không tăng độ trong 2 năm liên tục)",
+      "Trẻ em cận nhẹ (< -1.00D) tăng rất chậm (< 0.25D/năm) và hoạt động ngoài trời > 2-3 tiếng/ngày",
+      "Gia đình cần giải pháp tạm thời trong lúc chờ đo sinh trắc trục mắt"
+    ],
+    rationale: "Khi mắt đã ngừng dài ra, kính gọng bình thường đáp ứng tốt nhu cầu nhìn rõ với chi phí tiết kiệm. Tuy nhiên tuyệt đối không dùng kính thường cho trẻ cận tiến triển nhanh."
+  }
+];
+
 export const visionScientificReferences = [
   {
     id: 'ref-vis-1',
