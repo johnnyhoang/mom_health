@@ -92,7 +92,38 @@ export const breastCancerReferences: Reference[] = [
     url: 'https://www.nejm.org/doi/10.1056/NEJMoa2202643',
     note: 'Xác lập vai trò của T-DXd (Enhertu) trong HER2-Low — phân loại mới 2022.'
   },
+  {
+    id: 'bc-emerald-2022',
+    category: 'clinical-trial',
+    title: 'EMERALD Trial: Elacestrant vs Standard Endocrine Therapy in ER+/HER2− Advanced Breast Cancer',
+    authors: 'Bidard FC, et al.',
+    source: 'Journal of Clinical Oncology (ASCO), 2022',
+    year: '2022',
+    url: 'https://ascopubs.org/doi/10.1200/JCO.22.00690',
+    note: 'Nền tảng FDA phê duyệt Elacestrant (Orserdu) 01/2023 — SERD đường uống đầu tiên cho HR+ di căn có đột biến ESR1. PFS 3.78 vs 1.87 tháng ở nhóm ESR1 mutation.'
+  },
+  {
+    id: 'bc-capitello-291',
+    category: 'clinical-trial',
+    title: 'CAPItello-291: Capivasertib + Fulvestrant in HR+/HER2− Advanced Breast Cancer',
+    authors: 'Turner NC, et al.',
+    source: 'New England Journal of Medicine, 2023',
+    year: '2023',
+    url: 'https://www.nejm.org/doi/10.1056/NEJMoa2214131',
+    note: 'Nền tảng FDA phê duyệt Capivasertib (Truqap) 11/2023. Nhóm có đột biến PIK3CA/AKT1/PTEN: PFS 7.3 vs 3.1 tháng.'
+  },
+  {
+    id: 'bc-inavo120',
+    category: 'clinical-trial',
+    title: 'INAVO120: Inavolisib + Palbociclib + Fulvestrant in PIK3CA-Mutated HR+/HER2− Breast Cancer',
+    authors: 'Jhaveri K, et al.',
+    source: 'New England Journal of Medicine, 2024',
+    year: '2024',
+    url: 'https://www.nejm.org/doi/10.1056/NEJMoa2404625',
+    note: 'Nền tảng FDA phê duyệt Inavolisib 10/2024. PFS 15.0 vs 7.3 tháng — cải thiện mạnh nhất từng ghi nhận ở HR+ di căn có PIK3CA mutation.'
+  },
   // --- JOURNALS ---
+
   {
     id: 'bc-st-gallen-2023',
     category: 'journal',

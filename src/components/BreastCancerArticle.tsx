@@ -8,6 +8,12 @@ import type { MediaItem } from '../types/medical';
 import { ReadAloudButton } from './ReadAloudButton';
 import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
 import { ReferencesSection } from './ReferencesSection';
+import { BreastCancerNewTreatmentsSection } from './BreastCancerNewTreatmentsSection';
+import { BreastCancerOutcomesSection } from './BreastCancerOutcomesSection';
+import { BreastCancerCommunitySection } from './BreastCancerCommunitySection';
+import { BreastCancerYear5to10Section } from './BreastCancerYear5to10Section';
+import { BreastCancerSexualExerciseSection } from './BreastCancerSexualExerciseSection';
+
 
 import { 
   Ribbon, 
@@ -769,7 +775,32 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
 
       </section>
 
-      {/* References Section */}
+      {/* ========================================================================= */}
+      {/* CHAPTER 4 (NEW): NEW TREATMENTS 2022-2026 */}
+      {/* ========================================================================= */}
+      <BreastCancerNewTreatmentsSection highlightLuminalA={true} />
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 5 (NEW): OUTCOMES & STATISTICS */}
+      {/* ========================================================================= */}
+      <BreastCancerOutcomesSection />
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 6 (NEW): COMMUNITY INSIGHTS */}
+      {/* ========================================================================= */}
+      <BreastCancerCommunitySection />
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 7 (NEW): YEAR 5-10 GUIDE */}
+      {/* ========================================================================= */}
+      <BreastCancerYear5to10Section />
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 8 (NEW): SEXUAL HEALTH & EXERCISE */}
+      {/* ========================================================================= */}
+      <BreastCancerSexualExerciseSection />
+
+      {/* References Section — always last */}
       <ReferencesSection
         references={breastCancerReferences}
         diseaseTitle="Ung Thư Vú"

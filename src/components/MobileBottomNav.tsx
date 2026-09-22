@@ -73,10 +73,17 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     { id: 'bc-chapter-1', title: 'Chương 1: Toàn Cảnh 4 Phân Nhóm Phân Tử K Vú', desc: 'Luminal A, Luminal B, HER2-low, Tam âm & Ki-67' },
     { id: 'bc-chapter-2', title: 'Chương 2: Tamoxifen 5 Năm & Thử Nghiệm 10 Năm (ATLAS)', desc: 'Lợi ích bảo vệ vú và lý do dừng ở 5 năm' },
     { id: 'bc-chapter-3', title: 'Chương 3: Vũ Khí Mới 2024-2026 (CDK4/6i, SERD, ADCs)', desc: 'Ribociclib NATALEE FDA 09/2024, Elacestrant, T-DXd' },
-    { id: 'bc-chapter-4', title: 'Chương 4: Video 3D Liệu Pháp Nhắm Trúng Đích', desc: 'Mô phỏng phân tử CDK4/6i, ADCs Enhertu & Tầm soát kép' },
-    { id: 'bc-chapter-5', title: 'Chương 5: Cây Quyết Định K Vú Cá Thể Hóa', desc: 'Đánh giá chiến lược điều trị và câu hỏi cho Bác sĩ' },
-    { id: 'bc-chapter-6', title: 'Chương 6: Dinh Dưỡng Giảm Viêm & Tầm Soát Trọn Đời', desc: 'Chế độ ăn Địa Trung Hải và lịch tầm soát định kỳ' }
+    { id: 'bc-chapter-4', title: 'Chương 4: Đột Phá Điều Trị 2022-2026 (Elacestrant, CDK4/6i BT)', desc: 'Thuốc mới FDA phê duyệt, số liệu trial thực tế, tình trạng VN' },
+    { id: 'bc-chapter-5', title: 'Chương 5: Thống Kê Kết Quả Điều Trị 2018-2026', desc: 'Tỷ lệ sống 5 năm, SEER Database, thống kê Việt Nam' },
+    { id: 'bc-chapter-6', title: 'Chương 6: Cộng Đồng Bệnh Nhân & Kinh Nghiệm Thực Tế', desc: 'Chia sẻ từ hội nhóm Facebook, kinh nghiệm quản lý tác dụng phụ' },
+    { id: 'bc-chapter-7', title: 'Chương 7: Cẩm Nang Năm Thứ 5 Đến Năm Thứ 10', desc: 'Lịch khám, dinh dưỡng, lối sống, dấu hiệu cảnh báo cần biết' },
+    { id: 'bc-chapter-8', title: 'Chương 8: Sức Khỏe Tình Dục & Thể Thao Sau K Vú', desc: 'Quan hệ vợ chồng, yoga, chạy bộ, nhảy — bằng chứng khoa học' },
+    { id: 'bc-chapter-old4', title: 'Video 3D Liệu Pháp Nhắm Trúng Đích', desc: 'Mô phỏng phân tử CDK4/6i, ADCs Enhertu & Tầm soát kép' },
+    { id: 'bc-chapter-old5', title: 'Cây Quyết Định K Vú Cá Thể Hóa', desc: 'Đánh giá chiến lược điều trị và câu hỏi cho Bác sĩ' },
+    { id: 'bc-chapter-old6', title: 'Dinh Dưỡng Giảm Viêm & Tầm Soát Trọn Đời', desc: 'Chế độ ăn Địa Trung Hải và lịch tầm soát định kỳ' }
   ];
+
+
 
   const gynChapters = [
     { id: 'chapter-1', title: 'Chương 1: Giải Mã "Nghịch Lý Tamoxifen"', desc: 'Cơ chế SERM: Chặn ở tuyến vú nhưng kích thích ở tử cung' },

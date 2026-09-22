@@ -499,3 +499,92 @@ export const tamoxifenQADataset: QAItem[] = [
 ];
 
 
+// =========================================================================
+// NHÓM 6: THUỐC ĐIỀU TRỊ MỚI 2022 - 2026 (Append)
+// Nguồn: EMERALD trial (JCO 2022), NATALEE (NEJM 2024), monarchE (Lancet 2023),
+//        DESTINY-Breast04 (NEJM 2022), KEYNOTE-522 (NEJM 2022), NCCN 2025
+// =========================================================================
+export type QACategory = QAItem['category'] | 'new_treatments_2022';
+
+export const newTreatmentsQAItems: QAItem[] = [
+  {
+    id: 'qa-new-1',
+    category: 'treatment_options',
+    categoryLabel: 'Đột Phá Điều Trị 2022-2026',
+    question: 'Thuốc Elacestrant (Orserdu) là gì? Bệnh nhân Luminal A đã dùng 5 năm Tamoxifen có cần quan tâm không?',
+    shortSummary: 'Elacestrant là SERD đường uống FDA phê duyệt 01/2023, dành cho K vú HR+/HER2- di căn có đột biến gen ESR1. Bệnh nhân giai đoạn sớm hoàn thành Tamoxifen KHÔNG cần dùng ngay.',
+    detailedAnswer: [
+      'Elacestrant (Orserdu) là thuốc nội tiết đường uống thế hệ mới (Selective Estrogen Receptor Degrader - SERD), FDA phê duyệt tháng 01/2023, dựa trên thử nghiệm EMERALD (Journal of Clinical Oncology, 2022).',
+      'Chỉ định: Phụ nữ mãn kinh hoặc nam giới mắc K vú HR+/HER2- ở giai đoạn TIẾN XA hoặc DI CĂN, đã qua ít nhất 1 đợt nội tiết trước đó (Tamoxifen hoặc AI), ĐẶC BIỆT là trường hợp có đột biến gen ESR1.',
+      'Đột biến ESR1: Là đột biến thường xảy ra sau thời gian dài dùng AI (Letrozole, Anastrozole) ở giai đoạn di căn, khiến tế bào ung thư kháng thuốc. Elacestrant phá vỡ sự kháng thuốc này.',
+      'Kết quả EMERALD: Giảm 45% nguy cơ tiến triển bệnh (PFS 2.79 tháng so với 1.91 tháng của nội tiết cũ). Ở nhóm có đột biến ESR1, lợi ích rõ ràng hơn (PFS 3.78 vs 1.87 tháng).',
+      'Với bệnh nhân giai đoạn sớm hoàn thành 5 năm Tamoxifen không tái phát: KHÔNG có chỉ định và KHÔNG cần dùng Elacestrant. Đây là thuốc dự phòng cho giai đoạn muộn hơn.'
+    ],
+    clinicalHighlight: 'Thử nghiệm EMERALD (Bidard FC, et al. JCO 2022): FDA 01/2023 - thuốc SERD đầu tiên được phê duyệt cho K vú HR+ di căn có ESR1 mutation.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, tôi có cần làm xét nghiệm đột biến ESR1 định kỳ không? Khi nào thì Elacestrant có thể phù hợp với tôi?"'
+  },
+  {
+    id: 'qa-new-2',
+    category: 'treatment_options',
+    categoryLabel: 'Đột Phá Điều Trị 2022-2026',
+    question: 'Thuốc ức chế CDK4/6 (Ribociclib, Abemaciclib) dùng "bổ trợ sớm" sau phẫu thuật là gì? Ai được chỉ định?',
+    shortSummary: 'CDK4/6i bổ trợ (monarchE, NATALEE) giảm 25-32% tái phát cho nhóm HR+ nguy cơ cao (hạch dương tính, u lớn, Ki-67 cao). Luminal A nguy cơ thấp KHÔNG cần.',
+    detailedAnswer: [
+      'Thuốc ức chế CDK4/6 (CDK4/6 inhibitors - CDK4/6i) trước đây chỉ dùng cho K vú di căn. Từ 2021-2024, FDA đã phê duyệt thêm chỉ định "bổ trợ sớm" (early adjuvant) sau phẫu thuật cho nhóm HR+/HER2- nguy cơ cao.',
+      'Abemaciclib (Verzenio) - FDA 10/2021 - dựa trên thử nghiệm monarchE (Johnston SRD, Lancet Oncol 2023): Dùng 2 năm sau phẫu thuật, giảm 32% nguy cơ tái phát xâm lấn ở bệnh nhân có ≥4 hạch dương tính, hoặc 1-3 hạch + Ki-67 ≥20%, hoặc u grade 3 kích thước ≥5cm.',
+      'Ribociclib (Kisqali) - FDA 09/2024 - dựa trên thử nghiệm NATALEE (Slamon D, NEJM 2024): Dùng 3 năm, giảm 25% nguy cơ tái phát ở nhóm HR+/HER2- nguy cơ trung bình-cao (có hạch hoặc giai đoạn II-III với yếu tố nguy cơ cao).',
+      'Chỉ định chặt chẽ: Bắt buộc phải có nguy cơ tái phát trung bình-cao theo tiêu chí từng thử nghiệm. Bệnh nhân Luminal A giai đoạn sớm nguy cơ thấp (hạch âm, u nhỏ, Ki-67 thấp) KHÔNG có lợi ích và không được chỉ định.',
+      'Tác dụng phụ: Giảm bạch cầu trung tính (cần xét nghiệm máu thường xuyên), tiêu chảy (Abemaciclib), độc tính gan, kéo dài QT (Ribociclib). Cần theo dõi sát.'
+    ],
+    clinicalHighlight: 'monarchE trial (NEJM 2024 update): Abemaciclib + AI giảm 32% IDFS sau 5 năm theo dõi ở nhóm HR+/HER2- nguy cơ cao. NATALEE trial: Ribociclib + AI giảm 25% IDFS.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, dựa trên kết quả giải phẫu bệnh của tôi (kích thước u, số hạch, Ki-67), tôi có thuộc nhóm được hưởng lợi từ Abemaciclib hoặc Ribociclib bổ trợ không?"'
+  },
+  {
+    id: 'qa-new-3',
+    category: 'treatment_options',
+    categoryLabel: 'Đột Phá Điều Trị 2022-2026',
+    question: 'Đã hoàn thành 5 năm Tamoxifen an toàn, có cần dùng thêm các thuốc mới CDK4/6i không?',
+    shortSummary: 'KHÔNG có chỉ định quay lại dùng CDK4/6i sau khi đã hoàn thành 5 năm nội tiết không tái phát. Đây là thuốc bổ trợ SỚM, không phải thuốc dùng sau.',
+    detailedAnswer: [
+      'Đây là câu hỏi quan trọng và câu trả lời rõ ràng là KHÔNG, theo tất cả các hướng dẫn hiện hành (NCCN 2025, ASCO 2024, ESMO 2021).',
+      'CDK4/6 inhibitor bổ trợ (Abemaciclib, Ribociclib) được thiết kế để dùng BẮT ĐẦU CÙNG LÚC với liệu pháp nội tiết bổ trợ ngay sau phẫu thuật (trong 2-3 năm đầu), không phải sau khi đã hoàn thành liệu trình nội tiết.',
+      'Lý do: Giai đoạn nguy cơ tái phát cao nhất của HR+ là 2-5 năm đầu sau chẩn đoán. Nếu đã qua 5 năm không tái phát, nguy cơ đã giảm đáng kể và việc thêm thuốc mới không có bằng chứng đủ mạnh để khuyến cáo.',
+      'Điều tốt nhất có thể làm là: trao đổi với BS ung bướu xem có cần kéo dài nội tiết thêm (từ 5 năm lên 7-10 năm Tamoxifen hoặc chuyển sang AI) hay không, dựa trên Recurrence Score và các yếu tố nguy cơ cá nhân.',
+      'Thông điệp: Bệnh nhân Luminal A hoàn thành 5 năm Tamoxifen không tái phát là THÀNH CÔNG LỚN. Các thuốc mới đắt tiền không cần thiết cho nhóm này.'
+    ],
+    clinicalHighlight: 'Theo NCCN Breast Cancer 2025 và ASCO 2024: Không có khuyến cáo nào cho việc khởi đầu CDK4/6i ở bệnh nhân đã hoàn thành liệu trình nội tiết bổ trợ mà không tái phát.'
+  },
+  {
+    id: 'qa-new-4',
+    category: 'treatment_options',
+    categoryLabel: 'Đột Phá Điều Trị 2022-2026',
+    question: 'Thuốc kháng thể liên hợp Enhertu (T-DXd) đang hot trên mạng - bệnh nhân Luminal A HER2 âm tính có dùng được không?',
+    shortSummary: 'Enhertu (T-DXd) dùng được cho Luminal A nếu có HER2-low (IHC 1+ hoặc 2+/ISH âm). Không dùng cho HER2 hoàn toàn âm tính (IHC 0). Chỉ dành cho giai đoạn di căn.',
+    detailedAnswer: [
+      'Trastuzumab Deruxtecan (T-DXd / Enhertu) là kháng thể liên hợp thuốc (Antibody-Drug Conjugate - ADC) do Daiichi Sankyo/AstraZeneca sản xuất.',
+      'Phân loại HER2 mới (từ 2022): Năm 2022, thử nghiệm DESTINY-Breast04 (Modi S, NEJM 2022) tạo ra một phân loại HER2 mới quan trọng gọi là "HER2-low" (IHC 1+ hoặc IHC 2+/FISH âm tính).',
+      'Chỉ định FDA (08/2022): T-DXd dùng cho K vú HR+/HER2-low hoặc HR-/HER2-low giai đoạn DI CĂN, đã qua ít nhất 1 đợt hóa trị.',
+      'Kết quả DESTINY-04: Giảm 50% nguy cơ tiến triển bệnh (PFS 9.9 tháng vs 5.1 tháng) và cải thiện sống còn (OS 23.4 vs 16.8 tháng) ở nhóm HR+.',
+      'Quan trọng - Kiểm tra lại kết quả IHC: Nhiều bệnh nhân K vú HER2 "âm tính" thực ra là HER2-low (1+ hoặc 2+/ISH âm). Hỏi BS ung bướu về kết quả IHC cụ thể của mình để biết có thuộc nhóm HER2-low không.',
+      'Giới hạn: Thuốc chỉ dành cho giai đoạn di căn, chưa được phê duyệt cho giai đoạn sớm. Chi phí tại VN rất cao (chưa BHYT).'
+    ],
+    clinicalHighlight: 'DESTINY-Breast04 (Modi S, NEJM 2022): FDA phê duyệt T-DXd cho HER2-low breast cancer 08/2022 — định nghĩa lại HER2-low là phân loại điều trị mới, thay đổi hướng điều trị cho ~50% bệnh nhân K vú.',
+    doctorQuestionToAsk: '"Thưa bác sĩ, kết quả HER2 IHC của tôi là bao nhiêu (0, 1+, hay 2+)? Nếu là 1+ hoặc 2+/ISH âm, tôi có thuộc nhóm HER2-low và được hưởng lợi từ Enhertu trong tương lai không?"'
+  },
+  {
+    id: 'qa-new-5',
+    category: 'lifestyle_followup',
+    categoryLabel: 'Đột Phá Điều Trị 2022-2026',
+    question: 'Các thuốc mới Truqap (Capivasertib), Inavolisib cho ai? Và khi nào cần làm xét nghiệm gen PIK3CA, AKT1?',
+    shortSummary: 'Truqap và Inavolisib dùng cho K vú HR+/HER2- di căn có đột biến PIK3CA/AKT1/PTEN. Xét nghiệm gen này chỉ cần khi bệnh tiến triển/kháng nội tiết bước 1.',
+    detailedAnswer: [
+      'Capivasertib (Truqap) - FDA phê duyệt 11/2023 - dựa trên thử nghiệm CAPItello-291 (Turner NC, NEJM 2023): Thuốc ức chế AKT kinase, dùng cho K vú HR+/HER2- di căn có một trong các đột biến: PIK3CA, AKT1, hoặc mất PTEN, sau khi thất bại với AI.',
+      'Kết quả CAPItello-291: Kết hợp Truqap + Fulvestrant giảm 40% nguy cơ tiến triển (PFS 7.3 vs 3.1 tháng) ở nhóm có đột biến PIK3CA/AKT1/PTEN.',
+      'Inavolisib - FDA phê duyệt 10/2024 - dựa trên thử nghiệm INAVO120 (Jhaveri K, NEJM 2024): Thuốc ức chế PI3Kα, dùng cho K vú HR+/HER2- di căn có đột biến PIK3CA, kết hợp với Palbociclib (CDK4/6i) + Fulvestrant.',
+      'Kết quả INAVO120: PFS cải thiện mạnh (15.0 vs 7.3 tháng) so với giả dược + Palbociclib + Fulvestrant.',
+      'Khi nào cần xét nghiệm PIK3CA/AKT1/PTEN: Chỉ khi K vú tiến triển sang giai đoạn DI CĂN hoặc KHÁNG AI bước 1. Xét nghiệm từ mô khối u nguyên phát (FFPE block) hoặc liquid biopsy (ctDNA trong máu).',
+      'Bệnh nhân giai đoạn sớm ổn định sau Tamoxifen: KHÔNG cần làm các xét nghiệm này ngay.'
+    ],
+    clinicalHighlight: 'CAPItello-291 (Turner, NEJM 2023) + INAVO120 (Jhaveri, NEJM 2024): Hai thử nghiệm tiên phong mở ra kỷ nguyên "điều trị theo đột biến PIK3CA/AKT" cho K vú HR+ di căn kháng trị.'
+  }
+];
