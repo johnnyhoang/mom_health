@@ -12,6 +12,8 @@ import { MobileBottomNav } from './components/MobileBottomNav';
 import { VideoModal } from './components/VideoModal';
 import { AudioPlayerBar } from './components/AudioPlayerBar';
 import { AudioReaderProvider } from './context/AudioReaderContext';
+import { AuthProvider } from './context/AuthContext';
+import { UserAuthButton } from './components/UserAuthButton';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
 import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity, Calendar, Eye } from 'lucide-react';
@@ -203,156 +205,161 @@ export function App() {
 
 
   return (
-    <AudioReaderProvider>
+    <AuthProvider>
+      <AudioReaderProvider>
       <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
-        {/* Top Sticky Header */}
-      <header className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 transition-all">
-        {/* Reading Progress Line */}
-        {(currentView === 'vision_myopia' || currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'monograph' || currentView === 'breast_cancer' || currentView === 'chronic_back_pain') && (
-          <div 
-            className="h-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-rose-500 transition-all duration-150"
-            style={{ width: `${scrollProgress}%` }}
-          />
-        )}
-        
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 h-14 py-2 flex items-center justify-between gap-2">
-          {/* Logo & Brand */}
-          <div 
-            onClick={() => handleSwitchView('vision_myopia')}
-            className="flex items-center gap-2 cursor-pointer select-none shrink-0"
-          >
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xs shadow-sm">
-              <Eye className="w-4 h-4" />
+
+          {/* Top Sticky Header */}
+          <header className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 transition-all">
+            {/* Reading Progress Line */}
+            {(currentView === 'vision_myopia' || currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'monograph' || currentView === 'breast_cancer' || currentView === 'chronic_back_pain') && (
+              <div 
+                className="h-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-rose-500 transition-all duration-150"
+                style={{ width: `${scrollProgress}%` }}
+              />
+            )}
+            
+            <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 h-14 py-2 flex items-center justify-between gap-2">
+              {/* Logo & Brand */}
+              <div 
+                onClick={() => handleSwitchView('vision_myopia')}
+                className="flex items-center gap-2 cursor-pointer select-none shrink-0"
+              >
+                <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xs shadow-sm">
+                  <Eye className="w-4 h-4" />
+                </div>
+                <span className="font-extrabold text-xs sm:text-sm tracking-tight text-slate-100 hidden md:inline">
+                  HEALTH ATLAS
+                </span>
+              </div>
+
+              {/* Smart Categorized Navigation Header */}
+              <div className="flex items-center gap-1.5 overflow-x-auto max-w-full text-xs font-bold py-1">
+                {/* 1. Module Thị Lực Học Đường - Nổi Bật */}
+                <button
+                  onClick={() => handleSwitchView('vision_myopia')}
+                  className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
+                    currentView === 'vision_myopia'
+                      ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-md shadow-cyan-500/30 ring-1 ring-cyan-400'
+                      : 'text-cyan-300 hover:text-white bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-900/50'
+                  }`}
+                >
+                  <Eye className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
+                  <span>Thị Lực Học Đường</span>
+                </button>
+
+                {/* 2. Công Cụ Theo Dõi Chu Kỳ */}
+                <button
+                  onClick={() => handleSwitchView('cycle_tracker')}
+                  className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                    currentView === 'cycle_tracker'
+                      ? 'bg-rose-500 text-white shadow-md font-black'
+                      : 'text-rose-300 hover:text-white bg-rose-950/30 hover:bg-rose-900/50 border border-rose-900/40'
+                  }`}
+                >
+                  <Calendar className="w-3.5 h-3.5 text-rose-300 shrink-0" />
+                  <span>Chu Kỳ</span>
+                </button>
+
+                {/* 3. Chuyên Khảo Bệnh Học (Group Segmented Tabs) */}
+                <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 gap-0.5">
+                  <button
+                    onClick={() => handleSwitchView('chronic_back_pain')}
+                    title="Chuyên khảo Đau Lưng Kinh Niên"
+                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                      currentView === 'chronic_back_pain'
+                        ? 'bg-indigo-500 text-white shadow-sm font-black'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                  >
+                    <Activity className="w-3.5 h-3.5 shrink-0" />
+                    <span>Đau Lưng</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleSwitchView('ankle_trauma')}
+                    title="Chuyên khảo Mắt Cá Chân"
+                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                      currentView === 'ankle_trauma'
+                        ? 'bg-rose-500 text-white shadow-sm font-black'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                  >
+                    <Footprints className="w-3.5 h-3.5 shrink-0" />
+                    <span>Mắt Cá</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleSwitchView('cervical_spine')}
+                    title="Chuyên khảo Cột Sống Cổ ACDF"
+                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                      currentView === 'cervical_spine'
+                        ? 'bg-amber-500 text-slate-950 shadow-sm font-black'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                  >
+                    <Bone className="w-3.5 h-3.5 shrink-0" />
+                    <span>Cổ ACDF</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleSwitchView('breast_cancer')}
+                    title="Chuyên khảo K Vú"
+                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                      currentView === 'breast_cancer'
+                        ? 'bg-rose-500 text-white shadow-sm font-black'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                  >
+                    <Ribbon className="w-3.5 h-3.5 shrink-0" />
+                    <span>K Vú</span>
+                  </button>
+
+                  <button
+                    onClick={() => handleSwitchView('monograph')}
+                    title="Chuyên khảo Phụ Khoa & Tử Cung"
+                    className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                      currentView === 'monograph'
+                        ? 'bg-teal-500 text-slate-950 shadow-sm font-black'
+                        : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
+                    }`}
+                  >
+                    <Stethoscope className="w-3.5 h-3.5 shrink-0" />
+                    <span>Tử Cung</span>
+                  </button>
+                </div>
+
+                {/* 4. Hỏi Đáp Q&A */}
+                <button
+                  onClick={() => handleSwitchView('qa')}
+                  className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                    currentView === 'qa'
+                      ? 'bg-amber-400 text-slate-950 font-black shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-800'
+                  }`}
+                >
+                  <HelpCircle className="w-3.5 h-3.5 shrink-0 text-amber-400" />
+                  <span>Q&A</span>
+                </button>
+
+                {/* 5. Danh Bạ Bác Sĩ */}
+                <button
+                  onClick={() => handleSwitchView('doctors')}
+                  className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
+                    currentView === 'doctors'
+                      ? 'bg-purple-500 text-white font-black shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-800'
+                  }`}
+                >
+                  <UserCheck className="w-3.5 h-3.5 shrink-0 text-purple-400" />
+                  <span>Bác Sĩ</span>
+                </button>
+
+                {/* 6. Đăng nhập Google / Avatar */}
+                <UserAuthButton />
+              </div>
             </div>
-            <span className="font-extrabold text-xs sm:text-sm tracking-tight text-slate-100 hidden md:inline">
-              HEALTH ATLAS
-            </span>
-          </div>
-
-          {/* Smart Categorized Navigation Header */}
-          <div className="flex items-center gap-1.5 overflow-x-auto max-w-full text-xs font-bold py-1">
-            {/* 1. Module Thị Lực Học Đường - Nổi Bật */}
-            <button
-              onClick={() => handleSwitchView('vision_myopia')}
-              className={`px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5 whitespace-nowrap cursor-pointer ${
-                currentView === 'vision_myopia'
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-md shadow-cyan-500/30 ring-1 ring-cyan-400'
-                  : 'text-cyan-300 hover:text-white bg-cyan-950/40 hover:bg-cyan-900/60 border border-cyan-900/50'
-              }`}
-            >
-              <Eye className="w-3.5 h-3.5 text-cyan-300 shrink-0" />
-              <span>Thị Lực Học Đường</span>
-            </button>
-
-            {/* 2. Công Cụ Theo Dõi Chu Kỳ */}
-            <button
-              onClick={() => handleSwitchView('cycle_tracker')}
-              className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                currentView === 'cycle_tracker'
-                  ? 'bg-rose-500 text-white shadow-md font-black'
-                  : 'text-rose-300 hover:text-white bg-rose-950/30 hover:bg-rose-900/50 border border-rose-900/40'
-              }`}
-            >
-              <Calendar className="w-3.5 h-3.5 text-rose-300 shrink-0" />
-              <span>Chu Kỳ</span>
-            </button>
-
-            {/* 3. Chuyên Khảo Bệnh Học (Group Segmented Tabs) */}
-            <div className="flex items-center bg-slate-900 p-1 rounded-xl border border-slate-800 gap-0.5">
-              <button
-                onClick={() => handleSwitchView('chronic_back_pain')}
-                title="Chuyên khảo Đau Lưng Kinh Niên"
-                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                  currentView === 'chronic_back_pain'
-                    ? 'bg-indigo-500 text-white shadow-sm font-black'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                }`}
-              >
-                <Activity className="w-3.5 h-3.5 shrink-0" />
-                <span>Đau Lưng</span>
-              </button>
-
-              <button
-                onClick={() => handleSwitchView('ankle_trauma')}
-                title="Chuyên khảo Mắt Cá Chân"
-                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                  currentView === 'ankle_trauma'
-                    ? 'bg-rose-500 text-white shadow-sm font-black'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                }`}
-              >
-                <Footprints className="w-3.5 h-3.5 shrink-0" />
-                <span>Mắt Cá</span>
-              </button>
-
-              <button
-                onClick={() => handleSwitchView('cervical_spine')}
-                title="Chuyên khảo Cột Sống Cổ ACDF"
-                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                  currentView === 'cervical_spine'
-                    ? 'bg-amber-500 text-slate-950 shadow-sm font-black'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                }`}
-              >
-                <Bone className="w-3.5 h-3.5 shrink-0" />
-                <span>Cổ ACDF</span>
-              </button>
-
-              <button
-                onClick={() => handleSwitchView('breast_cancer')}
-                title="Chuyên khảo K Vú"
-                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                  currentView === 'breast_cancer'
-                    ? 'bg-rose-500 text-white shadow-sm font-black'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                }`}
-              >
-                <Ribbon className="w-3.5 h-3.5 shrink-0" />
-                <span>K Vú</span>
-              </button>
-
-              <button
-                onClick={() => handleSwitchView('monograph')}
-                title="Chuyên khảo Phụ Khoa & Tử Cung"
-                className={`px-2.5 py-1 rounded-lg transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                  currentView === 'monograph'
-                    ? 'bg-teal-500 text-slate-950 shadow-sm font-black'
-                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800'
-                }`}
-              >
-                <Stethoscope className="w-3.5 h-3.5 shrink-0" />
-                <span>Tử Cung</span>
-              </button>
-            </div>
-
-            {/* 4. Hỏi Đáp Q&A */}
-            <button
-              onClick={() => handleSwitchView('qa')}
-              className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                currentView === 'qa'
-                  ? 'bg-amber-400 text-slate-950 font-black shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-800'
-              }`}
-            >
-              <HelpCircle className="w-3.5 h-3.5 shrink-0 text-amber-400" />
-              <span>Q&A</span>
-            </button>
-
-            {/* 5. Danh Bạ Bác Sĩ */}
-            <button
-              onClick={() => handleSwitchView('doctors')}
-              className={`px-2.5 py-1.5 rounded-xl transition-all flex items-center gap-1 whitespace-nowrap cursor-pointer ${
-                currentView === 'doctors'
-                  ? 'bg-purple-500 text-white font-black shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 bg-slate-900 border border-slate-800'
-              }`}
-            >
-              <UserCheck className="w-3.5 h-3.5 shrink-0 text-purple-400" />
-              <span>Bác Sĩ</span>
-            </button>
-          </div>
-        </div>
-      </header>
+          </header>
 
       {/* Main Content Router */}
       <main className="flex-1 w-full">
@@ -445,7 +452,10 @@ export function App() {
       <Footer />
     </div>
   </AudioReaderProvider>
+</AuthProvider>
   );
 }
 
+
 export default App;
+

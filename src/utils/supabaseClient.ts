@@ -1,6 +1,37 @@
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import type { HistoricalCycle, DailyCycleLog } from '../data/menstrualCycleLogData';
 
+export const CANONICAL_DOMAIN = 'https://health.minkoi.org';
+
+export function getRedirectUrl(view?: string, sectionId?: string): string {
+  const isLocal = typeof window !== 'undefined' && (
+    window.location.hostname === 'localhost' || 
+    window.location.hostname === '127.0.0.1'
+  );
+  const baseUrl = isLocal ? window.location.origin : CANONICAL_DOMAIN;
+  const currentView = view || (typeof localStorage !== 'undefined' ? localStorage.getItem('app_current_view') : '') || 'vision_myopia';
+  const currentSection = sectionId || (typeof localStorage !== 'undefined' ? localStorage.getItem('app_active_section_' + currentView) : '') || '';
+  
+  let targetUrl = `${baseUrl}/?view=${encodeURIComponent(currentView)}`;
+  if (currentSection) {
+    targetUrl += `#${encodeURIComponent(currentSection)}`;
+  }
+  return targetUrl;
+}
+
+export async function signInWithGoogle(view?: string, sectionId?: string) {
+  const client = getSupabase();
+  if (!client) throw new Error('Supabase Client is not configured');
+  
+  const redirectTo = getRedirectUrl(view, sectionId);
+  return await client.auth.signInWithOAuth({
+    provider: 'google',
+    options: {
+      redirectTo,
+    },
+  });
+}
+
 const ENV_SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || '';
 const ENV_SUPABASE_ANON_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY || '';
 
@@ -36,8 +67,9 @@ export function getSupabase(): SupabaseClient | null {
     try {
       cachedClient = createClient(url, key, {
         auth: {
-          persistSession: false,
-          autoRefreshToken: false
+          persistSession: true,
+          autoRefreshToken: true,
+          detectSessionInUrl: true
         }
       });
       lastClientKey = currentKey;
@@ -48,6 +80,19 @@ export function getSupabase(): SupabaseClient | null {
   }
   return cachedClient;
 }
+
+// ==============================================================================
+// GOOGLE OAUTH AUTHENTICATION HELPERS
+// ==============================================================================
+
+export async function signOutUser() {
+  const client = getSupabase();
+  if (!client) return;
+  const { error } = await client.auth.signOut();
+  if (error) throw error;
+}
+
+
 
 // ==============================================================================
 // 1. MH_MENSTRUAL_CYCLES API

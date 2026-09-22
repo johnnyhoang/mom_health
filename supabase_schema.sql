@@ -90,3 +90,18 @@ ON public.mh_app_settings
 FOR ALL 
 USING (true) 
 WITH CHECK (true);
+
+-- ==============================================================================
+-- 4. Google OAuth Row Level Security (RLS) Policies (Optional User Isolation)
+-- ==============================================================================
+-- Nếu muốn bảo vệ dữ liệu theo từng user sau khi đăng nhập Google OAuth:
+--
+-- ALTER TABLE public.mh_menstrual_cycles ADD COLUMN IF NOT EXISTS user_id UUID REFERENCES auth.users(id) DEFAULT auth.uid();
+-- ALTER TABLE public.mh_daily_logs ADD COLUMN IF NOT EXISTS user_id UUID REFERENCES auth.users(id) DEFAULT auth.uid();
+--
+-- -- User chỉ đọc được dữ liệu của chính mình:
+-- CREATE POLICY "Users read own cycles" ON public.mh_menstrual_cycles FOR SELECT USING (auth.uid() = user_id);
+-- CREATE POLICY "Users insert own cycles" ON public.mh_menstrual_cycles FOR INSERT WITH CHECK (auth.uid() = user_id);
+-- CREATE POLICY "Users update own cycles" ON public.mh_menstrual_cycles FOR UPDATE USING (auth.uid() = user_id);
+-- CREATE POLICY "Users delete own cycles" ON public.mh_menstrual_cycles FOR DELETE USING (auth.uid() = user_id);
+
