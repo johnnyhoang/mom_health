@@ -60,10 +60,10 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
   return (
     <>
       {/* Top Sticky Header */}
-      <header className="sticky top-0 z-40 w-full bg-slate-950/95 backdrop-blur-md border-b border-slate-800/80 transition-all shadow-lg">
+      <header className="sticky top-0 z-40 w-full bg-slate-950 border-b border-slate-800 transition-all">
         {/* Reading Progress Line */}
         <div 
-          className="h-1 bg-gradient-to-r from-cyan-500 via-teal-400 to-rose-500 transition-all duration-150"
+          className="h-0.5 bg-teal-500 transition-all duration-150"
           style={{ width: `${scrollProgress}%` }}
         />
 
@@ -73,22 +73,22 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-teal-400 border border-slate-800 transition-all cursor-pointer flex items-center gap-2 group"
+              className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-400 border border-slate-800 transition-all cursor-pointer flex items-center gap-2 group"
               title="Mở Tủ Sách & Chuyên Khảo"
             >
-              <Menu className="w-5 h-5 text-teal-400 group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-extrabold text-slate-200 hidden sm:inline">Tủ Sách</span>
+              <Menu className="w-4 h-4 text-teal-400 group-hover:scale-105 transition-transform" />
+              <span className="text-xs font-bold text-slate-200 hidden sm:inline">Tủ Sách</span>
             </button>
 
             <div 
               onClick={() => handleSelectModule('vision_myopia')}
               className="flex items-center gap-2 cursor-pointer select-none"
             >
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white font-black text-xs shadow-sm">
+              <div className="w-7 h-7 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-xs">
                 <BookOpen className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-extrabold text-xs sm:text-sm tracking-tight text-slate-100 block leading-tight">
+                <span className="font-bold text-xs sm:text-sm tracking-tight text-slate-100 block leading-tight">
                   HEALTH ATLAS
                 </span>
                 <span className="text-[10px] text-slate-400 font-medium hidden md:block">
@@ -102,14 +102,14 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
           <div className="relative flex-1 max-w-md hidden md:block">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="w-full px-3.5 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-teal-500/50 text-slate-200 text-xs font-bold flex items-center justify-between transition-all cursor-pointer shadow-inner"
+              className="w-full px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between transition-all cursor-pointer"
             >
               <div className="flex items-center gap-2 truncate">
-                <div className={`p-1 rounded-md bg-gradient-to-r ${activeModule.accentColor} text-white shrink-0`}>
+                <div className="p-1 rounded bg-slate-800 text-teal-400 shrink-0">
                   <ActiveIcon className="w-3.5 h-3.5" />
                 </div>
                 <span className="text-slate-400 font-normal">Đang xem:</span>
-                <span className="text-cyan-300 font-extrabold truncate">{activeModule.title}</span>
+                <span className="text-teal-300 font-bold truncate">{activeModule.title}</span>
               </div>
               <ChevronDown className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${dropdownOpen ? 'rotate-180 text-teal-400' : ''}`} />
             </button>

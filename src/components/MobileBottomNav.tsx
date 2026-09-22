@@ -113,15 +113,15 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     <>
       {/* Floating Bottom Nav Bar */}
       <div className="fixed bottom-3 inset-x-0 z-40 px-2 sm:px-6 pointer-events-none flex justify-center">
-        <nav className="pointer-events-auto bg-slate-900/95 backdrop-blur-lg border border-slate-700/80 shadow-2xl rounded-2xl px-2 py-1.5 flex items-center gap-1 text-white max-w-xl w-full justify-between">
+        <nav className="pointer-events-auto bg-slate-900 border border-slate-800 shadow-xl rounded-xl px-2 py-1.5 flex items-center gap-1 text-white max-w-xl w-full justify-between">
           {/* Thị Lực Học Đường Button */}
           <button
             onClick={() => {
               if (onSwitchView) onSwitchView('vision_myopia');
             }}
-            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all flex-1 cursor-pointer ${
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-lg transition-all flex-1 cursor-pointer ${
               currentView === 'vision_myopia'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-bold shadow-md shadow-cyan-500/30'
+                ? 'bg-teal-500 text-slate-950 font-bold'
                 : 'text-cyan-300 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -132,13 +132,13 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
           {/* Mục Lục Chuyên Khảo */}
           <button
             onClick={() => setIsDrawerOpen(true)}
-            className={`flex flex-col items-center justify-center py-1 px-2 rounded-xl transition-all flex-1 cursor-pointer ${
+            className={`flex flex-col items-center justify-center py-1 px-2 rounded-lg transition-all flex-1 cursor-pointer ${
               currentView === 'vision_myopia' || currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'chronic_back_pain' || currentView === 'breast_cancer' || currentView === 'monograph'
-                ? 'bg-slate-800 text-cyan-300 font-bold border border-cyan-500/40'
+                ? 'bg-slate-800 text-teal-300 font-bold border border-slate-700'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <ListOrdered className="w-4 h-4 text-cyan-400" />
+            <ListOrdered className="w-4 h-4 text-teal-400" />
             <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
           </button>
 
@@ -147,9 +147,9 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             onClick={() => {
               if (onSwitchView) onSwitchView('qa');
             }}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
+            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-lg transition-colors flex-1 cursor-pointer ${
               currentView === 'qa' 
-                ? 'bg-amber-400 text-slate-950 font-bold shadow-md shadow-amber-400/30' 
+                ? 'bg-amber-400 text-slate-950 font-bold' 
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
@@ -162,13 +162,13 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
             onClick={() => {
               if (onSwitchView) onSwitchView('doctors');
             }}
-            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-xl transition-colors flex-1 cursor-pointer ${
+            className={`flex flex-col items-center justify-center py-1 px-1.5 rounded-lg transition-colors flex-1 cursor-pointer ${
               currentView === 'doctors' 
-                ? 'bg-purple-500 text-white font-bold shadow-md shadow-purple-500/30' 
+                ? 'bg-rose-500 text-white font-bold' 
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <UserCheck className={`w-4 h-4 ${currentView === 'doctors' ? 'text-white' : 'text-purple-400'}`} />
+            <UserCheck className={`w-4 h-4 ${currentView === 'doctors' ? 'text-white' : 'text-rose-400'}`} />
             <span className="text-[10px] font-bold mt-0.5">Bác Sĩ</span>
           </button>
         </nav>

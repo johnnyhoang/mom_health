@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-slate-950 text-slate-100 antialiased selection:bg-teal-500 selection:text-white font-sans;
+    @apply bg-slate-950 text-slate-100 antialiased selection:bg-teal-500 selection:text-slate-950 font-sans;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -12,62 +12,70 @@
 
   /* Custom scrollbar */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 6px;
+    height: 6px;
   }
   ::-webkit-scrollbar-track {
     background: #090d16;
   }
   ::-webkit-scrollbar-thumb {
     background: #1e293b;
-    border-radius: 4px;
+    border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #334155;
   }
 }
 
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Clinical Editorial Surfaces & Design System Tokens */
+.editorial-surface {
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
 }
 
-.glass-panel-dark {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(51, 65, 85, 0.8);
+.editorial-surface-hover {
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+.editorial-surface-hover:hover {
+  background-color: #1e293b;
+  border-color: #334155;
 }
 
-.medical-gradient {
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f766e 100%);
+.editorial-card {
+  background-color: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(51, 65, 85, 0.7);
+  border-radius: 0.75rem;
 }
 
-.rose-gradient {
-  background: linear-gradient(135deg, #be123c 0%, #881337 50%, #4c0519 100%);
+.editorial-tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.375rem;
 }
 
 /* Flat Book Editorial Typography */
 .book-prose {
-  font-size: 1.05rem; /* ~16.8px */
-  line-height: 1.75;
-  color: #e2e8f0;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: #cbd5e1;
 }
 
 .book-prose p {
-  margin-bottom: 1rem;
+  margin-bottom: 1.25rem;
 }
 
 .book-prose strong {
-  color: #ffffff;
+  color: #f8fafc;
   font-weight: 700;
 }
 
 .book-card-flat {
-  background-color: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(51, 65, 85, 0.6);
-  border-radius: 1rem;
+  background-color: #0f172a;
+  border: 1px solid #1e293b;
+  border-radius: 0.75rem;
 }
+
 
