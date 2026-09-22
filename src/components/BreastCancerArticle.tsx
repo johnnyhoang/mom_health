@@ -774,7 +774,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 4 (NEW): NEW TREATMENTS 2022-2026 */}
       {/* ========================================================================= */}
-      <BreastCancerNewTreatmentsSection highlightLuminalA={true} />
+      <BreastCancerNewTreatmentsSection />
 
       {/* ========================================================================= */}
       {/* CHAPTER 5 (NEW): OUTCOMES & STATISTICS */}
