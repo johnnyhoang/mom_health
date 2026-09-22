@@ -397,7 +397,7 @@ export const exerciseResearchData: ExerciseResearch[] = [
   },
   {
     id: 'res_2',
-    title: 'Nghiên cứu Nurses\\' Health Study (NHS)',
+    title: "Nghiên cứu Nurses' Health Study (NHS)",
     finding: 'Những người sống sót sau ung thư vú tham gia hoạt động thể chất tương đương 3-5 giờ đi bộ mỗi tuần có tỷ lệ tử vong thấp hơn đáng kể.',
     magnitude: 'Giảm khoảng 50% nguy cơ tử vong do ung thư vú, giảm tử vong do mọi nguyên nhân.',
     source: 'Holmes JAMA',
@@ -433,7 +433,7 @@ export const exerciseResearchData: ExerciseResearch[] = [
   },
   {
     id: 'res_6',
-    title: 'Nghiên cứu Women\\'s Healthy Eating and Living (WHEL)',
+    title: "Nghiên cứu Women's Healthy Eating and Living (WHEL)",
     finding: 'Chế độ ăn nhiều rau củ kết hợp với việc duy trì hoạt động thể chất vừa phải đem lại lợi ích sống còn rõ rệt.',
     magnitude: 'Giảm 44% nguy cơ tử vong ở những phụ nữ thực hiện kết hợp cả hai.',
     source: 'Pierce JAMA',
@@ -441,3 +441,4 @@ export const exerciseResearchData: ExerciseResearch[] = [
     applicableTo: 'Bệnh nhân sống sót sau K vú'
   }
 ];
+

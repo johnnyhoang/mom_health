@@ -16,11 +16,57 @@ import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
 import { HelpCircle, UserCheck, Ribbon, Stethoscope, Bone, Footprints, Activity, Calendar, Eye } from 'lucide-react';
 
+type ViewType = 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker';
+
+const VALID_VIEWS: ViewType[] = [
+  'ankle_trauma', 'cervical_spine', 'breast_cancer', 'monograph', 'chronic_back_pain', 'vision_myopia', 'qa', 'doctors', 'cycle_tracker'
+];
+
+function getInitialView(): ViewType {
+  const urlParams = new URLSearchParams(window.location.search);
+  const viewParam = urlParams.get('view') as ViewType;
+  if (viewParam && VALID_VIEWS.includes(viewParam)) {
+    return viewParam;
+  }
+  const savedView = localStorage.getItem('app_current_view') as ViewType;
+  if (savedView && VALID_VIEWS.includes(savedView)) {
+    return savedView;
+  }
+  return 'vision_myopia';
+}
+
+function getInitialSection(view: ViewType): string {
+  const hash = window.location.hash.replace('#', '');
+  if (hash) return hash;
+  return localStorage.getItem('app_active_section_' + view) || 'vision-ch-1';
+}
+
 export function App() {
-  const [currentView, setCurrentView] = useState<'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker'>('vision_myopia');
+  const [currentView, setCurrentView] = useState<ViewType>(getInitialView);
   const [selectedVideo, setSelectedVideo] = useState<MediaItem | null>(null);
-  const [activeSection, setActiveSection] = useState<string>('vision-ch-1');
+  const [activeSection, setActiveSection] = useState<string>(() => getInitialSection(getInitialView()));
   const [scrollProgress, setScrollProgress] = useState<number>(0);
+
+  // Restore scroll position to active section on initial mount or view change
+  useEffect(() => {
+    const hashSection = window.location.hash.replace('#', '');
+    const savedSection = hashSection || localStorage.getItem('app_active_section_' + currentView);
+    if (savedSection) {
+      const timer = setTimeout(() => {
+        const targetEl = document.getElementById(savedSection);
+        if (targetEl) {
+          const offset = 60;
+          const bodyRect = document.body.getBoundingClientRect().top;
+          const elementRect = targetEl.getBoundingClientRect().top;
+          const elementPosition = elementRect - bodyRect;
+          const offsetPosition = elementPosition - offset;
+          window.scrollTo({ top: offsetPosition, behavior: 'smooth' });
+          setActiveSection(savedSection);
+        }
+      }, 350);
+      return () => clearTimeout(timer);
+    }
+  }, [currentView]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -30,125 +76,88 @@ export function App() {
         setScrollProgress(progress);
       }
 
+      let detectedSection = '';
       if (currentView === 'vision_myopia') {
-        const visionChapters = [
-          'vision-ch-1',
-          'vision-ch-2',
-          'vision-ch-3',
-          'vision-ch-4',
-          'vision-ch-5',
-          'vision-ch-6',
-          'vision-ch-7'
-        ];
+        const visionChapters = ['vision-ch-1', 'vision-ch-2', 'vision-ch-3', 'vision-ch-4', 'vision-ch-5', 'vision-ch-6', 'vision-ch-7'];
         for (const chId of visionChapters) {
           const el = document.getElementById(chId);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 250 && rect.bottom >= 250) {
-              setActiveSection(chId);
+              detectedSection = chId;
               break;
             }
           }
         }
       } else if (currentView === 'ankle_trauma') {
-        const ankleChapters = [
-          'ankle-ch-1', 
-          'ankle-ch-2', 
-          'ankle-ch-3', 
-          'ankle-ch-4', 
-          'ankle-ch-5', 
-          'ankle-ch-6', 
-          'ankle-ch-7'
-        ];
+        const ankleChapters = ['ankle-ch-1', 'ankle-ch-2', 'ankle-ch-3', 'ankle-ch-4', 'ankle-ch-5', 'ankle-ch-6', 'ankle-ch-7'];
         for (const chId of ankleChapters) {
           const el = document.getElementById(chId);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 250 && rect.bottom >= 250) {
-              setActiveSection(chId);
+              detectedSection = chId;
               break;
             }
           }
         }
       } else if (currentView === 'cervical_spine') {
-        const spineChapters = [
-          'spine-ch-1', 
-          'spine-ch-2', 
-          'spine-ch-3', 
-          'spine-ch-4', 
-          'spine-ch-5', 
-          'spine-ch-6', 
-          'spine-ch-7'
-        ];
+        const spineChapters = ['spine-ch-1', 'spine-ch-2', 'spine-ch-3', 'spine-ch-4', 'spine-ch-5', 'spine-ch-6', 'spine-ch-7'];
         for (const chId of spineChapters) {
           const el = document.getElementById(chId);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 250 && rect.bottom >= 250) {
-              setActiveSection(chId);
+              detectedSection = chId;
               break;
             }
           }
         }
       } else if (currentView === 'monograph') {
-        const chapters = [
-          'chapter-1', 
-          'chapter-2', 
-          'chapter-3', 
-          'chapter-4', 
-          'chapter-5', 
-          'chapter-6', 
-          'chapter-7'
-        ];
+        const chapters = ['chapter-1', 'chapter-2', 'chapter-3', 'chapter-4', 'chapter-5', 'chapter-6', 'chapter-7'];
         for (const chId of chapters) {
           const el = document.getElementById(chId);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 250 && rect.bottom >= 250) {
-              setActiveSection(chId);
+              detectedSection = chId;
               break;
             }
           }
         }
       } else if (currentView === 'breast_cancer') {
         const bcChapters = [
-          'bc-chapter-1',
-          'bc-chapter-2',
-          'bc-chapter-3',
-          'bc-chapter-4',
-          'bc-chapter-5',
-          'bc-chapter-6'
+          'bc-chapter-1', 'bc-chapter-2', 'bc-chapter-3', 'bc-chapter-4',
+          'bc-chapter-5', 'bc-chapter-6', 'bc-chapter-7', 'bc-chapter-8'
         ];
         for (const chId of bcChapters) {
           const el = document.getElementById(chId);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 250 && rect.bottom >= 250) {
-              setActiveSection(chId);
+              detectedSection = chId;
               break;
             }
           }
         }
       } else if (currentView === 'chronic_back_pain') {
-        const bpChapters = [
-          'bp-ch-1',
-          'bp-ch-2',
-          'bp-ch-3',
-          'bp-ch-4',
-          'bp-ch-5',
-          'bp-ch-6',
-          'bp-ch-7'
-        ];
+        const bpChapters = ['bp-ch-1', 'bp-ch-2', 'bp-ch-3', 'bp-ch-4', 'bp-ch-5', 'bp-ch-6', 'bp-ch-7'];
         for (const chId of bpChapters) {
           const el = document.getElementById(chId);
           if (el) {
             const rect = el.getBoundingClientRect();
             if (rect.top <= 250 && rect.bottom >= 250) {
-              setActiveSection(chId);
+              detectedSection = chId;
               break;
             }
           }
         }
+      }
+
+      if (detectedSection) {
+        setActiveSection(detectedSection);
+        localStorage.setItem('app_active_section_' + currentView, detectedSection);
+        window.history.replaceState(null, '', '?view=' + currentView + '#' + detectedSection);
       }
     };
 
@@ -170,13 +179,28 @@ export function App() {
         behavior: 'smooth'
       });
       setActiveSection(sectionId);
+      localStorage.setItem('app_active_section_' + currentView, sectionId);
+      window.history.replaceState(null, '', '?view=' + currentView + '#' + sectionId);
     }
   };
 
-  const handleSwitchView = (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker') => {
+  const handleSwitchView = (view: ViewType) => {
     setCurrentView(view);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    localStorage.setItem('app_current_view', view);
+
+    const savedSection = localStorage.getItem('app_active_section_' + view) || '';
+    const newUrl = '?view=' + view + (savedSection ? '#' + savedSection : '');
+    window.history.replaceState(null, '', newUrl);
+
+    if (savedSection) {
+      setTimeout(() => {
+        handleJumpToSection(savedSection);
+      }, 100);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
+
 
   return (
     <AudioReaderProvider>

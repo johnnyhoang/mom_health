@@ -103,24 +103,23 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
         {/* Main Title */}
-        {/* Book Main Title & Unified Header Container */}
-        <div className="space-y-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+        <div className="space-y-3">
+          <h1 className="text-xl sm:text-2xl md:text-2xl font-bold text-white tracking-tight leading-snug">
             Ung Thư Vú Thể Nội Tiết: Từ Tamoxifen Đến Các Đột Phá Mới Nhất
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-base md:text-sm text-slate-300 leading-relaxed">
             Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua 5 năm, thử nghiệm kéo dài (EET) và toàn cảnh các vũ khí điều trị mới (CDK4/6i, Oral SERD, PROTAC, ADCs).
           </p>
 
-          {/* Unified Preface & Status Panel */}
-          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+          {/* Unified Preface Panel */}
+          <div className="border-l-2 border-rose-500 pl-4 py-3 bg-slate-900/30 space-y-2.5 rounded-r-xl">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <ReadAloudButton
                 id="bc-hero"
                 title="Chuyên Khảo Ung Thư Vú Thể Nội Tiết"
                 text="Ung thư vú thể nội tiết: từ Tamoxifen đến các đột phá mới nhất. Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua năm năm, thử nghiệm kéo dài và toàn cảnh các vũ khí điều trị mới như thuốc ức chế CDK4/6, SERD đường uống, PROTAC và kháng thể liên hợp thuốc ADCs. Hơn bảy mươi phần trăm bệnh nhân ung thư vú thuộc nhóm thụ thể nội tiết dương tính. Bước sang giai đoạn 2024 đến 2026, các liệu pháp nhắm trúng đích thế hệ mới mở ra kỷ nguyên kiểm soát triệt để và nâng cao chất lượng cuộc sống cho người bệnh."
                 variant="hero"
-                label="Bấm để nghe đọc cẩm nang K vú"
+                label="Nghe đọc cẩm nang K vú"
                 durationEstimate="~15 phút"
               />
               <div className="flex items-center gap-1.5 text-rose-300 font-medium text-xs">
@@ -129,21 +128,21 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </div>
             </div>
 
-            <div className="text-slate-300 text-xs sm:text-sm leading-relaxed space-y-1.5">
+            <div className="text-base md:text-sm text-slate-300 leading-relaxed">
               <p>
-                Hơn 70% bệnh nhân ung thư vú thuộc nhóm <strong>thụ thể nội tiết dương tính (HR+ / HER2-)</strong>. Sau 5 năm hoàn thành Tamoxifen (2021 – 01/2026), cơ thể tiếp tục được bảo vệ bởi hiệu ứng kế thừa lâu dài. Các đột phá mới 2024–2026 mở ra kỷ nguyên kiểm soát tối ưu và ngăn chặn tái phát muộn.
+                Hơn 70% bệnh nhân ung thư vú thuộc nhóm <strong className="text-white font-medium">thụ thể nội tiết dương tính (HR+ / HER2-)</strong>. Sau 5 năm hoàn thành Tamoxifen (2021 – 01/2026), cơ thể tiếp tục được bảo vệ bởi hiệu ứng kế thừa lâu dài. Các đột phá mới 2024–2026 mở ra kỷ nguyên kiểm soát tối ưu và ngăn chặn tái phát muộn.
               </p>
             </div>
 
-            <div className="pt-2.5 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+            <div className="pt-2 border-t border-slate-800/60 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
               <div className="flex items-center gap-3">
                 <span className="flex items-center gap-1.5">
                   <Clock className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Thời lượng: ~15 phút</span>
+                  <span>~15 phút</span>
                 </span>
                 <span className="flex items-center gap-1.5">
                   <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                  <span>Cập nhật FDA 09/2024</span>
+                  <span>FDA 09/2024</span>
                 </span>
               </div>
 
@@ -162,16 +161,16 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: MOLECULAR SUBTYPES (4 SUBTYPES & BIOMARKERS) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bc-chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 1 • Sinh Học Phân Tử
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-lg sm:text-xl md:text-xl font-bold text-white tracking-tight">
             Toàn Cảnh 4 Phân Nhóm Phân Tử K Vú & Vai Trò Thụ Thể Nội Tiết
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-base md:text-sm text-slate-300 leading-relaxed">
             Ung thư vú không phải là một bệnh duy nhất mà gồm 4 phân nhóm sinh học khác nhau, quyết định độ nhạy với Tamoxifen và tiên lượng điều trị:
           </p>
           <ReadAloudButton
@@ -182,6 +181,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             label="Nghe đọc Chương 1"
           />
         </div>
+
 
         {/* Subtype Selector Tabs */}
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
@@ -324,16 +324,16 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: TAMOXIFEN 5-YEAR EVIDENCE & EXTENDED ENDOCRINE THERAPY (EET) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bc-chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 2 • Tamoxifen & Chiến Lược Kéo Dài
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-lg sm:text-xl md:text-xl font-bold text-white tracking-tight">
             Giải Mã 5 Năm Tamoxifen & Thử Nghiệm Kéo Dài 10 Năm (ATLAS/aTTom)
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-base md:text-sm text-slate-300 leading-relaxed">
             Tại sao 5 năm là mốc chuẩn vàng? Khi nào nên dừng (như trường hợp của chị) và khi nào cần kéo dài?
           </p>
           <ReadAloudButton
@@ -345,46 +345,41 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
-          
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-rose-300 text-sm flex items-center gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-base md:text-sm text-slate-300 leading-relaxed">
+          <article className="py-4 px-4 sm:px-5 rounded-xl border-l-2 border-l-rose-500 bg-slate-900/20 space-y-2">
+            <h3 className="font-bold text-white text-base md:text-sm flex items-center gap-2">
               <Award className="w-4 h-4 text-rose-400" />
-              <span>1. Lợi ích bảo vệ to lớn của 5 năm Tamoxifen (2021 – 01/2026)</span>
+              <span>1. Lợi ích bảo vệ của 5 năm Tamoxifen</span>
             </h3>
-            <p>
-              Dữ liệu tổng hợp từ nhóm nghiên cứu <strong>EBCTCG</strong> theo dõi trên hàng chục nghìn bệnh nhân qua 20 năm khẳng định:
+            <p className="text-base md:text-sm text-slate-300 leading-relaxed">
+              Dữ liệu tổng hợp từ nhóm nghiên cứu EBCTCG theo dõi trên hàng chục nghìn bệnh nhân qua 20 năm khẳng định:
             </p>
-            <ul className="list-disc list-inside space-y-1 pl-2 text-slate-200 text-xs">
+            <ul className="list-disc list-inside space-y-1 pl-2 text-base md:text-sm text-slate-200">
               <li><strong>Giảm 47% nguy cơ tái phát K vú</strong> trong 5 năm đầu dùng thuốc.</li>
               <li><strong>"Hiệu ứng kế thừa" kéo dài 10 - 15 năm tiếp theo</strong>: Tỷ lệ tử vong tiếp tục giảm 30% sau khi dừng thuốc.</li>
               <li><strong>Giảm 50% nguy cơ ung thư vú ở bên vú đối diện</strong>.</li>
             </ul>
-          </div>
+          </article>
 
-          <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-amber-300 text-sm flex items-center gap-2">
+          <article className="py-4 px-4 sm:px-5 rounded-xl border-l-2 border-l-amber-500 bg-slate-900/20 space-y-2">
+            <h3 className="font-bold text-white text-base md:text-sm flex items-center gap-2">
               <Clock className="w-4 h-4 text-amber-400" />
               <span>2. Thử nghiệm ATLAS & aTTom: Kéo dài 10 năm?</span>
             </h3>
-            <div className="grid grid-cols-1 gap-2 pt-0.5">
-              <div className="p-2.5 rounded-xl bg-emerald-950/20 border border-emerald-900/30 space-y-0.5">
-                <span className="font-bold text-emerald-400 text-xs uppercase block">Lợi ích cộng thêm khi dùng 10 năm:</span>
-                <p className="text-xs text-slate-300">Giảm thêm khoảng 3 - 4% nguy cơ tái phát muộn sau năm thứ 10. Chủ yếu có ý nghĩa ở nhóm hạch dương tính hoặc u ban đầu lớn.</p>
-              </div>
-
-              <div className="p-2.5 rounded-xl bg-rose-950/20 border border-rose-900/30 space-y-0.5">
-                <span className="font-bold text-rose-400 text-xs uppercase block">Tác dụng phụ gia tăng khi kéo dài:</span>
-                <p className="text-xs text-slate-300">Tăng gấp đôi nguy cơ bệnh lý nội mạc tử cung (tăng sản, polyp, ung thư nội mạc) và tăng nguy cơ huyết khối tĩnh mạch sâu (DVT).</p>
-              </div>
+            <div className="space-y-2 text-base md:text-sm text-slate-300">
+              <p>
+                <strong className="text-emerald-400 font-medium">Lợi ích cộng thêm: </strong>
+                Giảm thêm 3-4% nguy cơ tái phát muộn, chủ yếu có ý nghĩa ở nhóm có hạch dương tính hoặc u lớn ban đầu.
+              </p>
+              <p>
+                <strong className="text-rose-400 font-medium">Tác dụng phụ tăng: </strong>
+                Tăng gấp đôi nguy cơ bệnh lý nội mạc tử cung (tăng sản, polyp, ung thư nội mạc).
+              </p>
+              <p className="text-teal-300 font-medium pt-1 border-t border-slate-800/60">
+                → Dừng Tamoxifen mốc 5 năm (01/2026) là lựa chọn tối ưu và đúng đắn.
+              </p>
             </div>
-
-            <div className="p-2.5 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 mt-1">
-              <strong className="text-teal-300">Kết luận cho trường hợp của chị: </strong>
-              Việc <strong>DỪNG TAMOXIFEN TẠI MỐC 5 NĂM (THÁNG 1/2026)</strong> là hoàn toàn đúng đắn, an toàn và tối ưu nhất để giải quyết u xơ, rong kinh!
-            </div>
-          </div>
-
+          </article>
         </div>
 
       </section>
@@ -392,16 +387,16 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: CUTTING-EDGE TARGETED THERAPIES (2024 - 2026) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bc-chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 3 • Đột Phá Y Học 2024 - 2026
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-lg sm:text-xl md:text-xl font-bold text-white tracking-tight">
             Kho Vũ Khí Nhắm Trúng Đích Mới Nhất Cho K Vú Thể Nội Tiết
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-base md:text-sm text-slate-300 leading-relaxed">
             Khám phá 7 nhóm thuốc tiên tiến nhất thế giới hiện nay được FDA và NCCN phê duyệt:
           </p>
           <ReadAloudButton
@@ -412,6 +407,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             label="Nghe đọc Chương 3"
           />
         </div>
+
 
         {/* Therapy Tabs */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
