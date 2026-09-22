@@ -5,7 +5,6 @@ import { BreastCancerArticle } from './components/BreastCancerArticle';
 import { BookLayoutArticle } from './components/BookLayoutArticle';
 import { ChronicBackPainArticle } from './components/ChronicBackPainArticle';
 import { VisionMyopiaArticle } from './components/VisionMyopiaArticle';
-import { MenstrualCycleTrackerSection } from './components/MenstrualCycleTrackerSection';
 import { QAPage } from './components/QAPage';
 import { DoctorsDirectoryPage } from './components/DoctorsDirectoryPage';
 import { MobileBottomNav } from './components/MobileBottomNav';
@@ -17,10 +16,10 @@ import { BookSidebarNav } from './components/BookSidebarNav';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
 
-type ViewType = 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker';
+type ViewType = 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors';
 
 const VALID_VIEWS: ViewType[] = [
-  'ankle_trauma', 'cervical_spine', 'breast_cancer', 'monograph', 'chronic_back_pain', 'vision_myopia', 'qa', 'doctors', 'cycle_tracker'
+  'ankle_trauma', 'cervical_spine', 'breast_cancer', 'monograph', 'chronic_back_pain', 'vision_myopia', 'qa', 'doctors'
 ];
 
 function getInitialView(): ViewType {
@@ -223,12 +222,6 @@ export function App() {
             onNavigateToDoctors={() => handleSwitchView('doctors')}
             onNavigateToQA={() => handleSwitchView('qa')}
           />
-        )}
-
-        {currentView === 'cycle_tracker' && (
-          <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 py-6">
-            <MenstrualCycleTrackerSection />
-          </div>
         )}
 
         {currentView === 'ankle_trauma' && (

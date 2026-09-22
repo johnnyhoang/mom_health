@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { InteractiveCaseViewer } from './InteractiveCaseViewer';
 import { BreastCancerSafetySection } from './BreastCancerSafetySection';
-import { MenstrualCycleTrackerSection } from './MenstrualCycleTrackerSection';
 import { ReadAloudButton } from './ReadAloudButton';
 import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
 import { ReferencesSection } from './ReferencesSection';
@@ -383,9 +382,6 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             </div>
           </div>
         </div>
-
-        {/* Deep Dive: Menstrual Cycle Tracker & Clinical Correlation Section */}
-        <MenstrualCycleTrackerSection />
 
       </section>
 

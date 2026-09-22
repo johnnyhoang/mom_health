@@ -6,12 +6,11 @@ import {
 import { UserAuthButton } from './UserAuthButton';
 import { 
   BookOpen, 
-  Menu, 
   X, 
   ChevronDown, 
   Search, 
-  Sparkles, 
-  Layers
+  Library,
+  Bookmark
 } from 'lucide-react';
 
 interface BookSidebarNavProps {
@@ -69,15 +68,15 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
 
         <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 h-14 py-2 flex items-center justify-between gap-3">
           
-          {/* Left: Brand Logo & Sidebar Drawer Trigger */}
+          {/* Left: Brand Logo & Bookshelf Drawer Trigger */}
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-400 border border-slate-800 transition-all cursor-pointer flex items-center gap-2 group"
-              title="Mở Tủ Sách & Chuyên Khảo"
+              className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-400 border border-slate-800 transition-all cursor-pointer flex items-center gap-2 group shadow-sm"
+              title="Mở Kệ Sách Chuyên Khảo"
             >
-              <Menu className="w-4 h-4 text-teal-400 group-hover:scale-105 transition-transform" />
-              <span className="text-xs font-bold text-slate-200 hidden sm:inline">Tủ Sách</span>
+              <Library className="w-4 h-4 text-teal-400 group-hover:scale-110 transition-transform" />
+              <span className="text-xs font-extrabold text-slate-200 hidden sm:inline">Kệ Sách</span>
             </button>
 
             <div 
@@ -88,7 +87,7 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
                 <BookOpen className="w-4 h-4" />
               </div>
               <div>
-                <span className="font-bold text-xs sm:text-sm tracking-tight text-slate-100 block leading-tight">
+                <span className="font-extrabold text-xs sm:text-sm tracking-tight text-slate-100 block leading-tight">
                   HEALTH ATLAS
                 </span>
                 <span className="text-[10px] text-slate-400 font-medium hidden md:block">
@@ -108,20 +107,23 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
                 <div className="p-1 rounded bg-slate-800 text-teal-400 shrink-0">
                   <ActiveIcon className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-slate-400 font-normal">Đang xem:</span>
-                <span className="text-teal-300 font-bold truncate">{activeModule.title}</span>
+                <span className="text-slate-400 font-normal">Đang đọc:</span>
+                <span className="text-teal-300 font-bold truncate">{activeModule.vol ? `${activeModule.vol}: ` : ''}{activeModule.shortTitle}</span>
               </div>
               <ChevronDown className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${dropdownOpen ? 'rotate-180 text-teal-400' : ''}`} />
             </button>
 
-            {/* Quick Dropdown Menu */}
+            {/* Quick Bookshelf Dropdown Menu */}
             {dropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-2 z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="p-2 border-b border-slate-800 text-[11px] font-bold text-slate-400 flex items-center justify-between">
-                  <span>CHỌN TỰA SÁCH CHUYÊN KHẢO</span>
-                  <span className="text-teal-400">{BOOK_MODULES.length} Modules</span>
+              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl p-3 z-50 animate-in fade-in zoom-in-95 duration-150">
+                <div className="pb-2 mb-2 border-b border-slate-800 text-[11px] font-bold text-slate-400 flex items-center justify-between">
+                  <span className="flex items-center gap-1.5 text-teal-400 uppercase tracking-wider">
+                    <Library className="w-3.5 h-3.5" />
+                    <span>KỆ SÁCH CHUYÊN KHẢO Y KHOA</span>
+                  </span>
+                  <span className="text-slate-500 font-mono">{BOOK_MODULES.length} Cuốn</span>
                 </div>
-                <div className="max-h-80 overflow-y-auto py-1 space-y-1">
+                <div className="max-h-80 overflow-y-auto space-y-2 py-1">
                   {BOOK_MODULES.map((mod) => {
                     const Icon = mod.icon;
                     const isSelected = mod.id === currentView;
@@ -129,25 +131,33 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
                       <button
                         key={mod.id}
                         onClick={() => handleSelectModule(mod.id)}
-                        className={`w-full p-2 rounded-xl text-left text-xs font-semibold flex items-center gap-2.5 transition-all cursor-pointer ${
+                        className={`w-full p-2.5 rounded-xl text-left text-xs font-semibold flex items-start gap-2.5 transition-all cursor-pointer border ${
                           isSelected 
-                            ? 'bg-teal-500/20 text-teal-200 border border-teal-500/40' 
-                            : 'text-slate-300 hover:bg-slate-800/80 hover:text-white'
+                            ? 'bg-slate-900 text-teal-200 border-teal-500/60 shadow-md' 
+                            : 'bg-slate-900/50 border-slate-800/80 text-slate-300 hover:bg-slate-900 hover:border-slate-700'
                         }`}
                       >
-                        <div className={`p-1.5 rounded-lg bg-slate-800 border border-slate-700 shrink-0 ${isSelected ? 'text-teal-400 border-teal-500/50' : 'text-slate-400'}`}>
+                        {/* Book Spine Accent Strip */}
+                        <div className={`w-1.5 self-stretch rounded-full shrink-0 ${mod.spineColor}`} />
+                        
+                        <div className="p-1.5 rounded-lg bg-slate-800 border border-slate-700 shrink-0 text-teal-400">
                           <Icon className="w-4 h-4" />
                         </div>
-                        <div className="flex-1 truncate">
-                          <div className="flex items-center justify-between">
-                            <span className="font-bold">{mod.shortTitle}</span>
-                            {mod.badge && (
-                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800">
-                                {mod.badge}
-                              </span>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center justify-between gap-1">
+                            <div className="flex items-center gap-1.5 truncate">
+                              {mod.vol && (
+                                <span className="text-[10px] font-mono font-bold text-amber-400 uppercase px-1 py-0.2 rounded bg-amber-950/60 border border-amber-800/60">
+                                  {mod.vol}
+                                </span>
+                              )}
+                              <span className="font-bold truncate">{mod.shortTitle}</span>
+                            </div>
+                            {isSelected && (
+                              <Bookmark className="w-3.5 h-3.5 text-teal-400 shrink-0 fill-current" />
                             )}
                           </div>
-                          <p className="text-[10px] text-slate-400 truncate">{mod.subtitle}</p>
+                          <p className="text-[10px] text-slate-400 truncate mt-0.5">{mod.subtitle}</p>
                         </div>
                       </button>
                     );
@@ -174,28 +184,28 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
         </div>
       </header>
 
-      {/* Backdrop for Slide-over Sidebar Drawer */}
+      {/* Backdrop for Slide-over Bookshelf Drawer */}
       {isOpen && (
         <div 
           onClick={() => setIsOpen(false)}
-          className="fixed inset-0 z-50 bg-black/75 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+          className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
         />
       )}
 
-      {/* Slide-over Sidebar Drawer Panel */}
+      {/* Slide-over Bookshelf Drawer Panel */}
       <aside className={`fixed top-0 left-0 bottom-0 z-50 w-full max-w-sm bg-slate-950 border-r border-slate-800 shadow-2xl transition-transform duration-300 transform flex flex-col ${
         isOpen ? 'translate-x-0' : '-translate-x-full'
       }`}>
         
-        {/* Sidebar Header */}
-        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-900/60">
+        {/* Bookshelf Header */}
+        <div className="p-4 border-b border-slate-800 flex items-center justify-between bg-slate-900">
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-gradient-to-tr from-cyan-500 to-blue-600 text-white shadow-md">
-              <Layers className="w-5 h-5" />
+            <div className="p-2 rounded-xl bg-teal-600 text-slate-950 font-black shadow-md">
+              <Library className="w-5 h-5 text-slate-950" />
             </div>
             <div>
-              <h2 className="font-extrabold text-white text-sm tracking-wide">TỦ SÁCH CHUYÊN KHẢO</h2>
-              <p className="text-[11px] text-slate-400">Thư viện y khoa & công cụ lâm sàng</p>
+              <h2 className="font-black text-white text-sm tracking-wider uppercase">KỆ SÁCH Y KHOA</h2>
+              <p className="text-[11px] text-slate-400">Thư viện các tựa sách & chuyên khảo</p>
             </div>
           </div>
           <button 
@@ -206,7 +216,7 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
           </button>
         </div>
 
-        {/* Search Bar inside Sidebar */}
+        {/* Search Bar inside Bookshelf */}
         <div className="p-3 border-b border-slate-850 bg-slate-950">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400" />
@@ -214,7 +224,7 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Tìm tựa sách, chủ đề y khoa..."
+              placeholder="Tìm kiếm cuốn sách, chủ đề..."
               className="w-full bg-slate-900 border border-slate-800 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-200 placeholder-slate-400 focus:outline-none focus:border-teal-500 transition-all"
             />
             {searchQuery && (
@@ -228,23 +238,30 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
           </div>
         </div>
 
-        {/* Categorized Book List */}
+        {/* Bookshelf Layout & Shelves */}
         <div className="flex-1 overflow-y-auto p-3 space-y-6">
           {BOOK_MODULE_CATEGORIES.map((cat) => {
             const catModules = filteredModules.filter(m => m.category === cat.id);
             if (catModules.length === 0) return null;
 
             return (
-              <div key={cat.id} className="space-y-2">
-                <div className="px-2">
-                  <div className="text-[11px] font-black uppercase text-teal-400 tracking-wider flex items-center gap-1.5">
-                    <Sparkles className="w-3 h-3" />
-                    <span>{cat.title}</span>
+              <div key={cat.id} className="space-y-3">
+                {/* Category Header */}
+                <div className="px-1 flex items-center justify-between">
+                  <div>
+                    <div className="text-xs font-black uppercase text-teal-400 tracking-wider flex items-center gap-1.5">
+                      <BookOpen className="w-3.5 h-3.5" />
+                      <span>{cat.title}</span>
+                    </div>
+                    <p className="text-[10px] text-slate-500 mt-0.5">{cat.description}</p>
                   </div>
-                  <p className="text-[10px] text-slate-500">{cat.description}</p>
+                  <span className="text-[10px] font-mono text-slate-500 font-bold px-2 py-0.5 rounded bg-slate-900 border border-slate-800">
+                    {catModules.length} Cuốn
+                  </span>
                 </div>
 
-                <div className="space-y-1.5">
+                {/* Books Grid resting on a Realistic Shelf */}
+                <div className="space-y-2.5 relative">
                   {catModules.map((mod) => {
                     const Icon = mod.icon;
                     const isSelected = mod.id === currentView;
@@ -253,42 +270,61 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
                       <button
                         key={mod.id}
                         onClick={() => handleSelectModule(mod.id)}
-                        className={`w-full p-3 rounded-2xl text-left transition-all flex items-start gap-3 cursor-pointer group border ${
+                        className={`w-full text-left transition-all duration-200 flex items-stretch cursor-pointer group rounded-xl border overflow-hidden ${
                           isSelected
-                            ? 'bg-slate-900 border-teal-500/60 shadow-lg shadow-teal-500/10'
-                            : 'bg-slate-900/40 border-slate-800/80 hover:bg-slate-900 hover:border-slate-700'
+                            ? 'bg-slate-900 border-teal-500/70 shadow-xl -translate-y-0.5 ring-1 ring-teal-500/40'
+                            : 'bg-slate-900/60 border-slate-800/80 hover:bg-slate-900 hover:border-slate-700'
                         }`}
                       >
-                        <div className={`p-2.5 rounded-xl border shrink-0 transition-transform group-hover:scale-105 ${
-                          isSelected
-                            ? 'bg-gradient-to-br ' + mod.accentColor + ' text-white border-transparent shadow-md'
-                            : 'bg-slate-800 text-slate-300 border-slate-700'
-                        }`}>
-                          <Icon className="w-4 h-4" />
-                        </div>
+                        {/* Book Spine Color Edge */}
+                        <div className={`w-3 ${mod.spineColor} shrink-0 flex items-center justify-center text-[9px] font-black text-slate-950 font-mono tracking-tighter shadow-inner`} />
 
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center justify-between gap-1">
-                            <span className={`text-xs font-extrabold truncate ${isSelected ? 'text-teal-300' : 'text-slate-100 group-hover:text-teal-300'}`}>
-                              {mod.shortTitle}
-                            </span>
-                            {mod.badge && (
-                              <span className={`text-[10px] font-bold px-1.5 py-0.5 rounded-full whitespace-nowrap ${
-                                isSelected 
-                                  ? 'bg-teal-400 text-slate-950 font-black' 
-                                  : 'bg-slate-800 text-teal-300 border border-teal-900'
-                              }`}>
+                        {/* Book Cover Content */}
+                        <div className="flex-1 p-3 space-y-1.5 min-w-0">
+                          <div className="flex items-center justify-between gap-1.5">
+                            <div className="flex items-center gap-2 truncate">
+                              {mod.vol && (
+                                <span className="text-[10px] font-mono font-bold text-amber-300 uppercase px-1.5 py-0.2 rounded bg-amber-950/70 border border-amber-800/60 shrink-0">
+                                  {mod.vol}
+                                </span>
+                              )}
+                              <span className={`text-xs font-bold truncate ${isSelected ? 'text-teal-300' : 'text-slate-100 group-hover:text-teal-300'}`}>
+                                {mod.shortTitle}
+                              </span>
+                            </div>
+
+                            {isSelected ? (
+                              <span className="flex items-center gap-1 text-[10px] font-extrabold px-2 py-0.5 rounded bg-teal-500 text-slate-950 shrink-0">
+                                <Bookmark className="w-3 h-3 fill-current" />
+                                <span>Đang đọc</span>
+                              </span>
+                            ) : mod.badge ? (
+                              <span className="text-[10px] font-semibold px-1.5 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700 shrink-0 whitespace-nowrap">
                                 {mod.badge}
                               </span>
-                            )}
+                            ) : null}
                           </div>
-                          <p className="text-[11px] text-slate-400 font-medium leading-tight mt-0.5 line-clamp-2">
+
+                          <p className="text-[11px] text-slate-400 font-normal leading-relaxed line-clamp-2">
                             {mod.subtitle}
                           </p>
+
+                          <div className="pt-1 flex items-center justify-between text-[10px] text-slate-500">
+                            <span className="flex items-center gap-1">
+                              <Icon className="w-3 h-3 text-slate-400" />
+                              <span className="capitalize">{mod.category === 'monographs' ? 'Chuyên khảo' : 'Dịch vụ'}</span>
+                            </span>
+                            <span className="text-teal-400/80 group-hover:underline">Xem cuốn sách →</span>
+                          </div>
                         </div>
                       </button>
                     );
                   })}
+
+                  {/* Realistic Wooden / Slate Shelf Base Ledge */}
+                  <div className="h-2.5 w-full bg-slate-900 border-t border-b-2 border-slate-800 rounded-b-lg shadow-inner flex items-center justify-center">
+                    <div className="w-12 h-0.5 bg-slate-700/50 rounded-full" />
+                  </div>
                 </div>
               </div>
             );
@@ -296,10 +332,12 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-3 border-t border-slate-800 bg-slate-900/40 text-[11px] text-slate-500 text-center">
-          💡 Thư viện hỗ trợ mở rộng thêm hàng chục tựa sách & chuyên khảo mới dễ dàng.
+        <div className="p-3 border-t border-slate-800 bg-slate-900/60 text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5">
+          <Library className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+          <span>Kệ sách y khoa thiết kế trực quan theo từng tựa sách & chuyên đề</span>
         </div>
       </aside>
     </>
   );
 };
+

@@ -10,15 +10,14 @@ import {
   Bone,
   Footprints,
   Activity,
-  Calendar,
   Eye
 } from 'lucide-react';
 
 interface MobileBottomNavProps {
   onJumpToSection: (sectionId: string) => void;
   activeSection: string;
-  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker';
-  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors' | 'cycle_tracker') => void;
+  currentView?: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors';
+  onSwitchView?: (view: 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors') => void;
 }
 
 export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
@@ -113,33 +112,18 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     <>
       {/* Floating Bottom Nav Bar */}
       <div className="fixed bottom-3 inset-x-0 z-40 px-2 sm:px-6 pointer-events-none flex justify-center">
-        <nav className="pointer-events-auto bg-slate-900 border border-slate-800 shadow-xl rounded-xl px-2 py-1.5 flex items-center gap-1 text-white max-w-xl w-full justify-between">
-          {/* Thị Lực Học Đường Button */}
-          <button
-            onClick={() => {
-              if (onSwitchView) onSwitchView('vision_myopia');
-            }}
-            className={`flex flex-col items-center justify-center py-1 px-2 rounded-lg transition-all flex-1 cursor-pointer ${
-              currentView === 'vision_myopia'
-                ? 'bg-teal-500 text-slate-950 font-bold'
-                : 'text-cyan-300 hover:text-white hover:bg-slate-800'
-            }`}
-          >
-            <Eye className={`w-4 h-4 ${currentView === 'vision_myopia' ? 'text-slate-950' : 'text-cyan-400'}`} />
-            <span className="text-[10px] font-bold mt-0.5">Thị Lực</span>
-          </button>
-
-          {/* Mục Lục Chuyên Khảo */}
+        <nav className="pointer-events-auto bg-slate-900 border border-slate-800 shadow-xl rounded-xl px-3 py-1.5 flex items-center gap-2 text-white max-w-md w-full justify-between">
+          {/* Tủ Sách / Mục Lục Button */}
           <button
             onClick={() => setIsDrawerOpen(true)}
             className={`flex flex-col items-center justify-center py-1 px-2 rounded-lg transition-all flex-1 cursor-pointer ${
-              currentView === 'vision_myopia' || currentView === 'ankle_trauma' || currentView === 'cervical_spine' || currentView === 'chronic_back_pain' || currentView === 'breast_cancer' || currentView === 'monograph'
-                ? 'bg-slate-800 text-teal-300 font-bold border border-slate-700'
+              currentView !== 'qa' && currentView !== 'doctors'
+                ? 'bg-teal-500 text-slate-950 font-bold'
                 : 'text-slate-300 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <ListOrdered className="w-4 h-4 text-teal-400" />
-            <span className="text-[10px] font-bold mt-0.5">Mục Lục</span>
+            <ListOrdered className={`w-4 h-4 ${currentView !== 'qa' && currentView !== 'doctors' ? 'text-slate-950' : 'text-teal-400'}`} />
+            <span className="text-[10px] font-bold mt-0.5">Tủ Sách</span>
           </button>
 
           {/* Q&A Button */}
@@ -194,28 +178,6 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
 
             {/* Chapters List */}
             <div className="flex-1 overflow-y-auto p-4 space-y-6">
-              {/* Nhập Chu Kỳ Shortcut */}
-              <div className="p-3 bg-gradient-to-r from-rose-950/60 to-pink-950/60 border border-rose-500/40 rounded-xl flex items-center justify-between">
-                <div>
-                  <div className="text-xs font-black text-rose-300 flex items-center gap-1.5">
-                    <Calendar className="w-4 h-4 text-rose-400" />
-                    <span>Nhập & Theo Dõi Chu Kỳ (43)</span>
-                  </div>
-                  <div className="text-[11px] text-slate-400 mt-0.5">
-                    Bảng theo dõi chu kỳ kinh & nhật ký triệu chứng
-                  </div>
-                </div>
-                <button
-                  onClick={() => {
-                    setIsDrawerOpen(false);
-                    if (onSwitchView) onSwitchView('cycle_tracker');
-                  }}
-                  className="px-2.5 py-1.5 bg-rose-500 hover:bg-rose-600 text-white rounded-lg text-xs font-bold shrink-0 cursor-pointer shadow-sm"
-                >
-                  Mở Tool
-                </button>
-              </div>
-
               {/* Vision Chapters */}
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-cyan-400 px-2">

@@ -5,7 +5,6 @@ import {
   Activity, 
   Bone, 
   Footprints, 
-  Calendar, 
   HelpCircle, 
   UserCheck,
   type LucideIcon
@@ -13,105 +12,115 @@ import {
 
 export interface BookModule {
   id: string;
+  vol?: string;
   title: string;
   shortTitle: string;
   subtitle: string;
-  category: 'monographs' | 'tools' | 'services';
+  category: 'monographs' | 'services';
   icon: LucideIcon;
   badge?: string;
   accentColor: string;
+  spineColor: string;
 }
 
 export const BOOK_MODULE_CATEGORIES = [
-  { id: 'monographs', title: 'Tủ Sách Chuyên Khảo Y Khoa', description: 'Chuyên luận & Phác đồ Lâm sàng chuẩn ACOG / FIGO / ESHRE' },
-  { id: 'tools', title: 'Công Cụ Theo Dõi & Nhật Ký', description: 'Ứng dụng hỗ trợ bệnh nhân & theo dõi các chỉ số sinh học' },
-  { id: 'services', title: 'Hỏi Đáp & Danh Bạ Bác Sĩ', description: 'Kết nối chuyên gia y tế & giải đáp thắc mắc' },
+  { id: 'monographs', title: 'Kệ Sách Chuyên Khảo Y Khoa', description: 'Các cuốn sách chuyên luận & phác đồ lâm sàng chuẩn ACOG / FIGO / ESMO' },
+  { id: 'services', title: 'Dịch Vụ & Tra Cứu Y Tế', description: 'Tập Q&A thắc mắc & Danh bạ bác sĩ chuyên khoa' },
 ];
 
 export const BOOK_MODULES: BookModule[] = [
   {
     id: 'vision_myopia',
-    title: 'Tựa Sách 01: Thị Lực Học Đường & Cận Thị',
+    vol: 'Tập I',
+    title: 'Thị Lực Học Đường & Cận Thị Tiến Triển',
     shortTitle: 'Thị Lực Học Đường',
-    subtitle: 'Kiểm soát cận thị tiến triển ở trẻ em & học sinh',
+    subtitle: 'Nghiên cứu khúc xạ, trục nhãn cầu & 4 công nghệ tròng Defocus',
     category: 'monographs',
     icon: Eye,
-    badge: 'Mới 2026',
-    accentColor: 'from-cyan-500 to-blue-600'
+    badge: 'Sách 01',
+    accentColor: 'from-cyan-500 to-blue-600',
+    spineColor: 'bg-cyan-600'
   },
   {
     id: 'monograph',
-    title: 'Tựa Sách 02: Phụ Khoa & Nội Mạc Tử Cung',
+    vol: 'Tập II',
+    title: 'Phụ Khoa & Bảo Vệ Nội Mạc Tử Cung',
     shortTitle: 'Nội Mạc Tử Cung',
-    subtitle: 'Nghiên cứu mô học, tăng sản & ung thư nội mạc',
+    subtitle: 'Nghiên cứu mô học, nghịch lý Tamoxifen 5 năm & rủi ro EIN',
     category: 'monographs',
     icon: Stethoscope,
-    badge: 'Chuyên Khảo',
-    accentColor: 'from-teal-500 to-emerald-600'
+    badge: 'Sách 02',
+    accentColor: 'from-teal-500 to-emerald-600',
+    spineColor: 'bg-teal-600'
   },
   {
     id: 'breast_cancer',
-    title: 'Tựa Sách 03: Chuyên Khảo Ung Thư Vú (K Vú)',
+    vol: 'Tập III',
+    title: 'Chuyên Khảo Ung Thư Vú (K Vú)',
     shortTitle: 'Ung Thư Vú',
-    subtitle: 'Chẩn đoán, hóa trị, liệu pháp nội tiết & sống còn',
+    subtitle: 'Chẩn đoán phân tử, liệu pháp nội tiết, CDK4/6i & sống còn 10 năm',
     category: 'monographs',
     icon: Ribbon,
-    badge: 'Cập nhật',
-    accentColor: 'from-rose-500 to-pink-600'
+    badge: 'Sách 03',
+    accentColor: 'from-rose-500 to-pink-600',
+    spineColor: 'bg-rose-600'
   },
   {
     id: 'chronic_back_pain',
-    title: 'Tựa Sách 04: Đau Lưng Kinh Niên & Đĩa Đệm',
+    vol: 'Tập IV',
+    title: 'Đau Lưng Kinh Niên & Thoát Vị Đĩa Đệm',
     shortTitle: 'Đau Lưng Kinh Niên',
-    subtitle: 'Thoát vị đĩa đệm, đau thần kinh tọa & phục hồi',
+    subtitle: 'Cơ chế thần kinh bì, tương quan tử cung & bộ 3 McGill Big 3',
     category: 'monographs',
     icon: Activity,
-    accentColor: 'from-indigo-500 to-purple-600'
+    badge: 'Sách 04',
+    accentColor: 'from-indigo-500 to-purple-600',
+    spineColor: 'bg-indigo-600'
   },
   {
     id: 'cervical_spine',
-    title: 'Tựa Sách 05: Chuyên Khảo Cột Sống Cổ ACDF',
+    vol: 'Tập V',
+    title: 'Chuyên Khảo Phẫu Thuật Cột Sống Cổ ACDF',
     shortTitle: 'Cột Sống Cổ ACDF',
-    subtitle: 'Phẫu thuật hàn xương liên thân đốt & bảo tồn',
+    subtitle: 'Chèn ép tủy CSM, mổ lối trước nếp cổ 3cm & ma trận 4 bệnh nền',
     category: 'monographs',
     icon: Bone,
-    accentColor: 'from-amber-500 to-orange-600'
+    badge: 'Sách 05',
+    accentColor: 'from-amber-500 to-orange-600',
+    spineColor: 'bg-amber-600'
   },
   {
     id: 'ankle_trauma',
-    title: 'Tựa Sách 06: Chấn Thương Mắt Cá Chân',
+    vol: 'Tập VI',
+    title: 'Chấn Thương Mắt Cá Chân & Phục Hồi',
     shortTitle: 'Mắt Cá Chân',
-    subtitle: 'Gãy xương mắt cá, dây chằng & tập vật lý trị liệu',
+    subtitle: 'Phân loại Danis-Weber, mổ nẹp khóa ORIF & thang tỳ đè 4 giai đoạn',
     category: 'monographs',
     icon: Footprints,
-    accentColor: 'from-rose-500 to-red-600'
-  },
-  {
-    id: 'cycle_tracker',
-    title: 'Công Cụ 01: Theo Dõi Chu Kỳ Kinh Nguyệt',
-    shortTitle: 'Theo Dõi Chu Kỳ',
-    subtitle: 'Nhật ký triệu chứng, xuất huyết & nhắc lịch khám',
-    category: 'tools',
-    icon: Calendar,
-    badge: 'Ứng Dụng',
-    accentColor: 'from-rose-500 to-teal-500'
+    badge: 'Sách 06',
+    accentColor: 'from-rose-600 to-red-700',
+    spineColor: 'bg-red-600'
   },
   {
     id: 'qa',
-    title: 'Hỏi Đáp Y Khoa Trực Tuyến (Q&A)',
+    vol: 'Chuyên Đề',
+    title: 'Hỏi Đáp Y Khoa Trực Tuyến (Q&A 68 Câu)',
     shortTitle: 'Hỏi Đáp Q&A',
-    subtitle: 'Tổng hợp thắc mắc thường gặp & lời khuyên bác sĩ',
+    subtitle: 'Tập câu hỏi chuyên gia biên soạn giải đáp thắc mắc cho gia đình',
     category: 'services',
     icon: HelpCircle,
-    accentColor: 'from-amber-400 to-amber-600'
+    accentColor: 'from-amber-400 to-amber-600',
+    spineColor: 'bg-amber-500'
   },
   {
     id: 'doctors',
-    title: 'Danh Bạ Bác Sĩ & Chuyên Gia',
+    vol: 'Danh Bạ',
+    title: 'Danh Bạ 30 Bác Sĩ & Chuyên Gia Đầu Ngành',
     shortTitle: 'Danh Bạ Bác Sĩ',
-    subtitle: 'Danh sách bác sĩ chuyên khoa & cơ sở y tế uy tín',
+    subtitle: 'Danh sách PGS.TS.BS chuyên khoa tuyến cuối TP.HCM & lịch khám',
     category: 'services',
     icon: UserCheck,
-    accentColor: 'from-purple-500 to-indigo-600'
+    accentColor: 'from-purple-500 to-indigo-600',
+    spineColor: 'bg-purple-600'
   }
 ];
