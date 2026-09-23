@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import type { User, Session } from '@supabase/supabase-js';
-import { getSupabase, signInWithGoogle, signOutUser } from '../utils/supabaseClient';
+import { getSupabase, signInWithGoogle } from '../utils/supabaseClient';
 
 interface AuthContextType {
   user: User | null;
@@ -51,9 +51,29 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const handleSignOut = async () => {
-    await signOutUser();
-    setUser(null);
-    setSession(null);
+    try {
+      const client = getSupabase();
+      if (client) {
+        await client.auth.signOut().catch((e) => console.warn('Supabase signOut warning:', e));
+      }
+    } catch (err) {
+      console.warn('SignOut error:', err);
+    } finally {
+      try {
+        const keysToRemove: string[] = [];
+        for (let i = 0; i < localStorage.length; i++) {
+          const key = localStorage.key(i);
+          if (key && (key.startsWith('sb-') || key.includes('supabase') || key.includes('auth-token'))) {
+            keysToRemove.push(key);
+          }
+        }
+        keysToRemove.forEach((k) => localStorage.removeItem(k));
+      } catch {}
+
+      setUser(null);
+      setSession(null);
+      setLoading(false);
+    }
   };
 
   return (

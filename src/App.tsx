@@ -11,10 +11,12 @@ import { MobileBottomNav } from './components/MobileBottomNav';
 import { VideoModal } from './components/VideoModal';
 import { AudioPlayerBar } from './components/AudioPlayerBar';
 import { AudioReaderProvider } from './context/AudioReaderContext';
-import { AuthProvider } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
 import { BookSidebarNav } from './components/BookSidebarNav';
 import { Footer } from './components/Footer';
 import type { MediaItem } from './types/medical';
+import { Activity, Loader2 } from 'lucide-react';
+import { UserAuthButton } from './components/UserAuthButton';
 
 type ViewType = 'ankle_trauma' | 'cervical_spine' | 'breast_cancer' | 'monograph' | 'chronic_back_pain' | 'vision_myopia' | 'qa' | 'doctors';
 
@@ -41,7 +43,8 @@ function getInitialSection(view: ViewType): string {
   return localStorage.getItem('app_active_section_' + view) || 'vision-ch-1';
 }
 
-export function App() {
+function AppMain() {
+  const { user, loading } = useAuth();
   const [currentView, setCurrentView] = useState<ViewType>(getInitialView);
   const [selectedVideo, setSelectedVideo] = useState<MediaItem | null>(null);
   const [activeSection, setActiveSection] = useState<string>(() => getInitialSection(getInitialView()));
@@ -49,6 +52,7 @@ export function App() {
 
   // Restore scroll position to active section on initial mount or view change
   useEffect(() => {
+    if (!user) return;
     const hashSection = window.location.hash.replace('#', '');
     const savedSection = hashSection || localStorage.getItem('app_active_section_' + currentView);
     if (savedSection) {
@@ -66,9 +70,10 @@ export function App() {
       }, 350);
       return () => clearTimeout(timer);
     }
-  }, [currentView]);
+  }, [currentView, user]);
 
   useEffect(() => {
+    if (!user) return;
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - window.innerHeight;
       if (totalHeight > 0) {
@@ -163,7 +168,7 @@ export function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [currentView]);
+  }, [currentView, user]);
 
   const handleJumpToSection = (sectionId: string) => {
     const targetEl = document.getElementById(sectionId);
@@ -201,108 +206,149 @@ export function App() {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col items-center justify-center p-4">
+        <div className="flex flex-col items-center gap-3">
+          <Loader2 className="w-8 h-8 animate-spin text-teal-400" />
+          <p className="text-xs font-semibold text-slate-400">Đang nạp hệ thống Y khoa...</p>
+        </div>
+      </div>
+    );
+  }
+
+  if (!user) {
+    return (
+      <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-6 relative overflow-hidden text-slate-100">
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-3xl p-8 shadow-2xl relative z-10 text-center space-y-6">
+          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-teal-500/20">
+            <Activity className="w-8 h-8 text-slate-950" />
+          </div>
+
+          <div className="space-y-2">
+            <h1 className="text-2xl font-bold text-white tracking-tight">
+              MOM Health Platform
+            </h1>
+            <p className="text-xs text-slate-400 leading-relaxed">
+              Y học Lâm sàng &amp; Nền tảng Chăm sóc Sức khỏe Chuyên sâu. Vui lòng đăng nhập tài khoản Google để truy cập hệ thống bài viết, phác đồ điều trị và nhật ký y khoa.
+            </p>
+          </div>
+
+          <div className="pt-2 flex justify-center">
+            <UserAuthButton />
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
-    <AuthProvider>
-      <AudioReaderProvider>
+    <AudioReaderProvider>
       <div className="min-h-screen w-full bg-slate-950 text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-white">
+        {/* Top Scalable Book Navigation Header & Sidebar */}
+        <BookSidebarNav
+          currentView={currentView}
+          onSwitchView={(v) => handleSwitchView(v as ViewType)}
+          scrollProgress={scrollProgress}
+        />
 
-          {/* Top Scalable Book Navigation Header & Sidebar */}
-          <BookSidebarNav
-            currentView={currentView}
-            onSwitchView={(v) => handleSwitchView(v as ViewType)}
-            scrollProgress={scrollProgress}
-          />
+        {/* Main Content Router */}
+        <main className="flex-1 w-full">
+          {currentView === 'vision_myopia' && (
+            <VisionMyopiaArticle
+              onOpenVideoModal={(video) => setSelectedVideo(video)}
+              onNavigateToDoctors={() => handleSwitchView('doctors')}
+              onNavigateToQA={() => handleSwitchView('qa')}
+            />
+          )}
 
-      {/* Main Content Router */}
-      <main className="flex-1 w-full">
-        {currentView === 'vision_myopia' && (
-          <VisionMyopiaArticle
-            onOpenVideoModal={(video) => setSelectedVideo(video)}
-            onNavigateToDoctors={() => handleSwitchView('doctors')}
-            onNavigateToQA={() => handleSwitchView('qa')}
-          />
-        )}
+          {currentView === 'ankle_trauma' && (
+            <AnkleFractureArticle
+              onOpenVideoModal={(video) => setSelectedVideo(video)}
+              onNavigateToDoctors={() => handleSwitchView('doctors')}
+              onNavigateToQA={() => handleSwitchView('qa')}
+            />
+          )}
 
-        {currentView === 'ankle_trauma' && (
-          <AnkleFractureArticle
-            onOpenVideoModal={(video) => setSelectedVideo(video)}
-            onNavigateToDoctors={() => handleSwitchView('doctors')}
-            onNavigateToQA={() => handleSwitchView('qa')}
-          />
-        )}
+          {currentView === 'cervical_spine' && (
+            <CervicalSpineArticle
+              onOpenVideoModal={(video) => setSelectedVideo(video)}
+              onNavigateToDoctors={() => handleSwitchView('doctors')}
+              onNavigateToQA={() => handleSwitchView('qa')}
+            />
+          )}
 
-        {currentView === 'cervical_spine' && (
-          <CervicalSpineArticle
-            onOpenVideoModal={(video) => setSelectedVideo(video)}
-            onNavigateToDoctors={() => handleSwitchView('doctors')}
-            onNavigateToQA={() => handleSwitchView('qa')}
-          />
-        )}
+          {currentView === 'chronic_back_pain' && (
+            <ChronicBackPainArticle
+              onOpenVideoModal={(video) => setSelectedVideo(video)}
+              onSwitchToGynecologyModule={() => handleSwitchView('monograph')}
+              onSwitchToBreastCancerModule={() => handleSwitchView('breast_cancer')}
+              onSwitchToCervicalSpineModule={() => handleSwitchView('cervical_spine')}
+            />
+          )}
 
-        {currentView === 'chronic_back_pain' && (
-          <ChronicBackPainArticle
-            onOpenVideoModal={(video) => setSelectedVideo(video)}
-            onSwitchToGynecologyModule={() => handleSwitchView('monograph')}
-            onSwitchToBreastCancerModule={() => handleSwitchView('breast_cancer')}
-            onSwitchToCervicalSpineModule={() => handleSwitchView('cervical_spine')}
-          />
-        )}
+          {currentView === 'breast_cancer' && (
+            <BreastCancerArticle
+              onOpenVideoModal={(video) => setSelectedVideo(video)}
+              onSwitchToGynecologyModule={() => handleSwitchView('monograph')}
+            />
+          )}
 
-        {currentView === 'breast_cancer' && (
-          <BreastCancerArticle
-            onOpenVideoModal={(video) => setSelectedVideo(video)}
-            onSwitchToGynecologyModule={() => handleSwitchView('monograph')}
-          />
-        )}
+          {currentView === 'monograph' && (
+            <BookLayoutArticle
+              onOpenVideoModal={(video) => setSelectedVideo(video)}
+            />
+          )}
 
-        {currentView === 'monograph' && (
-          <BookLayoutArticle
-            onOpenVideoModal={(video) => setSelectedVideo(video)}
-          />
-        )}
-        
-        {currentView === 'qa' && (
-          <QAPage 
-            onBackToBook={() => handleSwitchView('vision_myopia')}
-            defaultTopic="vision"
-          />
-        )}
+          {currentView === 'qa' && (
+            <QAPage
+              onBackToBook={() => handleSwitchView('vision_myopia')}
+              defaultTopic="vision"
+            />
+          )}
 
-        {currentView === 'doctors' && (
-          <DoctorsDirectoryPage
-            onBackToBook={() => handleSwitchView('vision_myopia')}
-            onOpenQA={() => handleSwitchView('qa')}
-            defaultTopic="ankle"
-          />
-        )}
-      </main>
+          {currentView === 'doctors' && (
+            <DoctorsDirectoryPage
+              onBackToBook={() => handleSwitchView('vision_myopia')}
+              onOpenQA={() => handleSwitchView('qa')}
+              defaultTopic="ankle"
+            />
+          )}
+        </main>
 
-      {/* Floating Mobile Bottom Navigation Bar & Drawer */}
-      <MobileBottomNav
-        activeSection={activeSection}
-        currentView={currentView}
-        onSwitchView={handleSwitchView}
-        onJumpToSection={handleJumpToSection}
-      />
+        {/* Floating Mobile Bottom Navigation Bar & Drawer */}
+        <MobileBottomNav
+          activeSection={activeSection}
+          currentView={currentView}
+          onSwitchView={handleSwitchView}
+          onJumpToSection={handleJumpToSection}
+        />
 
-      {/* Global Audio Speech Reader Player Bar */}
-      <AudioPlayerBar />
+        {/* Global Audio Speech Reader Player Bar */}
+        <AudioPlayerBar />
 
-      {/* Video Modal Player */}
-      <VideoModal
-        media={selectedVideo}
-        onClose={() => setSelectedVideo(null)}
-      />
+        {/* Video Modal Player */}
+        <VideoModal
+          media={selectedVideo}
+          onClose={() => setSelectedVideo(null)}
+        />
 
-      {/* Footer */}
-      <Footer />
-    </div>
-  </AudioReaderProvider>
-</AuthProvider>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </AudioReaderProvider>
   );
 }
 
+export function App() {
+  return (
+    <AuthProvider>
+      <AppMain />
+    </AuthProvider>
+  );
+}
 
 export default App;
-
