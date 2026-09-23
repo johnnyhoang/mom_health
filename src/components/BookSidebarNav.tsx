@@ -4,6 +4,7 @@ import {
   BOOK_MODULE_CATEGORIES
 } from '../data/bookModulesData';
 import { UserAuthButton } from './UserAuthButton';
+import { FontSizeControl } from './FontSizeControl';
 import { 
   BookOpen, 
   X, 
@@ -167,11 +168,14 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
             )}
           </div>
 
-          {/* Right: Active Book Quick Badge on Mobile & User Google Auth */}
+          {/* Right: Active Book Quick Badge on Mobile & Font Size Control & User Google Auth */}
           <div className="flex items-center gap-2">
+            {/* Dynamic Font Size Control (Web & Mobile) */}
+            <FontSizeControl variant="compact" />
+
             <button
               onClick={() => setIsOpen(true)}
-              className="md:hidden px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-800 text-teal-300 text-xs font-bold flex items-center gap-1.5 cursor-pointer max-w-[140px] truncate"
+              className="md:hidden px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-800 text-teal-300 text-xs font-bold flex items-center gap-1.5 cursor-pointer max-w-[120px] truncate"
             >
               <ActiveIcon className="w-3.5 h-3.5 text-teal-400 shrink-0" />
               <span className="truncate">{activeModule.shortTitle}</span>
@@ -331,10 +335,13 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
           })}
         </div>
 
-        {/* Sidebar Footer */}
-        <div className="p-3 border-t border-slate-800 bg-slate-900/60 text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5">
-          <Library className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-          <span>Kệ sách y khoa thiết kế trực quan theo từng tựa sách & chuyên đề</span>
+        {/* Bookshelf Font Size Settings & Footer */}
+        <div className="p-3 border-t border-slate-800 bg-slate-900/80 space-y-2">
+          <FontSizeControl variant="full" />
+          <div className="text-[11px] text-slate-400 text-center flex items-center justify-center gap-1.5 pt-1">
+            <Library className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+            <span>Kệ sách y khoa thiết kế trực quan theo từng chuyên đề</span>
+          </div>
         </div>
       </aside>
     </>

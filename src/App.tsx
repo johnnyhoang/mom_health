@@ -203,7 +203,7 @@ function AppMain() {
       } else if (currentView === 'breast_cancer') {
         const bcChapters = [
           'bc-chapter-1', 'bc-chapter-2', 'bc-chapter-3', 'bc-chapter-4',
-          'bc-chapter-5', 'bc-chapter-6', 'bc-chapter-7', 'bc-chapter-8'
+          'bc-chapter-5', 'bc-chapter-6', 'bc-chapter-7', 'bc-chapter-8', 'bc-chapter-9'
         ];
         for (const chId of bcChapters) {
           const el = document.getElementById(chId);

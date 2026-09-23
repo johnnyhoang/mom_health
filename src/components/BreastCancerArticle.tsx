@@ -13,6 +13,7 @@ import { BreastCancerOutcomesSection } from './BreastCancerOutcomesSection';
 import { BreastCancerCommunitySection } from './BreastCancerCommunitySection';
 import { BreastCancerYear5to10Section } from './BreastCancerYear5to10Section';
 import { BreastCancerSexualExerciseSection } from './BreastCancerSexualExerciseSection';
+import { BreastCancerOrganComorbiditiesSection } from './BreastCancerOrganComorbiditiesSection';
 
 
 import { 
@@ -795,6 +796,11 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* CHAPTER 8 (NEW): SEXUAL HEALTH & EXERCISE */}
       {/* ========================================================================= */}
       <BreastCancerSexualExerciseSection />
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 9 (NEW): ORGAN COMORBIDITIES (GUT, LIVER, STOMACH, DIABETES, OBESITY, GOUT) */}
+      {/* ========================================================================= */}
+      <BreastCancerOrganComorbiditiesSection />
 
       {/* References Section — always last */}
       <ReferencesSection

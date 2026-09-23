@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { FontSizeControl } from './FontSizeControl';
 import { 
   ListOrdered, 
   HelpCircle, 
@@ -77,6 +78,7 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
     { id: 'bc-chapter-6', title: 'Chương 6: Cộng Đồng Bệnh Nhân & Kinh Nghiệm Thực Tế', desc: 'Chia sẻ từ hội nhóm Facebook, kinh nghiệm quản lý tác dụng phụ' },
     { id: 'bc-chapter-7', title: 'Chương 7: Cẩm Nang Năm Thứ 5 Đến Năm Thứ 10', desc: 'Lịch khám, dinh dưỡng, lối sống, dấu hiệu cảnh báo cần biết' },
     { id: 'bc-chapter-8', title: 'Chương 8: Sức Khỏe Tình Dục & Thể Thao Sau K Vú', desc: 'Quan hệ vợ chồng, yoga, chạy bộ, nhảy — bằng chứng khoa học' },
+    { id: 'bc-chapter-9', title: 'Chương 9: Tiêu Hóa, Gan Mật, Tiểu Đường, Béo Phì & Gout', desc: 'Trục Ruột - Tuyến Vú (Estrobolome), NAFLD, dạ dày PPI, IGF-1, Aromatase mỡ' },
     { id: 'bc-chapter-old4', title: 'Video 3D Liệu Pháp Nhắm Trúng Đích', desc: 'Mô phỏng phân tử CDK4/6i, ADCs Enhertu & Tầm soát kép' },
     { id: 'bc-chapter-old5', title: 'Cây Quyết Định K Vú Cá Thể Hóa', desc: 'Đánh giá chiến lược điều trị và câu hỏi cho Bác sĩ' },
     { id: 'bc-chapter-old6', title: 'Dinh Dưỡng Giảm Viêm & Tầm Soát Trọn Đời', desc: 'Chế độ ăn Địa Trung Hải và lịch tầm soát định kỳ' }
@@ -419,25 +421,28 @@ export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
               </div>
             </div>
 
-            {/* Drawer Footer */}
-            <div className="p-4 border-t border-slate-800 flex items-center justify-between">
-              <button
-                onClick={scrollToTop}
-                className="text-xs text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
-              >
-                <ChevronUp className="w-4 h-4" />
-                <span>Lên Đầu Trang</span>
-              </button>
-              <button
-                onClick={() => {
-                  setIsDrawerOpen(false);
-                  if (onSwitchView) onSwitchView('qa');
-                }}
-                className="text-xs text-rose-400 font-bold hover:underline flex items-center gap-1 cursor-pointer"
-              >
-                <HelpCircle className="w-4 h-4" />
-                <span>Xem Q&A Tổng Hợp</span>
-              </button>
+            {/* Drawer Footer with Font Size Control */}
+            <div className="p-3 border-t border-slate-800 bg-slate-900/90 space-y-3">
+              <FontSizeControl variant="full" />
+              <div className="flex items-center justify-between pt-1">
+                <button
+                  onClick={scrollToTop}
+                  className="text-xs text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                >
+                  <ChevronUp className="w-4 h-4" />
+                  <span>Lên Đầu Trang</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setIsDrawerOpen(false);
+                    if (onSwitchView) onSwitchView('qa');
+                  }}
+                  className="text-xs text-rose-400 font-bold hover:underline flex items-center gap-1 cursor-pointer"
+                >
+                  <HelpCircle className="w-4 h-4" />
+                  <span>Xem Q&A Tổng Hợp</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
