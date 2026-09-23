@@ -6,20 +6,11 @@ export const CANONICAL_DOMAIN = 'https://health.minkoi.org';
 const DEFAULT_SUPABASE_URL = 'https://msozshwatonyxnkaqjfs.supabase.co';
 const DEFAULT_SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1zb3pzaHdhdG9ueXhua2FxamZzIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2MjU5MzYsImV4cCI6MjA4ODIwMTkzNn0.lbfHxn4YxXNLHB0uVBDInrHh8wsCbusDr1_SroACHgk';
 
-export function getRedirectUrl(view?: string, sectionId?: string): string {
-  const isLocal = typeof window !== 'undefined' && (
-    window.location.hostname === 'localhost' || 
-    window.location.hostname === '127.0.0.1'
-  );
-  const baseUrl = isLocal ? window.location.origin : CANONICAL_DOMAIN;
-  const currentView = view || (typeof localStorage !== 'undefined' ? localStorage.getItem('app_current_view') : '') || 'vision_myopia';
-  const currentSection = sectionId || (typeof localStorage !== 'undefined' ? localStorage.getItem('app_active_section_' + currentView) : '') || '';
-  
-  let targetUrl = `${baseUrl}/?view=${encodeURIComponent(currentView)}`;
-  if (currentSection) {
-    targetUrl += `#${encodeURIComponent(currentSection)}`;
-  }
-  return targetUrl;
+export function getRedirectUrl(): string {
+  const origin = typeof window !== 'undefined' 
+    ? window.location.origin.replace(/\/+$/, '') 
+    : CANONICAL_DOMAIN;
+  return `${origin}/`;
 }
 
 const ENV_SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL || DEFAULT_SUPABASE_URL;
@@ -75,7 +66,14 @@ export async function signInWithGoogle(view?: string, sectionId?: string) {
   const client = getSupabase();
   if (!client) throw new Error('Supabase Client is not configured');
   
-  const redirectTo = getRedirectUrl(view, sectionId);
+  if (view && typeof localStorage !== 'undefined') {
+    localStorage.setItem('app_current_view', view);
+    if (sectionId) {
+      localStorage.setItem('app_active_section_' + view, sectionId);
+    }
+  }
+  
+  const redirectTo = getRedirectUrl();
   return await client.auth.signInWithOAuth({
     provider: 'google',
     options: {

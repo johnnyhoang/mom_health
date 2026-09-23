@@ -60,13 +60,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.warn('SignOut error:', err);
     } finally {
       try {
-        const keysToRemove: string[] = [];
-        for (let i = 0; i < localStorage.length; i++) {
-          const key = localStorage.key(i);
-          if (key && (key.startsWith('sb-') || key.includes('supabase') || key.includes('auth-token'))) {
-            keysToRemove.push(key);
-          }
-        }
+        const keysToRemove = Object.keys(localStorage).filter(
+          (key) => key.startsWith('sb-') || key.includes('supabase') || key.includes('auth-token')
+        );
         keysToRemove.forEach((k) => localStorage.removeItem(k));
       } catch {}
 

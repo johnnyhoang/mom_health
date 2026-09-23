@@ -39,7 +39,7 @@ function getInitialView(): ViewType {
 
 function getInitialSection(view: ViewType): string {
   const hash = window.location.hash.replace('#', '');
-  if (hash) return hash;
+  if (hash && !hash.includes('access_token') && !hash.includes('refresh_token') && !hash.includes('error') && !hash.includes('type=')) return hash;
   return localStorage.getItem('app_active_section_' + view) || 'vision-ch-1';
 }
 
@@ -54,7 +54,8 @@ function AppMain() {
   useEffect(() => {
     if (!user) return;
     const hashSection = window.location.hash.replace('#', '');
-    const savedSection = hashSection || localStorage.getItem('app_active_section_' + currentView);
+    const isAuthHash = hashSection.includes('access_token') || hashSection.includes('refresh_token') || hashSection.includes('error') || hashSection.includes('type=');
+    const savedSection = (!isAuthHash && hashSection) || localStorage.getItem('app_active_section_' + currentView);
     if (savedSection) {
       const timer = setTimeout(() => {
         const targetEl = document.getElementById(savedSection);
