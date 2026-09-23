@@ -1,23 +1,5 @@
 import React from 'react';
 import {
-  UtensilsCrossed,
-  Bike,
-  AlertTriangle,
-  FlaskConical,
-  Scan,
-  Stethoscope,
-  HeartPulse,
-  Leaf,
-  XCircle,
-  Clock,
-  ThumbsUp,
-  Shield,
-  Siren,
-  Hourglass,
-  ClipboardList,
-} from 'lucide-react';
-
-import {
   year5to10Checklist,
   nutritionGuidelines,
   lifestyleGuidelines,
@@ -30,18 +12,6 @@ import type {
   WarningSigns,
 } from '../data/breastCancerYear5to10Data';
 
-const typeIcon = (type: Year5To10CheckItem['type']) => {
-  switch (type) {
-    case 'exam': return <Stethoscope className="w-3.5 h-3.5" />;
-    case 'lab': return <FlaskConical className="w-3.5 h-3.5" />;
-    case 'imaging': return <Scan className="w-3.5 h-3.5" />;
-    case 'lifestyle': return <Bike className="w-3.5 h-3.5" />;
-    case 'nutrition': return <UtensilsCrossed className="w-3.5 h-3.5" />;
-    case 'watchout': return <AlertTriangle className="w-3.5 h-3.5" />;
-    default: return <ClipboardList className="w-3.5 h-3.5" />;
-  }
-};
-
 const urgencyConfig = {
   critical: { label: 'Bắt buộc' },
   important: { label: 'Quan trọng' },
@@ -49,19 +19,19 @@ const urgencyConfig = {
 };
 
 const nutritionCategoryConfig = {
-  encourage: { label: 'Nên ăn nhiều', icon: <ThumbsUp className="w-3.5 h-3.5 text-slate-400" /> },
-  limit: { label: 'Hạn chế', icon: <Hourglass className="w-3.5 h-3.5 text-slate-400" /> },
-  avoid: { label: 'Tuyệt đối tránh', icon: <XCircle className="w-3.5 h-3.5 text-slate-400" /> },
-  supplement: { label: 'Bổ sung có chỉ định', icon: <Leaf className="w-3.5 h-3.5 text-slate-400" /> },
+  encourage: { label: 'Nên ăn nhiều' },
+  limit: { label: 'Hạn chế' },
+  avoid: { label: 'Tuyệt đối tránh' },
+  supplement: { label: 'Bổ sung có chỉ định' },
 };
 
-const lifestyleCategoryConfig: Record<LifestyleGuideline['category'], { label: string; icon: React.ReactNode }> = {
-  exercise: { label: 'Vận động', icon: <Bike className="w-3.5 h-3.5 text-slate-400" /> },
-  sleep: { label: 'Giấc ngủ', icon: <Clock className="w-3.5 h-3.5 text-slate-400" /> },
-  stress: { label: 'Quản lý stress', icon: <HeartPulse className="w-3.5 h-3.5 text-slate-400" /> },
-  environment: { label: 'Môi trường', icon: <Leaf className="w-3.5 h-3.5 text-slate-400" /> },
-  sexual_health: { label: 'Sức khỏe tình dục', icon: <Shield className="w-3.5 h-3.5 text-slate-400" /> },
-  work: { label: 'Công việc', icon: <ClipboardList className="w-3.5 h-3.5 text-slate-400" /> },
+const lifestyleCategoryConfig: Record<LifestyleGuideline['category'], { label: string }> = {
+  exercise: { label: 'Vận động' },
+  sleep: { label: 'Giấc ngủ' },
+  stress: { label: 'Quản lý stress' },
+  environment: { label: 'Môi trường' },
+  sexual_health: { label: 'Sức khỏe tình dục' },
+  work: { label: 'Công việc' },
 };
 
 const groupByCategory = (items: Year5To10CheckItem[]) => {
@@ -86,12 +56,9 @@ const ChecklistItem: React.FC<{ item: Year5To10CheckItem; indexStr: string }> = 
   return (
     <article className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2">
       <div className="flex items-start justify-between gap-2 flex-wrap text-xs">
-        <div className="flex items-center gap-2 flex-1 min-w-0">
-          <span className="text-slate-400 shrink-0">{typeIcon(item.type)}</span>
-          <h4 className="font-bold text-slate-200 text-sm leading-snug">
-            {indexStr}. {item.title}
-          </h4>
-        </div>
+        <h4 className="font-bold text-slate-200 text-sm leading-snug">
+          {indexStr}. {item.title}
+        </h4>
         <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
           <span>{cfg.label}</span>
           {item.luminalASpecific && (
@@ -103,10 +70,9 @@ const ChecklistItem: React.FC<{ item: Year5To10CheckItem; indexStr: string }> = 
       </div>
 
       <div className="flex items-center gap-2 text-xs text-slate-400 font-mono">
-        <Clock className="w-3.5 h-3.5 shrink-0" />
-        <span>{item.timing}</span>
+        <span>Thời điểm: {item.timing}</span>
         <span>•</span>
-        <span>{item.doctorSpecialty}</span>
+        <span>Chuyên khoa: {item.doctorSpecialty}</span>
       </div>
 
       <p className="text-base md:text-sm text-slate-300 leading-relaxed">{item.detail}</p>
@@ -124,10 +90,7 @@ const NutritionItem: React.FC<{ item: NutritionGuideline; indexStr: string }> = 
   return (
     <article className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2">
       <div className="flex items-center gap-2 justify-between flex-wrap text-xs">
-        <div className="flex items-center gap-1.5">
-          {cfg.icon}
-          <h4 className="font-bold text-slate-200 text-sm">{indexStr}. {item.food}</h4>
-        </div>
+        <h4 className="font-bold text-slate-200 text-sm">{indexStr}. {item.food}</h4>
         <span className="text-slate-400 font-mono text-[11px]">{cfg.label}</span>
       </div>
       <p className="text-base md:text-sm text-slate-300 leading-relaxed">{item.reason}</p>
@@ -140,12 +103,11 @@ const NutritionItem: React.FC<{ item: NutritionGuideline; indexStr: string }> = 
 };
 
 const LifestyleItem: React.FC<{ item: LifestyleGuideline; indexStr: string }> = ({ item, indexStr }) => {
-  const cfg = lifestyleCategoryConfig[item.category] ?? { label: item.category, icon: <ClipboardList className="w-3.5 h-3.5 text-slate-400" /> };
+  const cfg = lifestyleCategoryConfig[item.category] ?? { label: item.category };
   return (
     <article className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2">
-      <div className="flex items-center gap-2 text-xs text-slate-400">
-        <span>{cfg.icon}</span>
-        <span className="font-mono text-[11px] uppercase">{cfg.label}</span>
+      <div className="text-xs text-slate-400 font-mono text-[11px] uppercase">
+        {cfg.label}
       </div>
       <h4 className="font-bold text-slate-200 text-sm leading-snug">{indexStr}. {item.title}</h4>
       <p className="text-base md:text-sm text-slate-300 leading-relaxed">{item.detail}</p>
@@ -196,9 +158,8 @@ export const BreastCancerYear5to10Section: React.FC = () => {
 
       {/* Late Relapse Notice */}
       <div className="py-3 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/20 text-base md:text-sm text-slate-300 leading-relaxed space-y-1">
-        <div className="flex items-center gap-2 text-slate-200 font-bold text-sm">
-          <Siren className="w-4 h-4 text-slate-400 shrink-0" />
-          <span>Đặc điểm tái phát muộn (Late Relapse) của Luminal A</span>
+        <div className="text-slate-200 font-bold text-sm">
+          Đặc điểm tái phát muộn (Late Relapse) của Luminal A
         </div>
         <p className="text-slate-300">
           Nghiên cứu EBCTCG 2023 cho thấy K vú thể Luminal A (HR+) có tỷ lệ tái phát duy trì khoảng 1–2%/năm kéo dài đến năm 15–20. Việc duy trì khám định kỳ là lá chắn bảo vệ an toàn nhất.
@@ -331,4 +292,3 @@ export const BreastCancerYear5to10Section: React.FC = () => {
     </section>
   );
 };
-

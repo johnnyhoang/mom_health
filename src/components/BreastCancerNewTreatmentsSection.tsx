@@ -1,8 +1,4 @@
-import React, { useState } from 'react';
-import {
-  ChevronDown,
-  ChevronUp
-} from 'lucide-react';
+import React from 'react';
 import { newTreatments2022to2026 } from '../data/breastCancerNewTreatments2022Data';
 import type { NewTreatment2022 } from '../data/breastCancerNewTreatments2022Data';
 
@@ -10,8 +6,6 @@ const TreatmentCard: React.FC<{
   treatment: NewTreatment2022;
   indexStr: string;
 }> = ({ treatment, indexStr }) => {
-  const [expanded, setExpanded] = useState(false);
-
   return (
     <article className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2.5 text-base md:text-sm text-slate-300">
       <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
@@ -34,40 +28,26 @@ const TreatmentCard: React.FC<{
         <div><strong className="text-slate-300">Thử nghiệm lâm sàng ({treatment.mainTrial}): </strong>{treatment.trialResults}</div>
       </div>
 
-      <div className="flex items-center justify-between text-xs text-slate-400 pt-1 border-t border-slate-800/40">
-        <span className={treatment.availableInVietnam ? 'text-slate-300' : 'text-slate-400'}>
-          {treatment.availableInVietnam ? '✓ Có sẵn tại Việt Nam' : '• Chưa có sẵn tại Việt Nam'}
-        </span>
-
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="flex items-center gap-1 text-slate-400 hover:text-slate-200 transition-colors cursor-pointer"
-        >
-          <span>{expanded ? 'Ẩn chi tiết' : 'Chi tiết tác dụng phụ & Luminal A'}</span>
-          {expanded ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
-        </button>
-      </div>
-
-      {expanded && (
-        <div className="pt-2.5 border-t border-slate-800/40 space-y-2 text-xs text-slate-300">
-          <div>
-            <strong className="text-slate-200 block mb-1">Tác dụng phụ thường gặp:</strong>
-            <span className="text-slate-400">{treatment.sideEffects.join(', ')}</span>
-          </div>
-
-          <div>
-            <strong className="text-slate-200">Tình trạng tại Việt Nam: </strong>
-            <span className="text-slate-300">{treatment.vietnamNote}</span>
-          </div>
-
-          {treatment.luminalARelevance !== 'not-applicable' && (
-            <div>
-              <strong className="text-slate-200">Liên quan Luminal A: </strong>
-              <span className="text-slate-300">{treatment.relevanceNote}</span>
-            </div>
-          )}
+      <div className="pt-2 border-t border-slate-800/40 space-y-1.5 text-xs text-slate-300">
+        <div>
+          <strong className="text-slate-300">Tác dụng phụ thường gặp: </strong>
+          <span className="text-slate-400">{treatment.sideEffects.join(', ')}</span>
         </div>
-      )}
+
+        <div>
+          <strong className="text-slate-300">Tình trạng tại Việt Nam: </strong>
+          <span className={treatment.availableInVietnam ? 'text-teal-300 font-medium' : 'text-slate-300'}>
+            {treatment.vietnamNote}
+          </span>
+        </div>
+
+        {treatment.luminalARelevance !== 'not-applicable' && (
+          <div>
+            <strong className="text-slate-300">Liên quan Luminal A: </strong>
+            <span className="text-slate-300">{treatment.relevanceNote}</span>
+          </div>
+        )}
+      </div>
     </article>
   );
 };
@@ -112,4 +92,3 @@ export const BreastCancerNewTreatmentsSection: React.FC = () => {
     </section>
   );
 };
-

@@ -89,12 +89,9 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
               className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2.5 text-base md:text-sm text-slate-300"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
-                <div className="flex items-center gap-2">
-                  <span className="text-lg">{ex.emoji}</span>
-                  <h4 className="font-bold text-slate-200 text-sm">
-                    8.2.{idx + 1}. {ex.name}
-                  </h4>
-                </div>
+                <h4 className="font-bold text-slate-200 text-sm">
+                  8.2.{idx + 1}. {ex.name}
+                </h4>
                 <span className="text-slate-400 font-mono">
                   {ex.weeklyTarget}
                 </span>
