@@ -7,9 +7,9 @@ const TreatmentCard: React.FC<{
   indexStr: string;
 }> = ({ treatment, indexStr }) => {
   return (
-    <article className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2.5 text-base md:text-sm text-slate-300">
+    <article className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0">
       <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
-        <h4 className="font-bold text-slate-200 text-sm leading-snug">
+        <h4 className="font-bold text-white text-base">
           {indexStr}. {treatment.name}
         </h4>
         <div className="flex flex-wrap gap-1.5 text-[11px] font-mono text-slate-400">
@@ -19,19 +19,20 @@ const TreatmentCard: React.FC<{
         </div>
       </div>
 
-      <p className="leading-relaxed">
-        <strong className="text-slate-200 font-medium">Chỉ định: </strong>
+      <p>
+        <strong className="text-slate-200">Chỉ định: </strong>
         {treatment.indication}
       </p>
 
-      <div className="text-xs text-slate-400 space-y-0.5 pt-0.5">
-        <div><strong className="text-slate-300">Thử nghiệm lâm sàng ({treatment.mainTrial}): </strong>{treatment.trialResults}</div>
+      <div className="text-xs text-slate-400">
+        <strong className="text-slate-300">Thử nghiệm lâm sàng ({treatment.mainTrial}): </strong>
+        {treatment.trialResults}
       </div>
 
-      <div className="pt-2 border-t border-slate-800/40 space-y-1.5 text-xs text-slate-300">
+      <div className="space-y-1 text-xs text-slate-400 pt-0.5">
         <div>
           <strong className="text-slate-300">Tác dụng phụ thường gặp: </strong>
-          <span className="text-slate-400">{treatment.sideEffects.join(', ')}</span>
+          <span>{treatment.sideEffects.join(', ')}</span>
         </div>
 
         <div>
@@ -54,7 +55,7 @@ const TreatmentCard: React.FC<{
 
 export const BreastCancerNewTreatmentsSection: React.FC = () => {
   return (
-    <section id="bc-chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-8 border-t border-slate-900">
+    <section id="bc-chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
       {/* Chapter Title */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -69,7 +70,7 @@ export const BreastCancerNewTreatmentsSection: React.FC = () => {
       </div>
 
       {/* 4.1 Continuous List */}
-      <div className="space-y-4 pt-2 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             4.1. Danh mục 10 thuốc & liệu pháp điều trị mới FDA phê duyệt (2022–2026)
@@ -79,7 +80,7 @@ export const BreastCancerNewTreatmentsSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {newTreatments2022to2026.map((treatment, idx) => (
             <TreatmentCard
               key={treatment.id}

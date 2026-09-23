@@ -6,7 +6,7 @@ import {
 
 export const BreastCancerOutcomesSection: React.FC = () => {
   return (
-    <section id="bc-chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-8 border-t border-slate-900">
+    <section id="bc-chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
       {/* Chapter Title */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -21,7 +21,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
       </div>
 
       {/* 5.1. Dữ liệu & Thống kê toàn cầu */}
-      <div className="space-y-4 pt-2 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             5.1. Dữ liệu & Thống kê kết quả điều trị toàn cầu (SEER, GLOBOCAN, ACS)
@@ -31,25 +31,25 @@ export const BreastCancerOutcomesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-3.5 rounded-lg border-l-2 border-slate-600 bg-slate-900/20 text-base md:text-sm text-slate-300 leading-relaxed">
+        <p className="text-base md:text-sm text-slate-300 leading-relaxed">
           <strong className="text-slate-200">Xu hướng toàn cầu: </strong>
           Tỷ lệ tử vong do ung thư vú đã giảm liên tục 42% nhờ tầm soát nhũ ảnh sớm và các liệu pháp nội tiết, nhắm trúng đích thế hệ mới (ACS 2024).
-        </div>
+        </p>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {globalOutcomeStats.map((stat, idx) => (
             <article
               key={stat.id}
-              className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2 text-base md:text-sm text-slate-300"
+              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-400 font-mono">
-                <span>5.1.{idx + 1}. {stat.title}</span>
+                <h4 className="font-bold text-white text-base">5.1.{idx + 1}. {stat.title}</h4>
                 <span>{stat.year} • {stat.population}</span>
               </div>
 
-              <div className="text-xs text-slate-400">Nguồn: {stat.source}</div>
+              <div className="text-xs text-slate-400 font-mono">Nguồn: {stat.source}</div>
 
-              <div className="space-y-1 pt-1">
+              <div className="space-y-1 pt-0.5">
                 {stat.keyFindings.map((finding, i) => (
                   <p key={i} className="leading-relaxed flex items-start gap-2">
                     <span className="text-slate-500 shrink-0">•</span>
@@ -58,7 +58,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
                 ))}
               </div>
 
-              <p className="text-xs text-slate-400 pt-1 border-t border-slate-800/40">
+              <p className="text-xs text-slate-400 pt-0.5">
                 <strong className="text-slate-300">Ý nghĩa Luminal A: </strong>
                 {stat.relevanceToLuminalA}
               </p>
@@ -68,7 +68,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
       </div>
 
       {/* 5.2. Thống kê kết quả điều trị tại Việt Nam */}
-      <div className="space-y-4 pt-4 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             5.2. Thống kê kết quả điều trị tại các bệnh viện Việt Nam
@@ -78,25 +78,25 @@ export const BreastCancerOutcomesSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-3.5 rounded-lg border-l-2 border-slate-600 bg-slate-900/20 text-base md:text-sm text-slate-300 leading-relaxed">
+        <p className="text-base md:text-sm text-slate-300 leading-relaxed">
           <strong className="text-slate-200">Đặc điểm bệnh nhân Việt Nam: </strong>
-          60–70% ca K vú tại Việt Nam thuộc nhóm HR+/HER2- (thể nội tiết dương tính) — đáp ứng tốt với Tamoxifen và AI.
-        </div>
+          60–70% ca K vú tại Việt Nam thuộc nhóm HR+/HER2- (thể nội tiết dương tính) — đáp ứng rất tốt với Tamoxifen và các thuốc ức chế Aromatase.
+        </p>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {vietnamBreastCancerStats.map((stat, idx) => (
             <article
               key={stat.id}
-              className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2 text-base md:text-sm text-slate-300"
+              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-400 font-mono">
-                <span>5.2.{idx + 1}. {stat.title}</span>
+                <h4 className="font-bold text-white text-base">5.2.{idx + 1}. {stat.title}</h4>
                 <span>{stat.year} {stat.hospital ? `• ${stat.hospital}` : ''}</span>
               </div>
 
-              <div className="text-xs text-slate-400">Nguồn: {stat.source}</div>
+              <div className="text-xs text-slate-400 font-mono">Nguồn: {stat.source}</div>
 
-              <div className="space-y-1 pt-1">
+              <div className="space-y-1 pt-0.5">
                 {stat.findings.map((finding, i) => (
                   <p key={i} className="leading-relaxed flex items-start gap-2">
                     <span className="text-slate-500 shrink-0">•</span>
@@ -111,4 +111,3 @@ export const BreastCancerOutcomesSection: React.FC = () => {
     </section>
   );
 };
-

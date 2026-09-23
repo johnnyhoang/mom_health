@@ -9,7 +9,7 @@ import type { SexualHealthTopic, ExerciseType, SupplementForExercise } from '../
 
 export const BreastCancerSexualExerciseSection: React.FC = () => {
   return (
-    <section id="bc-chapter-8" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-8 border-t border-slate-900">
+    <section id="bc-chapter-8" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
       {/* Chapter Title */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -24,7 +24,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       </div>
 
       {/* 8.1. Quan hệ vợ chồng & Sức khỏe tình dục */}
-      <div className="space-y-4 pt-2 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             8.1. Quan hệ vợ chồng & Sức khỏe tình dục
@@ -34,26 +34,24 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {sexualHealthTopics.map((topic: SexualHealthTopic, idx: number) => (
             <article
               key={topic.id}
-              className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2"
+              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
-                <span className="font-mono font-medium text-slate-400">
+                <h4 className="font-bold text-white text-base">
                   8.1.{idx + 1}. {topic.title}
-                </span>
+                </h4>
                 <span className="text-slate-400 text-[11px] font-mono">
                   {topic.categoryLabel}
                 </span>
               </div>
 
-              <p className="text-base md:text-sm text-slate-300 leading-relaxed">
-                {topic.summary}
-              </p>
+              <p>{topic.summary}</p>
 
-              <div className="space-y-1.5 pt-1 text-base md:text-sm text-slate-300">
+              <div className="space-y-1 pt-0.5 text-slate-300">
                 {topic.detailedContent.map((detail, i) => (
                   <p key={i} className="leading-relaxed flex items-start gap-2">
                     <span className="text-slate-500 shrink-0">•</span>
@@ -62,9 +60,9 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
                 ))}
               </div>
 
-              <div className="pt-2 text-xs text-slate-400 border-t border-slate-800/40 flex flex-wrap justify-between gap-2">
-                <span className="italic text-slate-400">Nguồn: {topic.evidence}</span>
-                <span className="text-slate-300 font-medium">{topic.recommendationNote}</span>
+              <div className="pt-1 text-xs text-slate-400 flex flex-wrap justify-between gap-2">
+                <span className="italic">Nguồn: {topic.evidence}</span>
+                <span className="text-teal-300 font-medium">{topic.recommendationNote}</span>
               </div>
             </article>
           ))}
@@ -72,7 +70,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       </div>
 
       {/* 8.2. Hướng dẫn vận động thể thao & Các bộ môn */}
-      <div className="space-y-4 pt-4 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             8.2. Hướng dẫn vận động thể thao & Các bộ môn phù hợp
@@ -82,39 +80,40 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-4">
+        <div className="space-y-5">
           {exerciseTypes.map((ex: ExerciseType, idx: number) => (
             <article
               key={ex.id}
-              className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2.5 text-base md:text-sm text-slate-300"
+              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
-                <h4 className="font-bold text-slate-200 text-sm">
+                <h4 className="font-bold text-white text-base">
                   8.2.{idx + 1}. {ex.name}
                 </h4>
                 <span className="text-slate-400 font-mono">
-                  {ex.weeklyTarget}
+                  Mục tiêu: {ex.weeklyTarget}
                 </span>
               </div>
 
-              <p className="leading-relaxed">
+              <p>
                 <strong className="text-slate-200 font-medium">Đối với K vú: </strong>
                 {ex.breastCancerBenefit}
               </p>
 
-              <p className="leading-relaxed">
-                <strong className="text-slate-200 font-medium">Đối với nội mạc tử cung & tử cung: </strong>
+              <p>
+                <strong className="text-slate-200 font-medium">Đối với nội mạc tử cung: </strong>
                 {ex.endometrialBenefit}
               </p>
 
-              <div className="text-xs text-slate-400 pt-1 border-t border-slate-800/40">
-                <strong className="text-slate-300">Lưu ý cẩn thận: </strong>
-                {ex.precautions.join(' • ')}
-              </div>
-
-              <div className="text-xs text-slate-400">
-                <strong className="text-slate-300">Bắt đầu: </strong>
-                {ex.startingTip} ({ex.benefitsEvidence})
+              <div className="text-xs text-slate-400 space-y-0.5 pt-0.5">
+                <div>
+                  <strong className="text-slate-300">Lưu ý an toàn: </strong>
+                  {ex.precautions.join(' • ')}
+                </div>
+                <div>
+                  <strong className="text-slate-300">Bắt đầu: </strong>
+                  {ex.startingTip} ({ex.benefitsEvidence})
+                </div>
               </div>
             </article>
           ))}
@@ -122,7 +121,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       </div>
 
       {/* 8.3. Thực phẩm bổ sung & Lưu ý an toàn khi tập */}
-      <div className="space-y-4 pt-4 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             8.3. Thực phẩm bổ sung & Lưu ý an toàn khi tập luyện
@@ -132,34 +131,36 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="p-3.5 rounded-lg border-l-2 border-slate-600 bg-slate-900/20 text-base md:text-sm text-slate-300 leading-relaxed">
-          <strong className="text-slate-200">Lưu ý an toàn: </strong>
+        <p className="text-base md:text-sm text-slate-300 leading-relaxed">
+          <strong className="text-rose-300">Lưu ý an toàn: </strong>
           Tránh các sản phẩm bổ sung chứa DHEA, testosterone hoặc mầm đậu nành cô đặc liều cao do khả năng chuyển hóa thành estrogen nội sinh.
-        </div>
+        </p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+        <div className="space-y-4">
           {exerciseSupplements.map((sup: SupplementForExercise, idx: number) => (
             <article
               key={sup.id}
-              className="py-3 px-3.5 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-1.5 text-base md:text-sm text-slate-300"
+              className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 text-xs">
-                <h4 className="font-bold text-slate-200">
+                <h4 className="font-bold text-white text-base">
                   8.3.{idx + 1}. {sup.name}
                 </h4>
-                <span className="text-slate-400 font-mono text-[11px]">
-                  {sup.safeForBreastCancer === 'safe' ? 'An toàn' : sup.safeForBreastCancer === 'ask_doctor' ? 'Hỏi BS' : 'Tránh'}
+                <span className={`font-mono text-xs font-semibold ${
+                  sup.safeForBreastCancer === 'safe' ? 'text-teal-300' : sup.safeForBreastCancer === 'ask_doctor' ? 'text-amber-300' : 'text-rose-400'
+                }`}>
+                  {sup.safeForBreastCancer === 'safe' ? '✓ An toàn' : sup.safeForBreastCancer === 'ask_doctor' ? '• Hỏi Bác sĩ' : '✕ Tránh dùng'}
                 </span>
               </div>
-              <p className="leading-relaxed">{sup.note}</p>
-              <div className="text-xs text-slate-500 italic">{sup.source}</div>
+              <p>{sup.note}</p>
+              <div className="text-xs text-slate-500 italic font-mono">{sup.source}</div>
             </article>
           ))}
         </div>
       </div>
 
       {/* 8.4. Bằng chứng nghiên cứu lâm sàng */}
-      <div className="space-y-4 pt-4 border-t border-slate-800/40">
+      <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
           <h3 className="text-base font-bold text-slate-200">
             8.4. Bằng chứng nghiên cứu lâm sàng quốc tế
@@ -169,19 +170,19 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           </p>
         </div>
 
-        <div className="space-y-3">
+        <div className="space-y-5">
           {exerciseResearchData.map((res, idx: number) => (
             <article
               key={res.id}
-              className="py-3.5 px-4 rounded-lg border-l-2 border-slate-700 bg-slate-900/10 space-y-2 text-base md:text-sm text-slate-300"
+              className="space-y-1.5 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 text-xs text-slate-400 font-mono">
                 <span>8.4.{idx + 1}. {res.source} ({res.year})</span>
-                <span>{res.applicableTo}</span>
+                <span className="text-slate-400">{res.applicableTo}</span>
               </div>
-              <h4 className="font-bold text-slate-200">{res.title}</h4>
-              <p className="leading-relaxed">{res.finding}</p>
-              <p className="text-xs font-medium text-slate-300 pt-1 border-t border-slate-800/40">
+              <h4 className="font-bold text-white text-base">{res.title}</h4>
+              <p>{res.finding}</p>
+              <p className="text-xs font-medium text-teal-300">
                 Kết quả định lượng: {res.magnitude}
               </p>
             </article>
