@@ -24,12 +24,81 @@ const VALID_VIEWS: ViewType[] = [
   'ankle_trauma', 'cervical_spine', 'breast_cancer', 'monograph', 'chronic_back_pain', 'vision_myopia', 'qa', 'doctors'
 ];
 
+export const PATH_TO_VIEW_MAP: Record<string, ViewType> = {
+  // Tử cung
+  'tucung': 'monograph',
+  'tu-cung': 'monograph',
+  'monograph': 'monograph',
+  'tamoxifen': 'monograph',
+  'noimac': 'monograph',
+  'noi-mac': 'monograph',
+
+  // Mắt cận thị
+  'canthi': 'vision_myopia',
+  'can-thi': 'vision_myopia',
+  'vision': 'vision_myopia',
+  'mat': 'vision_myopia',
+
+  // Mắt cá
+  'matca': 'ankle_trauma',
+  'mat-ca': 'ankle_trauma',
+  'ankle': 'ankle_trauma',
+
+  // Cột sống cổ
+  'cotsong': 'cervical_spine',
+  'cot-song': 'cervical_spine',
+  'spine': 'cervical_spine',
+  'acdf': 'cervical_spine',
+
+  // K Vú
+  'kvu': 'breast_cancer',
+  'k-vu': 'breast_cancer',
+  'breast': 'breast_cancer',
+  'ung-thu-vu': 'breast_cancer',
+
+  // Đau lưng
+  'daulung': 'chronic_back_pain',
+  'dau-lung': 'chronic_back_pain',
+  'backpain': 'chronic_back_pain',
+
+  // Hỏi đáp
+  'hoidap': 'qa',
+  'hoi-dap': 'qa',
+  'qa': 'qa',
+
+  // Bác sĩ
+  'bacsi': 'doctors',
+  'bac-si': 'doctors',
+  'doctors': 'doctors'
+};
+
+export const VIEW_TO_PATH_MAP: Record<ViewType, string> = {
+  'monograph': 'tucung',
+  'vision_myopia': 'canthi',
+  'ankle_trauma': 'matca',
+  'cervical_spine': 'cotsong',
+  'breast_cancer': 'kvu',
+  'chronic_back_pain': 'daulung',
+  'qa': 'hoidap',
+  'doctors': 'bacsi'
+};
+
 function getInitialView(): ViewType {
-  const urlParams = new URLSearchParams(window.location.search);
-  const viewParam = urlParams.get('view') as ViewType;
-  if (viewParam && VALID_VIEWS.includes(viewParam)) {
-    return viewParam;
+  // 1. Check clean path in URL pathname (e.g. /tucung or /tu-cung)
+  const pathname = window.location.pathname.replace(/^\/+|\/+$/g, '').toLowerCase();
+  if (pathname && PATH_TO_VIEW_MAP[pathname]) {
+    return PATH_TO_VIEW_MAP[pathname];
   }
+
+  // 2. Check query params (e.g. ?view=tucung or ?view=monograph)
+  const urlParams = new URLSearchParams(window.location.search);
+  const viewParam = urlParams.get('view')?.toLowerCase() || '';
+  if (viewParam) {
+    if (PATH_TO_VIEW_MAP[viewParam]) return PATH_TO_VIEW_MAP[viewParam];
+    if (VALID_VIEWS.includes(viewParam as ViewType)) return viewParam as ViewType;
+  }
+
+  // 3. Check localStorage
   const savedView = localStorage.getItem('app_current_view') as ViewType;
   if (savedView && VALID_VIEWS.includes(savedView)) {
     return savedView;
@@ -40,7 +109,7 @@ function getInitialView(): ViewType {
 function getInitialSection(view: ViewType): string {
   const hash = window.location.hash.replace('#', '');
   if (hash && !hash.includes('access_token') && !hash.includes('refresh_token') && !hash.includes('error') && !hash.includes('type=')) return hash;
-  return localStorage.getItem('app_active_section_' + view) || 'vision-ch-1';
+  return localStorage.getItem('app_active_section_' + view) || (view === 'monograph' ? 'chapter-1' : 'vision-ch-1');
 }
 
 function AppMain() {
@@ -163,13 +232,28 @@ function AppMain() {
       if (detectedSection) {
         setActiveSection(detectedSection);
         localStorage.setItem('app_active_section_' + currentView, detectedSection);
-        window.history.replaceState(null, '', '?view=' + currentView + '#' + detectedSection);
+        const path = VIEW_TO_PATH_MAP[currentView] || 'canthi';
+        window.history.replaceState(null, '', '/' + path + '#' + detectedSection);
       }
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, [currentView, user]);
+
+  // Handle browser back / forward navigation (popstate)
+  useEffect(() => {
+    const handlePopState = () => {
+      const view = getInitialView();
+      setCurrentView(view);
+      const hash = window.location.hash.replace('#', '');
+      if (hash) {
+        setTimeout(() => handleJumpToSection(hash), 150);
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
 
   const handleJumpToSection = (sectionId: string) => {
     const targetEl = document.getElementById(sectionId);
@@ -186,7 +270,8 @@ function AppMain() {
       });
       setActiveSection(sectionId);
       localStorage.setItem('app_active_section_' + currentView, sectionId);
-      window.history.replaceState(null, '', '?view=' + currentView + '#' + sectionId);
+      const path = VIEW_TO_PATH_MAP[currentView] || 'canthi';
+      window.history.replaceState(null, '', '/' + path + '#' + sectionId);
     }
   };
 
@@ -195,8 +280,9 @@ function AppMain() {
     localStorage.setItem('app_current_view', view);
 
     const savedSection = localStorage.getItem('app_active_section_' + view) || '';
-    const newUrl = '?view=' + view + (savedSection ? '#' + savedSection : '');
-    window.history.replaceState(null, '', newUrl);
+    const path = VIEW_TO_PATH_MAP[view] || 'canthi';
+    const newUrl = '/' + path + (savedSection ? '#' + savedSection : '');
+    window.history.pushState(null, '', newUrl);
 
     if (savedSection) {
       setTimeout(() => {
