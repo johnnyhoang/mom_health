@@ -358,6 +358,26 @@ export const uterineTamoxifenReferences: Reference[] = [
     note: 'Giải thích hiện tượng độ trễ mô học (Lag phase 6-9 tháng) và phản ứng bung ức chế thụ thể estrogen sau khi ngưng Tamoxifen.'
   },
   {
+    id: 'ut-kurman-1985',
+    category: 'journal',
+    title: 'The behavior of endometrial hyperplasia: a long-term study of "untreated" hyperplasia in 170 patients',
+    authors: 'Kurman RJ, Kaminski PF, Norris HJ.',
+    source: 'Cancer, 56(2):403-412',
+    year: '1985',
+    url: 'https://pubmed.ncbi.nlm.nih.gov/4005797/',
+    note: 'Nghiên cứu kinh điển 13.4 năm chứng minh 74% tăng sản điển hình tự thoái lui (spontaneous regression) và nguy cơ tiến triển ác tính chỉ 1.6%.'
+  },
+  {
+    id: 'ut-cochrane-progestogen-2020',
+    category: 'journal',
+    title: 'Progestogens for endometrial hyperplasia: Systematic Review and Meta-Analysis',
+    authors: 'Cochrane Gynaecology and Fertility Group',
+    source: 'Cochrane Database of Systematic Reviews',
+    year: '2020',
+    url: 'https://www.cochranelibrary.com/cdsr/doi/10.1002/14651858.CD012658.pub2/full',
+    note: 'Đánh giá hiệu quả làm teo mỏng niêm mạc của Progestin đường uống (như Lynestrenol/Orgametril) và vòng nội tiết Mirena với tỷ lệ thoái lui > 90%.'
+  },
+  {
     id: 'ut-bv-hung-vuong',
     category: 'hospital',
     title: 'Phác đồ Xử trí Tăng Sản Nội Mạc & Rong Kinh Bất Thường — Bệnh viện Hùng Vương TP.HCM',

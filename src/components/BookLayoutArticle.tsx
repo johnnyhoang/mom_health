@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { InteractiveCaseViewer } from './InteractiveCaseViewer';
 import { BreastCancerSafetySection } from './BreastCancerSafetySection';
 import { ReadAloudButton } from './ReadAloudButton';
@@ -7,7 +7,6 @@ import { ReferencesSection } from './ReferencesSection';
 import { uterineTamoxifenReferences } from '../data/medicalReferencesData';
 import { tamoxifenTreatmentOptions, tamoxifenMechanisms } from '../data/tamoxifenTreatmentData';
 import { tamoxifenMediaItems } from '../data/tamoxifenMediaData';
-import { tamoxifenClinicalDecisionTree } from '../data/tamoxifenDecisionData';
 import type { MediaItem } from '../types/medical';
 import { 
   HeartHandshake, 
@@ -19,13 +18,15 @@ import {
   HelpCircle, 
   ShieldCheck, 
   Play, 
-  RotateCcw, 
   BookOpen, 
-  ChevronRight, 
   Check,
   ShieldAlert,
   Calendar,
-  ArrowRight
+  ArrowRight,
+  TrendingUp,
+  BarChart3,
+  Pill,
+  Bookmark
 } from 'lucide-react';
 
 interface BookLayoutArticleProps {
@@ -33,48 +34,13 @@ interface BookLayoutArticleProps {
 }
 
 export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVideoModal }) => {
-  // Decision Tool States
-  const [decisionHistory, setDecisionHistory] = useState<string[]>(['root']);
-  const [decisionAnswers, setDecisionAnswers] = useState<string[]>([]);
-  const [selectedTreatmentId, setSelectedTreatmentId] = useState<string>('laparoscopic-hysterectomy');
-
-  // Decision Tool Handler
-  const currentDecisionNodeId = decisionHistory[decisionHistory.length - 1];
-  const currentDecisionNode = tamoxifenClinicalDecisionTree[currentDecisionNodeId];
-  const isDecisionResult = currentDecisionNodeId === 'result';
-
-  let finalDecisionRecommendation: any = null;
-  if (isDecisionResult) {
-    const parentId = decisionHistory[decisionHistory.length - 2];
-    const parentNode = tamoxifenClinicalDecisionTree[parentId];
-    const lastLabel = decisionAnswers[decisionAnswers.length - 1];
-    const matched = parentNode?.options.find(opt => opt.label === lastLabel);
-    finalDecisionRecommendation = matched?.recommendation;
-  }
-
-  const handleDecisionOption = (option: { label: string; nextStepId?: string; recommendation?: any }) => {
-    setDecisionAnswers([...decisionAnswers, option.label]);
-    if (option.nextStepId) {
-      setDecisionHistory([...decisionHistory, option.nextStepId]);
-    } else if (option.recommendation) {
-      setDecisionHistory([...decisionHistory, 'result']);
-    }
-  };
-
-  const handleResetDecision = () => {
-    setDecisionHistory(['root']);
-    setDecisionAnswers([]);
-  };
-
-  const activeTreatment = tamoxifenTreatmentOptions.find(t => t.id === selectedTreatmentId) || tamoxifenTreatmentOptions[0];
-
   return (
     <article className="w-full bg-slate-950 text-slate-200 font-sans pb-32">
 
       {/* Medical Disclaimer Banner */}
       <MedicalDisclaimerBanner
         specialty="Sản Phụ Khoa & Ung Bướu Phụ Khoa"
-        primaryGuideline="ACOG Practice Bulletin No. 232, NCCN Uterine Neoplasms, ASCO EET Guidelines"
+        primaryGuideline="ACOG Practice Bulletin No. 232, NCCN Uterine Neoplasms, ASCO EET Guidelines, RCOG Green-top Guideline No. 67"
         lastUpdated="Tháng 9/2026"
       />
       
@@ -86,16 +52,16 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         {/* Book Series Label */}
         <div className="flex items-center gap-2 text-teal-400 text-xs font-semibold tracking-wider uppercase">
           <BookOpen className="w-4 h-4" />
-          <span>Chuyên Khảo Y Khoa Cá Thể Hóa • Tháng 09/2026</span>
+          <span>Sách Chuyên Khảo Y Khoa Cá Thể Hóa • Dạng Đọc Liền Mạch Toàn Bộ</span>
         </div>
 
         {/* Book Main Title & Unified Header Container */}
         <div className="space-y-3">
           <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
-            Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen (K Vú)
+            Bảo Vệ Nội Mạc Tử Cung & Giải Mã Toàn Diện Sau 5 Năm Tamoxifen (K Vú)
           </h1>
           <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
-            Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế "Nghịch lý Tamoxifen", căn nguyên gây rong kinh & 4 phác đồ tối ưu hóa sức khỏe cho phụ nữ sau điều trị ung thư vú.
+            Sách chuyên khảo đa chiều: Giải mã cơ chế "Nghịch lý Tamoxifen", đối chiếu sâu 4 bệnh lý phụ khoa, nghiên cứu khoa học thực chứng về khả năng tự khỏi và diễn tiến theo thời gian, cùng 4 phác đồ tối ưu bảo vệ tuyến vú.
           </p>
 
           {/* Unified Preface & Status Panel */}
@@ -104,36 +70,54 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               <ReadAloudButton
                 id="monograph-full"
                 title="Bảo Vệ Nội Mạc Tử Cung Sau 5 Năm Tamoxifen"
-                text="Bảo vệ nội mạc tử cung sau 5 năm Tamoxifen. Cẩm nang giải mã toàn diện hồ sơ bệnh án, cơ chế nghịch lý Tamoxifen, căn nguyên gây rong kinh và 4 phác đồ điều trị tối ưu. Kết quả giải phẫu bệnh tại bệnh viện Hùng Vương ngày 15 tháng 9 năm 2026 kết luận tăng sản điển hình khu trú, đây là thương tổn hoàn toàn lành tính, nguy cơ ung thư dưới một phần trăm, tuyệt đối không phải ung thư vú di căn và không phải ung thư nội mạc tử cung."
+                text="Bảo vệ nội mạc tử cung sau 5 năm Tamoxifen. Sách chuyên khảo giải mã toàn diện hồ sơ bệnh án, cơ chế nghịch lý Tamoxifen, phân tích khoa học thực chứng về khả năng tự khỏi và nguy cơ theo thời gian, so sánh tăng sản điển hình với u xơ và lạc tuyến cơ tử cung, cùng 4 phác đồ điều trị an toàn tuyệt đối cho người có tiền sử ung thư vú."
                 variant="hero"
-                label="Bấm để nghe đọc cẩm nang"
-                durationEstimate="~12 phút"
+                label="Bấm để nghe đọc toàn bộ sách"
+                durationEstimate="~18 phút"
               />
               <div className="flex items-center gap-1.5 text-teal-300 font-medium text-xs">
                 <ShieldCheck className="w-4 h-4 text-teal-400" />
-                <span>ACOG • ASCO • NCCN • FIGO</span>
+                <span>ACOG • ASCO • NCCN • RCOG • FIGO</span>
               </div>
             </div>
 
             <div className="p-3.5 rounded-xl bg-emerald-950/30 border border-emerald-800/40 text-emerald-100 text-xs sm:text-sm leading-relaxed space-y-1">
               <span className="font-bold flex items-center gap-1.5 text-emerald-300 text-xs sm:text-sm">
                 <Check className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>Thông điệp quan trọng nhất từ Bác sĩ:</span>
+                <span>Thông điệp cốt lõi từ Bác sĩ chuyên khoa:</span>
               </span>
               <p>
-                Kết quả Giải Phẫu Bệnh tại BV Hùng Vương (15/09/2026) kết luận <strong>"TĂNG SẢN ĐIỂN HÌNH KHU TRÚ"</strong> – Thương tổn <strong>HOÀN TOÀN LÀNH TÍNH</strong> (nguy cơ ung thư &lt; 1%), tuyệt đối <strong>KHÔNG PHẢI</strong> ung thư vú di căn và <strong>KHÔNG PHẢI</strong> ung thư nội mạc tử cung.
+                Kết quả Giải Phẫu Bệnh tại BV Hùng Vương (15/09/2026) xác nhận <strong>"TĂNG SẢN ĐIỂN HÌNH KHU TRÚ"</strong> (Without Atypia) – Đây là thương tổn <strong>HOÀN TOÀN LÀNH TÍNH</strong> (nguy cơ ung thư &lt; 1-3%), <strong>KHÔNG PHẢI</strong> K vú di căn và <strong>KHÔNG PHẢI</strong> ung thư tử cung. Các nghiên cứu quốc tế chỉ ra có tới <strong>74% khả năng tự thoái lui</strong> nếu không còn kích thích nội tiết.
               </p>
             </div>
 
-            <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-400">
-              <span className="flex items-center gap-1.5">
-                <Clock className="w-3.5 h-3.5 text-slate-500" />
-                <span>Thời lượng: ~12 phút</span>
-              </span>
-              <span className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                <span>Hồ sơ y khoa: Tháng 09/2026</span>
-              </span>
+            {/* Quick Chapter Navigation Bar (TOC) */}
+            <div className="pt-2 border-t border-slate-800/80 space-y-2">
+              <div className="text-xs font-bold text-slate-400 flex items-center gap-1.5">
+                <Bookmark className="w-3.5 h-3.5 text-teal-400" />
+                <span>Mục lục 9 chương chuyên khảo (Đọc liền mạch từ trên xuống dưới):</span>
+              </div>
+              <div className="flex flex-wrap gap-1.5 text-xs">
+                {[
+                  { href: '#chapter-1', label: '1. Nghịch Lý Tamoxifen' },
+                  { href: '#chapter-2', label: '2. Giải Mã Hồ Sơ GPB' },
+                  { href: '#chapter-3', label: '3. So Sánh 4 Bệnh Lý Tử Cung' },
+                  { href: '#chapter-4', label: '4. Bộ Tứ Gây Rong Kinh' },
+                  { href: '#chapter-5', label: '5. Nghiên Cứu Tự Khỏi & Nguy Cơ' },
+                  { href: '#chapter-6', label: '6. Toàn Bộ 4 Phác Đồ Điều Trị' },
+                  { href: '#chapter-7', label: '7. Ma Trận An Toàn K Vú' },
+                  { href: '#chapter-8', label: '8. Lộ Trình & Câu Hỏi Bác Sĩ' },
+                  { href: '#chapter-9', label: '9. Dinh Dưỡng & Tầm Soát Kép' },
+                ].map((toc, idx) => (
+                  <a
+                    key={idx}
+                    href={toc.href}
+                    className="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-teal-950 text-slate-300 hover:text-teal-300 border border-slate-800 transition-colors"
+                  >
+                    {toc.label}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -142,7 +126,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 1: THE TAMOXIFEN PARADOX (SERM MECHANISM) */}
       {/* ========================================================================= */}
-      <section id="chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -253,9 +237,9 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 2: INTERACTIVE CASE RECORD INSPECTOR */}
+      {/* CHAPTER 2: CASE RECORD & HISTOPATHOLOGY DECODER */}
       {/* ========================================================================= */}
-      <section id="chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -266,7 +250,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               Giải Mã Trực Tiếp 4 Hồ Sơ Bệnh Án & Kết Quả Giải Phẫu Bệnh
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
-              Dưới đây là công cụ phân tích tương tác trực quan giải thích cặn kẽ từng dòng chữ, thuật ngữ trong phiếu kết quả của chị.
+              Phân tích cặn kẽ từng dòng chữ, thuật ngữ trong phiếu kết quả sinh thiết Pipelle ngày 15/09/2026 tại BV Hùng Vương.
             </p>
           </div>
           <ReadAloudButton
@@ -280,58 +264,14 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
         {/* Interactive Case Viewer Component */}
         <InteractiveCaseViewer />
 
-        {/* Deep Dive: Typical vs Atypical Hyperplasia Comparison Table */}
+        {/* Comparison Table: Typical vs Atypical */}
         <div className="pt-4 space-y-2.5">
           <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-teal-400" />
             <span>Bảng So Sánh Y Học: "Tăng Sản Điển Hình" vs "Tăng Sản Không Điển Hình"</span>
           </h3>
-          <p className="text-xs text-slate-300">
-            Nhiều bệnh nhân khi đọc chữ "Tăng sản" thường lo sợ đây là ung thư. Bảng đối chiếu dưới đây theo chuẩn Tổ chức Y tế Thế giới (WHO) sẽ giúp chị nhìn rõ sự khác biệt tuyệt đối:
-          </p>
 
-          {/* Mobile View: Consolidated 2-Column Responsive Layout (< sm) */}
-          <div className="block sm:hidden rounded-xl border border-slate-800 bg-slate-950 p-3 space-y-3">
-            {[
-              {
-                feature: 'Hình thái nhân tế bào',
-                typical: 'Nhân tế bào bình thường, đồng đều, không dị dạng',
-                atypical: 'Nhân quái dị, đa hình thái, mất phân cực'
-              },
-              {
-                feature: 'Nguy cơ ác tính (Ung thư)',
-                typical: '< 1% đến 3% (Cực kỳ thấp - Lành tính)',
-                atypical: '25% đến 40% (Tổn thương tiền ung thư)'
-              },
-              {
-                feature: 'Ảnh hưởng từ Tamoxifen',
-                typical: 'Dấu ấn mô học kinh điển vô hại (tuyến giãn nang)',
-                atypical: 'Hiếm gặp hơn, cần xử lý phẫu thuật triệt để'
-              },
-              {
-                feature: 'Hướng điều trị y khoa',
-                typical: 'Xử lý cầm máu cơ học, nội soi hoặc phẫu thuật bảo tồn buồng trứng',
-                atypical: 'Bắt buộc phẫu thuật cắt tử cung toàn phần'
-              }
-            ].map((row, idx) => (
-              <div key={idx} className="border-b border-slate-800/80 pb-3 last:border-b-0 last:pb-0 space-y-1.5 text-xs sm:text-sm">
-                <div className="font-bold text-white uppercase tracking-wide text-xs">
-                  {idx + 1}. {row.feature}
-                </div>
-                <div className="p-2 rounded-lg bg-emerald-950/30 border border-emerald-800/40 text-emerald-200">
-                  <div className="text-[11px] font-bold uppercase text-emerald-400">✓ CỦA CHỊ: Tăng Sản Điển Hình:</div>
-                  <div className="font-medium text-xs mt-0.5">{row.typical}</div>
-                </div>
-                <div className="p-2 rounded-lg bg-rose-950/20 border border-rose-900/30 text-rose-300">
-                  <div className="text-[11px] font-bold uppercase text-rose-400">⚠ Tăng Sản Không Điển Hình (Atypical):</div>
-                  <div className="text-xs mt-0.5">{row.atypical}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          {/* Desktop / Tablet View: Full 3-Column Table (>= sm) */}
-          <div className="hidden sm:block overflow-x-auto rounded-xl border border-slate-800">
+          <div className="overflow-x-auto rounded-xl border border-slate-800">
             <table className="w-full text-left text-xs sm:text-sm">
               <thead className="bg-slate-900/90 text-slate-300 font-bold border-b border-slate-800">
                 <tr>
@@ -343,7 +283,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               <tbody className="divide-y divide-slate-800/60 bg-slate-950">
                 <tr>
                   <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Hình thái nhân tế bào</td>
-                  <td className="p-2.5 sm:p-3 text-emerald-300 font-medium">Nhân tế bào bình thường, đồng đều, không dị dạng</td>
+                  <td className="p-2.5 sm:p-3 text-emerald-300 font-medium">Nhân tế bào bình thường, đồng đều, không đột biến dị sản</td>
                   <td className="p-2.5 sm:p-3 text-rose-300">Nhân quái dị, đa hình thái, mất phân cực</td>
                 </tr>
                 <tr>
@@ -353,47 +293,179 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                 </tr>
                 <tr>
                   <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Ảnh hưởng từ Tamoxifen</td>
-                  <td className="p-2.5 sm:p-3 text-slate-300">Dấu ấn mô học kinh điển vô hại (tuyến giãn nang)</td>
+                  <td className="p-2.5 sm:p-3 text-slate-300">Dấu ấn mô học kinh điển vô hại (tuyến giãn nang dạng Swiss cheese)</td>
                   <td className="p-2.5 sm:p-3 text-slate-300">Hiếm gặp hơn, cần xử lý phẫu thuật triệt để</td>
                 </tr>
                 <tr>
                   <td className="p-2.5 sm:p-3 font-semibold text-slate-400">Hướng điều trị y khoa</td>
-                  <td className="p-2.5 sm:p-3 text-slate-300 font-medium">Xử lý cầm máu cơ học, nội soi hoặc phẫu thuật bảo tồn buồng trứng</td>
-                  <td className="p-2.5 sm:p-3 text-rose-200">Bắt buộc phẫu thuật cắt tử cung toàn phần</td>
+                  <td className="p-2.5 sm:p-3 text-slate-300 font-medium">Uống Orgametril ngắn hạn, nội soi buồng tử cung hoặc phẫu thuật bảo tồn buồng trứng</td>
+                  <td className="p-2.5 sm:p-3 text-rose-200 font-medium">Bắt buộc phẫu thuật cắt tử cung toàn phần</td>
                 </tr>
               </tbody>
             </table>
-          </div>
-
-          {/* Real-World Pathology Correlation Note from BV Tu Du */}
-          <div className="p-3.5 rounded-xl bg-slate-900/80 border border-teal-500/30 space-y-2 text-xs sm:text-sm text-slate-300">
-            <div className="flex items-center gap-2 font-bold text-teal-300 text-xs sm:text-sm">
-              <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
-              <span>Đối chiếu thực tế lâm sàng (Phiếu GPB BV Từ Dũ): "TĂNG SẢN ĐIỂN HÌNH = WITHOUT ATYPIA"</span>
-            </div>
-            <p className="text-xs">
-              Phiếu Giải phẫu bệnh thực tế tại các bệnh viện đầu ngành như <strong>BV Từ Dũ</strong> in rõ ràng: <strong className="text-white font-mono bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">TĂNG SẢN ĐIỂN HÌNH NỘI MẠC TỬ CUNG (HYPERPLASIA WITHOUT ATYPIA) KHU TRÚ</strong>. Đây là minh chứng vàng khẳng định 100% kết quả tại BV Hùng Vương của chị thuộc nhóm tổn thương hoàn toàn lành tính.
-            </p>
-            <div className="p-2.5 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-amber-200 text-xs space-y-1">
-              <strong className="text-amber-300">Về cảnh báo "Nếu không điều trị có nguy cơ tiến triển thành ung thư":</strong>
-              <p>
-                Cảnh báo này của bác sĩ dành cho những trường hợp <em>bỏ mặc tổn thương nhiều năm không can thiệp</em>, khiến tế bào dưới tác động của Estrogen không đối kháng kéo dài có thể tích lũy đột biến (1-3%). Việc chị đã <strong>sinh thiết phát hiện sớm và chủ động có kế hoạch xử lý</strong> (đặc biệt là phẫu thuật nội soi cắt tử cung bảo tồn buồng trứng) sẽ <strong>chặn đứng 100% nguy cơ này, xóa bỏ vĩnh viễn nỗi lo ung thư tử cung!</strong>
-              </p>
-            </div>
           </div>
         </div>
 
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 3: ROOT CAUSE OF CHRONIC MENORRHAGIA */}
+      {/* CHAPTER 3 (NEW): DEEP COMPARISON OF 4 UTERINE PATHOLOGIES */}
       {/* ========================================================================= */}
-      <section id="chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-              Chương 3 • Căn Nguyên Bệnh Lý
+              Chương 3 • So Sánh Bệnh Lý Toàn Diện
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Đại Phẫu So Sánh 4 Bệnh Lý Tử Cung: Tăng Sản Điển Hình vs U Xơ vs Lạc Tuyến Cơ vs Polyp
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Giải mã sự khác biệt về vị trí giải phẫu, cơ chế bệnh sinh, mức độ nguy hiểm và tương quan với tiền sử K vú của chị.
+            </p>
+          </div>
+          <ReadAloudButton
+            id="chapter-3-audio"
+            title="Chương 3: So Sánh 4 Bệnh Lý Tử Cung"
+            text="Chương 3: Đại phẫu so sánh 4 bệnh lý tử cung thường gặp. Tăng sản nội mạc điển hình nằm ở lớp lót trong cùng. U xơ tử cung 45mm nằm trong lớp cơ. Lạc tuyến cơ tử cung Adenomyosis là niêm mạc đi lạc vào cơ. Polyp buồng tử cung là khối u nhô có cuống. Cả bốn bệnh lý đều là lành tính và có hướng xử trí rõ ràng."
+            variant="chapter"
+          />
+        </div>
+
+        {/* 4 Pathology Comparison Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          {/* 1. Tăng Sản Điển Hình */}
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-teal-500/40 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono px-2 py-0.5 rounded bg-teal-950 text-teal-300 border border-teal-800 font-bold">
+                1. BỆNH CỦA CHỊ THÚY NGA
+              </span>
+              <span className="text-xs text-emerald-400 font-bold">Lành tính 100%</span>
+            </div>
+            <h3 className="text-base font-black text-white">Tăng Sản Nội Mạc Tử Cung Điển Hình (Hyperplasia Without Atypia)</h3>
+            <ul className="space-y-1.5 text-xs text-slate-300">
+              <li><strong className="text-slate-200">Vị trí:</strong> Lớp niêm mạc (lớp lót trong cùng của buồng tử cung).</li>
+              <li><strong className="text-slate-200">Bản chất:</strong> Các tuyến nội mạc tăng sinh về số lượng do kích thích estrogen/Tamoxifen, nhưng tế bào hoàn toàn bình thường (không đột biến).</li>
+              <li><strong className="text-slate-200">Triệu chứng:</strong> Ra máu rỉ rả, rong kinh, đốm nâu sau kỳ kinh.</li>
+              <li><strong className="text-slate-200">Nguy cơ ác tính:</strong> Rất thấp (&lt; 1-3%), 74% có khả năng tự thoái lui.</li>
+              <li><strong className="text-slate-200">Xử trí:</strong> Orgametril 15 ngày, nội soi buồng tử cung bóc tách hoặc theo dõi.</li>
+            </ul>
+          </div>
+
+          {/* 2. U Xơ Tử Cung */}
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800 font-bold">
+                2. KHỐI THÀNH SAU 45mm
+              </span>
+              <span className="text-xs text-emerald-400 font-bold">Lành tính (&gt; 99.9%)</span>
+            </div>
+            <h3 className="text-base font-black text-white">U Xơ Tử Cung (Uterine Fibroids / Leiomyoma)</h3>
+            <ul className="space-y-1.5 text-xs text-slate-300">
+              <li><strong className="text-slate-200">Vị trí:</strong> Lớp cơ tử cung (thành sau tử cung của chị kích thước 41x45mm).</li>
+              <li><strong className="text-slate-200">Bản chất:</strong> Khối u cơ trơn lành tính phát triển dưới tác động của nội tiết tố nữ qua nhiều năm.</li>
+              <li><strong className="text-slate-200">Triệu chứng:</strong> Cường kinh (ra nhiều máu cục), nặng bụng dưới, chèn ép lưng.</li>
+              <li><strong className="text-slate-200">Nguy cơ ác tính:</strong> Cực kỳ hiếm (&lt; 0.1% hóa sarcom cơ trơn).</li>
+              <li><strong className="text-slate-200">Xử trí:</strong> Theo dõi nếu không triệu chứng, phẫu thuật bóc u xơ hoặc cắt tử cung nếu gây rong huyết nặng.</li>
+            </ul>
+          </div>
+
+          {/* 3. Lạc Tuyến Cơ Tử Cung (Adenomyosis) */}
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800 font-bold">
+                3. ĐỒNG MẮC THÀNH SAU
+              </span>
+              <span className="text-xs text-emerald-400 font-bold">Lành tính 100%</span>
+            </div>
+            <h3 className="text-base font-black text-white">Lạc Tuyến Cơ Tử Cung (Adenomyosis)</h3>
+            <ul className="space-y-1.5 text-xs text-slate-300">
+              <li><strong className="text-slate-200">Vị trí:</strong> Mô niêm mạc đi lạc và cắm sâu vào bên trong lớp cơ tử cung.</li>
+              <li><strong className="text-slate-200">Bản chất:</strong> Mỗi chu kỳ, mô lạc này cũng chảy máu vào trong cơ, gây viêm xơ hóa cơ tử cung và làm tử cung to hình cầu.</li>
+              <li><strong className="text-slate-200">Triệu chứng:</strong> Đau bụng kinh dữ dội (thống kinh), tử cung không co bóp cầm máu được $\rightarrow$ rong kinh kéo dài.</li>
+              <li><strong className="text-slate-200">Nguy cơ ác tính:</strong> Hoàn toàn không phải ung thư (0%).</li>
+              <li><strong className="text-slate-200">Xử trí:</strong> Thuốc giảm đau, đặt vòng Mirena hoặc phẫu thuật cắt tử cung.</li>
+            </ul>
+          </div>
+
+          {/* 4. Polyp Buồng Tử Cung */}
+          <div className="p-4 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-2.5">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800 font-bold">
+                4. PHỔ BIẾN Ở NGƯỜI DÙNG TAMOXIFEN
+              </span>
+              <span className="text-xs text-emerald-400 font-bold">Lành tính 97-98%</span>
+            </div>
+            <h3 className="text-base font-black text-white">Polyp Lòng Tử Cung (Endometrial Polyp)</h3>
+            <ul className="space-y-1.5 text-xs text-slate-300">
+              <li><strong className="text-slate-200">Vị trí:</strong> Khối u nhô có cuống mạch máu nằm lơ lửng trong khoang buồng tử cung.</li>
+              <li><strong className="text-slate-200">Bản chất:</strong> Sự phì đại khu trú của mô tuyến và mô đệm niêm mạc (rất hay gặp sau 5 năm Tamoxifen: 30-40%).</li>
+              <li><strong className="text-slate-200">Triệu chứng:</strong> Ra máu giữa chu kỳ, ra máu sau quan hệ, đốm cam.</li>
+              <li><strong className="text-slate-200">Nguy cơ ác tính:</strong> Thấp (khoảng 1.5 - 3% ở phụ nữ tiền mãn kinh).</li>
+              <li><strong className="text-slate-200">Xử trí:</strong> Nội soi buồng tử cung cắt cuống polyp nhẹ nhàng trong 15 phút.</li>
+            </ul>
+          </div>
+
+        </div>
+
+        {/* Master Comparison Table */}
+        <div className="overflow-x-auto rounded-xl border border-slate-800">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-slate-900 text-slate-300 font-bold border-b border-slate-800">
+              <tr>
+                <th className="p-2.5">Tiêu Chí So Sánh</th>
+                <th className="p-2.5 text-teal-300 bg-teal-950/30">Tăng Sản Điển Hình (Của Chị)</th>
+                <th className="p-2.5 text-amber-300">U Xơ Tử Cung 45mm</th>
+                <th className="p-2.5 text-rose-300">Adenomyosis</th>
+                <th className="p-2.5 text-purple-300">Polyp Buồng Tử Cung</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-slate-800/60 bg-slate-950 text-slate-300">
+              <tr>
+                <td className="p-2.5 font-bold text-slate-400">Tầng giải phẫu</td>
+                <td className="p-2.5 text-teal-200 font-medium">Niêm mạc (lớp trong)</td>
+                <td className="p-2.5">Thành cơ tử cung</td>
+                <td className="p-2.5">Mô niêm mạc lạc trong cơ</td>
+                <td className="p-2.5">Khối nhô trong lòng tử cung</td>
+              </tr>
+              <tr>
+                <td className="p-2.5 font-bold text-slate-400">Cơ chế gây ra máu</td>
+                <td className="p-2.5 text-teal-200">Bong tróc niêm mạc không đều</td>
+                <td className="p-2.5">Tăng diện tích bề mặt + ứ máu</td>
+                <td className="p-2.5">Cơ tử cung mất khả năng siết co bóp</td>
+                <td className="p-2.5">Vỡ vi mạch cuống polyp</td>
+              </tr>
+              <tr>
+                <td className="p-2.5 font-bold text-slate-400">Nguy cơ ung thư</td>
+                <td className="p-2.5 text-emerald-300 font-bold">&lt; 1 - 3% (Lành tính)</td>
+                <td className="p-2.5 text-emerald-300 font-bold">&lt; 0.1%</td>
+                <td className="p-2.5 text-emerald-300 font-bold">0% (Không ung thư)</td>
+                <td className="p-2.5 text-emerald-300 font-bold">1.5 - 3%</td>
+              </tr>
+              <tr>
+                <td className="p-2.5 font-bold text-slate-400">Ảnh hưởng K Vú</td>
+                <td className="p-2.5 text-emerald-300 font-bold">0% (Hoàn toàn không)</td>
+                <td className="p-2.5 text-emerald-300 font-bold">0%</td>
+                <td className="p-2.5 text-emerald-300 font-bold">0%</td>
+                <td className="p-2.5 text-emerald-300 font-bold">0%</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 4: ROOT CAUSE OF CHRONIC MENORRHAGIA */}
+      {/* ========================================================================= */}
+      <section id="chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+        
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-1">
+            <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Chương 4 • Căn Nguyên Bệnh Lý
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
               Đi Tìm Thủ Phạm Gây Rong Kinh Kéo Dài: "Bộ Tứ Tác Động"
@@ -403,9 +475,9 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             </p>
           </div>
           <ReadAloudButton
-            id="chapter-3-audio"
-            title="Chương 3: Căn Nguyên Gây Rong Kinh"
-            text="Chương 3: Đi tìm thủ phạm gây rong kinh kéo dài. Bộ tứ tác động bao gồm: Một là mảng tăng sản tuyến do Tamoxifen. Hai là Lạc tuyến trong cơ tử cung Adenomyosis làm cơ không co bóp cầm máu được. Ba là khối u cơ thành sau 45 mi-li-mét. Bốn là giai đoạn tiền mãn kinh ở độ tuổi 45."
+            id="chapter-4-audio"
+            title="Chương 4: Căn Nguyên Gây Rong Kinh"
+            text="Chương 4: Đi tìm thủ phạm gây rong kinh kéo dài. Bộ tứ tác động bao gồm: Một là mảng tăng sản tuyến do Tamoxifen. Hai là Lạc tuyến trong cơ tử cung Adenomyosis làm cơ không co bóp cầm máu được. Ba là khối u cơ thành sau 45 mi-li-mét. Bốn là giai đoạn tiền mãn kinh ở độ tuổi 45."
             variant="chapter"
           />
         </div>
@@ -469,169 +541,403 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 4: COMPREHENSIVE 4 TREATMENT STRATEGIES */}
+      {/* CHAPTER 5 (NEW): SCIENTIFIC EVIDENCE - UNTREATED HYPERPLASIA & RISK OVER TIME */}
       {/* ========================================================================= */}
-      <section id="chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
-        <div className="space-y-1">
-          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 4 • Phác Đồ Điều Trị
+        <div className="flex items-start justify-between gap-4">
+          <div className="space-y-1">
+            <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+              Chương 5 • Bằng Chứng Khoa Học Thực Chứng
+            </div>
+            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              Nếu Chỉ Theo Dõi Không Điều Trị: Khả Năng Tự Khỏi & Nguy Cơ Theo Thời Gian
+            </h2>
+            <p className="text-xs sm:text-sm text-slate-400">
+              Đối chiếu nghiên cứu thực nghiệm quốc tế trên bệnh nhân không điều trị (Kurman 1985, RCOG, ACOG, Cochrane).
+            </p>
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-            So Sánh 4 Hướng Điều Trị Tối Ưu Cho Bệnh Nhân Tiền Sử K Vú
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
-            Nguyên tắc cốt lõi: <em>Bảo vệ an toàn tuyệt đối cho tuyến vú, dứt điểm triệu chứng mất máu và nâng cao chất lượng cuộc sống.</em>
-          </p>
+          <ReadAloudButton
+            id="chapter-5-audio"
+            title="Chương 5: Khả Năng Tự Khỏi & Nguy Cơ Theo Thời Gian"
+            text="Chương 5: Bằng chứng khoa học thực chứng. Nếu chỉ theo dõi không điều trị, khả năng tự khỏi và nguy cơ theo thời gian như thế nào? Nghiên cứu kinh điển của Kurman theo dõi 170 bệnh nhân không điều trị chứng minh có 74% trường hợp tự thoái lui hoàn toàn, chỉ 1.6% tiến triển ác tính sau hơn 13 năm. Tuy nhiên, việc điều trị bằng Orgametril ngắn hạn giúp rút ngắn thời gian thoái lui xuống chỉ còn 2 đến 4 tuần và ngăn ngừa thiếu máu."
+            variant="chapter"
+          />
         </div>
 
-        {/* Treatment Option Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-          {tamoxifenTreatmentOptions.map((opt) => {
-            const isSelected = opt.id === selectedTreatmentId;
-            return (
-              <button
-                key={opt.id}
-                onClick={() => setSelectedTreatmentId(opt.id)}
-                className={`p-2.5 sm:p-3 rounded-xl text-left text-xs font-bold transition-all flex flex-col justify-between gap-1.5 cursor-pointer ${
-                  isSelected
-                    ? 'bg-teal-500/20 text-teal-200 border border-teal-500/50 shadow-md'
-                    : 'bg-slate-900/60 text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-slate-800'
-                }`}
-              >
-                <span className="line-clamp-2">{opt.name.split('-')[0]}</span>
-                <span className={`text-[10px] px-1.5 py-0.5 rounded-full w-fit ${
-                  opt.id === 'laparoscopic-hysterectomy'
-                    ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
-                    : 'bg-slate-800 text-slate-300'
-                }`}>
-                  {opt.suitabilityScore}
-                </span>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Active Treatment Card Detail */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
+        {/* Core Scientific Evidence Box */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-teal-500/40 space-y-4">
           
-          <div className="space-y-1 border-b border-slate-800 pb-3">
-            <div className="flex items-center justify-between gap-2">
-              <span className="text-xs font-mono text-teal-400 uppercase font-bold tracking-wider">
-                Chi Tiết Phác Đồ Lựa Chọn
-              </span>
-              <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-teal-950 text-teal-300 border border-teal-800">
-                {activeTreatment.suitabilityScore}
-              </span>
+          <div className="flex items-center gap-2 font-bold text-teal-300 text-sm sm:text-base border-b border-slate-800 pb-2.5">
+            <BarChart3 className="w-5 h-5 text-teal-400" />
+            <span>Nghiên Cứu Kinh Điển Của Kurman et al. (Cancer 1985) Trên 170 Bệnh Nhân Không Điều Trị:</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+            <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/50 text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-black text-emerald-400">74%</div>
+              <div className="text-xs font-bold text-emerald-200">Tự Thoái Lui Hoàn Toàn</div>
+              <p className="text-[11px] text-slate-300">Niêm mạc tự mỏng lại về bình thường mà không cần bất kỳ can thiệp nào.</p>
             </div>
-            <h3 className="text-base sm:text-lg font-black text-white">
-              {activeTreatment.name}
-            </h3>
-            <p className="text-xs text-slate-400 italic">
-              {activeTreatment.subtitle}
+
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-black text-slate-300">19%</div>
+              <div className="text-xs font-bold text-slate-200">Tồn Tại Lành Tính</div>
+              <p className="text-[11px] text-slate-400">Tiếp tục tồn tại ở dạng tăng sản điển hình lành tính qua nhiều năm không đổi.</p>
+            </div>
+
+            <div className="p-3 rounded-xl bg-rose-950/30 border border-rose-900/40 text-center space-y-1">
+              <div className="text-2xl sm:text-3xl font-black text-rose-400">1.6%</div>
+              <div className="text-xs font-bold text-rose-200">Tiến Triển Ác Tính</div>
+              <p className="text-[11px] text-slate-300">Tỷ lệ cực kỳ thấp sau hơn 13.4 năm theo dõi liên tục.</p>
+            </div>
+          </div>
+
+          <div className="text-xs text-slate-300 space-y-2 pt-1 leading-relaxed">
+            <p>
+              📘 <strong>Kết luận từ RCOG Green-top Guideline No. 67 (Hiệp Hội Sản Phụ Khoa Hoàng Gia Anh):</strong> Với tăng sản nội mạc tử cung điển hình (Without Atypia), cơ chế tự thoái lui tự nhiên (Spontaneous Regression) xảy ra rất cao (70% - 80%) sau khi nguyên nhân kích thích (như ngưng Tamoxifen, hoặc chu kỳ rụng trứng trở lại) được loại bỏ.
             </p>
           </div>
-
-          {/* Layman Analogy */}
-          {activeTreatment.laymanAnalogy && (
-            <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-teal-400 text-xs text-slate-300 space-y-1">
-              <span className="font-bold text-teal-300 flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-teal-400 shrink-0" />
-                <span>Minh họa trực quan:</span>
-              </span>
-              <p className="text-slate-200">{activeTreatment.laymanAnalogy}</p>
-            </div>
-          )}
-
-          {/* Mechanism */}
-          <div className="space-y-1">
-            <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
-              <Activity className="w-3.5 h-3.5 text-teal-400" />
-              <span>Cơ chế thực hiện:</span>
-            </h4>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              {activeTreatment.mechanism}
-            </p>
-          </div>
-
-          {/* Pros & Cons */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-            <div className="space-y-1.5 p-3 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
-              <div className="font-bold text-xs uppercase text-emerald-400 flex items-center gap-1.5">
-                <Check className="w-4 h-4 text-emerald-400" />
-                <span>Ưu điểm vượt trội:</span>
-              </div>
-              <ul className="space-y-1 text-xs text-slate-300">
-                {activeTreatment.pros.map((p, i) => (
-                  <li key={i} className="flex items-start gap-1.5">
-                    <span className="text-emerald-400 font-bold shrink-0">•</span>
-                    <span>{p}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="space-y-1.5 p-3 rounded-xl bg-amber-950/20 border border-amber-900/30">
-              <div className="font-bold text-xs uppercase text-amber-400 flex items-center gap-1.5">
-                <AlertCircle className="w-4 h-4 text-amber-400" />
-                <span>Điểm cần lưu ý & Cân nhắc:</span>
-              </div>
-              <ul className="space-y-1 text-xs text-slate-300">
-                {activeTreatment.cons.map((c, i) => (
-                  <li key={i} className="flex items-start gap-1.5">
-                    <span className="text-amber-400 font-bold shrink-0">•</span>
-                    <span>{c}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-
-          {/* Safety for Breast Cancer */}
-          <div className="p-3 rounded-xl bg-teal-950/30 border-l-2 border-teal-400 text-xs sm:text-sm space-y-1">
-            <span className="font-bold text-teal-300 flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
-              <span>Độ an toàn đối với tiền sử Ung Thư Vú:</span>
-            </span>
-            <p className="text-slate-200">{activeTreatment.breastCancerSafety}</p>
-          </div>
-
-          {/* Recovery & Clinical Recommendation */}
-          <div className="text-xs text-slate-300 space-y-1 bg-slate-950/80 p-3 rounded-xl border border-slate-800">
-            <div><strong className="text-slate-200">Hồi phục & Nằm viện:</strong> {activeTreatment.surgicalRecovery}</div>
-            <div className="pt-0.5"><strong className="text-teal-400">Khuyến nghị chuyên gia:</strong> {activeTreatment.recommendationNote}</div>
-          </div>
-
         </div>
 
-        {/* Dedicated Oncology Safety & Recurrence Cross-Talk Matrix */}
-        <div className="pt-4 space-y-2.5">
-          <div className="space-y-1">
-            <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
-              Đánh Giá Dược Lâm Sàng Ung Bướu (ASCO / NCCN)
-            </span>
-            <h3 className="text-base sm:text-lg font-black text-white flex items-center gap-2">
-              <ShieldAlert className="w-5 h-5 text-rose-400" />
-              <span>Ma Trận Đánh Giá Nguy Cơ Ảnh Hưởng Ngược Lên Ung Thư Vú</span>
-            </h3>
-            <p className="text-xs text-slate-300 leading-relaxed">
-              Mọi giải pháp điều trị phụ khoa, thuốc cầm máu hay thực phẩm bổ sung đều được đối chiếu chặt chẽ với nguy cơ tái phát K vú theo các thử nghiệm lâm sàng quốc tế:
-            </p>
-          </div>
+        {/* Risk Over Time Timeline Matrix */}
+        <div className="space-y-3">
+          <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <TrendingUp className="w-4 h-4 text-teal-400" />
+            <span>Ma Trận Nguy Cơ Theo Từng Mốc Thời Gian Nếu Chỉ Theo Dõi Thuần Túy:</span>
+          </h3>
 
-          <BreastCancerSafetySection />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs">
+            
+            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+              <div className="font-bold text-teal-300 flex items-center justify-between">
+                <span>3 – 6 Tháng Đầu</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Cực kỳ an toàn</span>
+              </div>
+              <ul className="space-y-1 text-slate-300 text-[11px]">
+                <li>• Nguy cơ ác tính hóa: <strong>0%</strong> (tế bào nhân bình thường).</li>
+                <li>• Khả năng tự thoái lui: <strong>30% – 50%</strong>.</li>
+                <li>• <em>Rủi ro thực tế:</em> Tiếp tục ra máu rỉ rả gây mệt mỏi nếu có u xơ 45mm.</li>
+              </ul>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+              <div className="font-bold text-teal-300 flex items-center justify-between">
+                <span>1 – 2 Năm</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Thoái lui cao</span>
+              </div>
+              <ul className="space-y-1 text-slate-300 text-[11px]">
+                <li>• Nguy cơ ác tính hóa: <strong>&lt; 0.5%</strong>.</li>
+                <li>• Khả năng tự thoái lui: <strong>70% – 80%</strong> (khi estrogen buồng trứng giảm dần).</li>
+                <li>• <em>Rủi ro thực tế:</em> Thiếu máu mạn tính nếu rong kinh không được cắt đứt.</li>
+              </ul>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+              <div className="font-bold text-amber-300 flex items-center justify-between">
+                <span>5 – 10 Năm</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">Cần theo dõi</span>
+              </div>
+              <ul className="space-y-1 text-slate-300 text-[11px]">
+                <li>• Nguy cơ tích lũy đột biến: <strong>1% – 3%</strong> (nếu bỏ mặc hoàn toàn trong môi trường estrogen cao).</li>
+                <li>• Nếu đã mãn kinh: Niêm mạc tự teo mỏng vĩnh viễn (&lt; 4mm).</li>
+              </ul>
+            </div>
+
+            <div className="p-3.5 rounded-xl bg-slate-900 border border-slate-800 space-y-1.5">
+              <div className="font-bold text-slate-300 flex items-center justify-between">
+                <span>15 – 20 Năm</span>
+                <span className="text-[10px] px-1.5 py-0.5 rounded bg-slate-800 text-slate-300">Tích lũy tối đa</span>
+              </div>
+              <ul className="space-y-1 text-slate-300 text-[11px]">
+                <li>• Nguy cơ tích lũy tối đa: <strong>&lt; 5%</strong> (theo nghiên cứu dài hạn của Cochrane & RCOG).</li>
+                <li>• Xử lý sớm giúp đưa nguy cơ về <strong>0%</strong> vĩnh viễn.</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Why Treatment with Orgametril 15 days is Smart */}
+        <div className="p-4 rounded-2xl bg-slate-900/90 border border-teal-500/30 space-y-2.5 text-xs sm:text-sm text-slate-300">
+          <div className="font-bold text-teal-300 flex items-center gap-2 text-sm sm:text-base">
+            <Pill className="w-4 h-4 text-teal-400" />
+            <span>Vì sao Bác sĩ Thu Huyền cho uống Orgametril 15 ngày (ngày 18/09/2026) thay vì chỉ theo dõi thụ động?</span>
+          </div>
+          <p>
+            Như dữ liệu khoa học ở trên chứng minh: <strong>Bản thân mảng tăng sản điển hình có tới 74% khả năng tự khỏi</strong>. Tuy nhiên, nếu chỉ ngồi chờ tự khỏi, chị Nga sẽ phải chịu đựng tình trạng ra máu dầm dề nhiều tháng tiếp theo do sự cản trở của <strong>khối u xơ 45mm và ổ Adenomyosis</strong>.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 pt-1 text-xs">
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+              <strong className="text-emerald-400 block">✓ Lợi ích của Orgametril 15 ngày:</strong>
+              <p>Chủ động ép mỏng niêm mạc nhanh chóng trong 2 tuần (tỷ lệ thoái lui tăng lên &gt; 90%), cầm máu ngay lập tức để cơ thể không bị mất máu thêm.</p>
+            </div>
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 space-y-1">
+              <strong className="text-teal-400 block">✓ Cột mốc kiểm chứng ngày 16/10/2026:</strong>
+              <p>Siêu âm lại để đo trực tiếp độ dày niêm mạc. Nếu niêm mạc đã mỏng mịn (&le; 4-5mm) thì coi như mục tiêu điều trị nội khoa đã hoàn thành xuất sắc!</p>
+            </div>
+          </div>
         </div>
 
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 5: CLINICAL MEDIA ATLAS & VIDEO SURGERY */}
+      {/* CHAPTER 6: ALL 4 TREATMENT STRATEGIES (FULLY EXPANDED & CONTINUOUS) */}
       {/* ========================================================================= */}
-      <section id="chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 5 • Atlas Video Lâm Sàng
+            Chương 6 • Phác Đồ Điều Trị Toàn Diện
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            Chi Tiết Toàn Bộ 4 Phác Đồ Điều Trị Tối Ưu Cho Người Tiền Sử K Vú
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400">
+            Dưới đây là toàn bộ 4 phương án y khoa được mở phẳng chi tiết từ góc độ Sản Phụ Khoa và Ung Bướu, giúp chị đọc liền mạch không cần bấm chọn:
+          </p>
+        </div>
+
+        {/* Continuous Stream of All 4 Treatments */}
+        <div className="space-y-6">
+          {tamoxifenTreatmentOptions.map((opt, idx) => (
+            <div 
+              key={opt.id}
+              className={`p-4 sm:p-6 rounded-2xl border space-y-4 transition-all ${
+                opt.id === 'laparoscopic-hysterectomy'
+                  ? 'bg-slate-900/95 border-teal-500/50 shadow-xl ring-1 ring-teal-500/20'
+                  : 'bg-slate-900/80 border-slate-800'
+              }`}
+            >
+              {/* Header */}
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800 pb-3">
+                <div className="space-y-0.5">
+                  <span className="text-xs font-mono text-teal-400 font-bold uppercase tracking-wider">
+                    Phác Đồ {idx + 1} / 4
+                  </span>
+                  <h3 className="text-lg sm:text-xl font-black text-white">
+                    {opt.name}
+                  </h3>
+                  <p className="text-xs text-slate-400 italic">
+                    {opt.subtitle}
+                  </p>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <span className={`text-xs px-3 py-1 rounded-full font-bold ${
+                    opt.id === 'laparoscopic-hysterectomy'
+                      ? 'bg-emerald-950 text-emerald-300 border border-emerald-800'
+                      : 'bg-slate-800 text-slate-300 border border-slate-700'
+                  }`}>
+                    {opt.suitabilityScore}
+                  </span>
+                </div>
+              </div>
+
+              {/* Layman Analogy */}
+              {opt.laymanAnalogy && (
+                <div className="p-3 rounded-xl bg-slate-950/90 border-l-2 border-teal-400 text-xs text-slate-300 space-y-1">
+                  <span className="font-bold text-teal-300 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-teal-400 shrink-0" />
+                    <span>Minh họa trực quan:</span>
+                  </span>
+                  <p className="text-slate-200">{opt.laymanAnalogy}</p>
+                </div>
+              )}
+
+              {/* Mechanism */}
+              <div className="space-y-1 text-xs sm:text-sm">
+                <h4 className="font-bold uppercase text-slate-400 flex items-center gap-1.5 text-xs">
+                  <Activity className="w-3.5 h-3.5 text-teal-400" />
+                  <span>Cơ chế thực hiện:</span>
+                </h4>
+                <p className="text-slate-300 leading-relaxed">
+                  {opt.mechanism}
+                </p>
+              </div>
+
+              {/* Pros & Cons Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                <div className="space-y-1.5 p-3.5 rounded-xl bg-emerald-950/20 border border-emerald-900/30">
+                  <div className="font-bold text-xs uppercase text-emerald-400 flex items-center gap-1.5">
+                    <Check className="w-4 h-4 text-emerald-400" />
+                    <span>Ưu điểm vượt trội:</span>
+                  </div>
+                  <ul className="space-y-1 text-xs text-slate-300">
+                    {opt.pros.map((p, i) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="text-emerald-400 font-bold shrink-0">•</span>
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-1.5 p-3.5 rounded-xl bg-amber-950/20 border border-amber-900/30">
+                  <div className="font-bold text-xs uppercase text-amber-400 flex items-center gap-1.5">
+                    <AlertCircle className="w-4 h-4 text-amber-400" />
+                    <span>Điểm cần lưu ý & Cân nhắc:</span>
+                  </div>
+                  <ul className="space-y-1 text-xs text-slate-300">
+                    {opt.cons.map((c, i) => (
+                      <li key={i} className="flex items-start gap-1.5">
+                        <span className="text-amber-400 font-bold shrink-0">•</span>
+                        <span>{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              {/* Breast Cancer Safety */}
+              <div className="p-3 rounded-xl bg-teal-950/30 border-l-2 border-teal-400 text-xs sm:text-sm space-y-1">
+                <span className="font-bold text-teal-300 flex items-center gap-1.5 text-xs">
+                  <ShieldCheck className="w-4 h-4 text-teal-400 shrink-0" />
+                  <span>Độ an toàn đối với tiền sử Ung Thư Vú:</span>
+                </span>
+                <p className="text-slate-200">{opt.breastCancerSafety}</p>
+              </div>
+
+              {/* Recommendation Note */}
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-xs text-slate-300 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div><strong className="text-slate-200">Hồi phục:</strong> {opt.surgicalRecovery}</div>
+                <div><strong className="text-teal-400">Khuyến nghị:</strong> {opt.recommendationNote}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 7: ONCOLOGY SAFETY CROSS-TALK MATRIX */}
+      {/* ========================================================================= */}
+      <section id="chapter-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+        
+        <div className="space-y-1">
+          <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
+            Chương 7 • Dược Lâm Sàng Ung Bướu (ASCO / NCCN)
+          </span>
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
+            <ShieldAlert className="w-5 h-5 text-rose-400" />
+            <span>Ma Trận Đánh Giá Nguy Cơ Ảnh Hưởng Ngược Lên Ung Thư Vú</span>
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            Mọi giải pháp điều trị phụ khoa, thuốc cầm máu hay thực phẩm bổ sung đều được đối chiếu chặt chẽ với nguy cơ tái phát K vú theo các thử nghiệm lâm sàng quốc tế:
+          </p>
+        </div>
+
+        <BreastCancerSafetySection />
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 8: PERSONALIZED ROADMAP & DOCTOR QUESTIONS (FULLY OPEN & CONTINUOUS) */}
+      {/* ========================================================================= */}
+      <section id="chapter-8" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+        
+        <div className="space-y-1">
+          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+            Chương 8 • Lộ Trình Hành Động Cá Thể Hóa
+          </div>
+          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            Bản Đồ Lộ Trình Hành Động & Danh Sách Câu Hỏi Vàng Cho Bác Sĩ
+          </h2>
+          <p className="text-xs sm:text-sm text-slate-400">
+            Dưới đây là 2 kịch bản hướng đi cụ thể tùy theo nguyện vọng của chị và danh sách câu hỏi chuẩn bị sẵn khi gặp Bác sĩ điều trị:
+          </p>
+        </div>
+
+        {/* 2 Scenarios Stream */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          
+          {/* Scenario 1: Triệt để 100% */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-teal-500/40 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">
+                LỰA CHỌN ƯU TIÊN SỐ 1
+              </span>
+              <span className="text-xs text-teal-400 font-mono font-bold">DỨT ĐIỂM 100%</span>
+            </div>
+            <h3 className="text-base sm:text-lg font-black text-white">
+              Phẫu Thuật Nội Soi Cắt Tử Cung (Bảo Tồn 2 Buồng Trứng)
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Phù hợp khi chị đã sinh đủ con, muốn dứt điểm hoàn toàn tình trạng rong kinh, giải quyết luôn khối u xơ 45mm và xóa bỏ vĩnh viễn 100% nỗi lo ung thư tử cung.
+            </p>
+            <div className="space-y-1.5 pt-1 text-xs">
+              <strong className="text-teal-300 block">Các bước hành động:</strong>
+              <ul className="space-y-1 text-slate-300">
+                <li className="flex items-start gap-1.5"><span className="text-teal-400 font-bold">✓</span> Khám tư vấn tại Khoa Phụ Ngoại (BV Hùng Vương / BV Từ Dũ / ĐHYD).</li>
+                <li className="flex items-start gap-1.5"><span className="text-teal-400 font-bold">✓</span> Yêu cầu giữ lại 2 buồng trứng để duy trì nội tiết tố tự nhiên, không bị lão hóa sớm.</li>
+                <li className="flex items-start gap-1.5"><span className="text-teal-400 font-bold">✓</span> Mổ nội soi ít xâm lấn, nằm viện 2-3 ngày, hồi phục sau 2 tuần.</li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Scenario 2: Bảo tồn & Uống thuốc */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-3">
+            <div className="flex items-center justify-between">
+              <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-slate-800 text-slate-300 border border-slate-700">
+                HƯỚNG BẢO TỒN NỘI KHOA
+              </span>
+              <span className="text-xs text-amber-400 font-mono font-bold">THEO DÕI ĐỊNH KỲ</span>
+            </div>
+            <h3 className="text-base sm:text-lg font-black text-white">
+              Uống Orgametril 15 Ngày + Tái Khám Siêu Âm Ngày 16/10/2026
+            </h3>
+            <p className="text-xs text-slate-300 leading-relaxed">
+              Phù hợp khi chị muốn điều trị bảo tồn nhẹ nhàng không phẫu thuật ngay, đánh giá đáp ứng làm mỏng niêm mạc của thuốc theo chỉ định BS Thu Huyền.
+            </p>
+            <div className="space-y-1.5 pt-1 text-xs">
+              <strong className="text-amber-300 block">Các bước hành động:</strong>
+              <ul className="space-y-1 text-slate-300">
+                <li className="flex items-start gap-1.5"><span className="text-amber-400 font-bold">✓</span> Uống đúng liều Orgametril 5mg (2 viên/ngày) + Canxi + Sắt trong 15 ngày.</li>
+                <li className="flex items-start gap-1.5"><span className="text-amber-400 font-bold">✓</span> Đi siêu âm lại đúng hẹn ngày 16/10/2026 để đo độ mỏng niêm mạc.</li>
+                <li className="flex items-start gap-1.5"><span className="text-amber-400 font-bold">✓</span> Nếu niêm mạc mỏng tốt (&le; 5mm) $\rightarrow$ Tiếp tục theo dõi 3-6 tháng/lần.</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        {/* Ready-to-Use Questions for Doctor */}
+        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900 border border-amber-500/30 space-y-3">
+          <div className="flex items-center gap-2 font-bold text-amber-300 text-sm sm:text-base">
+            <HelpCircle className="w-4 h-4 text-amber-400" />
+            <span>Danh Sách 4 Câu Hỏi Chuẩn Bị Sẵn Cho Bác Sĩ Phụ Khoa & Ung Bướu:</span>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs">
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 italic space-y-1">
+              <span className="font-bold text-amber-300 not-italic block">1. Về kết quả sinh thiết GPB:</span>
+              "Thưa bác sĩ, kết quả GPB của tôi là Tăng sản điển hình khu trú (without atypia) lành tính 100%, vậy tôi có thể yên tâm về mặt ung bướu chưa?"
+            </div>
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 italic space-y-1">
+              <span className="font-bold text-amber-300 not-italic block">2. Về tương tác thuốc K vú:</span>
+              "Tôi đang uống Orgametril 15 ngày theo đơn BS Phụ khoa, đợt thuốc ngắn hạn này có hoàn toàn an toàn cho tuyến vú của tôi không?"
+            </div>
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 italic space-y-1">
+              <span className="font-bold text-amber-300 not-italic block">3. Về khối u xơ 45mm và Adenomyosis:</span>
+              "Khối u xơ 45mm và ổ Adenomyosis có phải là lý do khiến tôi bị rong kinh dai dẳng không, và hướng xử lý lâu dài là gì?"
+            </div>
+            <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-slate-200 italic space-y-1">
+              <span className="font-bold text-amber-300 not-italic block">4. Về phẫu thuật nội soi bảo tồn buồng trứng:</span>
+              "Nếu tôi chọn phẫu thuật nội soi cắt tử cung giữ lại 2 buồng trứng thì sau phẫu thuật sức khỏe và nội tiết của tôi sẽ như thế nào?"
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      {/* ========================================================================= */}
+      {/* CHAPTER 9: CLINICAL MEDIA ATLAS & VIDEO SURGERY */}
+      {/* ========================================================================= */}
+      <section id="chapter-9" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+        
+        <div className="space-y-1">
+          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
+            Chương 9 • Atlas Video Lâm Sàng
           </div>
           <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
             Video Thủ Thuật & Mô Phỏng Phẫu Thuật Thực Tế
@@ -687,134 +993,16 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       </section>
 
       {/* ========================================================================= */}
-      {/* CHAPTER 6: PERSONALIZED DECISION TOOL */}
+      {/* CHAPTER 10: LIFESTYLE, RECOVERY & FOLLOW-UP SCHEDULE */}
       {/* ========================================================================= */}
-      <section id="chapter-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-10" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 6 • Cây Quyết Định Cá Thể Hóa
-          </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-            Tự Đánh Giá & Chọn Hướng Đi Phù Hợp Nhất Cho Chị
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
-            Trả lời nhanh 2 câu hỏi để nhận phác đồ khuyến nghị y khoa cá thể hóa và danh sách câu hỏi cần trao đổi với Bác sĩ:
-          </p>
-        </div>
-
-        {/* Interactive Decision Box */}
-        <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/90 border border-slate-800 space-y-4">
-          
-          {!isDecisionResult && currentDecisionNode && (
-            <div className="space-y-4">
-              <div className="space-y-1">
-                <span className="text-xs font-mono text-teal-400 font-bold uppercase">
-                  Bước {decisionHistory.length} / 2
-                </span>
-                <h3 className="text-sm sm:text-base font-bold text-white">
-                  {currentDecisionNode.question}
-                </h3>
-                <p className="text-xs text-slate-400">
-                  {currentDecisionNode.explanation}
-                </p>
-              </div>
-
-              <div className="space-y-2">
-                {currentDecisionNode.options.map((opt, i) => (
-                  <button
-                    key={i}
-                    onClick={() => handleDecisionOption(opt)}
-                    className="w-full p-3.5 rounded-xl text-left bg-slate-950 border border-slate-800 hover:border-teal-500/60 hover:bg-slate-900/80 transition-all text-xs sm:text-sm group flex items-start justify-between gap-3 cursor-pointer"
-                  >
-                    <div className="space-y-0.5">
-                      <div className="font-bold text-slate-200 group-hover:text-teal-300 transition-colors">
-                        {opt.label}
-                      </div>
-                      <div className="text-xs text-slate-400">
-                        {opt.description}
-                      </div>
-                    </div>
-                    <ChevronRight className="w-4 h-4 text-slate-600 group-hover:text-teal-400 shrink-0 mt-1 transition-colors" />
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {isDecisionResult && finalDecisionRecommendation && (
-            <div className="space-y-4">
-              <div className="space-y-1.5">
-                <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-teal-950 text-teal-300 border border-teal-800">
-                  {finalDecisionRecommendation.tier}
-                </span>
-                <h3 className="text-base sm:text-lg font-black text-white">
-                  {finalDecisionRecommendation.title}
-                </h3>
-              </div>
-
-              {/* Action Steps */}
-              <div className="space-y-1.5">
-                <h4 className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
-                  <Activity className="w-3.5 h-3.5 text-teal-400" />
-                  <span>Các bước hành động cụ thể:</span>
-                </h4>
-                <ul className="space-y-1 text-xs text-slate-300">
-                  {finalDecisionRecommendation.actionSteps.map((step: string, i: number) => (
-                    <li key={i} className="flex items-start gap-2 p-2 rounded-lg bg-slate-950 border border-slate-800/80">
-                      <span className="text-teal-400 font-bold shrink-0">✓</span>
-                      <span>{step}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {/* Questions for the Doctor */}
-              <div className="space-y-1.5">
-                <h4 className="text-xs font-bold uppercase text-amber-400 flex items-center gap-1.5">
-                  <HelpCircle className="w-3.5 h-3.5 text-amber-400" />
-                  <span>Câu hỏi chuẩn bị sẵn khi gặp Bác sĩ điều trị:</span>
-                </h4>
-                <div className="space-y-1.5">
-                  {finalDecisionRecommendation.doctorQuestions.map((q: string, i: number) => (
-                    <div key={i} className="p-2.5 rounded-lg bg-amber-950/20 border-l-2 border-amber-400 text-xs text-amber-100 italic">
-                      {q}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Oncology Safety Note */}
-              <div className="p-3 rounded-xl bg-teal-950/40 border-l-2 border-teal-400 text-xs text-teal-200">
-                <strong className="text-teal-300">Lưu ý chuyên khoa Ung Bướu: </strong>
-                {finalDecisionRecommendation.oncologyNote}
-              </div>
-
-              <button
-                onClick={handleResetDecision}
-                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-bold transition-colors cursor-pointer"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                <span>Thực hiện lại đánh giá</span>
-              </button>
-            </div>
-          )}
-
-        </div>
-
-      </section>
-
-      {/* ========================================================================= */}
-      {/* CHAPTER 7: LIFESTYLE, RECOVERY & FOLLOW-UP SCHEDULE */}
-      {/* ========================================================================= */}
-      <section id="chapter-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
-        
-        <div className="space-y-1">
-          <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
-            Chương 7 • Lối Sống & Tái Khám
+            Chương 10 • Lối Sống & Lịch Tầm Soát Kép
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-            Chăm Sóc Toàn Diện Sau 5 Năm Tamoxifen & Lịch Tái Khám Vàng
+            Chăm Sóc Toàn Diện, Dinh Dưỡng Bù Máu & Lịch Tầm Soát Vàng
           </h2>
         </div>
 
@@ -826,12 +1014,12 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               <span>1. Chế độ dinh dưỡng phục hồi máu & bảo vệ xương khớp</span>
             </h3>
             <p>
-              Sau 5 năm Tamoxifen và nhiều tháng rong kinh, cơ thể cần được bổ sung dinh dưỡng có chọn lọc:
+              Sau 5 năm Tamoxifen và đợt rong kinh tháng 8-9/2026, cơ thể cần được bổ sung dinh dưỡng có chọn lọc:
             </p>
             <ul className="list-disc list-inside space-y-1 pl-2 text-slate-300">
-              <li><strong>Bù đắp sắt hữu cơ:</strong> Tăng cường thịt bò nạc, ức gà, lòng đỏ trứng, rau bina (chân vịt), củ dền, mộc nhĩ và hạt bí. Uống kèm nước cam hoặc ổi tươi (Vitamin C) để tăng hấp thu sắt gấp 3 lần.</li>
-              <li><strong>Bảo vệ mật độ xương:</strong> Bổ sung Canxi hữu cơ (từ sữa chua không đường, cá nhỏ ăn cả xương, mè đen) kết hợp Vitamin D3 + K2.</li>
-              <li><strong>Tránh thực phẩm kích thích nội tiết bừa bãi:</strong> Không tự ý uống các loại viên uống mầm đậu nành đậm đặc hay sâm tố nữ bổ sung estrogen khi chưa có ý kiến của Bác sĩ Ung bướu.</li>
+              <li><strong>Bù đắp sắt hữu cơ & Hemoglobin:</strong> Uống thuốc sắt (Hem) đều đặn theo đơn BS Thu Huyền, tăng cường thịt bò nạc, ức gà, lòng đỏ trứng, rau bina (chân vịt), củ dền, mộc nhĩ và hạt bí. Uống kèm nước cam hoặc ổi tươi (Vitamin C) để tăng hấp thu sắt gấp 3 lần.</li>
+              <li><strong>Bảo vệ mật độ xương:</strong> Uống Canxi theo đơn, kết hợp sữa chua không đường, cá nhỏ ăn cả xương, mè đen và tắm nắng nhẹ.</li>
+              <li><strong>Tránh thực phẩm kích thích nội tiết bừa bãi:</strong> Tuyệt đối không tự ý uống các loại viên uống mầm đậu nành đậm đặc hay sâm tố nữ bổ sung estrogen khi chưa có ý kiến của Bác sĩ Ung bướu.</li>
             </ul>
           </div>
 
@@ -842,12 +1030,12 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             </h3>
             <div className="space-y-2 pt-1">
               <div className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                <span className="font-bold text-rose-400 shrink-0 text-xs bg-rose-950/60 px-2 py-0.5 rounded">Tuyến Vú:</span>
-                <span>Khám định kỳ 6 - 12 tháng/lần tại BV Ung Bướu: Siêu âm tuyến vú + Chụp nhũ ảnh (Mammography) hàng năm.</span>
+                <span className="font-bold text-teal-400 shrink-0 text-xs bg-teal-950/60 px-2 py-0.5 rounded">Tái Khám 16/10/2026:</span>
+                <span>Siêu âm đầu dò phụ khoa đo lại bề dày nội mạc tử cung sau đợt uống Orgametril 15 ngày tại phòng khám BS Thu Huyền.</span>
               </div>
               <div className="flex items-start gap-2 p-2.5 rounded-lg bg-slate-950 border border-slate-800">
-                <span className="font-bold text-teal-400 shrink-0 text-xs bg-teal-950/60 px-2 py-0.5 rounded">Phụ Khoa:</span>
-                <span>Tái khám siêu âm đầu dò phụ khoa sau 3 tháng để theo dõi tiến triển khối u xơ 45mm và niêm mạc lòng tử cung.</span>
+                <span className="font-bold text-rose-400 shrink-0 text-xs bg-rose-950/60 px-2 py-0.5 rounded">Tuyến Vú:</span>
+                <span>Khám định kỳ 6 - 12 tháng/lần tại BV Ung Bướu: Siêu âm tuyến vú + Chụp nhũ ảnh (Mammography) hàng năm.</span>
               </div>
             </div>
           </div>
