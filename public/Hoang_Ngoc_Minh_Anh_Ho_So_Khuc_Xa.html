@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Khúc Xạ Mắt - Hoàng Ngọc Minh Anh</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; color: #000000 !important; font-size: 11pt; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
+    }
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen p-4 sm:p-8">
+
+  <!-- Top Action Bar (No print) -->
+  <div class="no-print max-w-4xl mx-auto mb-6 bg-slate-900 text-white p-4 rounded-xl shadow-lg flex flex-wrap items-center justify-between gap-4 border border-slate-700">
+    <div class="flex items-center gap-3">
+      <span class="text-xl">📄</span>
+      <div>
+        <h1 class="font-bold text-sm sm:text-base text-cyan-400">Hồ Sơ Khúc Xạ Mắt</h1>
+        <p class="text-xs text-slate-300">Bệnh nhân: Hoàng Ngọc Minh Anh (19/01/2012)</p>
+      </div>
+    </div>
+    <div>
+      <button onclick="window.print()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm rounded-lg shadow transition-all flex items-center gap-1.5 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        <span>In Hồ Sơ (Ctrl + P)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- A4 Document Container -->
+  <main class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-md print-shadow-none border border-slate-200 space-y-6">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-300 pb-4 flex flex-wrap items-start justify-between gap-4">
+      <div class="space-y-1">
+        <h1 class="text-xl font-bold text-slate-900 uppercase">
+          Hồ Sơ Khúc Xạ Mắt
+        </h1>
+        <p class="text-xs text-slate-600">
+          Tổng hợp lịch sử đo khúc xạ và đeo kính
+        </p>
+      </div>
+
+      <div class="text-right text-xs space-y-1 bg-slate-50 p-2.5 rounded border border-slate-200">
+        <div><strong class="text-slate-700">Mã HS (Cao Thắng):</strong> <span class="font-mono">96672</span></div>
+        <div><strong class="text-slate-700">Ngày cập nhật:</strong> 26/09/2026</div>
+      </div>
+    </header>
+
+    <!-- Patient Info -->
+    <section class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs sm:text-sm grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+      <div><strong class="text-slate-900">Họ và tên:</strong> HOÀNG NGỌC MINH ANH</div>
+      <div><strong class="text-slate-900">Ngày sinh:</strong> 19/01/2012 (14 tuổi)</div>
+      <div><strong class="text-slate-900">Giới tính:</strong> Nữ</div>
+      <div><strong class="text-slate-900">Địa chỉ:</strong> 621 Bình Thới, Phường 10, Quận 11, TP.HCM</div>
+      <div class="sm:col-span-2 pt-1 border-t border-slate-200">
+        <strong class="text-slate-900">Tình trạng:</strong> Cận thị hai mắt, mắt trái có loạn thị cận.
+      </div>
+    </section>
+
+    <!-- Examination History Table -->
+    <section class="space-y-3">
+      <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1">
+        Lịch Sử Đo Khúc Xạ & Đơn Kính
+      </h2>
+
+      <div class="overflow-x-auto border border-slate-300 rounded">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-100 text-slate-700 font-mono uppercase border-b border-slate-300">
+            <tr>
+              <th class="p-2.5">Thời Gian & Cơ Sở</th>
+              <th class="p-2.5">Mắt Phải (MP - OD)</th>
+              <th class="p-2.5">Mắt Trái (MT - OS)</th>
+              <th class="p-2.5 text-center">PD</th>
+              <th class="p-2.5">Chẩn Đoán & Tròng Kính</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <!-- 2022 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">05/10/2022</div>
+                <div class="text-slate-600">BV Mắt Cao Thắng</div>
+                <div class="text-slate-500 text-[11px]">(10 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div>Plano (-0.50) 50°</div>
+                <div class="text-[11px] text-slate-600">TL: Không kính 10-/10, Có kính 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div>Plano (-0.50) 175°</div>
+                <div class="text-[11px] text-slate-600">TL: Không kính 10-/10, Có kính 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">59mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Khô mắt (H52.6). Chưa có độ cận.</div>
+                <div class="text-slate-600">Chỉ định: Chưa cần đeo kính. Nhỏ Vismed 0.18% & EyeBi.</div>
+              </td>
+            </tr>
+
+            <!-- 2024 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">20/08/2024</div>
+                <div class="text-slate-600">Mắt Kính HMK</div>
+                <div class="text-slate-500 text-[11px]">(12 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.50 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-1.50 D / -0.75 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">60mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị hai mắt, MT có loạn thị.</div>
+                <div>Tròng kính: Kính đơn tròng (976.000đ).</div>
+              </td>
+            </tr>
+
+            <!-- 2025 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">23/12/2025</div>
+                <div class="text-slate-600">Mắt Kính MINH ANH</div>
+                <div class="text-slate-500 text-[11px]">(13-14 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-3.50 D</div>
+                <div class="text-[11px] text-slate-600">TL: Không kính 1/10 $\rightarrow$ Có kính 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.00 D / -0.75 D x 170°</div>
+                <div class="text-[11px] text-slate-600">TL: Không kính 2/10 $\rightarrow$ Có kính 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">62mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị hai mắt, MT loạn thị cận.</div>
+                <div>Tròng kính: 1.60 ASX (Phi cầu / Lọc ánh sáng xanh).</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Summary Metrics -->
+    <section class="bg-slate-50 border border-slate-200 p-3.5 rounded-lg space-y-1.5 text-xs">
+      <h3 class="font-bold text-slate-900 uppercase">Tóm Tắt Khúc Xạ:</h3>
+      <ul class="space-y-1 list-disc list-inside leading-relaxed text-slate-700">
+        <li><strong>Mắt phải:</strong> Plano (2022) $\rightarrow$ -2.50D (2024) $\rightarrow$ -3.50D (2025).</li>
+        <li><strong>Mắt trái:</strong> Plano (2022) $\rightarrow$ -1.50D / Loạn -0.75D (2024) $\rightarrow$ -2.00D / Loạn -0.75D x 170° (2025).</li>
+        <li><strong>Khoảng cách đồng tử (PD):</strong> 59mm (2022) $\rightarrow$ 60mm (2024) $\rightarrow$ 62mm (2025).</li>
+      </ul>
+    </section>
+
+    <!-- Footer / Notes -->
+    <footer class="pt-6 flex justify-between items-end text-xs text-slate-500 border-t border-slate-200">
+      <div>
+        <p>Tài liệu lưu trữ thông số khúc xạ cá nhân.</p>
+      </div>
+      <div class="text-center space-y-10">
+        <p class="font-bold text-slate-700">NGƯỜI LẬP HỒ SƠ</p>
+        <p class="italic text-slate-400">(Ký tên)</p>
+      </div>
+    </footer>
+
+  </main>
+
+</body>
+</html>

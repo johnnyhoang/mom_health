@@ -29,7 +29,9 @@ import {
   Scale,
   GitFork,
   CheckCircle2,
-  AlertCircle
+  AlertCircle,
+  Printer,
+  FileText
 } from 'lucide-react';
 
 interface VisionMyopiaArticleProps {
@@ -122,36 +124,59 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
             <div className="text-xs uppercase tracking-wider font-bold text-cyan-400 flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>Hồ Sơ Y Khoa Khúc Xạ Cá Thể Hóa • Bệnh Nhi Hoàng Ngọc Minh Anh</span>
+              <span>Hồ Sơ Khúc Xạ • Bệnh Nhi Hoàng Ngọc Minh Anh</span>
             </div>
-            <span className="text-[11px] font-mono bg-cyan-950/80 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800/60">
-              Mã hồ sơ BV: {minhAnhVisionProfile.medicalRecordNo}
-            </span>
+            
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => window.print()}
+                className="px-2.5 py-1 bg-cyan-950 hover:bg-cyan-900 text-cyan-200 text-[11px] font-bold rounded border border-cyan-700/60 flex items-center gap-1 cursor-pointer transition-colors"
+                title="In hồ sơ hoặc lưu PDF"
+              >
+                <Printer className="w-3.5 h-3.5 text-cyan-400" />
+                <span>In Hồ Sơ</span>
+              </button>
+
+              <a
+                href="/Hoang_Ngoc_Minh_Anh_Ho_So_Khuc_Xa.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-slate-200 text-[11px] font-bold rounded border border-slate-700 flex items-center gap-1 cursor-pointer transition-colors"
+                title="Mở file HTML A4 để in"
+              >
+                <FileText className="w-3.5 h-3.5 text-amber-400" />
+                <span>File In A4</span>
+              </a>
+
+              <span className="text-[11px] font-mono bg-slate-900 text-slate-400 px-2 py-0.5 rounded border border-slate-800">
+                Mã BV: {minhAnhVisionProfile.medicalRecordNo}
+              </span>
+            </div>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-300">
             <div><strong className="text-slate-100">Bệnh nhân:</strong> {minhAnhVisionProfile.name} ({minhAnhVisionProfile.gender})</div>
             <div><strong className="text-slate-100">Ngày sinh:</strong> {minhAnhVisionProfile.birthDate} ({minhAnhVisionProfile.age} tuổi)</div>
             <div><strong className="text-slate-100">Địa chỉ:</strong> {minhAnhVisionProfile.address}</div>
-            <div><strong className="text-slate-100">Chẩn đoán lâm sàng:</strong> {minhAnhVisionProfile.currentStatus}</div>
+            <div><strong className="text-slate-100">Tình trạng:</strong> {minhAnhVisionProfile.currentStatus}</div>
           </div>
 
-          {/* 3 Milestone Exam Timeline Table */}
+          {/* Exam Timeline Table */}
           <div className="pt-2 space-y-2">
             <div className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
-              <Award className="w-3.5 h-3.5 text-amber-400" />
-              <span>Lịch Sử Diễn Tiến Khúc Xạ Mắt (3 Mốc Khám 2022 - 2024 - 2025)</span>
+              <Award className="w-3.5 h-3.5 text-cyan-400" />
+              <span>Lịch Sử Khám Khúc Xạ</span>
             </div>
 
             <div className="overflow-x-auto border border-slate-800/80 rounded-xl bg-slate-900/40">
               <table className="w-full text-left text-xs font-sans">
                 <thead>
                   <tr className="bg-slate-900/80 text-cyan-400 font-mono uppercase border-b border-slate-800">
-                    <th className="py-2.5 px-3">Mốc Thời Gian & Cơ Sở</th>
+                    <th className="py-2.5 px-3">Thời Gian & Cơ Sở</th>
                     <th className="py-2.5 px-3">Mắt Phải (MP)</th>
                     <th className="py-2.5 px-3">Mắt Trái (MT)</th>
                     <th className="py-2.5 px-3">PD</th>
-                    <th className="py-2.5 px-3">Ghi Chú Tiến Triển & Tròng Kính</th>
+                    <th className="py-2.5 px-3">Ghi Chú Tròng Kính & Tiến Triển</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/60 text-slate-300">
@@ -186,12 +211,12 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             </div>
           </div>
 
-          <div className="p-3 bg-rose-950/20 border-l-2 border-rose-500 rounded-r-xl text-xs space-y-1 text-slate-200">
-            <div className="font-bold text-rose-300 uppercase tracking-wider flex items-center gap-1.5">
-              <span>Báo Động Lâm Sàng & Đề Xuất Trình Bác Sĩ Bệnh Viện:</span>
+          <div className="p-3 bg-slate-900/60 border border-slate-800 rounded-r-xl text-xs space-y-1 text-slate-300">
+            <div className="font-bold text-cyan-400 uppercase tracking-wider">
+              Tóm Tắt Diễn Tiến Khúc Xạ:
             </div>
-            <p className="leading-relaxed">
-              {minhAnhVisionProfile.progressionSummary.annualProgressionRate}. {minhAnhVisionProfile.progressionSummary.primaryHospitalRecommendation}
+            <p className="leading-relaxed text-slate-300">
+              {minhAnhVisionProfile.progressionSummary.rightEyeSphereChange}. {minhAnhVisionProfile.progressionSummary.leftEyeSphereChange}. {minhAnhVisionProfile.progressionSummary.annualProgressionRate}
             </p>
           </div>
         </div>
@@ -474,7 +499,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <span className="text-emerald-400">Hiệu quả: Giảm 67% độ cận</span>
               </div>
               <h3 className="text-base sm:text-lg font-bold text-white">
-                Chùm Thể Tích Vi Thấu Kính Phi Cầu 11 Vòng Đồng Tâm (1.021 Vi Thấu Kính)
+                Cấu Trúc Vi Thấu Kính Phi Cầu 11 Vòng Đồng Tâm (1.021 Vi Thấu Kính)
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
                 Được công bố trên tạp chí y khoa số 1 thế giới <strong>JAMA Ophthalmology</strong> từ nghiên cứu thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT) tại Đại học Y Ôn Châu. Cấu trúc 1.021 vi thấu kính phi cầu xếp trên 11 vòng đồng tâm tạo ra một "khối thể tích ánh sáng Defocus" uốn lượn khớp hoàn hảo với độ cong võng mạc. Khi trẻ đeo kính đủ từ 12 tiếng mỗi ngày, hiệu quả kìm hãm cận thị đạt 67% và kiểm soát trục nhãn cầu tới 60%.
@@ -502,10 +527,10 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <span className="text-emerald-400">Hiệu quả: Giảm 63-68% độ cận</span>
               </div>
               <h3 className="text-base sm:text-lg font-bold text-white">
-                Vòng Khúc Xạ Vi Hình Trụ Đồng Tâm Xen Kẽ Cá Thể Hóa Theo Độ Tuổi (MyoCare S)
+                Vòng Khúc Xạ Vi Hình Trụ Đồng Tâm Xen Kẽ Theo Độ Tuổi (MyoCare S)
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
-                Đỉnh cao quang học từ hãng Đức Carl Zeiss. Thay vì dùng các chấm vi thấu kính tròn, Zeiss dùng các dải vòng nhẫn khúc xạ vi hình trụ xen kẽ giúp tối ưu hóa quang sai và giảm độ nhòe ngoại vi khi mắt liếc qua lại. Zeiss chia sản phẩm thành 2 dòng: MyoCare (trẻ &lt; 10 tuổi) và <strong>MyoCare S</strong> (trẻ từ 10-18 tuổi — thiết kế tối ưu riêng cho mật độ điều tiết của học sinh trung học).
+                Công nghệ từ hãng Carl Zeiss (Đức). Thay vì dùng các chấm vi thấu kính tròn, Zeiss dùng các dải vòng nhẫn khúc xạ vi hình trụ xen kẽ giúp tối ưu hóa quang sai và giảm độ nhòe ngoại vi khi mắt liếc qua lại. Zeiss chia sản phẩm thành 2 dòng: MyoCare (trẻ &lt; 10 tuổi) và <strong>MyoCare S</strong> (trẻ từ 10-18 tuổi — thiết kế tối ưu riêng cho mật độ điều tiết của học sinh trung học).
               </p>
             </div>
 
@@ -763,16 +788,16 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
         <div className="flex items-start justify-between gap-4 font-sans">
           <div className="space-y-1">
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
-              Chương 6 • Lộ Trình Can Thiệp Cá Thể Hóa
+              Chương 6 • Lộ Trình Can Thiệp Phối Hợp
             </div>
             <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-              Phác Đồ "Tam Giác Vàng" Toàn Diện Dành Cho Tuổi Dậy Thì
+              Phác Đồ Hỗ Trợ Kiểm Soát Cận Thị Tuổi Dậy Thì
             </h2>
           </div>
           <ReadAloudButton
             id="vision-ch-6-audio"
-            title="Chương 6: Phác đồ Tam Giác Vàng cho học sinh 14 tuổi"
-            text="Chương 6: Phác đồ Tam Giác Vàng toàn diện dành cho học sinh 14 tuổi. Một là trang bị tròng kính Defocus Essilor Stellest hoặc Zeiss MyoCare S có lọc ánh sáng xanh và cắt đúng trục loạn. Hai là thiết lập kỷ luật công thái học 20-20-20 khi dùng điện thoại và máy tính. Ba là duy trì thời gian hoạt động ngoài trời ban ngày tối thiểu 90 đến 120 phút mỗi ngày."
+            title="Chương 6: Phác đồ kiểm soát cận thị cho học sinh 14 tuổi"
+            text="Chương 6: Phác đồ kiểm soát cận thị toàn diện dành cho học sinh 14 tuổi. Một là trang bị tròng kính Defocus Essilor Stellest hoặc Zeiss MyoCare S có lọc ánh sáng xanh và cắt đúng trục loạn. Hai là thiết lập kỷ luật công thái học 20-20-20 khi dùng điện thoại và máy tính. Ba là duy trì thời gian hoạt động ngoài trời ban ngày tối thiểu 90 đến 120 phút mỗi ngày."
             variant="chapter"
           />
         </div>
@@ -784,7 +809,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
 
           {/* Pillar 1 */}
           <div className="border-l-2 border-cyan-500 pl-4 py-1 space-y-1.5">
-            <div className="text-xs font-mono font-bold text-cyan-400 uppercase">Trụ Cột 1: Can Thiệp Quang Học Defocus Đỉnh Cao</div>
+            <div className="text-xs font-mono font-bold text-cyan-400 uppercase">Trụ Cột 1: Can Thiệp Quang Học Công Nghệ Defocus</div>
             <h3 className="text-base font-bold text-white">Trang Bị Tròng Kính Essilor Stellest hoặc Zeiss MyoCare S (Có Lọc Ánh Sáng Xanh)</h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Khuyến nghị số 1 là lựa chọn <strong>Essilor Stellest</strong> (váng Crizal Rock) hoặc <strong>Zeiss MyoCare S</strong> (váng BlueGuard). Tròng kính cần được đặt sản xuất đúng theo độ cận và độ loạn (Cyl & Axis) của từng mắt, có tính năng lọc ánh sáng xanh để bảo vệ đáy mắt khi em làm việc trên máy tính. Em cần duy trì thói quen đeo kính liên tục <strong>từ 12 giờ trở lên mỗi ngày</strong>.

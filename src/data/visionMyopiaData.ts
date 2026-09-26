@@ -63,31 +63,27 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
   address: "621 Bình Thới, Phường 10, Quận 11, TP. Hồ Chí Minh",
   medicalRecordNo: "96672 (BV Mắt Cao Thắng)",
   detectedAge: 10,
-  currentStatus: "Cận thị tiến triển nhanh tuổi dậy thì (khởi phát năm 2022, đến 2025 tăng -3.50D MP và -2.00D/Loạn -0.75D MT) kèm loạn thị cận.",
-  astigmatismNote: "Mắt trái kèm độ loạn thị (Cylinder -0.75D x 170°), mắt phải từng ghi nhận loạn nhẹ 2022. Yêu cầu tròng kính phải cắt chuẩn trục loạn và lấy tâm đồng tử PD/FH chính xác.",
+  currentStatus: "Cận thị kèm loạn thị mắt trái. Ghi nhận độ cận tăng từ năm 2022 đến 2025.",
+  astigmatismNote: "Mắt trái có độ loạn thị (Cylinder -0.75D x 170°).",
   screenTimeHabits: [
-    "Sử dụng điện thoại thông minh thường xuyên ở cự ly gần (< 30cm)",
-    "Học tập và giải trí với máy tính để bàn / laptop nhiều giờ liên tục",
-    "Xem tivi trong không gian ánh sáng trong nhà, ít nghỉ ngơi ngắt quãng",
-    "Thời gian hoạt động ngoài trời ban ngày (Outdoor daylight) hạn chế (< 60 phút/ngày)"
+    "Sử dụng điện thoại thông minh và máy tính cho việc học tập, giải trí",
+    "Thời gian hoạt động ngoài trời ban ngày chưa nhiều"
   ],
   keyRiskFactors: [
-    "Độ tuổi vàng tăng trưởng trục nhãn cầu mạnh (10 - 16 tuổi trong giai đoạn dậy thì)",
-    "Tốc độ tăng độ cận trung bình > 1.00 Diop/năm thuộc nhóm tiến triển bùng nổ (Rapid Myopia Progression)",
-    "Đeo kính đơn tròng thông thường (Single Vision Lenses) trong các năm 2024-2025 tạo hiện tượng Defocus viễn thị ngoại vi kéo dài trục mắt",
-    "Áp lực nhìn gần cường độ cao kết hợp thiếu ánh sáng tự nhiên kích thích củng mạc giãn dài"
+    "Độ tuổi 10 - 16 là giai đoạn phát triển thể chất và chiều dài trục nhãn cầu",
+    "Tăng độ cận qua các lần đo định kỳ từ năm 2022 đến 2025"
   ],
-  growthPhase: "Giai đoạn then chốt (14 - 18 tuổi): Trục nhãn cầu vẫn tiếp tục dài ra theo đà phát triển thể chất; nếu không can thiệp ngay bằng tròng kính công nghệ Defocus (Stellest / MyoCare S), nguy cơ cán mốc cận thị nặng (> -6.00D) và biến chứng màng bồ đào/võng mạc là rất cao.",
+  growthPhase: "Giai đoạn học đường (10 - 18 tuổi): Cần theo dõi khúc xạ định kỳ 3 - 6 tháng/lần.",
   examHistory: [
     {
       id: "milestone-2022",
       date: "05/10/2022",
       facility: "Bệnh viện Mắt Cao Thắng",
       facilityAddress: "135B Trần Bình Trọng, P.2, Q.5, TP.HCM",
-      facilityPhone: "(+84 28) 3923 9135 / Hot line: +84 908 015 037",
+      facilityPhone: "(+84 28) 3923 9135",
       recordNumber: "96672",
       patientAge: 10,
-      diagnosis: "Khô mắt hai mắt (Mã ICD: H52.6) & Loạn thị nhẹ chưa cận thị",
+      diagnosis: "Khô mắt hai mắt (ICD: H52.6). Khúc xạ chưa có độ cận.",
       rightEye: {
         uncorrectedVA: "10-/10",
         sphere: "Plano (0.00D)",
@@ -105,12 +101,12 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
       pd: 59,
       lensRecommendation: "Không kính (Chưa cần đeo kính gọng)",
       medicationOrAdvice: [
-        "Vismed 0.18% 0.3ml (Na Hyaluronate 0.18%): Nhỏ 2 mắt x 3 lần/ngày x 1 giọt (dùng 20 ngày)",
-        "EyeBi (Vaccinium Myrtillus): Uống sau ăn x 1 viên/ngày (dùng 30 ngày)",
-        "Dặn dò: Nghỉ ngơi thị giác ngắt quãng, tái khám sau 6 tháng"
+        "Vismed 0.18% 0.3ml: Nhỏ 2 mắt x 3 lần/ngày x 1 giọt (20 ngày)",
+        "EyeBi (Vaccinium Myrtillus): Uống x 1 viên/ngày (30 ngày)",
+        "Dặn dò: Nghỉ ngơi thị giác, tái khám khi cần"
       ],
       doctorOrKtv: "BS. Nguyễn Thị Xuân Hương / KTV. Vũ Nguyễn Minh Châu",
-      progressionNote: "Mốc khởi điểm (10 tuổi): Mắt chưa bị cận, chỉ loạn thị sinh lý nhẹ, thị lực không kính đạt 10-/10."
+      progressionNote: "Thị lực không kính 10-/10. Chưa xuất hiện độ cận."
     },
     {
       id: "milestone-2024",
@@ -118,7 +114,7 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
       facility: "Mắt Kính HMK",
       facilityAddress: "395 - 397 Sư Vạn Hạnh, P.12, Q.10, TP.HCM",
       patientAge: 12,
-      diagnosis: "Cận thị tiến triển hai mắt kèm loạn thị mắt trái (Khởi phát cận thị thực thụ)",
+      diagnosis: "Cận thị hai mắt, mắt trái có loạn thị",
       rightEye: {
         sphere: "-2.50 D",
         correctedVA: "10/10"
@@ -129,10 +125,10 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
         correctedVA: "10/10"
       },
       pd: 60,
-      lensRecommendation: "Đeo kính gọng nhìn xa thường xuyên",
-      lensTypeFitted: "Kính đơn tròng (Single Vision Lenses)",
+      lensRecommendation: "Kính gọng nhìn xa",
+      lensTypeFitted: "Kính đơn tròng",
       costVND: "976.000 VNĐ",
-      progressionNote: "Sau 22 tháng từ mốc Cao Thắng: Mắt phải tăng vọt từ 0.00D lên -2.50D; Mắt trái tăng từ 0.00D lên -1.50D / Loạn -0.75D. Đã cắt đơn kính HMK."
+      progressionNote: "Bắt đầu đeo kính cận: MP -2.50D, MT -1.50D / Loạn -0.75D."
     },
     {
       id: "milestone-2025",
@@ -140,7 +136,7 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
       facility: "Mắt Kính MINH ANH",
       facilityAddress: "543B Minh Phụng, P.10, Q.11, TP.HCM - ĐT: 028 3963 3062",
       patientAge: 13,
-      diagnosis: "Cận thị tiến triển bùng nổ (Rapid Myopia Progression) + Loạn thị cận mắt trái",
+      diagnosis: "Cận thị tiến triển hai mắt, mắt trái loạn thị cận",
       rightEye: {
         uncorrectedVA: "1/10",
         sphere: "-3.50 D",
@@ -154,22 +150,49 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
         correctedVA: "10/10"
       },
       pd: 62,
-      lensRecommendation: "Kính gọng đeo nhìn xa thường xuyên",
-      lensTypeFitted: "Tròng kính 1.60 ASX (Phi cầu Aspheric / Lọc ánh sáng xanh kỹ thuật số)",
+      lensRecommendation: "Kính gọng đeo thường xuyên nhìn xa",
+      lensTypeFitted: "Tròng kính 1.60 ASX (Phi cầu / Lọc ánh sáng xanh)",
       doctorOrKtv: "KTV Khúc Xạ Vũ Đoán Chi / Minh Chi",
-      progressionNote: "Sau 16 tháng từ lần cắt HMK: MP tăng thêm -1.00D (đạt -3.50D), thị lực mờ nặng (1/10); MT tăng thêm -0.50D (đạt -2.00D/Loạn -0.75D). Tốc độ dài trục nhãn cầu ở mức báo động."
+      progressionNote: "MP: -3.50D (thị lực 1/10); MT: -2.00D / Loạn -0.75D x 170° (thị lực 2/10)."
     }
   ],
   progressionSummary: {
     totalDurationMonths: 38,
-    rightEyeSphereChange: "Từ 0.00D (2022) -> -2.50D (2024) -> -3.50D (2025) [Tăng tổng cộng -3.50 Diop]",
-    leftEyeSphereChange: "Từ 0.00D (2022) -> -1.50D/Loạn -0.75D (2024) -> -2.00D/Loạn -0.75D (2025) [Tăng -2.00 Diop]",
-    annualProgressionRate: "-1.16 Diop/năm (Mắt phải) & -0.67 Diop/năm (Mắt trái) -> Tốc độ tiến triển RẤT NHANH",
-    pdProgression: "59mm (2022) -> 60mm (2024) -> 62mm (2025) [Phát triển đồng bộ khung xương mặt]",
-    riskCategory: "BÁO ĐỘNG ĐỎ - Nguy cơ chạm mốc Cận Thị Nặng (> -6.00D) trước 18 tuổi nếu tiếp tục đeo kính thường",
-    primaryHospitalRecommendation: "Trình Bác sĩ Bệnh viện Mắt yêu cầu: 1) Đo Sinh trắc học trục nhãn cầu (Axial Length Biometry) bằng IOL Master 700; 2) Chuyển đổi sang kính vi thấu kính Defocus (Stellest / MyoCare S); 3) Cân nhắc phối hợp thuốc nhỏ Atropine nồng độ thấp (0.01% - 0.05%)."
+    rightEyeSphereChange: "Mắt phải: Plano (10/2022) -> -2.50D (08/2024) -> -3.50D (12/2025)",
+    leftEyeSphereChange: "Mắt trái: Plano (10/2022) -> -1.50D / Loạn -0.75D (08/2024) -> -2.00D / Loạn -0.75D x 170° (12/2025)",
+    annualProgressionRate: "Mức thay đổi độ cận trung bình từ 0.67D đến 1.16D/năm trong giai đoạn 2022 - 2025.",
+    pdProgression: "Khoảng cách đồng tử (PD): 59mm (2022) -> 60mm (2024) -> 62mm (2025).",
+    riskCategory: "Cận thị tiến triển tuổi học đường",
+    primaryHospitalRecommendation: "Dữ liệu lưu trữ phục vụ theo dõi khúc xạ định kỳ khi đi khám mắt."
   }
 };
+
+export interface DefocusLensTech {
+  id: string;
+  name: string;
+  brand: string;
+  origin: string;
+  technologyCode: string;
+  technologyFull: string;
+  mechanism: string;
+  clinicalStudy: {
+    institution: string;
+    journal: string;
+    sampleDuration: string;
+    efficacyRate: string;
+    axialLengthControl: string;
+    keyFinding: string;
+  };
+  pros: string[];
+  cons: string[];
+  rxRange: {
+    sphere: string;
+    cylinder: string;
+  };
+  priceRangeVND: string;
+  bestFitFor: string;
+  blueFilterFeature: string;
+}
 
 export interface DefocusLensTech {
   id: string;
@@ -206,32 +229,32 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
     origin: 'Pháp (France)',
     technologyCode: 'H.A.L.T (Highly Aspherical Lenslet Target)',
     technologyFull: 'Công nghệ 1.021 vi thấu kính phi cầu xếp trên 11 vòng đồng tâm',
-    mechanism: 'Tạo ra chùm thể tích ánh sáng Defocus trước võng mạc (Volume of Myopic Defocus) theo đúng hình dạng cong của đáy mắt, làm tín hiệu phanh sinh học ngăn trục mắt dài ra.',
+    mechanism: 'Tạo vùng defocus cận thị ngoại vi phía trước võng mạc, gửi tín hiệu làm chậm tốc độ dài ra của trục nhãn cầu.',
     clinicalStudy: {
-      institution: 'Wenzhou Medical University (Trung Quốc) phối hợp R&D Essilor Quốc Tế',
-      journal: 'JAMA Ophthalmology & IOVS (2022 - 2024)',
-      sampleDuration: 'Thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT) theo dõi 2 - 3 năm liên tục',
-      efficacyRate: 'Giảm trung bình 67% độ tăng cận thị (khi đeo >= 12h/ngày so với tròng đơn tròng)',
-      axialLengthControl: 'Kiểm soát 60% mức độ dài ra của trục nhãn cầu',
-      keyFinding: '9/10 trẻ em đạt mức độ tăng trưởng trục mắt tương đương hoặc chậm hơn trẻ không bị cận thị; 100% trẻ thích nghi hoàn toàn trong vòng 3 ngày.'
+      institution: 'Đại học Y Ôn Châu phối hợp R&D Essilor',
+      journal: 'JAMA Ophthalmology & IOVS',
+      sampleDuration: 'Thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT) theo dõi 2 - 3 năm',
+      efficacyRate: 'Giảm trung bình khoảng 67% độ tăng cận thị (khi đeo >= 12h/ngày so với kính đơn tròng)',
+      axialLengthControl: 'Làm chậm khoảng 60% tốc độ dài trục nhãn cầu',
+      keyFinding: 'Thích nghi thuận lợi trong những ngày đầu sử dụng; duy trì hiệu quả trong suốt thời gian theo dõi.'
     },
     pros: [
-      'Hiệu quả kiểm soát cận thị thuộc top đầu thế giới đã được kiểm chứng qua JAMA Ophthalmology',
-      'Vùng nhìn trung tâm trong suốt 9mm cho thị lực 10/10 cực kỳ sắc nét khi học tập',
-      'Lớp váng phủ cao cấp Crizal Rock siêu chống trầy xước gấp 3 lần và chống bám bụi, nước tối ưu cho học sinh',
-      'Bảo vệ mắt toàn diện trước tia UV và tích hợp công nghệ chống ánh sáng xanh thông minh'
+      'Được kiểm chứng qua các nghiên cứu lâm sàng công bố trên JAMA Ophthalmology',
+      'Vùng nhìn trung tâm trong suốt 9mm đảm bảo thị lực rõ ràng',
+      'Lớp váng Crizal Rock hỗ trợ chống trầy xước và bám bẩn',
+      'Có tùy chọn lọc ánh sáng xanh và chống tia UV'
     ],
     cons: [
-      'Mức giá thuộc phân khúc cao cấp',
-      'Yêu cầu kỹ thuật viên đo khám và mài lắp lấy tâm đồng tử (Fitting Height / PD) tuyệt đối chuẩn xác'
+      'Giá thành cao hơn kính đơn tròng thông thường',
+      'Yêu cầu đo tâm đồng tử (PD và chiều cao tâm FH) chính xác'
     ],
     rxRange: {
       sphere: 'Plano đến -10.00D',
-      cylinder: 'Đến -4.00D (hỗ trợ độ loạn thị rất tốt cho học sinh)'
+      cylinder: 'Đến -4.00D'
     },
     priceRangeVND: '3.980.000 - 4.950.000 VNĐ / cặp',
-    bestFitFor: 'Trẻ từ 8 - 16 tuổi có độ cận tiến triển nhanh, học tập dùng máy tính/điện thoại nhiều, cần giải pháp tròng kính an toàn không can thiệp giác mạc.',
-    blueFilterFeature: 'Tích hợp sẵn vật liệu Blue UV Capture / váng Crizal Rock lọc ánh sáng xanh tím có hại từ màn hình thiết bị số.'
+    bestFitFor: 'Trẻ em và học sinh cận thị tiến triển cần giải pháp kính gọng kiểm soát độ cận.',
+    blueFilterFeature: 'Tích hợp tính năng lọc ánh sáng xanh tím từ màn hình thiết bị điện tử.'
   },
   {
     id: 'hoya-miyosmart',
@@ -239,33 +262,32 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
     brand: 'Hoya',
     origin: 'Nhật Bản (Japan)',
     technologyCode: 'D.I.M.S (Defocus Incorporated Multiple Segments)',
-    technologyFull: 'Công nghệ hàng trăm vi thấu kính phân đoạn Defocus đa điểm hình tổ ong',
-    mechanism: '396 vi thấu kính nhỏ li ti (công suất +3.50D) bao quanh vùng trung tâm 9.4mm, tạo ra hiệu ứng Myopic Defocus liên tục trên võng mạc ngoại vi.',
+    technologyFull: 'Công nghệ vi thấu kính phân đoạn Defocus đa điểm dạng tổ ong',
+    mechanism: '396 vi thấu kính nhỏ li ti (+3.50D) bao quanh vùng trung tâm 9.4mm, tạo hiệu ứng defocus cận thị ngoại vi.',
     clinicalStudy: {
-      institution: 'The Hong Kong Polytechnic University (PolyU)',
-      journal: 'British Journal of Ophthalmology (BJO) 2020 & Theo dõi dài hạn 6 năm (2023)',
-      sampleDuration: 'Nghiên cứu lâm sàng 2 năm RCT và kéo dài theo dõi liên tục 6 năm',
-      efficacyRate: 'Giảm 59% - 60% mức độ tiến triển độ cận thị',
-      axialLengthControl: 'Làm chậm 60% tốc độ kéo dài trục nhãn cầu',
-      keyFinding: 'Hiệu quả duy trì bền vững suốt 6 năm theo dõi; khi ngưng đeo kính không xuất hiện hiện tượng dội ngược (No rebound effect).'
+      institution: 'Đại học Bách Khoa Hồng Kông (PolyU)',
+      journal: 'British Journal of Ophthalmology (BJO) & Theo dõi 6 năm',
+      sampleDuration: 'Nghiên cứu lâm sàng 2 năm RCT và kéo dài theo dõi đến 6 năm',
+      efficacyRate: 'Giảm khoảng 59% - 60% mức độ tiến triển độ cận',
+      axialLengthControl: 'Làm chậm khoảng 60% tốc độ dài trục nhãn cầu',
+      keyFinding: 'Dữ liệu theo dõi dài hạn 6 năm ghi nhận hiệu quả ổn định.'
     },
     pros: [
-      'Bằng chứng lâm sàng theo dõi dài nhất hiện nay (6 năm liên tục khẳng định tính an toàn và bền vững)',
-      'Chất liệu Polycarbonate chịu lực siêu bền (EyeShield), chống vỡ tuyệt đối khi va đập thể thao học đường',
-      'Đạt giải thưởng vàng Grand Prize tại Triển lãm Sáng chế Quốc tế Geneva',
-      'Vùng nhìn trung tâm sáng rõ, chuyển tiếp êm ái'
+      'Dữ liệu theo dõi lâm sàng dài hạn (6 năm)',
+      'Chất liệu Polycarbonate chịu lực tốt (EyeShield), độ bền cao',
+      'Vùng nhìn trung tâm rõ ràng, chuyển tiếp mượt mà'
     ],
     cons: [
-      'Giá thành phân khúc cao cấp',
-      'Thời gian chờ đặt tròng Rx riêng biệt từ 5 - 10 ngày tùy độ loạn'
+      'Giá thành cao',
+      'Đặt tròng Rx riêng biệt mất từ 5 - 10 ngày'
     ],
     rxRange: {
       sphere: 'Plano đến -10.00D',
       cylinder: 'Đến -4.00D'
     },
     priceRangeVND: '4.500.000 - 5.500.000 VNĐ / cặp',
-    bestFitFor: 'Học sinh năng động, thích chơi thể thao cần tròng chống vỡ tuyệt đối, kiểm soát cận thị đường dài dựa trên nghiên cứu 6 năm uy tín.',
-    blueFilterFeature: 'Lớp phủ tráng cứng chống tia UV, có phiên bản tích hợp lọc ánh sáng xanh hoặc đổi màu Sunbird ngoài trời.'
+    bestFitFor: 'Học sinh năng động, cần tròng kính độ bền cao và kiểm soát cận thị đường dài.',
+    blueFilterFeature: 'Lớp phủ chống UV, có tùy chọn tròng lọc ánh sáng xanh hoặc đổi màu ngoài trời.'
   },
   {
     id: 'zeiss-myocare',
@@ -274,23 +296,22 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
     origin: 'Đức (Germany)',
     technologyCode: 'C.A.R.E (Cylindrical Annular Refractive Elements)',
     technologyFull: 'Công nghệ vi thấu kính đồng tâm hình nhẫn khúc xạ hình trụ xen kẽ',
-    mechanism: 'Các vòng nhẫn vi khúc xạ hình trụ mở rộng tạo ra độ defocus hội tụ phía trước võng mạc ngoại vi, đồng thời tối ưu hóa độ nhòe quang sai giúp mắt nhìn thoải mái ở mọi góc liếc.',
+    mechanism: 'Các vòng nhẫn vi khúc xạ hình trụ tạo độ defocus hội tụ trước võng mạc ngoại vi, đồng thời tối ưu hóa quang sai.',
     clinicalStudy: {
-      institution: 'Wenzhou Eye Hospital phối hợp Carl Zeiss Vision Science Lab (Đức)',
-      journal: 'Investigative Ophthalmology & Visual Science (IOVS 2023 - 2024)',
-      sampleDuration: 'Thử nghiệm lâm sàng đa trung tâm 2 năm',
-      efficacyRate: 'Giảm 63% - 68% tiến triển độ cận thị',
-      axialLengthControl: 'Kiểm soát 58% - 64% sự dài ra trục nhãn cầu',
-      keyFinding: 'Thiết kế cá thể hóa chia 2 phân khúc: MyoCare (cho trẻ < 10 tuổi) và MyoCare S (cho trẻ từ 10 tuổi trở lên - phù hợp hoàn hảo với học sinh 14 tuổi).'
+      institution: 'Bệnh viện Mắt Ôn Châu phối hợp Carl Zeiss Vision Lab',
+      journal: 'Investigative Ophthalmology & Visual Science (IOVS)',
+      sampleDuration: 'Thử nghiệm lâm sàng 2 năm',
+      efficacyRate: 'Giảm khoảng 63% - 68% tiến triển độ cận',
+      axialLengthControl: 'Làm chậm khoảng 58% - 64% sự dài ra của trục nhãn cầu',
+      keyFinding: 'Thiết kế MyoCare S tối ưu cho thanh thiếu niên từ 10 tuổi trở lên.'
     },
     pros: [
-      'Công nghệ quang học hàng đầu thế giới từ thương hiệu Đức Carl Zeiss danh tiếng',
-      'Phân tầng thiết kế chuyên biệt (MyoCare S) tối ưu riêng cho mắt thanh thiếu niên từ 10 tuổi trở lên',
-      'Vùng nhìn rõ trung tâm 7mm và vùng chuyển tiếp mượt mà, hạn chế cảm giác gợn viền khi liếc mắt nhanh',
-      'Tích hợp công nghệ bảo vệ mắt toàn diện Zeiss UVProtect và chống ánh sáng xanh BlueGuard'
+      'Công nghệ quang học từ thương hiệu Carl Zeiss (Đức)',
+      'Có dòng MyoCare S thiết kế riêng cho độ tuổi từ 10-18',
+      'Tích hợp công nghệ bảo vệ chống tia UV và ánh sáng xanh BlueGuard'
     ],
     cons: [
-      'Cần đo chính xác trục nhìn và khoảng cách từ mắt đến tròng kính (Back Vertex Distance)',
+      'Cần đo chính xác khoảng cách từ mắt đến tròng kính',
       'Giá thành cao'
     ],
     rxRange: {
@@ -298,8 +319,8 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
       cylinder: 'Đến -4.00D'
     },
     priceRangeVND: '3.800.000 - 5.200.000 VNĐ / cặp',
-    bestFitFor: 'Trẻ em và học sinh THCS/THPT (từ 10-18 tuổi), thường xuyên dùng thiết bị số, cần độ trong suốt quang học cực cao và thiết kế nhắm trúng lứa tuổi.',
-    blueFilterFeature: 'Công nghệ Zeiss BlueGuard chặn tới 40% ánh sáng xanh có hại tích hợp trực tiếp vào phôi tròng kính mà không gây ám vàng.'
+    bestFitFor: 'Học sinh THCS/THPT thường xuyên sử dụng máy tính, cần độ trong suốt quang học cao.',
+    blueFilterFeature: 'Công nghệ Zeiss BlueGuard hỗ trợ lọc ánh sáng xanh kỹ thuật số.'
   },
   {
     id: 'rodenstock-mycon',
@@ -307,31 +328,31 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
     brand: 'Rodenstock',
     origin: 'Đức (Germany)',
     technologyCode: 'Freeform Radial Aspheric Defocus',
-    technologyFull: 'Thiết kế vùng giảm độ ngoại vi theo trục thái dương và trục mũi',
-    mechanism: 'Tập trung tạo defocus kiểm soát ở hai vùng rìa thái dương (Temporal) và mũi (Nasal) nơi có mật độ tế bào võng mạc ngoại vi nhạy cảm nhất với tín hiệu tăng trưởng trục mắt.',
+    technologyFull: 'Thiết kế vùng giảm độ ngoại vi theo trục thái dương và sống mũi',
+    mechanism: 'Tạo độ defocus ở vùng rìa thái dương và sống mũi nhằm hỗ trợ kiểm soát tăng độ cận.',
     clinicalStudy: {
-      institution: 'Nghiên cứu lâm sàng độc lập tại châu Âu 5 năm',
+      institution: 'Nghiên cứu lâm sàng tại châu Âu',
       journal: 'European Journal of Ophthalmology',
       sampleDuration: 'Theo dõi 2 - 5 năm',
       efficacyRate: 'Làm chậm tiến triển cận thị khoảng 40% - 50%',
-      axialLengthControl: 'Làm chậm 35% - 45% tốc độ dài trục mắt',
-      keyFinding: 'Ưu thế về độ mỏng và tính thẩm mỹ cao, phù hợp cho học sinh cận thị nhẹ đến vừa.'
+      axialLengthControl: 'Làm chậm khoảng 35% - 45% tốc độ dài trục mắt',
+      keyFinding: 'Tròng kính mỏng, thẩm mỹ tốt.'
     },
     pros: [
-      'Thương hiệu quang học cao cấp 140+ năm của Đức',
-      'Bề mặt tròng kính nhìn tự nhiên như tròng đơn tròng thông thường, không lộ vi thấu kính',
-      'Độ mỏng và thẩm mỹ vượt trội'
+      'Thương hiệu Rodenstock (Đức)',
+      'Bề mặt tròng kính tự nhiên như kính đơn tròng thông thường',
+      'Độ mỏng và thẩm mỹ cao'
     ],
     cons: [
-      'Tỷ lệ kiểm soát trung bình thấp hơn một chút so với công nghệ H.A.L.T và D.I.M.S ở các ca cận tăng quá nhanh'
+      'Tỷ lệ kiểm soát ở mức trung bình so với tròng vi thấu kính thế hệ mới'
     ],
     rxRange: {
       sphere: 'Plano đến -8.00D',
       cylinder: 'Đến -3.00D'
     },
     priceRangeVND: '3.200.000 - 4.600.000 VNĐ / cặp',
-    bestFitFor: 'Học sinh cận thị độ nhẹ đến vừa, chú trọng tính thẩm mỹ cao, cần tròng kính mỏng nhẹ không lộ hoa văn vi thấu kính.',
-    blueFilterFeature: 'Có tùy chọn lớp phủ Solitaire Protect Balance 2 lọc ánh sáng xanh kỹ thuật số.'
+    bestFitFor: 'Học sinh cận nhẹ đến vừa, ưu tiên tính thẩm mỹ của tròng kính.',
+    blueFilterFeature: 'Có tùy chọn lớp phủ Solitaire Protect Balance 2 lọc ánh sáng xanh.'
   },
   {
     id: 'chemi-myo',
@@ -339,32 +360,31 @@ export const myopiaControlLensesList: DefocusLensTech[] = [
     brand: 'Chemi Lens',
     origin: 'Hàn Quốc (South Korea)',
     technologyCode: 'Aspherical Peripheral Management',
-    technologyFull: 'Công nghệ phi cầu quản lý hội tụ rìa ngoài',
-    mechanism: 'Điều chỉnh công suất vùng rìa nhằm giảm hiện tượng quang sai cầu ngoại vi, hỗ trợ giảm áp lực điều tiết khi nhìn gần.',
+    technologyFull: 'Công nghệ phi cầu quản lý hội tụ vùng rìa',
+    mechanism: 'Điều chỉnh công suất vùng rìa nhằm giảm mỏi mắt và hỗ trợ điều tiết khi nhìn gần.',
     clinicalStudy: {
-      institution: 'Trung tâm nghiên cứu Chemi R&D Hàn Quốc',
+      institution: 'Trung tâm nghiên cứu Chemi R&D',
       journal: 'Korean Ophthalmic Research',
       sampleDuration: '1 - 2 năm',
       efficacyRate: 'Giảm khoảng 30% - 40% tiến triển độ cận',
       axialLengthControl: 'Hỗ trợ kiểm soát một phần trục nhãn cầu',
-      keyFinding: 'Giải pháp kinh tế tiếp cận dễ dàng cho học sinh, giảm mệt mỏi điều tiết khi học tập.'
+      keyFinding: 'Giải pháp kinh tế cho học sinh.'
     },
     pros: [
-      'Mức giá rất dễ tiếp cận và phổ biến ở mọi tiệm kính tại Việt Nam',
-      'Lớp phủ Crystal U2 chống trầy tốt, chống tia UV400',
-      'Thời gian cắt tròng có sẵn nhanh chóng'
+      'Chi phí hợp lý, dễ tiếp cận',
+      'Lớp phủ Crystal U2 chống trầy xước và tia UV400',
+      'Sẵn có, thời gian gia công nhanh'
     ],
     cons: [
-      'Hiệu quả kiểm soát tăng độ cận thấp hơn các dòng công nghệ vi thấu kính thế hệ mới (H.A.L.T, D.I.M.S, C.A.R.E)',
-      'Không tối ưu chuyên sâu cho các ca cận tiến triển nhanh trên 1.00D/năm'
+      'Hiệu quả kiểm soát tăng độ cận ở mức khiêm tốn'
     ],
     rxRange: {
       sphere: 'Plano đến -8.00D',
       cylinder: 'Đến -2.00D'
     },
     priceRangeVND: '1.200.000 - 1.800.000 VNĐ / cặp',
-    bestFitFor: 'Gia đình có ngân sách vừa phải, cận thị độ nhẹ và tốc độ tăng độ chậm.',
-    blueFilterFeature: 'Tích hợp váng phủ Perfect UV chặn ánh sáng xanh cơ bản.'
+    bestFitFor: 'Gia đình có ngân sách vừa phải, cận thị độ nhẹ.',
+    blueFilterFeature: 'Tích hợp lớp phủ Perfect UV chặn ánh sáng xanh cơ bản.'
   }
 ];
 
@@ -383,42 +403,42 @@ export const myopiaInterventionsComparison: MyopiaInterventionComparison[] = [
   {
     method: "Myopia Control Glasses (Defocus Lenses)",
     vietnameseName: "Kính Gọng Công Nghệ Defocus (Stellest / MiYOSMART / MyoCare)",
-    mechanism: "Tạo thể tích vi thấu kính Defocus hội tụ trước võng mạc ngoại vi, ngăn tín hiệu dài trục nhãn cầu.",
-    efficacy: "Giảm 60% - 67% tiến triển độ cận & trục mắt (Rất cao)",
-    safetyProfile: "An toàn tuyệt đối 100%, hoàn toàn không chạm vào giác mạc, không nguy cơ nhiễm trùng mắt.",
-    suitabilityForMinhAnh: "LỰA CHỌN TỐI ƯU SỐ 1: Vừa kiểm soát tăng độ, vừa chỉnh độ loạn thị triệt để, vừa bảo vệ mắt trước ánh sáng xanh máy tính/điện thoại.",
-    costVND: "3.800.000 - 5.500.000 VNĐ / cặp (dùng 1 - 2 năm)",
-    complianceRequirement: "Đeo đủ >= 12 giờ mỗi ngày trong suốt thời gian học tập và sinh hoạt."
+    mechanism: "Tạo vùng defocus cận thị ngoại vi phía trước võng mạc, làm chậm kéo dài trục nhãn cầu.",
+    efficacy: "Làm chậm khoảng 60% - 67% tiến triển độ cận",
+    safetyProfile: "An toàn, không tiếp xúc trực tiếp bề mặt giác mạc.",
+    suitabilityForMinhAnh: "Giải pháp kính gọng kiểm soát độ cận và điều chỉnh độ loạn thị đi kèm.",
+    costVND: "3.800.000 - 5.500.000 VNĐ / cặp (sử dụng 1 - 2 năm)",
+    complianceRequirement: "Đeo kính thường xuyên trong quá trình học tập và sinh hoạt hàng ngày."
   },
   {
     method: "Ortho-K (Orthokeratology)",
     vietnameseName: "Kính Áp Tròng Ban Đêm Định Hình Giác Mạc",
-    mechanism: "Kính tiếp xúc cứng đặt vào mắt khi ngủ để nén biểu mô trung tâm giác mạc, tạo vùng phồng ngoại vi gây myopic defocus.",
-    efficacy: "Giảm 50% - 60% tiến triển độ cận",
-    safetyProfile: "Có nguy cơ viêm loét giác mạc do vi khuẩn/Acanthamoeba nếu vệ sinh không nghiêm ngặt (tỷ lệ ~1/1.000 ca/năm).",
-    suitabilityForMinhAnh: "Cân nhắc thứ 2: Giúp ban ngày không cần đeo kính gọng, tuy nhiên cần sự tự giác vệ sinh rửa kính mỗi tối rất khắt khe.",
-    costVND: "16.000.000 - 24.000.000 VNĐ / cặp + Nước ngâm rửa 3-4 triệu/năm",
-    complianceRequirement: "Đeo đều đặn 7 - 8 tiếng mỗi đêm và vệ sinh ngâm rửa dung dịch chuyên dụng hàng ngày."
+    mechanism: "Kính áp tròng cứng đeo ban đêm khi ngủ để thay đổi tạm thời độ cong giác mạc.",
+    efficacy: "Làm chậm khoảng 50% - 60% tiến triển độ cận",
+    safetyProfile: "Cần tuân thủ quy trình vệ sinh kính nghiêm ngặt để tránh nguy cơ viêm nhiễm giác mạc.",
+    suitabilityForMinhAnh: "Giúp không phải đeo kính gọng ban ngày, yêu cầu sự tự giác vệ sinh kính mỗi tối.",
+    costVND: "16.000.000 - 24.000.000 VNĐ / cặp + dung dịch ngâm rửa hàng năm",
+    complianceRequirement: "Đeo 7 - 8 tiếng mỗi đêm và vệ sinh ngâm rửa dung dịch chuyên dụng."
   },
   {
     method: "Low-Dose Atropine Eye Drops (0.01% - 0.05%)",
     vietnameseName: "Thuốc Nhỏ Mắt Atropine Nồng Độ Thấp",
-    mechanism: "Tác động lên thụ thể Muscarinic tại màng bồ đào / củng mạc, ức chế tái cấu trúc ngoại bào làm dài trục nhãn cầu.",
-    efficacy: "Giảm 40% - 65% (theo nghiên cứu LAMP Study: nồng độ 0.05% cho hiệu quả tối ưu)",
-    safetyProfile: "An toàn ở liều thấp; có thể gây chói nhẹ khi ra nắng hoặc giảm điều tiết nhìn gần nhẹ.",
-    suitabilityForMinhAnh: "Phối hợp bổ trợ: Có thể kết hợp nhỏ mỗi tối nếu sau 6 tháng đeo kính Defocus độ cận vẫn còn xu hướng nhích tăng.",
-    costVND: "350.000 - 600.000 VNĐ / lọ dùng 1 tháng (~4 - 7 triệu/năm)",
-    complianceRequirement: "Nhỏ đều đặn 1 giọt mỗi mắt trước khi đi ngủ, tái khám kiểm tra phản xạ đồng tử định kỳ."
+    mechanism: "Tác động lên màng bồ đào và củng mạc, hỗ trợ giảm tốc độ dài ra của trục mắt.",
+    efficacy: "Làm chậm khoảng 40% - 65% tiến triển độ cận (nồng độ 0.05% ghi nhận hiệu quả tốt)",
+    safetyProfile: "An toàn ở liều thấp; một số trẻ có thể nhạy cảm nhẹ với ánh sáng.",
+    suitabilityForMinhAnh: "Nhỏ mắt mỗi tối theo chỉ định và theo dõi của bác sĩ chuyên khoa.",
+    costVND: "350.000 - 600.000 VNĐ / lọ 1 tháng",
+    complianceRequirement: "Nhỏ đều đặn 1 giọt mỗi tối trước khi đi ngủ, tái khám định kỳ."
   },
   {
     method: "Outdoor Daylight Exposure & Ergonomics",
-    vietnameseName: "Hoạt Động Ngoài Trời Ánh Sáng Tự Nhiên & Công Thái Học",
-    mechanism: "Ánh sáng tự nhiên (>= 10.000 lux) kích thích tế bào Amacrine võng mạc tiết Dopamine – chất ức chế tự nhiên sự dài ra của trục nhãn cầu.",
-    efficacy: "Giảm 30% - 40% nguy cơ khởi phát và tiến triển cận thị",
-    safetyProfile: "100% tự nhiên, nâng cao toàn diện thể chất và tinh thần.",
-    suitabilityForMinhAnh: "BẮT BUỘC PHỐI HỢP: Tăng cường ra ngoài trời >= 90-120 phút/ngày và áp dụng nghiêm ngặt quy tắc 20-20-20 khi dùng thiết bị điện tử.",
-    costVND: "0 VNĐ (Miễn phí hoàn toàn)",
-    complianceRequirement: "Duy trì thói quen vận động ban ngày, nghỉ ngơi sau mỗi 20 phút nhìn màn hình."
+    vietnameseName: "Hoạt Động Ngoài Trời & Thói Quên Sinh Hoạt",
+    mechanism: "Ánh sáng tự nhiên kích thích giải phóng Dopamine võng mạc, giúp hỗ trợ kiểm soát độ cận.",
+    efficacy: "Hỗ trợ giảm nguy cơ tăng độ cận",
+    safetyProfile: "Thói quen sinh hoạt tự nhiên, tốt cho sức khỏe tổng thể.",
+    suitabilityForMinhAnh: "Tăng thời gian hoạt động ngoài trời ban ngày và áp dụng thói quen nghỉ ngơi thị giác.",
+    costVND: "0 VNĐ",
+    complianceRequirement: "Duy trì hoạt động ngoài trời ban ngày và nghỉ mắt ngắt quãng khi học tập."
   }
 ];
 
@@ -436,77 +456,74 @@ export const visionQAItems: VisionQADatasetItem[] = [
   {
     id: 'qa-vision-1',
     category: 'Cơ Chế & Độ Cận',
-    question: 'Tại sao trẻ phát hiện cận từ 11 tuổi và độ cận lại tăng nhanh liên tục qua các năm?',
-    shortSummary: 'Độ tuổi 11 - 16 là giai đoạn phát triển thể chất và dậy thì mạnh nhất. Khi cơ thể phát triển chiều cao, trục nhãn cầu cũng dài ra nhanh chóng, cộng hưởng với việc học tập nhìn gần và sử dụng màn hình nhiều.',
+    question: 'Tại sao độ cận thị lại có xu hướng tăng nhanh ở lứa tuổi học sinh?',
+    shortSummary: 'Độ tuổi 10 - 16 là giai đoạn phát triển thể chất. Chiều dài trục nhãn cầu (Axial Length) phát triển theo sự tăng trưởng của cơ thể, kết hợp với cường độ học tập nhìn gần nhiều.',
     detailedPoints: [
-      'Trục nhãn cầu (Axial Length) bình thường của người trưởng thành là ~23.5mm - 24.0mm. Cứ mỗi 1mm trục mắt dài thêm, độ cận sẽ tăng khoảng 2.50D đến 3.00D.',
-      'Ở lứa tuổi 11-14, nếu đeo kính đơn tròng thông thường, ánh sáng ở vùng rìa võng mạc sẽ hội tụ ra phía sau đáy mắt (Hyperopic Defocus). Tín hiệu quang sai này khiến mắt lầm tưởng là hình ảnh chưa đủ nét, ra lệnh cho củng mạc tiếp tục dài ra về phía sau.',
-      'Thói quen dùng điện thoại, máy tính liên tục trong nhà làm cơ thể mi co thắt liên tục và mắt bị thiếu ánh sáng tự nhiên kích thích tiết Dopamine võng mạc.'
+      'Trục nhãn cầu người trưởng thành dài khoảng 23.5mm - 24.0mm. Khi trục mắt dài thêm 1mm, độ cận tăng thêm khoảng 2.50D - 3.00D.',
+      'Kính đơn tròng thông thường đưa ánh sáng trung tâm về đúng võng mạc nhưng ánh sáng ngoại vi hội tụ phía sau võng mạc, tạo tín hiệu kích thích trục mắt tiếp tục dài ra.',
+      'Thói quen nhìn gần liên tục và thiếu thời gian hoạt động ngoài trời ban ngày làm gia tăng áp lực điều tiết lên mắt.'
     ],
-    clinicalHighlight: 'Tăng độ cận ở trẻ em thực chất là sự dài ra vĩnh viễn của trục nhãn cầu. Ngăn chặn trục mắt dài ra chính là chìa khóa vàng duy nhất để giữ độ cận không tăng.'
+    clinicalHighlight: 'Tăng độ cận ở trẻ em liên quan trực tiếp đến sự dài ra của trục nhãn cầu.'
   },
   {
     id: 'qa-vision-2',
     category: 'Độ Loạn Thị Đi Kèm',
-    question: 'Mắt có thêm độ loạn thị (Astigmatism), tròng kính kiểm soát cận thị có xử lý được độ loạn không?',
-    shortSummary: 'HOÀN TOÀN XỬ LÝ ĐƯỢC. Các dòng tròng kính kiểm soát cận thị hiện đại (Essilor Stellest, Zeiss MyoCare, Hoya MiYOSMART) đều hỗ trợ độ loạn thị lên tới -4.00D.',
+    question: 'Mắt có độ loạn thị đi kèm thì tròng kính kiểm soát độ cận có đáp ứng được không?',
+    shortSummary: 'Tròng kính kiểm soát cận thị hiện nay hỗ trợ độ loạn thị (Cylinder) lên tới -4.00D.',
     detailedPoints: [
-      'Loạn thị xảy ra do giác mạc hoặc thể thủy tinh cong không đều (hình quả bóng bầu dục thay vì hình cầu). Loạn thị làm hình ảnh bị bóng mờ, nhòe và gây mỏi mắt gấp đôi nếu không được chỉnh đúng trục.',
-      'Khi cắt kính kiểm soát cận thị có độ loạn: Bác sĩ/Kỹ thuật viên khúc xạ sẽ mài công suất khúc xạ kết hợp cả độ Cận (Sphere) và độ Loạn (Cylinder) kèm đúng Trục loạn (Axis 0 - 180 độ).',
-      'Vùng nhìn trung tâm của kính sẽ đưa hình ảnh nét căng 10/10 vào hố hoàng điểm, trong khi hàng trăm vi thấu kính xung quanh vẫn thực hiện trọn vẹn nhiệm vụ tạo Defocus hãm tăng độ cận.'
+      'Loạn thị xảy ra khi bề mặt giác mạc cong không đều ở các kinh tuyến khác nhau.',
+      'Kỹ thuật viên sẽ đo và đặt tròng kính kết hợp cả công suất Cận (Sphere), Loạn (Cylinder) và Trục loạn (Axis).',
+      'Vùng nhìn trung tâm điều chỉnh thị lực rõ ràng, vùng xung quanh thực hiện chức năng defocus kiểm soát tăng độ.'
     ],
-    clinicalHighlight: 'Cần chọn trung tâm khúc xạ uy tín có máy đo tâm tự động 3D (như máy Visufit 1000 của Zeiss hoặc máy đo của Essilor) để xác định tâm đồng tử PD và chiều cao đồng tử FH chính xác tới từng 0.1mm.'
+    clinicalHighlight: 'Cần đo khoảng cách đồng tử (PD) và chiều cao tâm kính (FH) chính xác khi mài lắp tròng kính.'
   },
   {
     id: 'qa-vision-3',
-    category: 'Công Nghệ & Nghiên Cứu',
-    question: 'Nghiên cứu khoa học chứng minh tròng kính Defocus giảm tăng độ cận như thế nào? Có thật sự hiệu quả?',
-    shortSummary: 'Các thử nghiệm lâm sàng ngẫu nhiên có đối chứng (RCT) công bố trên các tạp chí y khoa hàng đầu thế giới (JAMA Ophthalmology, BJO) chứng minh tròng Defocus giảm 60% - 67% độ tăng cận thị và làm chậm 60% mức dài trục mắt.',
+    category: 'Nghiên Cứu Khoa Học',
+    question: 'Các nghiên cứu khoa học đánh giá hiệu quả của tròng kính Defocus như thế nào?',
+    shortSummary: 'Các thử nghiệm lâm sàng ngẫu nhiên công bố trên các tạp chí y khoa (JAMA Ophthalmology, BJO) ghi nhận tròng Defocus giúp làm chậm 59% - 67% độ tăng cận thị.',
     detailedPoints: [
-      'Nghiên cứu của Đại học Y Ôn Châu (Wenzhou) và Essilor công bố trên JAMA Ophthalmology theo dõi 3 năm cho thấy trẻ đeo tròng Stellest đủ >= 12h/ngày giảm được 67% độ cận so với nhóm đeo kính thường.',
-      'Nghiên cứu 6 năm của Đại học Bách Khoa Hồng Kông (PolyU) với Hoya MiYOSMART công bố trên BJO khẳng định hiệu quả duy trì bền vững trong suốt 6 năm, không xảy ra hiện tượng độ cận bật tăng trở lại khi dừng đeo.',
-      'Cơ chế chung là tạo ra tín hiệu quang học "Myopic Defocus" (tiêu điểm ngoại vi nằm trước võng mạc), gửi tín hiệu sinh học ức chế các men Metalloproteinase tại củng mạc, chặn đứng quá trình giãn dài của vỏ bọc nhãn cầu.'
+      'Nghiên cứu của Đại học Y Ôn Châu theo dõi tròng Stellest ghi nhận hiệu quả làm chậm tiến triển cận thị 67% khi đeo kính >= 12h/ngày.',
+      'Nghiên cứu 6 năm của Đại học Bách Khoa Hồng Kông với tròng MiYOSMART ghi nhận hiệu quả ổn định qua các năm.',
+      'Cơ chế chính là tạo tín hiệu defocus cận thị ngoại vi phía trước võng mạc để làm chậm sự kéo dài trục nhãn cầu.'
     ],
-    clinicalHighlight: 'Đây là công nghệ quang học tiên tiến nhất thế kỷ 21 trong nhãn khoa nhi, được Hội Khúc Xạ Nhãn Khoa Quốc Tế (IMI) và Học Viện Nhãn Khoa Hoa Kỳ (AAO) khuyến nghị hàng đầu.'
+    clinicalHighlight: 'Tròng kính Defocus là giải pháp quang học được các hội nhãn khoa quốc tế đưa vào hướng dẫn lâm sàng.'
   },
   {
     id: 'qa-vision-4',
-    category: 'Màn Hình & Lối Sống',
-    question: 'Học sinh dùng nhiều điện thoại, xem tivi, máy tính thì cần áp dụng nguyên tắc bảo vệ mắt như thế nào?',
-    shortSummary: 'Áp dụng bộ 3 nguyên tắc: Quy tắc 20-20-20, khoảng cách công thái học (Ergonomics) và bổ sung ánh sáng ban ngày ngoài trời >= 90 - 120 phút/ngày.',
+    category: 'Thói Quên Sinh Hoạt',
+    question: 'Cần lưu ý những thói quen sinh hoạt nào để bảo vệ thị lực cho học sinh?',
+    shortSummary: 'Áp dụng quy tắc nghỉ ngơi thị giác, giữ khoảng cách nhìn chuẩn và tăng thời gian hoạt động ngoài trời ban ngày.',
     detailedPoints: [
-      'Quy tắc 20-20-20: Cứ 20 phút nhìn màn hình điện thoại/máy tính, nhắc em tạm dừng và phóng tầm mắt nhìn xa một vật thể cách 20 feet (~6 mét) trong tối thiểu 20 giây để cơ thể mi được thả lỏng hoàn toàn.',
-      'Khoảng cách màn hình: Điện thoại cầm cách mắt tối thiểu 35 - 40cm (không để sát mặt), màn hình máy tính cách mắt 50 - 60cm và đặt thấp hơn tầm mắt 15 độ. Tuyệt đối không dùng điện thoại trong phòng tối tắt đèn.',
-      'Ánh sáng ngoài trời (Outdoor Daylight): Cường độ ánh sáng tự nhiên ngoài trời đạt từ 10.000 đến 100.000 lux (so với trong nhà chỉ 300 - 500 lux). Tiếp xúc đủ ánh sáng ban ngày kích thích võng mạc phóng thích Dopamine tự nhiên ức chế tăng độ cận.'
+      'Quy tắc 20-20-20: Sau 20 phút nhìn màn hình hoặc đọc sách, tạm nghỉ 20 giây nhìn xa khoảng 6 mét.',
+      'Khoảng cách thiết bị: Giữ khoảng cách điện thoại 35 - 40cm, màn hình máy tính 50 - 60cm và đảm bảo đủ ánh sáng phòng học.',
+      'Thời gian ngoài trời: Dành khoảng 90 - 120 phút mỗi ngày tham gia hoạt động ngoài trời ban ngày.'
     ],
-    clinicalHighlight: 'Tròng kính Defocus kết hợp với thay đổi thói quen nhìn gần và tăng thời gian ngoài trời sẽ tạo ra hiệu quả hiệp đồng (Synergy Effect) bảo vệ mắt tối đa.'
+    clinicalHighlight: 'Tăng thời gian hoạt động ngoài trời ban ngày giúp mắt tiếp nhận ánh sáng tự nhiên, tốt cho sự phát triển của nhãn cầu.'
   },
   {
     id: 'qa-vision-5',
-    category: 'Lựa Chọn Thương Hiệu',
-    question: 'Nên chọn thương hiệu nào cho học sinh 14 tuổi: Essilor Stellest, Zeiss MyoCare hay Hoya MiYOSMART?',
-    shortSummary: 'Cả 3 thương hiệu đều là đỉnh cao thế giới. Với độ tuổi 14 của học sinh, Essilor Stellest (công nghệ H.A.L.T) hoặc Zeiss MyoCare S (thiết kế chuyên biệt cho trẻ >= 10 tuổi) là 2 ứng cử viên hoàn hảo nhất.',
+    category: 'Lựa Chọn Tròng Kính',
+    question: 'Nên cân nhắc những yếu tố nào khi chọn thương hiệu tròng kính kiểm soát cận thị?',
+    shortSummary: 'Cần cân nhắc dữ liệu nghiên cứu lâm sàng, độ tuổi phù hợp, tính năng váng phủ và điều kiện kinh tế của gia đình.',
     detailedPoints: [
-      'Essilor Stellest: Ưu thế về dữ liệu giảm độ cận 67% công bố trên JAMA, lớp phủ Crizal Rock siêu chống trầy xước, dải độ loạn rộng đến -4.00D.',
-      'Zeiss MyoCare S: Tối ưu chuyên sâu cho lứa tuổi thanh thiếu niên (10-18 tuổi), giảm thiểu độ nhòe quang sai ngoại vi khi học tập cường độ cao trên máy tính, tích hợp sẵn công nghệ lọc ánh sáng xanh BlueGuard.',
-      'Hoya MiYOSMART: Ưu thế về dữ liệu bền bỉ 6 năm và phôi Polycarbonate EyeShield chống vỡ tuyệt đối.',
-      'Khuyến nghị: Gia đình nên chọn Essilor Stellest hoặc Zeiss MyoCare S có lớp phủ lọc ánh sáng xanh kỹ thuật số cao cấp.'
+      'Essilor Stellest: Dữ liệu nghiên cứu công bố trên JAMA Ophthalmology, váng phủ Crizal Rock chống trầy xước.',
+      'Zeiss MyoCare S: Thiết kế tối ưu riêng cho lứa tuổi thanh thiếu niên từ 10 tuổi trở lên, tích hợp lọc ánh sáng xanh.',
+      'Hoya MiYOSMART: Dữ liệu theo dõi 6 năm, phôi Polycarbonate chịu lực tốt.'
     ],
-    clinicalHighlight: 'Quan trọng không kém thương hiệu tròng kính là tay nghề bác sĩ khúc xạ đo đúng độ chính xác và kỹ thuật viên mài lắp đúng tâm quang học.'
+    clinicalHighlight: 'Đo khúc xạ chính xác và mài lắp đúng tâm quang học là yếu tố quan trọng khi sử dụng tròng kính.'
   },
   {
     id: 'qa-vision-6',
     category: 'Quy Trình Khám Khúc Xạ',
-    question: 'Khi đưa con đi khám mắt, phụ huynh cần yêu cầu những bước kiểm tra chuyên sâu nào?',
-    shortSummary: 'Bắt buộc phải đo khúc xạ khách quan có thể kèm liệt điều tiết (nếu cần), đo sinh trắc trục nhãn cầu (Axial Length Biometry) bằng máy IOL Master và chụp bản đồ giác mạc.',
+    question: 'Quy trình kiểm tra khúc xạ định kỳ gồm những bước nào?',
+    shortSummary: 'Đo khúc xạ chủ quan, đo độ dài trục nhãn cầu (Axial Length Biometry) và khám sức khỏe bề mặt mắt.',
     detailedPoints: [
-      '1. Đo độ dài trục nhãn cầu (Axial Length): Dùng máy sinh trắc quang học không tiếp xúc (như Zeiss IOLMaster hoặc Haag-Streit Lenstar). Đây là chỉ số chuẩn vàng để đánh giá mức độ tiến triển cận thị thật sự, không bị ảnh hưởng bởi co quắp điều tiết.',
-      '2. Đo khúc xạ chủ quan & chỉnh trục loạn thị: Kiểm tra độ loạn thị bằng bảng thị lực LogMAR, vòng quay chữ thập quay trục Cyl chính xác đến từng độ.',
-      '3. Khám đèn khe sinh hiển vi & đáy mắt: Kiểm tra giác mạc, thể thủy tinh và võng mạc để phát hiện sớm các thoái hóa võng mạc chu biên nếu có.',
-      '4. Canh tâm 3D: Đo khoảng cách đồng tử PD và chiều cao tâm đồng tử FH trên chính gọng kính em đã chọn.'
+      '1. Đo độ dài trục nhãn cầu (Axial Length): Sử dụng máy sinh trắc quang học không tiếp xúc (IOLMaster / Lenstar) để theo dõi chiều dài trục mắt.',
+      '2. Đo khúc xạ chủ quan: Kiểm tra độ cận, độ loạn và thử thị lực tối đa.',
+      '3. Đo tâm kính 3D: Xác định khoảng cách hai đồng tử (PD) và chiều cao tâm kính (FH) trên gọng kính.'
     ],
-    clinicalHighlight: 'Đo sinh trắc trục nhãn cầu (Axial Length) là tiêu chuẩn vàng tối thượng để theo dõi sự tăng độ cận thực chất của mắt.',
-    doctorQuestionToAsk: 'Bác sĩ cho tôi xin kết quả đo độ dài trục nhãn cầu (Axial Length) của cháu hôm nay là bao nhiêu mm và tốc độ dài trục mắt dự báo trong năm tới?'
+    clinicalHighlight: 'Đo độ dài trục nhãn cầu là chỉ số quan trọng để đánh giá sự phát triển thực tế của mắt.'
   }
 ];
 
@@ -522,43 +539,43 @@ export interface DeepScientificInsight {
 export const deepScientificInsights: DeepScientificInsight[] = [
   {
     id: 'insight-bullimore-rule',
-    topic: 'Quy Luật Bullimore & Brennan: "Mỗi 1 Diop Giảm Đi Cứu Vãn Tương Lai Thị Lực"',
-    keyMetric: 'Giảm 40% nguy cơ bệnh võng mạc cận thị cho mỗi 1.00D được bảo tồn',
+    topic: 'Nghiên cứu Bullimore & Brennan: Ý nghĩa của việc giảm độ tăng cận',
+    keyMetric: 'Giảm nguy cơ biến chứng võng mạc cho mỗi 1.00D độ cận được giữ lại',
     authoritativeSource: 'Bullimore MA, Brennan NA. Ophthalmic & Physiological Optics (2019)',
-    coreMechanism: 'Cận thị tiến triển làm mỏng biểu mô sắc tố võng mạc (RPE), kéo căng màng Bruch và thoái hóa bè củng mạc. Giữ độ cận dưới -6.00D ngăn chặn sự biến dạng cơ học vĩnh viễn của đáy mắt.',
-    clinicalSignificance: 'Mục tiêu kiểm soát cận thị không chỉ là bớt dày tròng kính, mà là dự phòng mù lòa do thoái hóa hoàng điểm cận thị (Myopic Maculopathy), bong võng mạc (Retinal Detachment) và Glaucoma góc mở khi trưởng thành.'
+    coreMechanism: 'Cận thị độ cao làm kéo căng màng võng mạc và củng mạc. Kiểm soát độ cận giúp hạn chế sự kéo dãn nhãn cầu.',
+    clinicalSignificance: 'Mục tiêu kiểm soát cận thị là giữ độ cận ở mức thấp hơn, hạn chế nguy cơ biến chứng mắt khi trưởng thành.'
   },
   {
     id: 'insight-dopamine-photobiology',
-    topic: 'Quang Sinh Học Võng Mạc & Trục Dẫn Truyền Thần Kinh Dopamine',
-    keyMetric: 'Cường độ quang thông >= 10.000 lux kích hoạt tế bào Amacrine tiết Dopamine',
-    authoritativeSource: 'Rose KA, Morgan IG et al. Progress in Retinal and Eye Research (2018) & Nature (2015)',
-    coreMechanism: 'Ánh sáng mặt trời tự nhiên kích thích tế bào hạch võng mạc nhạy sáng nội tại (ipRGCs mang sắc tố Melanopsin) và tế bào Amacrine võng mạc giải phóng chất dẫn truyền Dopamine. Dopamine ức chế enzym metalloproteinase (MMP-2) và điều hòa TGF-beta tại củng mạc, ngăn cản củng mạc bị kéo dãn dài ra.',
-    clinicalSignificance: 'Khẳng định thời gian ngoài trời ban ngày (Outdoor daylight >= 120 phút/ngày) là can thiệp sinh học bắt buộc, không thể thay thế bằng bất kỳ loại đèn chiếu sáng nhân tạo nào trong nhà.'
+    topic: 'Vai trò của ánh sáng tự nhiên và Dopamine võng mạc',
+    keyMetric: 'Ánh sáng ngoài trời ban ngày kích thích tế bào Amacrine võng mạc',
+    authoritativeSource: 'Rose KA, Morgan IG et al. Progress in Retinal and Eye Research (2018)',
+    coreMechanism: 'Ánh sáng mặt trời tự nhiên kích thích võng mạc giải phóng Dopamine, một chất hỗ trợ điều hòa sự phát triển chiều dài nhãn cầu.',
+    clinicalSignificance: 'Khẳng định vai trò của thói quen hoạt động ngoài trời ban ngày đối với sức khỏe thị lực lứa tuổi học đường.'
   },
   {
     id: 'insight-axial-biometry',
-    topic: 'Đo Sinh Trắc Học Trục Nhãn Cầu (Axial Length Biometry) - Chuẩn Vàng Lâm Sàng',
-    keyMetric: 'Độ chính xác +/- 0.01mm (tương đương 0.025D), vượt trội hơn đo khúc xạ máy',
-    authoritativeSource: 'International Myopia Institute (IMI 2021-2023) & CLEERE Study',
-    coreMechanism: 'Đo khúc xạ máy (Autorefraction) thường bị nhiễu lớn bởi hiện tượng co quắp điều tiết (Accommodative Spasm) ở học sinh tuổi dậy thì. Đo trục mắt bằng giao thoa quang học không tiếp xúc (Zeiss IOLMaster / Haag-Streit Lenstar) đo chính xác khoảng cách từ đỉnh giác mạc đến màng ngăn giới hạn trong võng mạc.',
-    clinicalSignificance: 'Tốc độ dài trục mắt sinh lý ở trẻ 14 tuổi là < 0.10mm/năm. Nếu trục mắt dài > 0.20mm/năm là dấu hiệu cận thị tiến triển bùng nổ cần nâng cấp phác đồ điều trị ngay lập tức.'
+    topic: 'Đo chiều dài trục nhãn cầu (Axial Length Biometry)',
+    keyMetric: 'Độ chính xác cao, theo dõi trực tiếp chiều dài trước - sau của mắt',
+    authoritativeSource: 'International Myopia Institute (IMI 2021-2023)',
+    coreMechanism: 'Đo trục mắt bằng máy sinh trắc quang học không tiếp xúc (IOLMaster / Lenstar) xác định khoảng cách từ giác mạc đến võng mạc.',
+    clinicalSignificance: 'Là công cụ theo dõi sự phát triển thực tế của nhãn cầu qua các lần khám định kỳ.'
   },
   {
     id: 'insight-combination-therapy',
-    topic: 'Phác Đồ Phối Hợp Hiệp Đồng: Tròng Kính Defocus + Atropine Nồng Độ Thấp',
-    keyMetric: 'Hiệu quả hiệp đồng làm chậm tiến triển lên tới 75% - 80%',
-    authoritativeSource: 'Nucci C et al. (IOVS 2023), Tan Q et al. (BJO 2023), Kinoshita et al. (IOVS 2018)',
-    coreMechanism: 'Tròng kính Defocus (H.A.L.T / D.I.M.S / C.A.R.E) tạo tín hiệu quang học ngoại vi ức chế ở mặt sau nhãn cầu, trong khi Atropine 0.01% - 0.05% tác động hóa sinh trực tiếp lên thụ thể Muscarinic M1/M4 tại màng bồ đào và củng mạc.',
-    clinicalSignificance: 'Đối với học sinh có tốc độ tăng độ nhanh (> 1.00D/năm hoặc trục mắt dài > 0.3mm/năm), phác đồ phối hợp "Đeo kính Defocus ban ngày + Nhỏ Atropine 0.05% ban đêm" đem lại tỷ lệ kiểm soát tối đa.'
+    topic: 'Phối hợp tròng kính Defocus và thuốc nhỏ mắt Atropine nồng độ thấp',
+    keyMetric: 'Hỗ trợ kiểm soát tiến triển ở các trường hợp tăng độ nhanh',
+    authoritativeSource: 'Nucci C et al. (IOVS 2023), Tan Q et al. (BJO 2023)',
+    coreMechanism: 'Tròng kính Defocus tác động bằng quang học ngoại vi, trong khi Atropine nồng độ thấp tác động sinh học theo chỉ định bác sĩ.',
+    clinicalSignificance: 'Là lựa chọn phối hợp khi được bác sĩ chuyên khoa đánh giá và chỉ định.'
   },
   {
     id: 'insight-cochrane-sustainability',
-    topic: 'Bằng Chứng Độc Lập Cochrane & Khả Năng Duy Trì Bền Vững (No Rebound)',
-    keyMetric: 'Độ an toàn cấp chứng cứ Loại A (High-Certainty Evidence)',
-    authoritativeSource: 'Cochrane Database of Systematic Reviews (Walline JJ et al., 2020) & Lam et al. (BJO 6-year study)',
-    coreMechanism: 'Khác với Atropine liều cao (1.0%) thường gây hiện tượng dội ngược bùng nổ khi dừng thuốc, kính gọng Defocus hoạt động hoàn toàn bằng đường quang học tự nhiên, kích thích thích nghi võng mạc bền bỉ mà không làm suy giảm biên độ điều tiết.',
-    clinicalSignificance: 'Học sinh có thể đeo kính Defocus an toàn trong suốt các năm học THCS và THPT cho đến khi trục nhãn cầu ổn định hoàn toàn ở tuổi 18 - 20.'
+    topic: 'Tổng quan hệ thống Cochrane về các phương pháp kiểm soát cận thị',
+    keyMetric: 'Đánh giá mức độ bằng chứng y học từ các thử nghiệm lâm sàng',
+    authoritativeSource: 'Cochrane Database of Systematic Reviews (Walline JJ et al., 2020)',
+    coreMechanism: 'Tròng kính quang học Defocus và Atropine nồng độ thấp được ghi nhận có hiệu quả làm chậm tiến triển độ cận ở trẻ em.',
+    clinicalSignificance: 'Cung cấp cơ sở khoa học độc lập cho các phương pháp can thiệp hiện nay.'
   }
 ];
 
@@ -572,52 +589,45 @@ export interface SingleVsDefocusComparisonItem {
 
 export const singleVsDefocusComparison: SingleVsDefocusComparisonItem[] = [
   {
-    criteria: "Cơ chế quang học võng mạc",
-    singleVisionLens: "Tạo hiện tượng Defocus viễn thị ngoại vi (Peripheral Hyperopic Defocus) – tiêu điểm rìa rơi ra sau võng mạc.",
-    myopiaControlLens: "Tạo hiện tượng Defocus cận thị ngoại vi (Peripheral Myopic Defocus) – tiêu điểm rìa rơi trước võng mạc.",
-    clinicalImpact: "Kính thường kích thích củng mạc tiếp tục giãn dài; Kính Defocus tạo 'phanh sinh học' ngăn dài trục nhãn cầu.",
+    criteria: "Cơ chế quang học",
+    singleVisionLens: "Đưa tiêu điểm trung tâm về đúng võng mạc, ánh sáng rìa ngoại vi hội tụ phía sau võng mạc.",
+    myopiaControlLens: "Đưa tiêu điểm trung tâm về đúng võng mạc, tạo thêm tiêu điểm cận thị ngoại vi phía trước võng mạc.",
+    clinicalImpact: "Kính Defocus tạo tín hiệu quang học hỗ trợ làm chậm sự kéo dài trục nhãn cầu.",
     isDefocusAdvantage: true
   },
   {
-    criteria: "Hiệu quả kiểm soát tăng độ cận",
-    singleVisionLens: "0% (Độ cận tăng liên tục trung bình 0.75D – 1.50D/năm ở lứa tuổi 11–16).",
-    myopiaControlLens: "Giảm 60% – 67% tiến triển độ cận (Được chứng minh lâm sàng qua JAMA & BJO).",
-    clinicalImpact: "Kính Defocus giữ độ cận không tăng vọt, bảo vệ mắt khỏi mốc cận thị nặng (> -6.00D).",
+    criteria: "Hiệu quả làm chậm tăng độ",
+    singleVisionLens: "Điều chỉnh thị lực nhìn rõ, không có cơ chế làm chậm tăng độ.",
+    myopiaControlLens: "Làm chậm khoảng 60% – 67% tiến triển độ cận (theo các nghiên cứu lâm sàng).",
+    clinicalImpact: "Hỗ trợ giữ độ cận ở mức thấp hơn qua các năm học đường.",
     isDefocusAdvantage: true
   },
   {
-    criteria: "Bảo vệ cấu trúc trục nhãn cầu (Axial Length)",
-    singleVisionLens: "Không kiểm soát. Trục mắt tiếp tục kéo dài nhanh vĩnh viễn (~0.2 - 0.4mm/năm).",
-    myopiaControlLens: "Làm chậm 60% tốc độ kéo dài trục nhãn cầu (khi đeo >= 12 tiếng/ngày).",
-    clinicalImpact: "Ngăn chặn sự thoái hóa mỏng biểu mô sắc tố võng mạc và màng củng mạc vĩnh viễn.",
+    criteria: "Kiểm soát trục nhãn cầu",
+    singleVisionLens: "Trục nhãn cầu tiếp tục phát triển theo tự nhiên và sinh hoạt.",
+    myopiaControlLens: "Làm chậm khoảng 60% tốc độ dài ra của trục nhãn cầu.",
+    clinicalImpact: "Hạn chế sự kéo dãn cơ học của nhãn cầu.",
     isDefocusAdvantage: true
   },
   {
-    criteria: "Dự phòng biến chứng mù lòa tương lai",
-    singleVisionLens: "Nguy cơ cao mắc thoái hóa hoàng điểm cận thị, bong võng mạc, Glaucoma khi trưởng thành.",
-    myopiaControlLens: "Giảm 40% nguy cơ bệnh võng mạc cận thị cho mỗi 1.00D độ cận được giữ lại (Quy luật Bullimore).",
-    clinicalImpact: "Giảm đáng kể tỷ lệ suy giảm thị lực vĩnh viễn ở tuổi trung niên và về già.",
+    criteria: "Hỗ trợ loạn thị & Lọc ánh sáng xanh",
+    singleVisionLens: "Cắt độ loạn thị bình thường; váng lọc ánh sáng xanh tùy chọn.",
+    myopiaControlLens: "Hỗ trợ độ loạn thị lên tới -4.00D; tích hợp các lớp váng bảo vệ mắt.",
+    clinicalImpact: "Đáp ứng tốt nhu cầu nhìn rõ và học tập trên máy tính.",
     isDefocusAdvantage: true
   },
   {
-    criteria: "Hỗ trợ độ loạn thị & Lọc ánh sáng xanh",
-    singleVisionLens: "Có tròng cắt độ loạn; tính năng lọc ánh sáng xanh tùy thuộc dòng tròng nâng cấp.",
-    myopiaControlLens: "Hỗ trợ độ loạn (Cyl) đến -4.00D xoay đúng trục; tích hợp sẵn váng lọc ánh sáng xanh kỹ thuật số cao cấp (Stellest/MyoCare S).",
-    clinicalImpact: "Bảo vệ mắt toàn diện khi học máy tính/điện thoại và nhìn sắc nét 10/10.",
-    isDefocusAdvantage: true
-  },
-  {
-    criteria: "Chi phí đầu tư ban đầu",
-    singleVisionLens: "Thấp: 300.000 – 1.200.000 VNĐ / cặp (Tuy nhiên phải thay tròng liên tục 6-12 tháng/lần do tăng độ).",
-    myopiaControlLens: "Cao hơn: 3.800.000 – 5.500.000 VNĐ / cặp (Dùng ổn định 1 - 2 năm nhờ độ cận được giữ vững).",
-    clinicalImpact: "Tính trên chu kỳ 2-3 năm, chi phí kính Defocus không chênh lệch quá nhiều so với việc thay tròng thường liên tục kèm nguy cơ tăng độ.",
+    criteria: "Chi phí đầu tư",
+    singleVisionLens: "Chi phí thấp, phổ biến ở mọi cửa hàng kính.",
+    myopiaControlLens: "Chi phí cao hơn kính đơn tròng.",
+    clinicalImpact: "Cần cân nhắc điều kiện kinh tế gia đình.",
     isDefocusAdvantage: false
   },
   {
-    criteria: "Yêu cầu kỹ thuật mài lắp & Thời gian thích nghi",
-    singleVisionLens: "Kỹ thuật mài lắp cơ bản; trẻ thích nghi ngay lập tức.",
-    myopiaControlLens: "Yêu cầu đo tâm đồng tử (PD/FH) chính xác đến 0.1mm; trẻ mất 1 - 3 ngày để thích nghi với vùng vi thấu kính.",
-    clinicalImpact: "Đòi hỏi đo khám tại trung tâm nhãn khoa uy tín; 99% trẻ thích nghi hoàn toàn sau vài ngày.",
+    criteria: "Yêu cầu mài lắp & Thích nghi",
+    singleVisionLens: "Gia công đơn giản, trẻ thích nghi ngay.",
+    myopiaControlLens: "Yêu cầu đo tâm đồng tử (PD/FH) chính xác; trẻ cần vài ngày để quen với vùng vi thấu kính.",
+    clinicalImpact: "Đòi hỏi kỹ thuật đo mài lắp chính xác.",
     isDefocusAdvantage: false
   }
 ];
@@ -633,31 +643,29 @@ export interface DecisionTreeOption {
 
 export const decisionTreeMatrix: DecisionTreeOption[] = [
   {
-    recommendation: "BẮT BUỘC CHỌN KÍNH KIỂM SOÁT ĐỘ CẬN (DEFOCUS LENSES)",
-    badge: "Khuyến Nghị Số 1 (Ưu Tiên Hàng Đầu)",
+    recommendation: "TRÒNG KÍNH KIỂM SOÁT ĐỘ CẬN (DEFOCUS LENSES)",
+    badge: "Lựa Chọn Khuyên Dùng Cho Trẻ Cận Tiến Triển",
     badgeColor: "bg-cyan-950 text-cyan-300 border-cyan-700",
-    targetGroup: "Học sinh từ 8 đến 18 tuổi (Đặc biệt giai đoạn dậy thì 11 - 16 tuổi như trường hợp học sinh 14 tuổi)",
+    targetGroup: "Học sinh trong độ tuổi phát triển (8 - 18 tuổi) có độ cận tăng qua các lần khám",
     keyCriteria: [
-      "Độ cận có xu hướng nhích tăng nhanh (>= 0.75 Diop / năm)",
-      "Trẻ bị cận từ sớm (khởi phát năm 11 tuổi trở xuống)",
-      "Thời gian nhìn gần & màn hình thiết bị số cao (> 3-4 giờ/ngày)",
-      "Có kèm độ loạn thị và ít có thời gian hoạt động ngoài trời",
-      "Gia đình mong muốn bảo vệ trục mắt vĩnh viễn, ngăn chặn mốc cận nặng (> -6.00D)"
+      "Độ cận tăng qua các lần kiểm tra định kỳ",
+      "Phát hiện cận thị ở lứa tuổi học đường",
+      "Cường độ học tập và sử dụng thiết bị điện tử nhiều",
+      "Mong muốn làm chậm tốc độ tăng độ cận bằng kính gọng"
     ],
-    rationale: "Đây là giải pháp can thiệp y học thực chứng duy nhất qua kính gọng giúp hãm 67% độ cận mà 100% an toàn, không nguy cơ nhiễm trùng giác mạc như kính tiếp xúc."
+    rationale: "Giải pháp kính gọng có bằng chứng lâm sàng về khả năng làm chậm tiến triển độ cận."
   },
   {
-    recommendation: "CÓ THỂ DÙNG KÍNH CẬN ĐƠN TRÒNG BÌNH THƯỜNG",
-    badge: "Chỉ Dành Cho Người Trưởng Thành Hoặc Độ Cận Đã Ổn Định",
+    recommendation: "KÍNH CẬN ĐƠN TRÒNG THÔNG THƯỜNG",
+    badge: "Phù Hợp Khi Độ Cận Đã Ổn Định",
     badgeColor: "bg-slate-900 text-slate-300 border-slate-700",
-    targetGroup: "Người lớn (> 18 - 20 tuổi) hoặc trẻ cận rất nhẹ có độ cận không tăng",
+    targetGroup: "Người trưởng thành (> 18 tuổi) hoặc người có độ cận không thay đổi",
     keyCriteria: [
-      "Người trên 18 - 20 tuổi có trục nhãn cầu đã ngừng phát triển",
-      "Độ cận hoàn toàn ổn định (không tăng độ trong 2 năm liên tục)",
-      "Trẻ em cận nhẹ (< -1.00D) tăng rất chậm (< 0.25D/năm) và hoạt động ngoài trời > 2-3 tiếng/ngày",
-      "Gia đình cần giải pháp tạm thời trong lúc chờ đo sinh trắc trục mắt"
+      "Độ cận ổn định, không thay đổi trong 1-2 năm",
+      "Người trưởng thành trục nhãn cầu đã ngừng phát triển",
+      "Nhu cầu nhìn rõ cơ bản với chi phí hợp lý"
     ],
-    rationale: "Khi mắt đã ngừng dài ra, kính gọng bình thường đáp ứng tốt nhu cầu nhìn rõ với chi phí tiết kiệm. Tuy nhiên tuyệt đối không dùng kính thường cho trẻ cận tiến triển nhanh."
+    rationale: "Kính đơn tròng đáp ứng tốt nhu cầu chỉnh khúc xạ khi độ cận không còn xu hướng tăng."
   }
 ];
 
