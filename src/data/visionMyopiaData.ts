@@ -1,35 +1,174 @@
+export interface RefractiveExamMilestone {
+  id: string;
+  date: string;
+  facility: string;
+  facilityAddress?: string;
+  facilityPhone?: string;
+  recordNumber?: string;
+  patientAge: number;
+  diagnosis: string;
+  rightEye: {
+    uncorrectedVA?: string;
+    sphere: string;
+    cylinder?: string;
+    axis?: string;
+    correctedVA?: string;
+  };
+  leftEye: {
+    uncorrectedVA?: string;
+    sphere: string;
+    cylinder?: string;
+    axis?: string;
+    correctedVA?: string;
+  };
+  pd: number; // Pupillary Distance in mm
+  lensRecommendation: string;
+  lensTypeFitted?: string;
+  medicationOrAdvice?: string[];
+  doctorOrKtv?: string;
+  costVND?: string;
+  progressionNote?: string;
+}
+
 export interface PatientVisionProfile {
   name: string;
   birthDate: string;
   age: number; // 14 in 2026
-  detectedAge: number; // 11 in 2023
+  gender: string;
+  address: string;
+  medicalRecordNo: string;
+  detectedAge: number; // 10 in 2022
   currentStatus: string;
   astigmatismNote: string;
   screenTimeHabits: string[];
   keyRiskFactors: string[];
   growthPhase: string;
+  examHistory: RefractiveExamMilestone[];
+  progressionSummary: {
+    totalDurationMonths: number;
+    rightEyeSphereChange: string;
+    leftEyeSphereChange: string;
+    annualProgressionRate: string;
+    pdProgression: string;
+    riskCategory: string;
+    primaryHospitalRecommendation: string;
+  };
 }
 
 export const minhAnhVisionProfile: PatientVisionProfile = {
-  name: "Học sinh 14 tuổi",
+  name: "HOÀNG NGỌC MINH ANH",
   birthDate: "19/01/2012",
   age: 14,
-  detectedAge: 11,
-  currentStatus: "Cận thị tiến triển nhanh (khởi phát từ 11 tuổi, mỗi năm tăng 0.75D - 1.25D) kèm loạn thị cận (Compound Myopic Astigmatism)",
-  astigmatismNote: "Có kèm độ loạn thị (Astigmatism), yêu cầu tròng kính phải có khả năng cắt đúng trục loạn (Cylinder & Axis) kết hợp định tâm vi thấu kính chính xác",
+  gender: "Nữ",
+  address: "621 Bình Thới, Phường 10, Quận 11, TP. Hồ Chí Minh",
+  medicalRecordNo: "96672 (BV Mắt Cao Thắng)",
+  detectedAge: 10,
+  currentStatus: "Cận thị tiến triển nhanh tuổi dậy thì (khởi phát năm 2022, đến 2025 tăng -3.50D MP và -2.00D/Loạn -0.75D MT) kèm loạn thị cận.",
+  astigmatismNote: "Mắt trái kèm độ loạn thị (Cylinder -0.75D x 170°), mắt phải từng ghi nhận loạn nhẹ 2022. Yêu cầu tròng kính phải cắt chuẩn trục loạn và lấy tâm đồng tử PD/FH chính xác.",
   screenTimeHabits: [
     "Sử dụng điện thoại thông minh thường xuyên ở cự ly gần (< 30cm)",
     "Học tập và giải trí với máy tính để bàn / laptop nhiều giờ liên tục",
     "Xem tivi trong không gian ánh sáng trong nhà, ít nghỉ ngơi ngắt quãng",
-    "Thời gian hoạt động ngoài trời (Outdoor daylight) hạn chế (< 60 phút/ngày)"
+    "Thời gian hoạt động ngoài trời ban ngày (Outdoor daylight) hạn chế (< 60 phút/ngày)"
   ],
   keyRiskFactors: [
-    "Độ tuổi vàng tăng trưởng trục nhãn cầu mạnh (11 - 16 tuổi trong giai đoạn dậy thì)",
-    "Cường độ nhìn gần (Near-work load) cao kéo dài kích thích co thắt cơ thể mi",
-    "Hiện tượng Defocus viền võng mạc thúc đẩy kéo dài trục trước - sau của mắt",
-    "Độ loạn thị đi kèm làm tăng mỏi thị giác nếu không được hiệu chỉnh chuẩn xác"
+    "Độ tuổi vàng tăng trưởng trục nhãn cầu mạnh (10 - 16 tuổi trong giai đoạn dậy thì)",
+    "Tốc độ tăng độ cận trung bình > 1.00 Diop/năm thuộc nhóm tiến triển bùng nổ (Rapid Myopia Progression)",
+    "Đeo kính đơn tròng thông thường (Single Vision Lenses) trong các năm 2024-2025 tạo hiện tượng Defocus viễn thị ngoại vi kéo dài trục mắt",
+    "Áp lực nhìn gần cường độ cao kết hợp thiếu ánh sáng tự nhiên kích thích củng mạc giãn dài"
   ],
-  growthPhase: "Giai đoạn then chốt (14 - 18 tuổi): Trục nhãn cầu vẫn tiếp tục dài ra theo đà tăng trưởng thể chất; nếu không can thiệp bằng công nghệ Defocus, nguy cơ cán mốc cận thị nặng (> -6.00D) là rất cao."
+  growthPhase: "Giai đoạn then chốt (14 - 18 tuổi): Trục nhãn cầu vẫn tiếp tục dài ra theo đà phát triển thể chất; nếu không can thiệp ngay bằng tròng kính công nghệ Defocus (Stellest / MyoCare S), nguy cơ cán mốc cận thị nặng (> -6.00D) và biến chứng màng bồ đào/võng mạc là rất cao.",
+  examHistory: [
+    {
+      id: "milestone-2022",
+      date: "05/10/2022",
+      facility: "Bệnh viện Mắt Cao Thắng",
+      facilityAddress: "135B Trần Bình Trọng, P.2, Q.5, TP.HCM",
+      facilityPhone: "(+84 28) 3923 9135 / Hot line: +84 908 015 037",
+      recordNumber: "96672",
+      patientAge: 10,
+      diagnosis: "Khô mắt hai mắt (Mã ICD: H52.6) & Loạn thị nhẹ chưa cận thị",
+      rightEye: {
+        uncorrectedVA: "10-/10",
+        sphere: "Plano (0.00D)",
+        cylinder: "-0.50 D",
+        axis: "50°",
+        correctedVA: "10/10"
+      },
+      leftEye: {
+        uncorrectedVA: "10-/10",
+        sphere: "Plano (0.00D)",
+        cylinder: "-0.50 D",
+        axis: "175°",
+        correctedVA: "10/10"
+      },
+      pd: 59,
+      lensRecommendation: "Không kính (Chưa cần đeo kính gọng)",
+      medicationOrAdvice: [
+        "Vismed 0.18% 0.3ml (Na Hyaluronate 0.18%): Nhỏ 2 mắt x 3 lần/ngày x 1 giọt (dùng 20 ngày)",
+        "EyeBi (Vaccinium Myrtillus): Uống sau ăn x 1 viên/ngày (dùng 30 ngày)",
+        "Dặn dò: Nghỉ ngơi thị giác ngắt quãng, tái khám sau 6 tháng"
+      ],
+      doctorOrKtv: "BS. Nguyễn Thị Xuân Hương / KTV. Vũ Nguyễn Minh Châu",
+      progressionNote: "Mốc khởi điểm (10 tuổi): Mắt chưa bị cận, chỉ loạn thị sinh lý nhẹ, thị lực không kính đạt 10-/10."
+    },
+    {
+      id: "milestone-2024",
+      date: "20/08/2024",
+      facility: "Mắt Kính HMK",
+      facilityAddress: "395 - 397 Sư Vạn Hạnh, P.12, Q.10, TP.HCM",
+      patientAge: 12,
+      diagnosis: "Cận thị tiến triển hai mắt kèm loạn thị mắt trái (Khởi phát cận thị thực thụ)",
+      rightEye: {
+        sphere: "-2.50 D",
+        correctedVA: "10/10"
+      },
+      leftEye: {
+        sphere: "-1.50 D",
+        cylinder: "-0.75 D",
+        correctedVA: "10/10"
+      },
+      pd: 60,
+      lensRecommendation: "Đeo kính gọng nhìn xa thường xuyên",
+      lensTypeFitted: "Kính đơn tròng (Single Vision Lenses)",
+      costVND: "976.000 VNĐ",
+      progressionNote: "Sau 22 tháng từ mốc Cao Thắng: Mắt phải tăng vọt từ 0.00D lên -2.50D; Mắt trái tăng từ 0.00D lên -1.50D / Loạn -0.75D. Đã cắt đơn kính HMK."
+    },
+    {
+      id: "milestone-2025",
+      date: "23/12/2025",
+      facility: "Mắt Kính MINH ANH",
+      facilityAddress: "543B Minh Phụng, P.10, Q.11, TP.HCM - ĐT: 028 3963 3062",
+      patientAge: 13,
+      diagnosis: "Cận thị tiến triển bùng nổ (Rapid Myopia Progression) + Loạn thị cận mắt trái",
+      rightEye: {
+        uncorrectedVA: "1/10",
+        sphere: "-3.50 D",
+        correctedVA: "10/10"
+      },
+      leftEye: {
+        uncorrectedVA: "2/10",
+        sphere: "-2.00 D",
+        cylinder: "-0.75 D",
+        axis: "170°",
+        correctedVA: "10/10"
+      },
+      pd: 62,
+      lensRecommendation: "Kính gọng đeo nhìn xa thường xuyên",
+      lensTypeFitted: "Tròng kính 1.60 ASX (Phi cầu Aspheric / Lọc ánh sáng xanh kỹ thuật số)",
+      doctorOrKtv: "KTV Khúc Xạ Vũ Đoán Chi / Minh Chi",
+      progressionNote: "Sau 16 tháng từ lần cắt HMK: MP tăng thêm -1.00D (đạt -3.50D), thị lực mờ nặng (1/10); MT tăng thêm -0.50D (đạt -2.00D/Loạn -0.75D). Tốc độ dài trục nhãn cầu ở mức báo động."
+    }
+  ],
+  progressionSummary: {
+    totalDurationMonths: 38,
+    rightEyeSphereChange: "Từ 0.00D (2022) -> -2.50D (2024) -> -3.50D (2025) [Tăng tổng cộng -3.50 Diop]",
+    leftEyeSphereChange: "Từ 0.00D (2022) -> -1.50D/Loạn -0.75D (2024) -> -2.00D/Loạn -0.75D (2025) [Tăng -2.00 Diop]",
+    annualProgressionRate: "-1.16 Diop/năm (Mắt phải) & -0.67 Diop/năm (Mắt trái) -> Tốc độ tiến triển RẤT NHANH",
+    pdProgression: "59mm (2022) -> 60mm (2024) -> 62mm (2025) [Phát triển đồng bộ khung xương mặt]",
+    riskCategory: "BÁO ĐỘNG ĐỎ - Nguy cơ chạm mốc Cận Thị Nặng (> -6.00D) trước 18 tuổi nếu tiếp tục đeo kính thường",
+    primaryHospitalRecommendation: "Trình Bác sĩ Bệnh viện Mắt yêu cầu: 1) Đo Sinh trắc học trục nhãn cầu (Axial Length Biometry) bằng IOL Master 700; 2) Chuyển đổi sang kính vi thấu kính Defocus (Stellest / MyoCare S); 3) Cân nhắc phối hợp thuốc nhỏ Atropine nồng độ thấp (0.01% - 0.05%)."
+  }
 };
 
 export interface DefocusLensTech {

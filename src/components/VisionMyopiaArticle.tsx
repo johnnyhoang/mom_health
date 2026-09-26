@@ -117,19 +117,82 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </div>
         </div>
 
-        {/* Flat Patient Profile Summary */}
-        <div className="pt-4 border-t border-slate-900 font-sans space-y-3">
-          <div className="text-xs uppercase tracking-wider font-bold text-cyan-400">
-            Tóm Lược Hồ Sơ Khúc Xạ Lâm Sàng
+        {/* Flat Patient Profile Summary & Hospital Record Card */}
+        <div className="pt-4 border-t border-slate-900 font-sans space-y-4">
+          <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
+            <div className="text-xs uppercase tracking-wider font-bold text-cyan-400 flex items-center gap-1.5">
+              <ShieldCheck className="w-4 h-4 text-cyan-400" />
+              <span>Hồ Sơ Y Khoa Khúc Xạ Cá Thể Hóa • Bệnh Nhi Hoàng Ngọc Minh Anh</span>
+            </div>
+            <span className="text-[11px] font-mono bg-cyan-950/80 text-cyan-300 px-2 py-0.5 rounded border border-cyan-800/60">
+              Mã hồ sơ BV: {minhAnhVisionProfile.medicalRecordNo}
+            </span>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-300">
-            <div><strong className="text-slate-100">Bệnh nhân:</strong> {minhAnhVisionProfile.name} (Sinh ngày {minhAnhVisionProfile.birthDate} - {minhAnhVisionProfile.age} tuổi)</div>
-            <div><strong className="text-slate-100">Thời điểm khởi phát:</strong> Phát hiện cận năm 11 tuổi ({minhAnhVisionProfile.detectedAge} tuổi - năm 2023)</div>
-            <div><strong className="text-slate-100">Tình trạng khúc xạ:</strong> Cận thị tiến triển nhanh + kèm loạn thị (Astigmatism)</div>
-            <div><strong className="text-slate-100">Hành vi sinh hoạt:</strong> Dùng điện thoại, máy tính, xem tivi nhiều; ít hoạt động ngoài trời</div>
+            <div><strong className="text-slate-100">Bệnh nhân:</strong> {minhAnhVisionProfile.name} ({minhAnhVisionProfile.gender})</div>
+            <div><strong className="text-slate-100">Ngày sinh:</strong> {minhAnhVisionProfile.birthDate} ({minhAnhVisionProfile.age} tuổi)</div>
+            <div><strong className="text-slate-100">Địa chỉ:</strong> {minhAnhVisionProfile.address}</div>
+            <div><strong className="text-slate-100">Chẩn đoán lâm sàng:</strong> {minhAnhVisionProfile.currentStatus}</div>
           </div>
-          <div className="text-xs text-emerald-400/90 font-medium italic pt-1">
-            ✓ <strong>Mục tiêu then chốt:</strong> Làm chậm tốc độ dài trục nhãn cầu trong giai đoạn 14 - 18 tuổi, dập tắt nguy cơ cận thị nặng (&gt; -6.00D) và thoái hóa võng mạc trong tương lai.
+
+          {/* 3 Milestone Exam Timeline Table */}
+          <div className="pt-2 space-y-2">
+            <div className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
+              <Award className="w-3.5 h-3.5 text-amber-400" />
+              <span>Lịch Sử Diễn Tiến Khúc Xạ Mắt (3 Mốc Khám 2022 - 2024 - 2025)</span>
+            </div>
+
+            <div className="overflow-x-auto border border-slate-800/80 rounded-xl bg-slate-900/40">
+              <table className="w-full text-left text-xs font-sans">
+                <thead>
+                  <tr className="bg-slate-900/80 text-cyan-400 font-mono uppercase border-b border-slate-800">
+                    <th className="py-2.5 px-3">Mốc Thời Gian & Cơ Sở</th>
+                    <th className="py-2.5 px-3">Mắt Phải (MP)</th>
+                    <th className="py-2.5 px-3">Mắt Trái (MT)</th>
+                    <th className="py-2.5 px-3">PD</th>
+                    <th className="py-2.5 px-3">Ghi Chú Tiến Triển & Tròng Kính</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60 text-slate-300">
+                  {minhAnhVisionProfile.examHistory.map((m, idx) => (
+                    <tr key={m.id} className={idx === 2 ? "bg-cyan-950/20" : "bg-slate-950/40"}>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-white">{m.date}</div>
+                        <div className="text-[11px] text-cyan-300">{m.facility}</div>
+                        <div className="text-[10px] text-slate-400">({m.patientAge} tuổi)</div>
+                      </td>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-slate-100">{m.rightEye.sphere}</div>
+                        {m.rightEye.cylinder && <div className="text-[11px] text-amber-300">Cyl: {m.rightEye.cylinder} {m.rightEye.axis ? `x ${m.rightEye.axis}` : ''}</div>}
+                        <div className="text-[10px] text-slate-400">TL: {m.rightEye.uncorrectedVA ? `Không kính ${m.rightEye.uncorrectedVA} -> ` : ''}Có kính {m.rightEye.correctedVA || '10/10'}</div>
+                      </td>
+                      <td className="py-3 px-3">
+                        <div className="font-bold text-slate-100">{m.leftEye.sphere}</div>
+                        {m.leftEye.cylinder && <div className="text-[11px] text-amber-300">Cyl: {m.leftEye.cylinder} {m.leftEye.axis ? `x ${m.leftEye.axis}` : ''}</div>}
+                        <div className="text-[10px] text-slate-400">TL: {m.leftEye.uncorrectedVA ? `Không kính ${m.leftEye.uncorrectedVA} -> ` : ''}Có kính {m.leftEye.correctedVA || '10/10'}</div>
+                      </td>
+                      <td className="py-3 px-3 font-mono font-bold text-emerald-400">
+                        {m.pd}mm
+                      </td>
+                      <td className="py-3 px-3 text-[11px] leading-relaxed">
+                        <div className="text-slate-200">{m.progressionNote}</div>
+                        {m.lensTypeFitted && <div className="text-cyan-300 font-medium">Tròng: {m.lensTypeFitted}</div>}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="p-3 bg-rose-950/20 border-l-2 border-rose-500 rounded-r-xl text-xs space-y-1 text-slate-200">
+            <div className="font-bold text-rose-300 uppercase tracking-wider flex items-center gap-1.5">
+              <span>Báo Động Lâm Sàng & Đề Xuất Trình Bác Sĩ Bệnh Viện:</span>
+            </div>
+            <p className="leading-relaxed">
+              {minhAnhVisionProfile.progressionSummary.annualProgressionRate}. {minhAnhVisionProfile.progressionSummary.primaryHospitalRecommendation}
+            </p>
           </div>
         </div>
       </header>
