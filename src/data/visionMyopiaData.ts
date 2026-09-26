@@ -76,6 +76,26 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
   growthPhase: "Giai đoạn học đường (10 - 18 tuổi): Cần theo dõi khúc xạ định kỳ 3 - 6 tháng/lần.",
   examHistory: [
     {
+      id: "milestone-2022-owndays",
+      date: "30/05/2022",
+      facility: "OWNDAYS AEON Tân Phú",
+      patientAge: 10,
+      diagnosis: "Đo khúc xạ máy tự động (Auto Refraction)",
+      rightEye: {
+        sphere: "-1.25 D",
+        cylinder: "-0.25 D",
+        axis: "24°"
+      },
+      leftEye: {
+        sphere: "-0.25 D",
+        cylinder: "-0.75 D",
+        axis: "171°"
+      },
+      pd: 58,
+      lensRecommendation: "Kết quả đo máy khúc xạ tự động (Phiếu tên My My)",
+      progressionNote: "Phiếu đo máy (tên My My): MP -1.25D / Cyl -0.25D x 24°; MT -0.25D / Cyl -0.75D x 171°; PD 58mm."
+    },
+    {
       id: "milestone-2022",
       date: "05/10/2022",
       facility: "Bệnh viện Mắt Cao Thắng",
@@ -156,11 +176,11 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
     }
   ],
   progressionSummary: {
-    totalDurationMonths: 38,
-    rightEyeSphereChange: "Mắt phải: Plano (10/2022) -> -2.50D (08/2024) -> -3.50D (12/2025)",
-    leftEyeSphereChange: "Mắt trái: Plano (10/2022) -> -1.50D / Loạn -0.75D (08/2024) -> -2.00D / Loạn -0.75D x 170° (12/2025)",
+    totalDurationMonths: 43,
+    rightEyeSphereChange: "Mắt phải: -1.25D (05/2022) -> Plano (10/2022) -> -2.50D (08/2024) -> -3.50D (12/2025)",
+    leftEyeSphereChange: "Mắt trái: -0.25D / Loạn -0.75D x 171° (05/2022) -> -1.50D / Loạn -0.75D (08/2024) -> -2.00D / Loạn -0.75D x 170° (12/2025)",
     annualProgressionRate: "Mức thay đổi độ cận trung bình từ 0.67D đến 1.16D/năm trong giai đoạn 2022 - 2025.",
-    pdProgression: "Khoảng cách đồng tử (PD): 59mm (2022) -> 60mm (2024) -> 62mm (2025).",
+    pdProgression: "Khoảng cách đồng tử (PD): 58mm (05/2022) -> 59mm (10/2022) -> 60mm (2024) -> 62mm (2025).",
     riskCategory: "Cận thị tiến triển tuổi học đường",
     primaryHospitalRecommendation: "Dữ liệu lưu trữ phục vụ theo dõi khúc xạ định kỳ khi đi khám mắt."
   }
