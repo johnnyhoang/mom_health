@@ -61,7 +61,7 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
   age: 14,
   gender: "Nữ",
   address: "621 Bình Thới, Phường 10, Quận 11, TP. Hồ Chí Minh",
-  medicalRecordNo: "96672 (BV Mắt Cao Thắng)",
+  medicalRecordNo: "",
   detectedAge: 10,
   currentStatus: "Cận thị kèm loạn thị mắt trái. Ghi nhận độ cận tăng từ năm 2022 đến 2025.",
   astigmatismNote: "Mắt trái có độ loạn thị (Cylinder -0.75D x 170°).",
@@ -127,7 +127,6 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
       pd: 60,
       lensRecommendation: "Kính gọng nhìn xa",
       lensTypeFitted: "Kính đơn tròng",
-      costVND: "976.000 VNĐ",
       progressionNote: "Bắt đầu đeo kính cận: MP -2.50D, MT -1.50D / Loạn -0.75D."
     },
     {

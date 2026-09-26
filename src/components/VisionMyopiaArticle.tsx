@@ -158,10 +158,6 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <FileText className="w-3.5 h-3.5 text-amber-400" />
                 <span>Hồ Sơ A4</span>
               </a>
-
-              <span className="text-[11px] font-mono bg-slate-900 text-slate-400 px-2 py-0.5 rounded border border-slate-800">
-                Mã BV: {minhAnhVisionProfile.medicalRecordNo}
-              </span>
             </div>
           </div>
 
