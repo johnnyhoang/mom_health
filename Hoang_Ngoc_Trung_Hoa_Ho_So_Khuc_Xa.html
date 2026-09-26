@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Khúc Xạ Mắt - Hoàng Ngọc Trung Hòa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; color: #000000 !important; font-size: 11pt; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
+    }
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen p-4 sm:p-8">
+
+  <!-- Top Action Bar (No print) -->
+  <div class="no-print max-w-4xl mx-auto mb-6 bg-slate-900 text-white p-4 rounded-xl shadow-lg flex flex-wrap items-center justify-between gap-4 border border-slate-700">
+    <div class="flex items-center gap-3">
+      <span class="text-xl">📄</span>
+      <div>
+        <h1 class="font-bold text-sm sm:text-base text-cyan-400">Hồ Sơ Khúc Xạ Mắt</h1>
+        <p class="text-xs text-slate-300">Bệnh nhân: Hoàng Ngọc Trung Hòa (26/01/1979)</p>
+      </div>
+    </div>
+    <div>
+      <button onclick="window.print()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm rounded-lg shadow transition-all flex items-center gap-1.5 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        <span>In Hồ Sơ (Ctrl + P)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- A4 Document Container -->
+  <main class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-md print-shadow-none border border-slate-200 space-y-6">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-300 pb-3 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-slate-900 uppercase tracking-tight">
+        HỒ SƠ KHÚC XẠ MẮT
+      </h1>
+    </header>
+
+    <!-- Patient Info -->
+    <section class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs sm:text-sm grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+      <div><strong class="text-slate-900">Họ và tên:</strong> HOÀNG NGỌC TRUNG HÒA</div>
+      <div><strong class="text-slate-900">Ngày sinh:</strong> 26/01/1979 (47 tuổi)</div>
+      <div><strong class="text-slate-900">Giới tính:</strong> Nam</div>
+      <div><strong class="text-slate-900">Địa chỉ:</strong> 621 Bình Thới, Phường 10, Quận 11, TP.HCM</div>
+      <div class="sm:col-span-2 pt-1 border-t border-slate-200">
+        <strong class="text-slate-900">Tình trạng:</strong> Khúc xạ mắt người trưởng thành, theo dõi lão thị sinh lý tuổi > 45.
+      </div>
+    </section>
+
+    <!-- Examination History Table -->
+    <section class="space-y-3">
+      <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1">
+        Lịch Sử Đo Khúc Xạ & Đơn Kính
+      </h2>
+
+      <div class="overflow-x-auto border border-slate-300 rounded">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-100 text-slate-700 font-mono uppercase border-b border-slate-300">
+            <tr>
+              <th class="p-2.5">Thời Gian & Cơ Sở</th>
+              <th class="p-2.5">Mắt Phải (MP - OD)</th>
+              <th class="p-2.5">Mắt Trái (MT - OS)</th>
+              <th class="p-2.5 text-center">PD</th>
+              <th class="p-2.5">Chẩn Đoán & Tròng Kính</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">26/09/2026</div>
+                <div class="text-slate-600">Hồ Sơ Gia Đình</div>
+                <div class="text-slate-500 text-[11px]">(47 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">Theo khám định kỳ</div>
+                <div class="text-[11px] text-slate-600">TL: 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">Theo khám định kỳ</div>
+                <div class="text-[11px] text-slate-600">TL: 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">64mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Theo dõi khúc xạ người trưởng thành.</div>
+                <div class="text-slate-600">Khảo sát thị lực nhìn xa và độ đọc sách nhìn gần.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Summary Metrics -->
+    <section class="bg-slate-50 border border-slate-200 p-3.5 rounded-lg space-y-1.5 text-xs">
+      <h3 class="font-bold text-slate-900 uppercase">Tóm Tắt Khúc Xạ:</h3>
+      <ul class="space-y-1 list-disc list-inside leading-relaxed text-slate-700">
+        <li><strong>Tình trạng chung:</strong> Theo dõi khúc xạ người trưởng thành & độ lão thị.</li>
+        <li><strong>Khoảng cách đồng tử (PD):</strong> 64mm.</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

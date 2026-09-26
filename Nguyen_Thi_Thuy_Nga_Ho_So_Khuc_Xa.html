@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hồ Sơ Khúc Xạ Mắt - Nguyễn Thị Thúy Nga</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background-color: #ffffff !important; color: #000000 !important; font-size: 11pt; }
+      .print-shadow-none { box-shadow: none !important; border: 1px solid #cbd5e1 !important; }
+    }
+    @page {
+      size: A4;
+      margin: 15mm;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 font-sans antialiased min-h-screen p-4 sm:p-8">
+
+  <!-- Top Action Bar (No print) -->
+  <div class="no-print max-w-4xl mx-auto mb-6 bg-slate-900 text-white p-4 rounded-xl shadow-lg flex flex-wrap items-center justify-between gap-4 border border-slate-700">
+    <div class="flex items-center gap-3">
+      <span class="text-xl">📄</span>
+      <div>
+        <h1 class="font-bold text-sm sm:text-base text-cyan-400">Hồ Sơ Khúc Xạ Mắt</h1>
+        <p class="text-xs text-slate-300">Bệnh nhân: Nguyễn Thị Thúy Nga (12/06/1981)</p>
+      </div>
+    </div>
+    <div>
+      <button onclick="window.print()" class="px-4 py-2 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs sm:text-sm rounded-lg shadow transition-all flex items-center gap-1.5 cursor-pointer">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
+        <span>In Hồ Sơ (Ctrl + P)</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- A4 Document Container -->
+  <main class="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-md print-shadow-none border border-slate-200 space-y-6">
+
+    <!-- Header Section -->
+    <header class="border-b border-slate-300 pb-3 flex items-center justify-between">
+      <h1 class="text-xl font-bold text-slate-900 uppercase tracking-tight">
+        HỒ SƠ KHÚC XẠ MẮT
+      </h1>
+    </header>
+
+    <!-- Patient Info -->
+    <section class="bg-slate-50 p-4 rounded-lg border border-slate-200 text-xs sm:text-sm grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
+      <div><strong class="text-slate-900">Họ và tên:</strong> NGUYỄN THỊ THÚY NGA</div>
+      <div><strong class="text-slate-900">Ngày sinh:</strong> 12/06/1981 (45 tuổi)</div>
+      <div><strong class="text-slate-900">Giới tính:</strong> Nữ</div>
+      <div><strong class="text-slate-900">Địa chỉ:</strong> 621 Bình Thới, Phường 10, Quận 11, TP.HCM</div>
+      <div class="sm:col-span-2 pt-1 border-t border-slate-200">
+        <strong class="text-slate-900">Tình trạng:</strong> Cận thị hai mắt, có biểu hiện lão thị nhẹ khi nhìn gần (Add +1.00D).
+      </div>
+    </section>
+
+    <!-- Examination History Table -->
+    <section class="space-y-3">
+      <h2 class="text-sm font-bold text-slate-900 uppercase tracking-wider border-b border-slate-200 pb-1">
+        Lịch Sử Đo Khúc Xạ & Đơn Kính
+      </h2>
+
+      <div class="overflow-x-auto border border-slate-300 rounded">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-100 text-slate-700 font-mono uppercase border-b border-slate-300">
+            <tr>
+              <th class="p-2.5">Thời Gian & Cơ Sở</th>
+              <th class="p-2.5">Mắt Phải (MP - OD)</th>
+              <th class="p-2.5">Mắt Trái (MT - OS)</th>
+              <th class="p-2.5 text-center">PD</th>
+              <th class="p-2.5">Chẩn Đoán & Tròng Kính</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200 text-slate-800">
+            <!-- 17/06/2017 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">17/06/2017</div>
+                <div class="text-slate-600">Mắt Kính MINH ANH</div>
+                <div class="text-slate-500 text-[11px]">(36 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.00 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.25 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">65mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị hai mắt.</div>
+                <div>Kính gọng nhìn xa (Đo máy: MP -2.25, MT -2.25).</div>
+              </td>
+            </tr>
+
+            <!-- 13/07/2018 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">13/07/2018</div>
+                <div class="text-slate-600">Mắt Kính MINH ANH</div>
+                <div class="text-slate-500 text-[11px]">(37 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.00 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.25 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">65mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị hai mắt.</div>
+                <div>Tròng kính: VDSC.</div>
+              </td>
+            </tr>
+
+            <!-- 28/12/2020 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">28/12/2020</div>
+                <div class="text-slate-600">Mắt Kính MINH ANH</div>
+                <div class="text-slate-500 text-[11px]">(39 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.25 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.75 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">65mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị + Độ nhìn gần (Add +1.00D).</div>
+                <div>Tròng kính: 1.60 ASX.</div>
+              </td>
+            </tr>
+
+            <!-- 16/04/2022 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">16/04/2022</div>
+                <div class="text-slate-600">OWNDAYS Aeon Tân Phú</div>
+                <div class="text-slate-500 text-[11px]">(41 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.25 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-2.75 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">65mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị hai mắt (Mã thẻ: C 069093).</div>
+                <div>Tròng kính: EyeShield OWNDAYS.</div>
+              </td>
+            </tr>
+
+            <!-- 10/01/2023 -->
+            <tr>
+              <td class="p-2.5">
+                <div class="font-bold">10/01/2023</div>
+                <div class="text-slate-600">OWNDAYS Aeon Tân Phú</div>
+                <div class="text-slate-500 text-[11px]">(41-42 tuổi)</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-3.00 D / -0.25 D x 160°</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10+</div>
+              </td>
+              <td class="p-2.5">
+                <div class="font-bold">-3.50 D</div>
+                <div class="text-[11px] text-slate-600">TL có kính: 10/10+</div>
+              </td>
+              <td class="p-2.5 text-center font-mono">65mm</td>
+              <td class="p-2.5 leading-relaxed">
+                <div>Cận thị hai mắt (Mã thẻ: B 044891).</div>
+                <div>Tròng kính: 1.60 ESL OWNDAYS.</div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Summary Metrics -->
+    <section class="bg-slate-50 border border-slate-200 p-3.5 rounded-lg space-y-1.5 text-xs">
+      <h3 class="font-bold text-slate-900 uppercase">Tóm Tắt Khúc Xạ:</h3>
+      <ul class="space-y-1 list-disc list-inside leading-relaxed text-slate-700">
+        <li><strong>Mắt phải:</strong> -2.00D (2017) → -2.00D (2018) → -2.25D (2020) → -3.00D (2023).</li>
+        <li><strong>Mắt trái:</strong> -2.25D (2017) → -2.25D (2018) → -2.75D (2020) → -3.50D (2023).</li>
+        <li><strong>Khoảng cách đồng tử (PD):</strong> 65mm.</li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

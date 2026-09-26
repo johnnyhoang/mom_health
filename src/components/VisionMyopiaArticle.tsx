@@ -3,6 +3,8 @@ import { ReadAloudButton } from './ReadAloudButton';
 import { MedicalDisclaimerBanner } from './MedicalDisclaimerBanner';
 import { 
   minhAnhVisionProfile, 
+  thuyNgaVisionProfile,
+  trungHoaVisionProfile,
   myopiaControlLensesList, 
   myopiaInterventionsComparison, 
   singleVsDefocusComparison,
@@ -31,7 +33,8 @@ import {
   CheckCircle2,
   AlertCircle,
   Printer,
-  FileText
+  FileText,
+  Users
 } from 'lucide-react';
 
 interface VisionMyopiaArticleProps {
@@ -44,12 +47,40 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
   onNavigateToDoctors,
   onNavigateToQA
 }) => {
+  const [selectedPatientId, setSelectedPatientId] = useState<string>('minh-anh');
   const [selectedLensId, setSelectedLensId] = useState<string>('essilor-stellest');
   const [expandedQAId, setExpandedQAId] = useState<string | null>('qa-vision-1');
   const [outdoorHours, setOutdoorHours] = useState<number>(1);
   const [screenHours, setScreenHours] = useState<number>(5);
 
   const activeLens = myopiaControlLensesList.find(l => l.id === selectedLensId) || myopiaControlLensesList[0];
+
+  const currentProfile = selectedPatientId === 'thuy-nga' 
+    ? thuyNgaVisionProfile 
+    : selectedPatientId === 'trung-hoa' 
+    ? trungHoaVisionProfile 
+    : minhAnhVisionProfile;
+
+  const getProfilePrintLinks = () => {
+    if (selectedPatientId === 'thuy-nga') {
+      return {
+        a4: '/Nguyen_Thi_Thuy_Nga_Ho_So_Khuc_Xa.html',
+        ktv: '/Nguyen_Thi_Thuy_Nga_Phieu_KTV.html'
+      };
+    }
+    if (selectedPatientId === 'trung-hoa') {
+      return {
+        a4: '/Hoang_Ngoc_Trung_Hoa_Ho_So_Khuc_Xa.html',
+        ktv: '/Hoang_Ngoc_Trung_Hoa_Phieu_KTV.html'
+      };
+    }
+    return {
+      a4: '/Hoang_Ngoc_Minh_Anh_Ho_So_Khuc_Xa.html',
+      ktv: '/Hoang_Ngoc_Minh_Anh_Phieu_KTV.html'
+    };
+  };
+
+  const printLinks = getProfilePrintLinks();
 
   // Simple flat risk index calculator
   const calculateProgressionRisk = () => {
@@ -80,7 +111,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
         {/* Book Series Label */}
         <div className="flex items-center gap-2 text-cyan-400 font-sans text-xs font-semibold tracking-widest uppercase">
           <BookOpen className="w-4 h-4" />
-          <span>Chuyên Khảo Nhãn Khoa Nhi • Cá Thể Hóa • Tháng 09/2026</span>
+          <span>Chuyên Khảo Nhãn Khoa Nhi • Hồ Sơ Gia Đình • Tháng 09/2026</span>
         </div>
 
         {/* Book Main Title */}
@@ -90,8 +121,51 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </h1>
           
           <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed italic border-l-2 border-cyan-500/60 pl-4 py-1">
-            Giải mã cơ chế sinh lý trục nhãn cầu, so sánh kính cận thường với kính kiểm soát độ cận, phân tích các nghiên cứu quốc tế về tròng kính Defocus và hướng dẫn lựa chọn cho học sinh 14 tuổi (sinh ngày 19/01/2012).
+            Giải mã cơ chế sinh lý trục nhãn cầu, so sánh kính cận thường với kính kiểm soát độ cận, phân tích các nghiên cứu quốc tế về tròng kính Defocus và hướng dẫn theo dõi khúc xạ gia đình.
           </p>
+        </div>
+
+        {/* Family Member Selector Tabs */}
+        <div className="pt-2 border-t border-slate-800/80 font-sans space-y-2">
+          <div className="text-xs uppercase tracking-wider font-bold text-slate-400 flex items-center gap-1.5">
+            <Users className="w-4 h-4 text-cyan-400" />
+            <span>Chọn Hồ Sơ Thành Viên Gia Đình:</span>
+          </div>
+
+          <div className="flex flex-wrap gap-2 text-xs">
+            <button
+              onClick={() => setSelectedPatientId('minh-anh')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border ${
+                selectedPatientId === 'minh-anh'
+                  ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-950/40'
+                  : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white'
+              }`}
+            >
+              👧 Hoàng Ngọc Minh Anh (14t)
+            </button>
+
+            <button
+              onClick={() => setSelectedPatientId('thuy-nga')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border ${
+                selectedPatientId === 'thuy-nga'
+                  ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-950/40'
+                  : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white'
+              }`}
+            >
+              👩 Nguyễn Thị Thúy Nga (45t)
+            </button>
+
+            <button
+              onClick={() => setSelectedPatientId('trung-hoa')}
+              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border ${
+                selectedPatientId === 'trung-hoa'
+                  ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-950/40'
+                  : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white'
+              }`}
+            >
+              👨 Hoàng Ngọc Trung Hòa (47t)
+            </button>
+          </div>
         </div>
 
         {/* Flat Audio & Clinical Header Status */}
@@ -100,7 +174,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <ReadAloudButton
               id="vision-monograph-full"
               title="Cẩm nang Kiểm Soát Cận Thị và Loạn Thị Tiến Triển"
-              text="Chuyên khảo nhãn khoa nhi: Kiểm soát cận thị và loạn thị tiến triển tuổi dậy thì. Phân tích cơ chế trục nhãn cầu, so sánh kính cận thường với tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss và lộ trình bảo vệ mắt cho học sinh 14 tuổi, sinh ngày 19 tháng 1 năm 2012."
+              text={`Chuyên khảo nhãn khoa: Hồ sơ khúc xạ bệnh nhân ${currentProfile.name}. Phân tích cơ chế trục nhãn cầu, so sánh kính cận thường với tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss.`}
               variant="hero"
               label="Nghe đọc toàn bộ chuyên khảo"
               durationEstimate="~16 phút"
@@ -124,7 +198,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-800/80 pb-2">
             <div className="text-xs uppercase tracking-wider font-bold text-cyan-400 flex items-center gap-1.5">
               <ShieldCheck className="w-4 h-4 text-cyan-400" />
-              <span>Hồ Sơ Khúc Xạ • Bệnh Nhi Hoàng Ngọc Minh Anh</span>
+              <span>Hồ Sơ Khúc Xạ • Bệnh Nhân {currentProfile.name}</span>
             </div>
             
             <div className="flex flex-wrap items-center gap-2">
@@ -138,7 +212,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               </button>
 
               <a
-                href="/Hoang_Ngoc_Minh_Anh_Phieu_KTV.html"
+                href={printLinks.ktv}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-2.5 py-1 bg-emerald-950 hover:bg-emerald-900 text-emerald-200 text-[11px] font-bold rounded border border-emerald-700/60 flex items-center gap-1 cursor-pointer transition-colors"
@@ -149,7 +223,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               </a>
 
               <a
-                href="/Hoang_Ngoc_Minh_Anh_Ho_So_Khuc_Xa.html"
+                href={printLinks.a4}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="px-2.5 py-1 bg-slate-900 hover:bg-slate-800 text-slate-200 text-[11px] font-bold rounded border border-slate-700 flex items-center gap-1 cursor-pointer transition-colors"
@@ -162,17 +236,17 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2 text-xs text-slate-300">
-            <div><strong className="text-slate-100">Bệnh nhân:</strong> {minhAnhVisionProfile.name} ({minhAnhVisionProfile.gender})</div>
-            <div><strong className="text-slate-100">Ngày sinh:</strong> {minhAnhVisionProfile.birthDate} ({minhAnhVisionProfile.age} tuổi)</div>
-            <div><strong className="text-slate-100">Địa chỉ:</strong> {minhAnhVisionProfile.address}</div>
-            <div><strong className="text-slate-100">Tình trạng:</strong> {minhAnhVisionProfile.currentStatus}</div>
+            <div><strong className="text-slate-100">Bệnh nhân:</strong> {currentProfile.name} ({currentProfile.gender})</div>
+            <div><strong className="text-slate-100">Ngày sinh:</strong> {currentProfile.birthDate} ({currentProfile.age} tuổi)</div>
+            <div><strong className="text-slate-100">Địa chỉ:</strong> {currentProfile.address}</div>
+            <div><strong className="text-slate-100">Tình trạng:</strong> {currentProfile.currentStatus}</div>
           </div>
 
           {/* Exam Timeline Table */}
           <div className="pt-2 space-y-2">
             <div className="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center gap-1.5">
               <Award className="w-3.5 h-3.5 text-cyan-400" />
-              <span>Lịch Sử Khám Khúc Xạ</span>
+              <span>Lịch Sử Khám Khúc Xạ ({currentProfile.examHistory.length} mốc đo)</span>
             </div>
 
             <div className="overflow-x-auto border border-slate-800/80 rounded-xl bg-slate-900/40">
@@ -187,8 +261,8 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-slate-800/60 text-slate-300">
-                  {minhAnhVisionProfile.examHistory.map((m, idx) => (
-                    <tr key={m.id} className={idx === 2 ? "bg-cyan-950/20" : "bg-slate-950/40"}>
+                  {currentProfile.examHistory.map((m, idx) => (
+                    <tr key={m.id} className={idx === currentProfile.examHistory.length - 1 ? "bg-cyan-950/20" : "bg-slate-950/40"}>
                       <td className="py-3 px-3">
                         <div className="font-bold text-white">{m.date}</div>
                         <div className="text-[11px] text-cyan-300">{m.facility}</div>
@@ -223,7 +297,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               Tóm Tắt Diễn Tiến Khúc Xạ:
             </div>
             <p className="leading-relaxed text-slate-300">
-              {minhAnhVisionProfile.progressionSummary.rightEyeSphereChange}. {minhAnhVisionProfile.progressionSummary.leftEyeSphereChange}. {minhAnhVisionProfile.progressionSummary.annualProgressionRate}
+              {currentProfile.progressionSummary.rightEyeSphereChange}. {currentProfile.progressionSummary.leftEyeSphereChange}. {currentProfile.progressionSummary.annualProgressionRate}
             </p>
           </div>
         </div>

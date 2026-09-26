@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Phiếu Đo Khúc Xạ & Cắt Kính (KTV) - Hoàng Ngọc Trung Hòa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @media print {
+      .no-print { display: none !important; }
+      body { background: #ffffff !important; color: #000000 !important; font-size: 10pt; }
+      .ticket { border: 2px solid #000000 !important; box-shadow: none !important; margin: 0 auto !important; width: 100% !important; max-width: 100% !important; }
+    }
+    @page {
+      size: A6 portrait;
+      margin: 5mm;
+    }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-900 font-sans antialiased p-2 sm:p-6 min-h-screen flex flex-col items-center justify-center">
+
+  <!-- No Print Bar -->
+  <div class="no-print w-full max-w-md mb-4 bg-slate-900 text-white p-3 rounded-xl shadow flex items-center justify-between border border-slate-700">
+    <div class="text-xs">
+      <span class="font-bold text-cyan-400">PHIẾU KTV CẮT KÍNH (GIẤY NHỎ)</span>
+      <p class="text-[11px] text-slate-300">Dùng đưa Bác sĩ / KTV phòng khám</p>
+    </div>
+    <button onclick="window.print()" class="px-3 py-1.5 bg-cyan-600 hover:bg-cyan-500 text-white text-xs font-bold rounded flex items-center gap-1 cursor-pointer">
+      <span>🖨️ In Phiếu KTV</span>
+    </button>
+  </div>
+
+  <!-- Ticket Box (Compact A6 / Receipt Slip) -->
+  <main class="ticket w-full max-w-md bg-white p-5 rounded-xl border-2 border-slate-900 shadow-lg space-y-4">
+    
+    <!-- Title Header -->
+    <div class="border-b-2 border-slate-900 pb-2 text-center space-y-0.5">
+      <h1 class="text-lg font-black tracking-tight uppercase text-slate-900">PHIẾU THÔNG SỐ CẮT KÍNH</h1>
+      <p class="text-[11px] font-bold text-slate-600 uppercase">Hồ sơ khúc xạ cá nhân</p>
+    </div>
+
+    <!-- Patient Details -->
+    <div class="text-xs border-b border-slate-300 pb-2.5 grid grid-cols-2 gap-y-1">
+      <div><strong>Bệnh nhân:</strong> <span class="font-bold uppercase">Hoàng Ngọc Trung Hòa</span></div>
+      <div><strong>Ngày sinh:</strong> 26/01/1979 (47t)</div>
+      <div><strong>Giới tính:</strong> Nam</div>
+    </div>
+
+    <!-- Latest Prescription Box -->
+    <div class="space-y-2">
+      <div class="flex items-center justify-between text-xs">
+        <span class="font-black uppercase bg-slate-900 text-white px-2 py-0.5 rounded text-[11px]">
+          ĐƠN KÍNH THEO DÕI ĐỊNH KỲ
+        </span>
+        <span class="text-[11px] text-slate-600 font-mono">Gia Đình</span>
+      </div>
+
+      <table class="w-full text-center border-2 border-slate-900 text-xs font-mono">
+        <thead class="bg-slate-200 text-slate-900 uppercase border-b-2 border-slate-900">
+          <tr>
+            <th class="py-1.5 px-1 border-r border-slate-400">Mắt</th>
+            <th class="py-1.5 px-1 border-r border-slate-400">Khúc Xạ (Sph)</th>
+            <th class="py-1.5 px-1 border-r border-slate-400">Loạn (Cyl)</th>
+            <th class="py-1.5 px-1 border-r border-slate-400">Trục (Ax)</th>
+            <th class="py-1.5 px-1">TL kính</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y border-slate-900 font-bold text-sm">
+          <tr class="bg-slate-50">
+            <td class="py-2 border-r border-slate-400 text-slate-900 font-sans">MP (OD)</td>
+            <td class="py-2 border-r border-slate-400 text-sm font-bold text-slate-900">Khám định kỳ</td>
+            <td class="py-2 border-r border-slate-400 text-slate-400">--</td>
+            <td class="py-2 border-r border-slate-400 text-slate-400">--</td>
+            <td class="py-2 font-sans text-xs">10/10</td>
+          </tr>
+          <tr>
+            <td class="py-2 border-r border-slate-400 text-slate-900 font-sans">MT (OS)</td>
+            <td class="py-2 border-r border-slate-400 text-sm font-bold text-slate-900">Khám định kỳ</td>
+            <td class="py-2 border-r border-slate-400 text-slate-400">--</td>
+            <td class="py-2 border-r border-slate-400 text-slate-400">--</td>
+            <td class="py-2 font-sans text-xs">10/10</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- PD Box -->
+      <div class="p-2 bg-slate-100 border border-slate-800 rounded flex items-center justify-between text-xs font-mono">
+        <div><strong class="font-sans">Khoảng cách đồng tử (PD):</strong></div>
+        <div class="text-base font-black text-slate-900">64 mm</div>
+      </div>
+    </div>
+
+    <!-- Notes for Tech -->
+    <div class="border-t border-slate-300 pt-2 text-[11px] space-y-1">
+      <div class="font-bold text-slate-900 uppercase">Ghi chú tròng kính:</div>
+      <ul class="list-disc list-inside space-y-0.5 text-slate-800">
+        <li>Kiểm tra thị lực nhìn xa và thử độ đọc sách nhìn gần (lão thị).</li>
+      </ul>
+    </div>
+
+  </main>
+</body>
+</html>
