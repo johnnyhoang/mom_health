@@ -306,21 +306,18 @@ function AppMain() {
 
   if (!user) {
     return (
-      <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-6 relative overflow-hidden text-slate-100">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-teal-500/10 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-3xl p-8 shadow-2xl relative z-10 text-center space-y-6">
-          <div className="w-16 h-16 mx-auto rounded-2xl bg-gradient-to-tr from-teal-500 to-cyan-500 flex items-center justify-center shadow-lg shadow-teal-500/20">
-            <Activity className="w-8 h-8 text-slate-950" />
+      <div className="min-h-screen bg-slate-950 flex flex-col justify-center items-center p-4 text-slate-100">
+        <div className="w-full max-w-sm bg-slate-900 border border-slate-800 rounded-2xl p-6 text-center space-y-5">
+          <div className="w-12 h-12 mx-auto rounded-xl bg-teal-500/10 border border-teal-500/30 flex items-center justify-center text-teal-400">
+            <Activity className="w-6 h-6" />
           </div>
 
-          <div className="space-y-2">
-            <h1 className="text-2xl font-bold text-white tracking-tight">
-              MOM Health Platform
+          <div className="space-y-1">
+            <h1 className="text-xl font-bold text-white tracking-tight">
+              Đăng nhập
             </h1>
-            <p className="text-xs text-slate-400 leading-relaxed">
-              Y học Lâm sàng &amp; Nền tảng Chăm sóc Sức khỏe Chuyên sâu. Vui lòng đăng nhập tài khoản Google để truy cập hệ thống bài viết, phác đồ điều trị và nhật ký y khoa.
+            <p className="text-xs text-slate-400">
+              Hồ sơ y khoa &amp; chuyên khảo sức khỏe gia đình
             </p>
           </div>
 

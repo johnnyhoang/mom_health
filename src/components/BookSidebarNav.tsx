@@ -324,11 +324,6 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
                       </button>
                     );
                   })}
-
-                  {/* Realistic Wooden / Slate Shelf Base Ledge */}
-                  <div className="h-2.5 w-full bg-slate-900 border-t border-b-2 border-slate-800 rounded-b-lg shadow-inner flex items-center justify-center">
-                    <div className="w-12 h-0.5 bg-slate-700/50 rounded-full" />
-                  </div>
                 </div>
               </div>
             );

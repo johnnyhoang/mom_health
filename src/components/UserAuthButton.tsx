@@ -98,8 +98,7 @@ export const UserAuthButton: React.FC = () => {
             />
           </svg>
         )}
-        <span className="hidden xs:inline">Đăng nhập</span>
-        <span>Google</span>
+        <span className="font-medium">Đăng nhập với Google</span>
       </button>
 
       {errorMsg && (
