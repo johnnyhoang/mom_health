@@ -22,29 +22,29 @@ const categoryConfig = {
     label: 'Hướng dẫn Lâm sàng',
     icon: FileText,
     color: 'text-teal-400',
-    bg: 'bg-teal-950/30 border-teal-500/30',
-    badge: 'bg-teal-900/60 text-teal-300'
+    bg: 'bg-teal-950/20 border-teal-500/30',
+    badge: 'bg-teal-950 text-teal-300 border border-teal-800/60'
   },
   'clinical-trial': {
     label: 'Thử nghiệm Lâm sàng',
     icon: FlaskConical,
     color: 'text-violet-400',
-    bg: 'bg-violet-950/30 border-violet-500/30',
-    badge: 'bg-violet-900/60 text-violet-300'
+    bg: 'bg-violet-950/20 border-violet-500/30',
+    badge: 'bg-violet-950 text-violet-300 border border-violet-800/60'
   },
   'journal': {
     label: 'Tạp chí Y khoa Bình duyệt',
     icon: GraduationCap,
     color: 'text-sky-400',
-    bg: 'bg-sky-950/30 border-sky-500/30',
-    badge: 'bg-sky-900/60 text-sky-300'
+    bg: 'bg-sky-950/20 border-sky-500/30',
+    badge: 'bg-sky-950 text-sky-300 border border-sky-800/60'
   },
   'hospital': {
     label: 'Hướng dẫn Bệnh viện Việt Nam',
     icon: BookOpen,
     color: 'text-rose-400',
-    bg: 'bg-rose-950/30 border-rose-500/30',
-    badge: 'bg-rose-900/60 text-rose-300'
+    bg: 'bg-rose-950/20 border-rose-500/30',
+    badge: 'bg-rose-950 text-rose-300 border border-rose-800/60'
   }
 };
 
@@ -57,41 +57,60 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ references
   })).filter(g => g.items.length > 0);
 
   return (
-    <section className="w-full max-w-3xl mx-auto px-5 sm:px-6 pb-10 pt-4">
-      <div className="rounded-2xl border border-slate-700/60 bg-slate-900/60 overflow-hidden">
+    <section className="w-full max-w-5xl sm:max-w-6xl mx-auto px-4 sm:px-6 pb-12 pt-6">
+      <div className="rounded-2xl border border-slate-800 bg-slate-900/60 ring-1 ring-slate-800/80 overflow-hidden">
 
-        {/* Header */}
-        <button
-          onClick={() => setExpanded(v => !v)}
-          className="w-full flex items-center gap-3 p-5 text-left hover:bg-slate-800/40 transition-colors"
-          aria-expanded={expanded}
-        >
-          <BookOpen className="w-5 h-5 text-teal-400 shrink-0" />
-          <div className="flex-1">
-            <span className="text-sm font-bold text-white">
-              Nguồn Tham Khảo Y Khoa — {diseaseTitle}
+        {/* HTMLWind Header with 3 dots & Trigger Button */}
+        <div className="h-12 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950/80 backdrop-blur-sm">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+            </div>
+            <span className="text-xs font-mono text-slate-400 font-medium">
+              Nguồn Tham Khảo Y Khoa Thực Chứng ({references.length} Tài Liệu)
             </span>
-            <p className="text-[11px] text-slate-400 mt-0.5">
-              {references.length} tài liệu từ Guidelines quốc tế, Thử nghiệm lâm sàng & Tạp chí bình duyệt
+          </div>
+
+          <button
+            onClick={() => setExpanded(v => !v)}
+            className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-teal-400 hover:text-teal-300 hover:bg-slate-800 flex items-center gap-1.5 cursor-pointer transition-colors"
+          >
+            <span>{expanded ? 'Thu gọn' : 'Xem chi tiết'}</span>
+            {expanded
+              ? <ChevronUp className="w-3.5 h-3.5 shrink-0" />
+              : <ChevronDown className="w-3.5 h-3.5 shrink-0" />
+            }
+          </button>
+        </div>
+
+        {/* Sub Header / Overview */}
+        <div 
+          onClick={() => setExpanded(v => !v)}
+          className="p-4 sm:p-5 flex items-center gap-3 cursor-pointer hover:bg-slate-850/40 transition-colors select-none"
+        >
+          <div className="p-2.5 rounded-xl bg-teal-500/10 text-teal-400 border border-teal-500/20 shrink-0">
+            <BookOpen className="w-5 h-5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h4 className="text-sm sm:text-base font-bold text-white truncate">
+              Danh Mục Y Văn & Hướng Dẫn Điều Trị — {diseaseTitle}
+            </h4>
+            <p className="text-xs text-slate-400 mt-0.5">
+              Tổng hợp từ NCCN, ASCO, ESMO, AAOS, JAMA, NEJM và phác đồ các bệnh viện tuyến đầu Việt Nam
             </p>
           </div>
-          <span className="text-xs text-teal-400 font-mono shrink-0 mr-1">
-            {expanded ? 'Thu gọn' : 'Xem tất cả'}
-          </span>
-          {expanded
-            ? <ChevronUp className="w-4 h-4 text-slate-400 shrink-0" />
-            : <ChevronDown className="w-4 h-4 text-slate-400 shrink-0" />
-          }
-        </button>
+        </div>
 
-        {/* Nội dung */}
+        {/* Expanded Content */}
         {expanded && (
-          <div className="border-t border-slate-700/50 divide-y divide-slate-800/60">
+          <div className="border-t border-slate-800 divide-y divide-slate-800">
             {grouped.map(({ cat, items }) => {
               const cfg = categoryConfig[cat];
               const Icon = cfg.icon;
               return (
-                <div key={cat} className="p-5 space-y-3">
+                <div key={cat} className="p-4 sm:p-5 space-y-3 bg-slate-950/40">
                   <div className="flex items-center gap-2">
                     <Icon className={`w-4 h-4 ${cfg.color}`} />
                     <span className={`text-xs font-bold uppercase tracking-wider ${cfg.color}`}>
@@ -114,7 +133,7 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ references
                           <p className="text-[10px] text-slate-500 italic">{ref.authors}</p>
                         )}
                         <div className="flex items-center justify-between gap-2 pt-0.5">
-                          <span className="text-[10px] text-slate-400">{ref.source}</span>
+                          <span className="text-[10px] text-slate-400 font-mono">{ref.source}</span>
                           {ref.url && (
                             <a
                               href={ref.url}
@@ -128,7 +147,7 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ references
                           )}
                         </div>
                         {ref.note && (
-                          <p className="text-[10px] text-slate-500 border-t border-slate-700/40 pt-1 mt-1">{ref.note}</p>
+                          <p className="text-[10px] text-slate-500 border-t border-slate-800 pt-1 mt-1">{ref.note}</p>
                         )}
                       </div>
                     ))}
@@ -137,11 +156,10 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ references
               );
             })}
 
-            {/* Ghi chú cuối */}
-            <div className="p-4 bg-slate-950/50 text-[10px] text-slate-500 leading-relaxed">
-              <strong className="text-slate-400">Lưu ý về tính cập nhật:</strong> Hướng dẫn y khoa thay đổi thường xuyên theo bằng chứng mới. 
-              Nội dung được tổng hợp theo phiên bản Guidelines mới nhất có sẵn tại thời điểm xuất bản. 
-              Bệnh nhân và người nhà <strong className="text-slate-300">luôn nên hỏi ý kiến bác sĩ chuyên khoa</strong> để áp dụng vào trường hợp cụ thể.
+            {/* Disclaimer Footer */}
+            <div className="p-4 bg-slate-950/80 text-[11px] text-slate-400 leading-relaxed border-t border-slate-800">
+              <strong className="text-slate-300">Lưu ý về tính cập nhật: </strong>
+              Hướng dẫn y khoa liên tục được cập nhật theo thử nghiệm lâm sàng mới nhất. Nội dung chuyên khảo tổng hợp theo các guidelines chuẩn mực hiện hành.
             </div>
           </div>
         )}

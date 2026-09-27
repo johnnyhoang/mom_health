@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, Play, CheckCircle2, Video } from 'lucide-react';
+import { X, Play, CheckCircle2 } from 'lucide-react';
 import type { MediaItem } from '../types/medical';
 
 interface VideoModalProps {
@@ -20,14 +20,16 @@ export const VideoModal: React.FC<VideoModalProps> = ({ media, onClose }) => {
         className="bg-slate-900 border border-slate-700 w-full max-w-4xl rounded-2xl overflow-hidden shadow-2xl text-white flex flex-col max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Modal Header */}
-        <div className="flex items-center justify-between px-5 sm:px-6 py-3.5 border-b border-slate-800 bg-slate-950">
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-teal-600/20 border border-teal-500/40 flex items-center justify-center text-teal-400">
-              <Video className="w-4 h-4" />
+        {/* Modal Header Bar with HTMLWind style */}
+        <div className="flex items-center justify-between px-4 sm:px-5 py-3 border-b border-slate-800 bg-slate-950">
+          <div className="flex items-center gap-3">
+            <div className="flex items-center gap-1.5">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+              <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
             </div>
             <div>
-              <span className="text-[10px] font-bold uppercase text-teal-400 tracking-wider">
+              <span className="text-[10px] font-mono font-bold uppercase text-teal-400 tracking-wider">
                 {media.category}
               </span>
               <h3 className="font-bold text-sm sm:text-base line-clamp-1">{media.title}</h3>
@@ -36,7 +38,7 @@ export const VideoModal: React.FC<VideoModalProps> = ({ media, onClose }) => {
 
           <button
             onClick={onClose}
-            className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors"
+            className="p-1.5 rounded-lg bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700 transition-colors cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>

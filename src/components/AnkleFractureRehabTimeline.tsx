@@ -6,7 +6,6 @@ import {
   ShieldCheck, 
   Utensils, 
   Wrench, 
-  Clock, 
   Flame, 
   ChevronDown
 } from 'lucide-react';
@@ -19,49 +18,62 @@ export const AnkleFractureRehabTimeline: React.FC = () => {
   const activePhase = ankleRehabPhases.find(p => p.phaseId === selectedPhaseId) || ankleRehabPhases[0];
 
   return (
-    <div className="w-full space-y-6 pt-2">
-      {/* Header Banner */}
-      <div className="p-4 sm:p-5 bg-gradient-to-r from-emerald-950/40 via-slate-900 to-cyan-950/30 border border-emerald-500/30 rounded-2xl space-y-2">
-        <div className="flex items-center gap-2 text-emerald-400 font-bold text-xs uppercase tracking-wider">
-          <Activity className="w-4 h-4" />
-          <span>Cẩm Nang Phục Hồi Chức Năng Cổ Chân Toàn Diện Từ A - Z</span>
+    <div className="w-full rounded-2xl border border-slate-800 bg-slate-900/60 ring-1 ring-slate-800/80 overflow-hidden space-y-0">
+      
+      {/* HTMLWind Preview Header Bar */}
+      <div className="h-12 border-b border-slate-800 px-4 flex items-center justify-between bg-slate-950/80 backdrop-blur-sm">
+        <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1.5">
+            <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+          </div>
+          <span className="text-xs font-mono text-slate-400 font-medium">
+            Lộ Trình Phục Hồi Chức Năng Cổ Chân 4 Giai Đoạn (NWB $\rightarrow$ FWB)
+          </span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-black text-white">
-          Lộ Trình 4 Giai Đoạn Chuẩn Y Khoa: Từ Giường Bệnh Đến Đi Lại Vững Vàng
-        </h3>
-        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-          Phục hồi chức năng sau mổ gãy mắt cá và đứt dây chằng đòi hỏi sự kiên nhẫn và tuân thủ đúng bậc thang tỳ đè: <strong className="text-rose-300">NWB (0%)</strong> $\rightarrow$ <strong className="text-amber-300">PWB (20-50%)</strong> $\rightarrow$ <strong className="text-emerald-300">FWB (100%)</strong> $\rightarrow$ <strong className="text-cyan-300">Sinh Hoạt Độc Lập</strong>.
-        </p>
+
+        <div className="hidden sm:flex items-center gap-1 bg-slate-900 p-1 rounded-xl border border-slate-800">
+          {ankleRehabPhases.map((phase, idx) => {
+            const isSelected = phase.phaseId === selectedPhaseId;
+            return (
+              <button
+                key={phase.phaseId}
+                onClick={() => setSelectedPhaseId(phase.phaseId)}
+                className={`px-3 py-1 text-xs font-semibold rounded-lg transition-all cursor-pointer ${
+                  isSelected
+                    ? 'bg-emerald-500 text-slate-950 font-bold shadow-sm'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                }`}
+              >
+                Giai Đoạn {idx + 1}
+              </button>
+            );
+          })}
+        </div>
       </div>
 
-      {/* 4 Phase Navigation Tabs */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        {ankleRehabPhases.map((phase, idx) => {
-          const isSelected = phase.phaseId === selectedPhaseId;
-          return (
-            <button
-              key={phase.phaseId}
-              onClick={() => setSelectedPhaseId(phase.phaseId)}
-              className={`p-3 rounded-xl text-left transition-all border cursor-pointer ${
-                isSelected
-                  ? 'bg-emerald-500/20 border-emerald-500/60 text-white shadow-md shadow-emerald-950/30'
-                  : 'bg-slate-900/50 border-slate-800 text-slate-400 hover:text-slate-200 hover:bg-slate-800/40'
-              }`}
-            >
-              <div className="flex items-center justify-between text-[11px] font-mono text-emerald-400 font-bold">
-                <span>Giai Đoạn {idx + 1}</span>
-                <Clock className="w-3 h-3" />
-              </div>
-              <div className="text-xs font-bold text-white mt-1 truncate">
-                {phase.timeframe}
-              </div>
-              <div className="text-[10px] text-slate-400 truncate mt-0.5">
-                {phase.weightBearingStatus.split(' ')[0]}
-              </div>
-            </button>
-          );
-        })}
-      </div>
+      <div className="p-4 sm:p-5 space-y-5">
+        {/* Mobile 4 Phase Selector */}
+        <div className="grid grid-cols-2 sm:hidden gap-2">
+          {ankleRehabPhases.map((phase, idx) => {
+            const isSelected = phase.phaseId === selectedPhaseId;
+            return (
+              <button
+                key={phase.phaseId}
+                onClick={() => setSelectedPhaseId(phase.phaseId)}
+                className={`p-2.5 rounded-xl text-left transition-all border cursor-pointer ${
+                  isSelected
+                    ? 'bg-emerald-500/20 border-emerald-500/60 text-white shadow-sm'
+                    : 'bg-slate-950/60 border-slate-800 text-slate-400'
+                }`}
+              >
+                <div className="text-[11px] font-mono text-emerald-400 font-bold">Giai Đoạn {idx + 1}</div>
+                <div className="text-xs font-bold text-white truncate">{phase.timeframe}</div>
+              </button>
+            );
+          })}
+        </div>
 
       {/* Active Phase Detailed View */}
       <div className="bg-slate-900/80 border border-slate-800 rounded-2xl p-5 sm:p-6 space-y-5">
@@ -249,6 +261,7 @@ export const AnkleFractureRehabTimeline: React.FC = () => {
             </div>
           )}
         </div>
+      </div>
       </div>
     </div>
   );

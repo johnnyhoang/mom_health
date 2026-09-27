@@ -33,7 +33,7 @@ export const AudioPlayerBar: React.FC = () => {
 
   return (
     <div className="fixed bottom-16 sm:bottom-6 left-3 right-3 sm:left-auto sm:right-6 sm:w-96 z-40 animate-in slide-in-from-bottom-5 duration-300">
-      <div className="relative overflow-hidden rounded-2xl bg-slate-900/95 backdrop-blur-md border border-teal-500/50 shadow-2xl shadow-teal-950/50 p-3.5 space-y-2.5">
+      <div className="relative overflow-hidden rounded-2xl bg-slate-900/95 backdrop-blur-md border border-slate-700/80 shadow-2xl ring-1 ring-white/10 p-3.5 space-y-2.5">
         
         {/* Top Progress Line */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-slate-800">
@@ -57,12 +57,12 @@ export const AudioPlayerBar: React.FC = () => {
             {/* Title & Reading indicator */}
             <div className="min-w-0 space-y-0.5">
               <div className="flex items-center gap-1.5">
-                <span className="text-[10px] font-bold text-teal-400 uppercase tracking-wider">
-                  {isPlaying ? 'Đang đọc giọng nói' : isPaused ? 'Tạm dừng đọc' : 'Hoàn thành'}
+                <span className="text-[10px] font-mono font-bold text-teal-400 uppercase tracking-wider">
+                  {isPlaying ? 'Đang đọc' : isPaused ? 'Tạm dừng' : 'Hoàn thành'}
                 </span>
-                <span className="text-[10px] text-slate-500">• {progress}%</span>
+                <span className="text-[10px] font-mono text-slate-500">• {progress}%</span>
               </div>
-              <p className="text-xs font-bold text-white truncate max-w-[190px] sm:max-w-[210px]">
+              <p className="text-xs font-semibold text-white truncate max-w-[190px] sm:max-w-[210px]">
                 {currentTitle}
               </p>
             </div>
@@ -74,7 +74,7 @@ export const AudioPlayerBar: React.FC = () => {
             {/* Speed Toggle */}
             <button
               onClick={cycleRate}
-              className="px-2 py-1 rounded-lg bg-slate-800 text-[11px] font-bold text-slate-300 hover:text-white hover:bg-slate-750 transition-colors flex items-center gap-0.5"
+              className="px-2 py-1 rounded-lg bg-slate-800 text-[11px] font-mono font-bold text-slate-300 hover:text-white hover:bg-slate-700 transition-colors flex items-center gap-1 cursor-pointer"
               title="Tốc độ đọc"
             >
               <Gauge className="w-3 h-3 text-teal-400" />
@@ -84,7 +84,7 @@ export const AudioPlayerBar: React.FC = () => {
             {/* Play / Pause */}
             <button
               onClick={isPlaying ? pause : resume}
-              className="p-2 rounded-xl bg-teal-500 text-slate-950 font-bold hover:bg-teal-400 transition-colors shadow-md"
+              className="p-2 rounded-xl bg-teal-500 text-slate-950 font-bold hover:bg-teal-400 transition-colors shadow-md cursor-pointer"
               title={isPlaying ? 'Tạm dừng' : 'Tiếp tục đọc'}
             >
               {isPlaying ? (
@@ -97,7 +97,7 @@ export const AudioPlayerBar: React.FC = () => {
             {/* Stop */}
             <button
               onClick={stop}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 transition-colors cursor-pointer"
               title="Dừng và đóng"
             >
               <X className="w-4 h-4" />

@@ -59,72 +59,73 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
 
   return (
     <>
-      {/* Top Sticky Header */}
-      <header className="sticky top-0 z-40 w-full bg-slate-950 border-b border-slate-800 transition-all">
+      {/* Top Sticky Header - HTMLWind Style */}
+      <header className="sticky top-0 z-40 w-full bg-slate-950/90 backdrop-blur-md border-b border-slate-800/80 transition-all">
         {/* Reading Progress Line */}
         <div 
-          className="h-0.5 bg-teal-500 transition-all duration-150"
+          className="h-[2px] bg-gradient-to-r from-teal-500 via-cyan-400 to-indigo-500 transition-all duration-150"
           style={{ width: `${scrollProgress}%` }}
         />
 
-        <div className="w-full max-w-7xl mx-auto px-3 sm:px-6 h-14 py-2 flex items-center justify-between gap-3">
+        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
           
-          {/* Left: Brand Logo & Bookshelf Drawer Trigger */}
+          {/* Left: Brand & Breadcrumb */}
           <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-400 border border-slate-800 transition-all cursor-pointer flex items-center gap-2 group shadow-sm"
-              title="Mở Kệ Sách Chuyên Khảo"
+              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-teal-300 border border-slate-700/80 text-xs font-semibold shadow-xs transition-colors cursor-pointer"
+              title="Mở Thư Viện Chuyên Khảo"
             >
-              <Library className="w-4 h-4 text-teal-400 group-hover:scale-110 transition-transform" />
-              <span className="text-xs font-extrabold text-slate-200 hidden sm:inline">Kệ Sách</span>
+              <Library className="w-4 h-4 text-teal-400" />
+              <span className="hidden sm:inline">Kệ Sách</span>
             </button>
 
             <div 
               onClick={() => handleSelectModule('vision_myopia')}
-              className="flex items-center gap-2 cursor-pointer select-none"
+              className="flex items-center gap-2.5 cursor-pointer select-none pl-1"
             >
-              <div className="w-7 h-7 rounded-lg bg-teal-600 flex items-center justify-center text-white font-bold text-xs">
+              <div className="w-7 h-7 rounded-lg bg-teal-600/20 border border-teal-500/40 flex items-center justify-center text-teal-400 font-bold text-xs">
                 <BookOpen className="w-4 h-4" />
               </div>
-              <div>
-                <span className="font-extrabold text-xs sm:text-sm tracking-tight text-slate-100 block leading-tight">
-                  HEALTH ATLAS
+              <div className="flex items-center gap-2 text-xs">
+                <span className="font-extrabold tracking-tight text-white">
+                  MOM HEALTH
                 </span>
-                <span className="text-[10px] text-slate-400 font-medium hidden md:block">
-                  Thư Viện Chuyên Khảo Y Khoa
+                <span className="text-slate-600 hidden md:inline">/</span>
+                <span className="text-slate-400 font-medium hidden md:inline truncate max-w-[200px]">
+                  {activeModule.shortTitle}
                 </span>
               </div>
             </div>
           </div>
 
-          {/* Center: Current Active Book Title Dropdown Selector */}
+          {/* Center: HTMLWind Pill Selector */}
           <div className="relative flex-1 max-w-md hidden md:block">
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="w-full px-3.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-semibold flex items-center justify-between transition-all cursor-pointer"
+              className="w-full px-3.5 py-1.5 rounded-lg bg-slate-900/90 border border-slate-800 hover:border-slate-700 text-slate-200 text-xs font-medium flex items-center justify-between transition-all cursor-pointer shadow-xs"
             >
               <div className="flex items-center gap-2 truncate">
                 <div className="p-1 rounded bg-slate-800 text-teal-400 shrink-0">
                   <ActiveIcon className="w-3.5 h-3.5" />
                 </div>
-                <span className="text-slate-400 font-normal">Đang đọc:</span>
-                <span className="text-teal-300 font-bold truncate">{activeModule.vol ? `${activeModule.vol}: ` : ''}{activeModule.shortTitle}</span>
+                <span className="text-slate-400">Chuyên đề:</span>
+                <span className="text-white font-semibold truncate">{activeModule.vol ? `${activeModule.vol}: ` : ''}{activeModule.shortTitle}</span>
               </div>
               <ChevronDown className={`w-4 h-4 text-slate-400 shrink-0 transition-transform ${dropdownOpen ? 'rotate-180 text-teal-400' : ''}`} />
             </button>
 
             {/* Quick Bookshelf Dropdown Menu */}
             {dropdownOpen && (
-              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-950 border border-slate-800 rounded-2xl shadow-2xl p-3 z-50 animate-in fade-in zoom-in-95 duration-150">
-                <div className="pb-2 mb-2 border-b border-slate-800 text-[11px] font-bold text-slate-400 flex items-center justify-between">
+              <div className="absolute top-full left-0 right-0 mt-2 bg-slate-950 border border-slate-800 rounded-xl shadow-2xl p-2.5 z-50 animate-in fade-in zoom-in-95 duration-150 ring-1 ring-slate-800">
+                <div className="pb-2 mb-1.5 border-b border-slate-800/80 text-[11px] font-bold text-slate-400 flex items-center justify-between px-1">
                   <span className="flex items-center gap-1.5 text-teal-400 uppercase tracking-wider">
                     <Library className="w-3.5 h-3.5" />
-                    <span>KỆ SÁCH CHUYÊN KHẢO Y KHOA</span>
+                    <span>Thư Viện Chuyên Khảo</span>
                   </span>
-                  <span className="text-slate-500 font-mono">{BOOK_MODULES.length} Cuốn</span>
+                  <span className="text-slate-500 font-mono text-[10px]">{BOOK_MODULES.length} Cuốn</span>
                 </div>
-                <div className="max-h-80 overflow-y-auto space-y-2 py-1">
+                <div className="max-h-80 overflow-y-auto space-y-1.5 py-1">
                   {BOOK_MODULES.map((mod) => {
                     const Icon = mod.icon;
                     const isSelected = mod.id === currentView;
@@ -132,27 +133,25 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
                       <button
                         key={mod.id}
                         onClick={() => handleSelectModule(mod.id)}
-                        className={`w-full p-2.5 rounded-xl text-left text-xs font-semibold flex items-start gap-2.5 transition-all cursor-pointer border ${
+                        className={`w-full p-2.5 rounded-lg text-left text-xs font-medium flex items-start gap-2.5 transition-all cursor-pointer border ${
                           isSelected 
-                            ? 'bg-slate-900 text-teal-200 border-teal-500/60 shadow-md' 
-                            : 'bg-slate-900/50 border-slate-800/80 text-slate-300 hover:bg-slate-900 hover:border-slate-700'
+                            ? 'bg-slate-900 text-teal-200 border-teal-500/50 shadow-xs' 
+                            : 'bg-slate-900/40 border-slate-800/60 text-slate-300 hover:bg-slate-900 hover:border-slate-700'
                         }`}
                       >
-                        {/* Book Spine Accent Strip */}
                         <div className={`w-1.5 self-stretch rounded-full shrink-0 ${mod.spineColor}`} />
-                        
-                        <div className="p-1.5 rounded-lg bg-slate-800 border border-slate-700 shrink-0 text-teal-400">
-                          <Icon className="w-4 h-4" />
+                        <div className="p-1.5 rounded-md bg-slate-800 border border-slate-700/60 shrink-0 text-teal-400">
+                          <Icon className="w-3.5 h-3.5" />
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className="flex items-center justify-between gap-1">
                             <div className="flex items-center gap-1.5 truncate">
                               {mod.vol && (
-                                <span className="text-[10px] font-mono font-bold text-amber-400 uppercase px-1 py-0.2 rounded bg-amber-950/60 border border-amber-800/60">
+                                <span className="text-[10px] font-mono font-bold text-amber-300 uppercase px-1 py-0.2 rounded bg-amber-950/60 border border-amber-800/60">
                                   {mod.vol}
                                 </span>
                               )}
-                              <span className="font-bold truncate">{mod.shortTitle}</span>
+                              <span className="font-semibold text-white truncate">{mod.shortTitle}</span>
                             </div>
                             {isSelected && (
                               <Bookmark className="w-3.5 h-3.5 text-teal-400 shrink-0 fill-current" />
@@ -168,20 +167,18 @@ export const BookSidebarNav: React.FC<BookSidebarNavProps> = ({
             )}
           </div>
 
-          {/* Right: Active Book Quick Badge on Mobile & Font Size Control & User Google Auth */}
+          {/* Right Controls */}
           <div className="flex items-center gap-2">
-            {/* Dynamic Font Size Control (Web & Mobile) */}
             <FontSizeControl variant="compact" />
 
             <button
               onClick={() => setIsOpen(true)}
-              className="md:hidden px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-800 text-teal-300 text-xs font-bold flex items-center gap-1.5 cursor-pointer max-w-[120px] truncate"
+              className="md:hidden px-2.5 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-teal-300 text-xs font-semibold flex items-center gap-1.5 cursor-pointer max-w-[130px] truncate"
             >
               <ActiveIcon className="w-3.5 h-3.5 text-teal-400 shrink-0" />
               <span className="truncate">{activeModule.shortTitle}</span>
             </button>
 
-            {/* Google OAuth Login Button */}
             <UserAuthButton />
           </div>
 
