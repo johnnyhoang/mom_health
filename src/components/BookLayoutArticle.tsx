@@ -57,7 +57,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
 
         {/* Book Main Title & Unified Header Container */}
         <div className="space-y-3">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
             Bảo Vệ Nội Mạc Tử Cung & Giải Mã Toàn Diện Sau 5 Năm Tamoxifen (K Vú)
           </h1>
           <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
@@ -133,7 +133,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 1 • Nền Tảng Y Học
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Giải Mã "Nghịch Lý Tamoxifen": Tại Sao Chặn Ở Vú Lại Tác Động Tử Cung?
             </h2>
           </div>
@@ -185,7 +185,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
 
           {/* The Stop Effect in Jan 2026 vs Sep 2026 Paradox */}
           <div className="pt-2 space-y-2.5">
-            <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+            <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
               <Clock className="w-4 h-4 text-teal-400" />
               <span>Nghịch Lý Y Khoa: Vì sao ngưng Tamoxifen từ tháng 1, đúng ra triệu chứng phải giảm dần, đằng này đến tháng 9 mới bất thường và ngày càng tăng?</span>
             </h3>
@@ -246,7 +246,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 2 • Phân Tích Thực Tế
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Giải Mã Trực Tiếp 4 Hồ Sơ Bệnh Án & Kết Quả Giải Phẫu Bệnh
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -266,7 +266,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
 
         {/* Comparison Table: Typical vs Atypical */}
         <div className="pt-4 space-y-2.5">
-          <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+          <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-teal-400" />
             <span>Bảng So Sánh Y Học: "Tăng Sản Điển Hình" vs "Tăng Sản Không Điển Hình"</span>
           </h3>
@@ -318,7 +318,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 3 • So Sánh Bệnh Lý Toàn Diện
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Đại Phẫu So Sánh 4 Bệnh Lý Tử Cung: Tăng Sản Điển Hình vs U Xơ vs Lạc Tuyến Cơ vs Polyp
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -344,7 +344,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </span>
               <span className="text-xs text-emerald-400 font-bold">Lành tính 100%</span>
             </div>
-            <h3 className="text-base font-black text-white">Tăng Sản Nội Mạc Tử Cung Điển Hình (Hyperplasia Without Atypia)</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">Tăng Sản Nội Mạc Tử Cung Điển Hình (Hyperplasia Without Atypia)</h3>
             <ul className="space-y-1.5 text-xs text-slate-300">
               <li><strong className="text-slate-200">Vị trí:</strong> Lớp niêm mạc (lớp lót trong cùng của buồng tử cung).</li>
               <li><strong className="text-slate-200">Bản chất:</strong> Các tuyến nội mạc tăng sinh về số lượng do kích thích estrogen/Tamoxifen, nhưng tế bào hoàn toàn bình thường (không đột biến).</li>
@@ -362,7 +362,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </span>
               <span className="text-xs text-emerald-400 font-bold">Lành tính (&gt; 99.9%)</span>
             </div>
-            <h3 className="text-base font-black text-white">U Xơ Tử Cung (Uterine Fibroids / Leiomyoma)</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">U Xơ Tử Cung (Uterine Fibroids / Leiomyoma)</h3>
             <ul className="space-y-1.5 text-xs text-slate-300">
               <li><strong className="text-slate-200">Vị trí:</strong> Lớp cơ tử cung (thành sau tử cung của chị kích thước 41x45mm).</li>
               <li><strong className="text-slate-200">Bản chất:</strong> Khối u cơ trơn lành tính phát triển dưới tác động của nội tiết tố nữ qua nhiều năm.</li>
@@ -380,7 +380,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </span>
               <span className="text-xs text-emerald-400 font-bold">Lành tính 100%</span>
             </div>
-            <h3 className="text-base font-black text-white">Lạc Tuyến Cơ Tử Cung (Adenomyosis)</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">Lạc Tuyến Cơ Tử Cung (Adenomyosis)</h3>
             <ul className="space-y-1.5 text-xs text-slate-300">
               <li><strong className="text-slate-200">Vị trí:</strong> Mô niêm mạc đi lạc và cắm sâu vào bên trong lớp cơ tử cung.</li>
               <li><strong className="text-slate-200">Bản chất:</strong> Mỗi chu kỳ, mô lạc này cũng chảy máu vào trong cơ, gây viêm xơ hóa cơ tử cung và làm tử cung to hình cầu.</li>
@@ -398,7 +398,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </span>
               <span className="text-xs text-emerald-400 font-bold">Lành tính 97-98%</span>
             </div>
-            <h3 className="text-base font-black text-white">Polyp Lòng Tử Cung (Endometrial Polyp)</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">Polyp Lòng Tử Cung (Endometrial Polyp)</h3>
             <ul className="space-y-1.5 text-xs text-slate-300">
               <li><strong className="text-slate-200">Vị trí:</strong> Khối u nhô có cuống mạch máu nằm lơ lửng trong khoang buồng tử cung.</li>
               <li><strong className="text-slate-200">Bản chất:</strong> Sự phì đại khu trú của mô tuyến và mô đệm niêm mạc (rất hay gặp sau 5 năm Tamoxifen: 30-40%).</li>
@@ -467,7 +467,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 4 • Căn Nguyên Bệnh Lý
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Đi Tìm Thủ Phạm Gây Rong Kinh Kéo Dài: "Bộ Tứ Tác Động"
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -550,7 +550,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
             <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
               Chương 5 • Bằng Chứng Khoa Học Thực Chứng
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Nếu Chỉ Theo Dõi Không Điều Trị: Khả Năng Tự Khỏi & Nguy Cơ Theo Thời Gian
             </h2>
             <p className="text-xs sm:text-sm text-slate-400">
@@ -575,19 +575,19 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div className="p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/50 text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-emerald-400">74%</div>
+              <div className="text-lg sm:text-xl font-bold text-emerald-400">74%</div>
               <div className="text-xs font-bold text-emerald-200">Tự Thoái Lui Hoàn Toàn</div>
               <p className="text-[11px] text-slate-300">Niêm mạc tự mỏng lại về bình thường mà không cần bất kỳ can thiệp nào.</p>
             </div>
 
             <div className="p-3 rounded-xl bg-slate-950 border border-slate-800 text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-slate-300">19%</div>
+              <div className="text-lg sm:text-xl font-bold text-slate-300">19%</div>
               <div className="text-xs font-bold text-slate-200">Tồn Tại Lành Tính</div>
               <p className="text-[11px] text-slate-400">Tiếp tục tồn tại ở dạng tăng sản điển hình lành tính qua nhiều năm không đổi.</p>
             </div>
 
             <div className="p-3 rounded-xl bg-rose-950/30 border border-rose-900/40 text-center space-y-1">
-              <div className="text-2xl sm:text-3xl font-black text-rose-400">1.6%</div>
+              <div className="text-lg sm:text-xl font-bold text-rose-400">1.6%</div>
               <div className="text-xs font-bold text-rose-200">Tiến Triển Ác Tính</div>
               <p className="text-[11px] text-slate-300">Tỷ lệ cực kỳ thấp sau hơn 13.4 năm theo dõi liên tục.</p>
             </div>
@@ -602,7 +602,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
 
         {/* Risk Over Time Timeline Matrix */}
         <div className="space-y-3">
-          <h3 className="text-sm sm:text-base font-bold text-white flex items-center gap-2">
+          <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
             <TrendingUp className="w-4 h-4 text-teal-400" />
             <span>Ma Trận Nguy Cơ Theo Từng Mốc Thời Gian Nếu Chỉ Theo Dõi Thuần Túy:</span>
           </h3>
@@ -690,7 +690,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 6 • Phác Đồ Điều Trị Toàn Diện
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Chi Tiết Toàn Bộ 4 Phác Đồ Điều Trị Tối Ưu Cho Người Tiền Sử K Vú
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -715,7 +715,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
                   <span className="text-xs font-mono text-teal-400 font-bold uppercase tracking-wider">
                     Phác Đồ {idx + 1} / 4
                   </span>
-                  <h3 className="text-lg sm:text-xl font-black text-white">
+                  <h3 className="text-xs sm:text-sm font-bold text-white">
                     {opt.name}
                   </h3>
                   <p className="text-xs text-slate-400 italic">
@@ -818,7 +818,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
             Chương 7 • Dược Lâm Sàng Ung Bướu (ASCO / NCCN)
           </span>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight flex items-center gap-2">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight flex items-center gap-2">
             <ShieldAlert className="w-5 h-5 text-rose-400" />
             <span>Ma Trận Đánh Giá Nguy Cơ Ảnh Hưởng Ngược Lên Ung Thư Vú</span>
           </h2>
@@ -840,7 +840,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 8 • Lộ Trình Hành Động Cá Thể Hóa
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Bản Đồ Lộ Trình Hành Động & Danh Sách Câu Hỏi Vàng Cho Bác Sĩ
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -859,7 +859,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </span>
               <span className="text-xs text-teal-400 font-mono font-bold">DỨT ĐIỂM 100%</span>
             </div>
-            <h3 className="text-base sm:text-lg font-black text-white">
+            <h3 className="text-xs sm:text-sm font-bold text-white">
               Phẫu Thuật Nội Soi Cắt Tử Cung (Bảo Tồn 2 Buồng Trứng)
             </h3>
             <p className="text-xs text-slate-300 leading-relaxed">
@@ -883,7 +883,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
               </span>
               <span className="text-xs text-amber-400 font-mono font-bold">THEO DÕI ĐỊNH KỲ</span>
             </div>
-            <h3 className="text-base sm:text-lg font-black text-white">
+            <h3 className="text-xs sm:text-sm font-bold text-white">
               Uống Orgametril 15 Ngày + Tái Khám Siêu Âm Ngày 16/10/2026
             </h3>
             <p className="text-xs text-slate-300 leading-relaxed">
@@ -939,7 +939,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 9 • Atlas Video Lâm Sàng
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Video Thủ Thuật & Mô Phỏng Phẫu Thuật Thực Tế
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -1001,7 +1001,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 10 • Lối Sống & Lịch Tầm Soát Kép
           </div>
-          <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Chăm Sóc Toàn Diện, Dinh Dưỡng Bù Máu & Lịch Tầm Soát Vàng
           </h2>
         </div>

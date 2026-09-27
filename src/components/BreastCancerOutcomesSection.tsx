@@ -12,7 +12,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
           Chương 5 • Thống Kê Kết Quả Điều Trị
         </div>
-        <h2 className="text-lg sm:text-xl md:text-xl font-bold text-slate-100 tracking-tight">
+        <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Số Liệu Sống Sót & Hiệu Quả Điều Trị Thực Tế
         </h2>
         <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
@@ -23,7 +23,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
       {/* 5.1. Dữ liệu & Thống kê toàn cầu */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             5.1. Dữ liệu & Thống kê kết quả điều trị toàn cầu (SEER, GLOBOCAN, ACS)
           </h3>
           <p className="text-xs text-slate-400">
@@ -43,7 +43,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
               className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-400 font-mono">
-                <h4 className="font-bold text-white text-base">5.1.{idx + 1}. {stat.title}</h4>
+                <h4 className="font-bold text-white text-xs sm:text-sm">5.1.{idx + 1}. {stat.title}</h4>
                 <span>{stat.year} • {stat.population}</span>
               </div>
 
@@ -70,7 +70,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
       {/* 5.2. Thống kê kết quả điều trị tại Việt Nam */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             5.2. Thống kê kết quả điều trị tại các bệnh viện Việt Nam
           </h3>
           <p className="text-xs text-slate-400">
@@ -90,7 +90,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
               className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-400 font-mono">
-                <h4 className="font-bold text-white text-base">5.2.{idx + 1}. {stat.title}</h4>
+                <h4 className="font-bold text-white text-xs sm:text-sm">5.2.{idx + 1}. {stat.title}</h4>
                 <span>{stat.year} {stat.hospital ? `• ${stat.hospital}` : ''}</span>
               </div>
 

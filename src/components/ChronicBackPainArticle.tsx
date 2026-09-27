@@ -107,10 +107,10 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
 
         {/* Main Title & Unified Header Container */}
         <div className="space-y-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
             Đau Lưng Kinh Niên & Hội Chứng Thần Kinh Cân Cơ: Từ Hiện Tượng Ngứa Ran Đến Tương Quan Tử Cung - K Vú
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
             Nghiên cứu chuyên sâu về bệnh sử từ năm 25 tuổi, giải mã nghịch lý đấm lưng đỡ nhưng ngứa ran (Notalgia Paresthetica), cơ chế đau bùng phát trước kỳ kinh (Adenomyosis/U xơ 45mm), bí mật kê gối khi ngủ và phác đồ phục hồi đa mô thức.
           </p>
 
@@ -192,7 +192,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 1 • Sinh Lý Thần Kinh & Cân Cơ
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Giải Mã Hiện Tượng "Đấm Lưng Thì Đỡ Nhưng Bị NGỨA RAN" & Bệnh Sử Tuổi 25
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -214,7 +214,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
               <div className="space-y-2.5">
                 <div className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-indigo-400 shrink-0"></span>
-                  <h3 className="text-sm sm:text-base font-bold text-white">
+                  <h3 className="text-xs sm:text-sm font-bold text-white">
                     {item.title}
                   </h3>
                 </div>
@@ -254,7 +254,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 2 • Tương Quan Đa Chuyên Khoa
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Tương Quan Tam Giác: Đau Lưng Kinh Niên – Lạc Tuyến Tử Cung (Adenomyosis/U Xơ) – K Vú
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -309,7 +309,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
         <div className="space-y-2 pt-1">
           <div className="flex items-center gap-2">
             <ShieldCheck className="w-5 h-5 text-teal-400" />
-            <h3 className="text-sm sm:text-base font-bold text-white">
+            <h3 className="text-xs sm:text-sm font-bold text-white">
               Bảng Đối Chiếu Lâm Sàng: Đau Cân Cơ Lành Tính vs Lo Sợ Di Căn Xương K Vú
             </h3>
           </div>
@@ -370,7 +370,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 3 • Chuỗi Động Lực Trục Cột Sống
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Từ Cổ Vai Gáy Đến Thắt Lưng: Giải Mã Bí Mật Kê Gối Khi Ngủ
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -388,7 +388,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
         <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 text-xs sm:text-sm text-slate-300 leading-relaxed font-sans">
           
           <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-amber-300 text-sm flex items-center gap-2">
+            <h3 className="font-bold text-amber-300 text-xs sm:text-sm flex items-center gap-2">
               <Layers className="w-4 h-4 text-amber-400" />
               <span>1. Cơ chế bù trừ cơ học từ Cổ vai gáy dội xuống Thắt lưng</span>
             </h3>
@@ -401,7 +401,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           </div>
 
           <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800 space-y-2">
-            <h3 className="font-bold text-indigo-300 text-sm flex items-center gap-2">
+            <h3 className="font-bold text-indigo-300 text-xs sm:text-sm flex items-center gap-2">
               <Bed className="w-4 h-4 text-indigo-400" />
               <span>2. Tại sao kê gối ngủ thấy đỡ nhưng mãi không khỏi?</span>
             </h3>
@@ -431,7 +431,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 4 • Phác Đồ Phục Hồi Toàn Diện
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Lộ Trình Phục Hồi 3 Giai Đoạn & Bộ 3 Bài Tập Chuẩn Y Khoa (McGill Big 3)
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -475,7 +475,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
                 {activeProtocol.phase} • {activeProtocol.timeframe}
               </span>
             </div>
-            <h3 className="text-base sm:text-lg font-black text-white">
+            <h3 className="text-xs sm:text-sm font-bold text-white">
               {activeProtocol.title}
             </h3>
             <p className="text-xs sm:text-sm text-teal-300 font-medium">
@@ -550,7 +550,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 5 • Atlas Video 3D & Mô Phỏng Giải Phẫu
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Video 3D Giải Phẫu Thần Kinh Bì, Đường Đau Tử Cung & Bài Tập Cột Sống
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -568,7 +568,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
               <div className="relative aspect-video w-full overflow-hidden bg-slate-950">
                 <img 
                   src={media.thumbnailUrl} 
-                  alt={media.title}
+                  alt={media.title} 
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 opacity-80 group-hover:opacity-100"
                 />
                 <div className="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/20 transition-colors flex items-center justify-center">
@@ -583,7 +583,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
 
               <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
                 <div>
-                  <h3 className="font-bold text-white text-sm group-hover:text-indigo-300 transition-colors line-clamp-2">
+                  <h3 className="font-bold text-white text-xs sm:text-sm group-hover:text-indigo-300 transition-colors line-clamp-2">
                     {media.title}
                   </h3>
                   <p className="text-xs text-slate-400 mt-1 line-clamp-2">
@@ -611,7 +611,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 6 • Cây Quyết Định Lâm Sàng
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Tự Đánh Giá Phân Loại Đau Lưng & Nhận Phác Đồ Cá Thể Hóa
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">
@@ -628,7 +628,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
                 <span className="text-xs font-mono text-indigo-400 font-bold uppercase">
                   Bước {decisionHistory.length} / 2
                 </span>
-                <h3 className="text-sm sm:text-base font-bold text-white">
+                <h3 className="text-xs sm:text-sm font-bold text-white">
                   {currentDecisionNode.question}
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -664,7 +664,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
                 <span className="text-xs px-2.5 py-0.5 rounded-full font-bold bg-indigo-950 text-indigo-300 border border-indigo-800">
                   {finalDecisionRecommendation.tier}
                 </span>
-                <h3 className="text-base sm:text-lg font-black text-white">
+                <h3 className="text-xs sm:text-sm font-bold text-white">
                   {finalDecisionRecommendation.title}
                 </h3>
                 <p className="text-xs text-slate-300">
@@ -732,7 +732,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
             Chương 7 • Công Thái Học & Dinh Dưỡng
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Kỹ Thuật Kê Gối Kép Khi Ngủ & Dinh Dưỡng Giảm Viêm Tiền Kinh
           </h2>
           <p className="text-xs sm:text-sm text-slate-400">

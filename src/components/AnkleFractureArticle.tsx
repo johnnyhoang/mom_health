@@ -99,7 +99,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
 
         {/* Book Main Title & Unified Header Container */}
         <div className="space-y-3">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
             Té Ngã Gãy Mắt Cá Chân, Đứt Dây Chằng & Phục Hồi Toàn Diện Từ A - Z
           </h1>
           <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
@@ -159,7 +159,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 1
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Giải Mã Hồ Sơ Chấn Thương Cổ Chân & Cơ Chế Té Ngã
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -190,7 +190,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 2
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Phân Loại Danis-Weber & Bản Chất Đứt Dây Chằng
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -239,7 +239,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 3
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             So Sánh Toàn Diện Các Phác Đồ Can Thiệp Gãy Mắt Cá
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -286,7 +286,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
               </span>
               <span className="text-xs text-slate-400">{activeTreatment.surgicalRecovery}</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-white pt-0.5">
+            <h3 className="text-xs sm:text-sm font-bold text-white pt-0.5">
               {activeTreatment.name}
             </h3>
             <p className="text-xs text-rose-400 font-medium">
@@ -360,7 +360,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 4
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Ma Trận An Toàn Chu Phẫu: Phòng Chống Cục Máu Đông DVT & Loãng Xương
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -380,7 +380,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 5
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Thư Viện Video Atlas 3D & Bài Tập Phục Hồi Khớp Cổ Chân
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -420,7 +420,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
 
               <div className="p-3.5 space-y-1.5 flex-1 flex flex-col justify-between">
                 <div>
-                  <h4 className="text-xs sm:text-sm font-bold text-white group-hover:text-rose-300 transition-colors line-clamp-2">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white group-hover:text-rose-300 transition-colors line-clamp-2">
                     {item.title}
                   </h4>
                   <p className="text-xs text-slate-400 line-clamp-2 mt-0.5">
@@ -451,7 +451,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 6
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Cây Quyết Định Lâm Sàng: Hướng Đi Chuẩn Xác Cho Từng Giai Đoạn
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -467,7 +467,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
                 <span className="text-xs font-mono text-rose-400 font-bold uppercase">
                   Bước {decisionHistory.length} / 2
                 </span>
-                <h3 className="text-base sm:text-lg font-black text-white">
+                <h3 className="text-xs sm:text-sm font-bold text-white">
                   {currentDecisionNode.question}
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -513,7 +513,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
                   {finalDecisionRecommendation?.tier}
                 </span>
-                <h3 className="text-base sm:text-lg font-black text-white pt-0.5">
+                <h3 className="text-xs sm:text-sm font-bold text-white pt-0.5">
                   {finalDecisionRecommendation?.title}
                 </h3>
               </div>
@@ -566,7 +566,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 7
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Tất Tần Tật Lộ Trình Phục Hồi Chức Năng, Dinh Dưỡng & Tháo Nẹp Vít
           </h2>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

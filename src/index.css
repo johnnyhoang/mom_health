@@ -43,38 +43,45 @@ html[data-font-size="xl"] {
 }
 
 /* Controlled Heading Sizes: Keep titles restrained and balanced when scaling up content font size */
-html[data-font-size="lg"] h1,
-html[data-font-size="lg"] .text-3xl,
-html[data-font-size="lg"] .text-2xl {
-  font-size: 1.45rem !important;
-  line-height: 1.35 !important;
+h1 {
+  font-size: 1.15rem;
+  line-height: 1.35;
+  font-weight: 700;
 }
-html[data-font-size="lg"] h2,
-html[data-font-size="lg"] .text-xl {
-  font-size: 1.22rem !important;
-  line-height: 1.4 !important;
+h2 {
+  font-size: 1.05rem;
+  line-height: 1.4;
+  font-weight: 700;
 }
-html[data-font-size="lg"] h3,
-html[data-font-size="lg"] .text-lg {
-  font-size: 1.1rem !important;
-  line-height: 1.45 !important;
+h3 {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  font-weight: 700;
+}
+h4, h5, h6 {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 600;
 }
 
-html[data-font-size="xl"] h1,
-html[data-font-size="xl"] .text-3xl,
-html[data-font-size="xl"] .text-2xl {
-  font-size: 1.45rem !important;
-  line-height: 1.35 !important;
-}
-html[data-font-size="xl"] h2,
-html[data-font-size="xl"] .text-xl {
+html[data-font-size="lg"] h1 {
   font-size: 1.25rem !important;
-  line-height: 1.4 !important;
 }
-html[data-font-size="xl"] h3,
-html[data-font-size="xl"] .text-lg {
+html[data-font-size="lg"] h2 {
   font-size: 1.12rem !important;
-  line-height: 1.45 !important;
+}
+html[data-font-size="lg"] h3 {
+  font-size: 1.02rem !important;
+}
+
+html[data-font-size="xl"] h1 {
+  font-size: 1.32rem !important;
+}
+html[data-font-size="xl"] h2 {
+  font-size: 1.18rem !important;
+}
+html[data-font-size="xl"] h3 {
+  font-size: 1.06rem !important;
 }
 
 /* Clinical Editorial Surfaces & Design System Tokens */

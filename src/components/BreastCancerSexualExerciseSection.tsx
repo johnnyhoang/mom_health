@@ -15,7 +15,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
           Chương 8 • Sức Khỏe Tình Dục & Vận Động
         </div>
-        <h2 className="text-lg sm:text-xl md:text-xl font-bold text-slate-100 tracking-tight">
+        <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Quan Hệ Vợ Chồng & Thể Thao Sau Điều Trị K Vú — Bằng Chứng Y Khoa
         </h2>
         <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
@@ -26,7 +26,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       {/* 8.1. Quan hệ vợ chồng & Sức khỏe tình dục */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             8.1. Quan hệ vợ chồng & Sức khỏe tình dục
           </h3>
           <p className="text-xs text-slate-400">
@@ -41,7 +41,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
               className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
-                <h4 className="font-bold text-white text-base">
+                <h4 className="font-bold text-white text-xs sm:text-sm">
                   8.1.{idx + 1}. {topic.title}
                 </h4>
                 <span className="text-slate-400 text-[11px] font-mono">
@@ -72,7 +72,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       {/* 8.2. Hướng dẫn vận động thể thao & Các bộ môn */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             8.2. Hướng dẫn vận động thể thao & Các bộ môn phù hợp
           </h3>
           <p className="text-xs text-slate-400">
@@ -87,7 +87,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
               className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
-                <h4 className="font-bold text-white text-base">
+                <h4 className="font-bold text-white text-xs sm:text-sm">
                   8.2.{idx + 1}. {ex.name}
                 </h4>
                 <span className="text-slate-400 font-mono">
@@ -123,7 +123,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       {/* 8.3. Thực phẩm bổ sung & Lưu ý an toàn khi tập */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             8.3. Thực phẩm bổ sung & Lưu ý an toàn khi tập luyện
           </h3>
           <p className="text-xs text-slate-400">
@@ -143,7 +143,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
               className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 text-xs">
-                <h4 className="font-bold text-white text-base">
+                <h4 className="font-bold text-white text-xs sm:text-sm">
                   8.3.{idx + 1}. {sup.name}
                 </h4>
                 <span className={`font-mono text-xs font-semibold ${
@@ -162,7 +162,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
       {/* 8.4. Bằng chứng nghiên cứu lâm sàng */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             8.4. Bằng chứng nghiên cứu lâm sàng quốc tế
           </h3>
           <p className="text-xs text-slate-400">
@@ -180,7 +180,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
                 <span>8.4.{idx + 1}. {res.source} ({res.year})</span>
                 <span className="text-slate-400">{res.applicableTo}</span>
               </div>
-              <h4 className="font-bold text-white text-base">{res.title}</h4>
+              <h4 className="font-bold text-white text-xs sm:text-sm">{res.title}</h4>
               <p>{res.finding}</p>
               <p className="text-xs font-medium text-teal-300">
                 Kết quả định lượng: {res.magnitude}

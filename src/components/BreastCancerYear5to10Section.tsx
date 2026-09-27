@@ -56,7 +56,7 @@ const ChecklistItem: React.FC<{ item: Year5To10CheckItem; indexStr: string }> = 
   return (
     <article className="space-y-1.5 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
       <div className="flex items-start justify-between gap-2 flex-wrap text-xs">
-        <h4 className="font-bold text-white text-base leading-snug">
+        <h4 className="font-bold text-white text-xs sm:text-sm leading-snug">
           {indexStr}. {item.title}
         </h4>
         <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400">
@@ -88,7 +88,7 @@ const NutritionItem: React.FC<{ item: NutritionGuideline; indexStr: string }> = 
   return (
     <article className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
       <div className="flex items-center gap-2 justify-between flex-wrap text-xs">
-        <h4 className="font-bold text-white text-base">{indexStr}. {item.food}</h4>
+        <h4 className="font-bold text-white text-xs sm:text-sm">{indexStr}. {item.food}</h4>
         <span className="text-slate-400 font-mono text-[11px]">{cfg.label}</span>
       </div>
       <p>{item.reason}</p>
@@ -107,7 +107,7 @@ const LifestyleItem: React.FC<{ item: LifestyleGuideline; indexStr: string }> = 
       <div className="text-xs text-slate-400 font-mono text-[11px] uppercase">
         {cfg.label}
       </div>
-      <h4 className="font-bold text-white text-base leading-snug">{indexStr}. {item.title}</h4>
+      <h4 className="font-bold text-white text-xs sm:text-sm leading-snug">{indexStr}. {item.title}</h4>
       <p>{item.detail}</p>
       <p className="text-xs text-slate-400">
         <strong className="text-slate-300">Bằng chứng ASCO: </strong>{item.evidence}
@@ -119,7 +119,7 @@ const LifestyleItem: React.FC<{ item: LifestyleGuideline; indexStr: string }> = 
 const WarningItem: React.FC<{ item: WarningSigns; indexStr: string }> = ({ item, indexStr }) => {
   return (
     <article className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
-      <h4 className="font-bold text-white text-base leading-snug">{indexStr}. {item.sign}</h4>
+      <h4 className="font-bold text-white text-xs sm:text-sm leading-snug">{indexStr}. {item.sign}</h4>
       <p>
         <strong className="text-slate-300">Có thể là: </strong>{item.possibleMeaning}
       </p>
@@ -146,7 +146,7 @@ export const BreastCancerYear5to10Section: React.FC = () => {
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
           Chương 7 • Giai Đoạn Năm Thứ 5 – 10
         </div>
-        <h2 className="text-lg sm:text-xl md:text-xl font-bold text-slate-100 tracking-tight">
+        <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Hướng Dẫn Toàn Diện Cho Giai Đoạn Sau Hoàn Thành Điều Trị (Năm 5–10)
         </h2>
         <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
@@ -167,7 +167,7 @@ export const BreastCancerYear5to10Section: React.FC = () => {
       {/* 7.1. Lịch khám định kỳ & Theo dõi y tế */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             7.1. Lịch khám định kỳ & Theo dõi y tế (Năm 5–10)
           </h3>
           <p className="text-xs text-slate-400">
@@ -195,7 +195,7 @@ export const BreastCancerYear5to10Section: React.FC = () => {
       {/* 7.2. Hướng dẫn chế độ dinh dưỡng */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             7.2. Hướng dẫn chế độ dinh dưỡng cho người đã hoàn thành điều trị
           </h3>
           <p className="text-xs text-slate-400">
@@ -228,7 +228,7 @@ export const BreastCancerYear5to10Section: React.FC = () => {
       {/* 7.3. Quản lý lối sống & Giấc ngủ */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             7.3. Quản lý lối sống, giấc ngủ & Tâm lý
           </h3>
           <p className="text-xs text-slate-400">
@@ -247,7 +247,7 @@ export const BreastCancerYear5to10Section: React.FC = () => {
       {/* 7.4. Dấu hiệu cảnh báo tái phát muộn & Hành động */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             7.4. Dấu hiệu cảnh báo tái phát muộn & Khuyến cáo hành động
           </h3>
           <p className="text-xs text-slate-400">

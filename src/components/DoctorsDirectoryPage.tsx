@@ -167,7 +167,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
         </div>
 
         <div className="space-y-2">
-          <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">
             Top Bác Sĩ & Chuyên Gia Phẫu Thuật Đầu Ngành
           </h1>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -283,7 +283,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <span className="text-xs font-bold px-2.5 py-0.5 rounded bg-rose-500/20 text-rose-300 border border-rose-500/30">
                         {doc.academicTitle}
                       </span>
-                      <h2 className="text-xl sm:text-2xl font-black text-white">
+                      <h2 className="text-sm sm:text-base font-bold text-white">
                         {doc.name}
                       </h2>
                     </div>
@@ -404,7 +404,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <span className="text-xs font-bold px-2.5 py-0.5 rounded bg-amber-500/20 text-amber-300 border border-amber-500/30">
                         {doc.academicTitle}
                       </span>
-                      <h2 className="text-xl sm:text-2xl font-black text-white">
+                      <h2 className="text-sm sm:text-base font-bold text-white">
                         {doc.name}
                       </h2>
                     </div>
@@ -525,7 +525,7 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
                       <span className="text-xs font-bold px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 border border-purple-500/30">
                         {doc.academicTitle}
                       </span>
-                      <h2 className="text-xl sm:text-2xl font-black text-white">
+                      <h2 className="text-sm sm:text-base font-bold text-white">
                         {doc.name}
                       </h2>
                     </div>

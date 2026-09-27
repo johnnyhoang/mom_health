@@ -9,7 +9,7 @@ const TreatmentCard: React.FC<{
   return (
     <article className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0">
       <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
-        <h4 className="font-bold text-white text-base">
+        <h4 className="font-bold text-white text-xs sm:text-sm">
           {indexStr}. {treatment.name}
         </h4>
         <div className="flex flex-wrap gap-1.5 text-[11px] font-mono text-slate-400">
@@ -61,7 +61,7 @@ export const BreastCancerNewTreatmentsSection: React.FC = () => {
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
           Chương 4 • Đột Phá Điều Trị 2022–2026
         </div>
-        <h2 className="text-lg sm:text-xl md:text-xl font-bold text-slate-100 tracking-tight">
+        <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Kho Thuốc Mới FDA Phê Duyệt 2022–2026 Cho K Vú Nội Tiết
         </h2>
         <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
@@ -72,7 +72,7 @@ export const BreastCancerNewTreatmentsSection: React.FC = () => {
       {/* 4.1 Continuous List */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             4.1. Danh mục 10 thuốc & liệu pháp điều trị mới FDA phê duyệt (2022–2026)
           </h3>
           <p className="text-xs text-slate-400">

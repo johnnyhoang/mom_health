@@ -39,7 +39,7 @@ export const AnkleFractureSafetySection: React.FC = () => {
           <ShieldCheck className="w-4 h-4" />
           <span>Ma Trận Kiểm Soát Rủi Ro & Bảo Vệ Chu Phẫu Tuổi 74</span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-black text-white">
+        <h3 className="text-sm sm:text-base font-bold text-white">
           Kiểm Soát 4 Nguy Cơ Sống Còn: Từ Cục Máu Đông DVT Đến Loãng Xương Nặng
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -78,7 +78,7 @@ export const AnkleFractureSafetySection: React.FC = () => {
                       }`}>
                         {item.threatLevel}
                       </span>
-                      <h4 className="text-base sm:text-lg font-bold text-white">
+                      <h4 className="text-xs sm:text-sm font-semibold text-white">
                         {item.name}
                       </h4>
                     </div>

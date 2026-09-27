@@ -116,7 +116,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
 
         {/* Book Main Title */}
         <div className="space-y-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight font-sans">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug font-sans">
             Kiểm Soát Cận Thị & Loạn Thị Tiến Triển Tuổi Dậy Thì
           </h1>
           
@@ -313,7 +313,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
               Chương 1 • Sinh Lý Học Nhãn Cầu
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Bản Chất Thật Sự Của Việc Tăng Độ Cận Ở Trẻ Em
             </h2>
           </div>
@@ -365,7 +365,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
               Chương 2 • Loạn Thị & Khúc Xạ Học
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Giải Mã Độ Loạn Thị Đi Kèm & Yêu Cầu Canh Tâm Quang Học
             </h2>
           </div>
@@ -420,7 +420,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               <Scale className="w-4 h-4 text-cyan-400" />
               <span>Chương 3 • So Sánh & Cây Quyết Định Lâm Sàng</span>
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               So Sánh Ưu Khuyết Điểm: Kính Cận Đơn Tròng Thường vs. Kính Kiểm Soát Độ Cận
             </h2>
           </div>
@@ -439,7 +439,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
 
           {/* Detailed Multi-Dimensional Comparison Table */}
           <div className="pt-2 font-sans space-y-3">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
+            <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-cyan-400" />
               <span>Bảng Đối Chiếu Đa Chiều: Kính Cận Thường vs Kính Kiểm Soát Độ Cận (Defocus)</span>
             </h3>
@@ -476,7 +476,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           <div className="pt-6 font-sans space-y-4">
             <div className="border-b border-slate-900 pb-2 flex items-center gap-2">
               <GitFork className="w-5 h-5 text-cyan-400" />
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-sm sm:text-base font-bold text-white">
                 Cây Quyết Định Lâm Sàng: Khi Nào Nên Chọn Loại Nào?
               </h3>
             </div>
@@ -498,7 +498,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                       </span>
                     </div>
 
-                    <h4 className="text-base font-black text-white leading-snug">
+                    <h4 className="text-xs sm:text-sm font-bold text-white leading-snug">
                       {opt.recommendation}
                     </h4>
 
@@ -553,7 +553,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
               Chương 4 • Y Học Thực Chứng
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Phân Tích Các Nghiên Cứu Khoa Học & Công Nghệ Tròng Kính Defocus
             </h2>
           </div>
@@ -579,7 +579,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <span>1. Công Nghệ H.A.L.T (Highly Aspherical Lenslet Target) • Essilor Stellest (Pháp)</span>
                 <span className="text-emerald-400">Hiệu quả: Giảm 67% độ cận</span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-xs sm:text-sm font-bold text-white">
                 Cấu Trúc Vi Thấu Kính Phi Cầu 11 Vòng Đồng Tâm (1.021 Vi Thấu Kính)
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -593,7 +593,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <span>2. Công Nghệ D.I.M.S (Defocus Incorporated Multiple Segments) • Hoya MiYOSMART (Nhật)</span>
                 <span className="text-emerald-400">Hiệu quả: Giảm 59-60% độ cận (Dữ liệu 6 năm)</span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-xs sm:text-sm font-bold text-white">
                 396 Vi Thấu Kính Đa Điểm Dạng Tổ Ong Bao Quanh Vùng Nhìn Trung Tâm 9.4mm
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -607,7 +607,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <span>3. Công Nghệ C.A.R.E (Cylindrical Annular Refractive Elements) • Carl Zeiss (Đức)</span>
                 <span className="text-emerald-400">Hiệu quả: Giảm 63-68% độ cận</span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-xs sm:text-sm font-bold text-white">
                 Vòng Khúc Xạ Vi Hình Trụ Đồng Tâm Xen Kẽ Theo Độ Tuổi (MyoCare S)
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -621,7 +621,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 <span>4. Công Nghệ Freeform Aspheric Defocus • Rodenstock MyCon (Đức)</span>
                 <span className="text-slate-400">Hiệu quả: Giảm 40-50% độ cận</span>
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-xs sm:text-sm font-bold text-white">
                 Kiểm Soát Vùng Rìa Thái Dương & Mũi Theo Giải Phẫu Nhãn Cầu
               </h3>
               <p className="text-sm text-slate-300 leading-relaxed">
@@ -637,7 +637,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
               <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
                 Đột Phá Nghiên Cứu Quốc Tế & Cơ Chế Phân Tử (Molecular & Photobiology)
               </div>
-              <h3 className="text-base sm:text-lg font-bold text-white">
+              <h3 className="text-xs sm:text-sm font-bold text-white">
                 5 Bằng Chứng Y Học Thực Chứng Định Hình Phác Đồ Điều Trị Hiện Đại
               </h3>
             </div>
@@ -656,7 +656,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                     </span>
                   </div>
 
-                  <h4 className="text-sm sm:text-base font-bold text-white">
+                  <h4 className="text-xs sm:text-sm font-bold text-white">
                     {insight.topic}
                   </h4>
 
@@ -676,7 +676,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
 
           {/* Flat Scientific Comparison Matrix */}
           <div className="pt-6 space-y-3 font-sans">
-            <h3 className="text-base sm:text-lg font-bold text-white flex items-center gap-2">
+            <h3 className="text-xs sm:text-sm font-bold text-white flex items-center gap-2">
               <Award className="w-5 h-5 text-cyan-400" />
               <span>Đối Chiếu 4 Phương Pháp Kiểm Soát Cận Thị Hiện Nay</span>
             </h3>
@@ -761,7 +761,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
               Chương 5 • Khảo Sát Thị Trường Việt Nam
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Top Thương Hiệu Tròng Kính Kiểm Soát Cận Thị Tại Việt Nam (2026)
             </h2>
           </div>
@@ -804,7 +804,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
                 Giá: {activeLens.priceRangeVND}
               </span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-white">
+            <h3 className="text-xs sm:text-sm font-bold text-white">
               {activeLens.name} ({activeLens.brand})
             </h3>
             <p className="text-xs text-slate-400">
@@ -871,7 +871,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
               Chương 6 • Lộ Trình Can Thiệp Phối Hợp
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Phác Đồ Hỗ Trợ Kiểm Soát Cận Thị Tuổi Dậy Thì
             </h2>
           </div>
@@ -891,7 +891,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           {/* Pillar 1 */}
           <div className="border-l-2 border-cyan-500 pl-4 py-1 space-y-1.5">
             <div className="text-xs font-mono font-bold text-cyan-400 uppercase">Trụ Cột 1: Can Thiệp Quang Học Công Nghệ Defocus</div>
-            <h3 className="text-base font-bold text-white">Trang Bị Tròng Kính Essilor Stellest hoặc Zeiss MyoCare S (Có Lọc Ánh Sáng Xanh)</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">Trang Bị Tròng Kính Essilor Stellest hoặc Zeiss MyoCare S (Có Lọc Ánh Sáng Xanh)</h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Khuyến nghị số 1 là lựa chọn <strong>Essilor Stellest</strong> (váng Crizal Rock) hoặc <strong>Zeiss MyoCare S</strong> (váng BlueGuard). Tròng kính cần được đặt sản xuất đúng theo độ cận và độ loạn (Cyl & Axis) của từng mắt, có tính năng lọc ánh sáng xanh để bảo vệ đáy mắt khi em làm việc trên máy tính. Em cần duy trì thói quen đeo kính liên tục <strong>từ 12 giờ trở lên mỗi ngày</strong>.
             </p>
@@ -900,7 +900,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           {/* Pillar 2 */}
           <div className="border-l-2 border-amber-500 pl-4 py-1 space-y-1.5">
             <div className="text-xs font-mono font-bold text-amber-400 uppercase">Trụ Cột 2: Kỷ Luật Công Thái Học Khi Dùng Màn Hình Số</div>
-            <h3 className="text-base font-bold text-white">Quy Tắc 20-20-20 & Khoảng Cách Nhìn Chuẩn</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">Quy Tắc 20-20-20 & Khoảng Cách Nhìn Chuẩn</h3>
             <ul className="space-y-1 text-xs sm:text-sm text-slate-300">
               <li>• <strong>Quy tắc 20-20-20:</strong> Cứ 20 phút nhìn màn hình, em tạm dừng 20 giây và phóng tầm mắt nhìn xa một vật thể cách 6 mét (20 feet) qua cửa sổ để cơ thể mi xả co thắt.</li>
               <li>• <strong>Khoảng cách thiết bị:</strong> Giữ điện thoại cách mắt &gt;= 35 - 40cm (không để sát mặt hoặc nằm xem); màn hình máy tính cách mắt 50 - 60cm, đặt thấp hơn tầm mắt 15 độ.</li>
@@ -911,7 +911,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           {/* Pillar 3 */}
           <div className="border-l-2 border-emerald-500 pl-4 py-1 space-y-1.5">
             <div className="text-xs font-mono font-bold text-emerald-400 uppercase">Trụ Cột 3: Nạp Ánh Sáng Tự Nhiên (Outdoor Daylight) & Đo Trục Mắt</div>
-            <h3 className="text-base font-bold text-white">Hoạt Động Ngoài Trời &gt;= 90 - 120 Phút/Ngày & Đo Sinh Trắc Học Định Kỳ</h3>
+            <h3 className="text-xs sm:text-sm font-bold text-white">Hoạt Động Ngoài Trời &gt;= 90 - 120 Phút/Ngày & Đo Sinh Trắc Học Định Kỳ</h3>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
               Ánh sáng tự nhiên ngoài trời (10.000 – 100.000 lux) là liều thuốc sinh học tự nhiên kích thích tế bào Amacrine tiết <strong>Dopamine võng mạc</strong> kìm hãm dài trục mắt. Khuyến khích học sinh tận dụng giờ ra chơi, đi bộ, tập thể thao ngoài trời ít nhất 1.5 – 2 tiếng mỗi ngày. Định kỳ <strong>mỗi 3 - 6 tháng</strong>, đưa em đến bệnh viện mắt chuyên khoa để <em>đo độ dài trục nhãn cầu (Axial Length)</em> bằng máy IOL Master để kiểm tra hiệu quả hãm tăng độ.
             </p>
@@ -981,7 +981,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
             <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
               Chương 7 • Cẩm Nang Hỏi Đáp Lâm Sàng
             </div>
-            <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+            <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
               Những Câu Hỏi Trọng Tâm Dành Cho Phụ Huynh & Bác Sĩ
             </h2>
           </div>
@@ -1074,7 +1074,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
           <div className="text-cyan-400 text-xs font-mono font-bold uppercase tracking-widest">
             Chương 8 • Dinh Dưỡng & Thư Mục Tài Liệu
           </div>
-          <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Dinh Dưỡng Nuôi Dưỡng Võng Mạc & Tài Liệu Y Khoa Quốc Tế
           </h2>
         </div>

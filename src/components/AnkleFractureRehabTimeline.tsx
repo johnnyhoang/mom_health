@@ -88,7 +88,7 @@ export const AnkleFractureRehabTimeline: React.FC = () => {
             </span>
           </div>
 
-          <h3 className="text-xl sm:text-2xl font-black text-white">
+          <h3 className="text-sm sm:text-base font-bold text-white">
             {activePhase.phaseName}
           </h3>
 

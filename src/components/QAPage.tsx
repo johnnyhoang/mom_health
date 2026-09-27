@@ -276,7 +276,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
         </div>
 
         <div className="space-y-1.5">
-          <h1 className="text-xl sm:text-3xl md:text-4xl font-black text-white tracking-tight">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight">
             Giải Đáp Toàn Bộ Thắc Mắc Cho Bệnh Nhân & Gia Đình
           </h1>
           <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">

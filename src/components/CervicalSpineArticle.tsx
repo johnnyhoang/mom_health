@@ -97,10 +97,10 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
 
         {/* Main Title & Unified Header Container */}
         <div className="space-y-4">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight leading-tight">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
             Thoát Vị Đĩa Đệm Cột Sống Cổ Chèn Ép Tủy & Phẫu Thuật ACDF
           </h1>
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed">
+          <p className="text-sm sm:text-base text-slate-300 font-normal leading-relaxed">
             Nghiên cứu chuyên sâu phân tích 3 bệnh án thực tế (MRI Cột sống cổ CIH, MRI Thắt lưng Saigon Medic, Giấy giới thiệu Lầu 8A BV ĐHYD), giải pháp phẫu thuật vi phẫu ACDF lối trước và ma trận an toàn chu phẫu cho cụ bà 74 tuổi.
           </p>
 
@@ -153,10 +153,10 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 1
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Giải Mã 3 Hồ Sơ Bệnh Án Thực Tế & Phân Tầng Cấp Bách
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Soi kỹ từng dòng kết luận từ 3 tài liệu y khoa gốc: <strong className="text-white">MRI Cột Sống Cổ (CIH)</strong>, <strong className="text-white">MRI Thắt Lưng (Saigon Medic)</strong> và <strong className="text-white">Giấy Giới Thiệu Khám Lầu 8A BV ĐHYD</strong> (PGS.TS Cao Thanh Ngọc & ThS.BS Huỳnh Khôi Nguyên).
           </p>
         </div>
@@ -166,7 +166,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
 
         {/* Clinical Rationale: Why Neck First, Lumbar Later */}
         <div className="p-4 bg-gradient-to-r from-amber-950/30 to-slate-900 border border-amber-500/40 rounded-2xl space-y-2">
-          <div className="flex items-center gap-2 text-amber-300 font-bold text-sm">
+          <div className="flex items-center gap-2 text-amber-300 font-bold text-xs sm:text-sm">
             <Zap className="w-4 h-4 text-amber-400" />
             <span>Quy Luật Bất Biến: Cứu Tủy Sống Cổ Cấp Bách Hơn Rễ Thần Kinh Thắt Lưng</span>
           </div>
@@ -186,10 +186,10 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 2
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Bệnh Lý Chèn Ép Tủy Cổ (CSM) & Cơ Chế Thiếu Máu Tủy
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Hiểu rõ bản chất vì sao khối thoát vị chỉ 5mm nhưng lại có thể gây hậu quả nghiêm trọng lên vận động của toàn thân.
           </p>
         </div>
@@ -236,7 +236,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 3
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             So Sánh Toàn Diện Các Phác Đồ Can Thiệp Cột Sống Cổ
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
@@ -283,7 +283,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
               </span>
               <span className="text-xs text-slate-400">{activeTreatment.surgicalRecovery}</span>
             </div>
-            <h3 className="text-lg sm:text-xl font-black text-white pt-1">
+            <h3 className="text-xs sm:text-sm font-bold text-white pt-0.5">
               {activeTreatment.name}
             </h3>
             <p className="text-xs sm:text-sm text-amber-400 font-medium">
@@ -357,10 +357,10 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 4
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Ma Trận An Toàn Chu Phẫu: Kiểm Soát 4 Bệnh Lý Đi Kèm
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Phác đồ phối hợp đa chuyên khoa chuẩn mực giữa <strong className="text-white">Ngoại Thần Kinh</strong>, <strong className="text-white">Gây Mê Hồi Sức</strong>, <strong className="text-white">Cơ Xương Khớp (PGS.TS Cao Thanh Ngọc)</strong> và <strong className="text-white">Nội Tiết</strong>.
           </p>
         </div>
@@ -377,10 +377,10 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 5
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Thư Viện Video Atlas 3D & Bài Tập Phục Hồi Chức Năng
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Trực quan hóa từng bước mổ vi phẫu ACDF lối trước và video hướng dẫn vận động sau mổ cho người cao tuổi.
           </p>
         </div>
@@ -417,7 +417,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
 
               <div className="p-4 space-y-2 flex-1 flex flex-col justify-between">
                 <div>
-                  <h4 className="text-sm font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-2">
+                  <h4 className="text-xs sm:text-sm font-semibold text-white group-hover:text-amber-300 transition-colors line-clamp-2">
                     {item.title}
                   </h4>
                   <p className="text-xs text-slate-400 line-clamp-2 mt-1">
@@ -448,10 +448,10 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 6
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Cây Quyết Định Lâm Sàng: Hướng Đi Chuẩn Xác Cho Cụ Bà 74 Tuổi
           </h2>
-          <p className="text-sm sm:text-base text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Chọn các triệu chứng thực tế của bác/cô để nhận khuyến nghị hành động tối ưu dựa trên hướng dẫn AOSpine và BV ĐHYD.
           </p>
         </div>
@@ -464,7 +464,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
                 <span className="text-xs font-mono text-amber-400 font-bold uppercase">
                   Bước {decisionHistory.length} / 2
                 </span>
-                <h3 className="text-base sm:text-lg font-black text-white">
+                <h3 className="text-xs sm:text-sm font-bold text-white">
                   {currentDecisionNode.question}
                 </h3>
                 <p className="text-xs text-slate-400">
@@ -510,7 +510,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                   {finalDecisionRecommendation?.tier}
                 </span>
-                <h3 className="text-lg sm:text-xl font-black text-white pt-1">
+                <h3 className="text-xs sm:text-sm font-bold text-white pt-0.5">
                   {finalDecisionRecommendation?.title}
                 </h3>
               </div>
@@ -563,7 +563,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 7
           </div>
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-black text-white tracking-tight">
+          <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Lộ Trình 6 Tuần Hậu Phẫu & Kỷ Luật Vận Động Người Cao Tuổi
           </h2>
           <p className="text-sm sm:text-base text-slate-300 leading-relaxed">

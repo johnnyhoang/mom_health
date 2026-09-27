@@ -12,7 +12,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
           Chương 6 • Tiếng Nói Cộng Đồng Bệnh Nhân
         </div>
-        <h2 className="text-lg sm:text-xl md:text-xl font-bold text-slate-100 tracking-tight">
+        <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Kinh Nghiệm Thực Tiễn Từ Cộng Đồng Bệnh Nhân K Vú Việt Nam
         </h2>
         <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
@@ -28,7 +28,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
       {/* 6.1. Kinh nghiệm thực tiễn từ cộng đồng */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             6.1. Kinh nghiệm thực tiễn & Xử lý tác dụng phụ từ cộng đồng
           </h3>
           <p className="text-xs text-slate-400">
@@ -43,7 +43,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
               className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex flex-wrap gap-2 items-center justify-between text-xs text-slate-400 font-mono">
-                <h4 className="font-bold text-white text-base">6.1.{idx + 1}. {insight.categoryLabel}</h4>
+                <h4 className="font-bold text-white text-xs sm:text-sm">6.1.{idx + 1}. {insight.categoryLabel}</h4>
                 <span className="text-[11px]">{insight.source}</span>
               </div>
 
@@ -63,7 +63,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
       {/* 6.2. Các hội nhóm & Tổ chức hỗ trợ */}
       <div className="space-y-6 pt-4 border-t border-slate-800/40">
         <div className="space-y-1">
-          <h3 className="text-base font-bold text-slate-200">
+          <h3 className="text-xs sm:text-sm font-bold text-slate-200">
             6.2. Các hội nhóm & Tổ chức hỗ trợ K vú tại Việt Nam
           </h3>
           <p className="text-xs text-slate-400">
@@ -78,7 +78,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
               className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 text-xs">
-                <h4 className="font-bold text-white text-base">
+                <h4 className="font-bold text-white text-xs sm:text-sm">
                   6.2.{idx + 1}. {group.name}
                 </h4>
                 {group.verified && (

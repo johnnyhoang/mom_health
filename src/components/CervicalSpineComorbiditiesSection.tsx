@@ -38,7 +38,7 @@ export const CervicalSpineComorbiditiesSection: React.FC = () => {
           <ShieldCheck className="w-4 h-4" />
           <span>Chiến Lược Đa Chuyên Khoa An Toàn Chu Phẫu Tuổi 74</span>
         </div>
-        <h3 className="text-xl sm:text-2xl font-black text-white">
+        <h3 className="text-sm sm:text-base font-bold text-white">
           Ma Trận Kiểm Soát 4 Bệnh Lý Đi Kèm & Bảo Vệ Cột Sống Toàn Diện
         </h3>
         <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
@@ -73,7 +73,7 @@ export const CervicalSpineComorbiditiesSection: React.FC = () => {
                       <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-slate-800 text-slate-300 border border-slate-700">
                         {item.icd10}
                       </span>
-                      <h4 className="text-base sm:text-lg font-bold text-white">
+                      <h4 className="text-xs sm:text-sm font-semibold text-white">
                         {item.name}
                       </h4>
                     </div>
