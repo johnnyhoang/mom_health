@@ -47,7 +47,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Monograph for Post-Tamoxifen Patient */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
+      <header className="w-full max-w-4xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         
         {/* Book Series Label */}
         <div className="flex items-center gap-2 text-teal-400 text-xs font-semibold tracking-wider uppercase">
@@ -126,7 +126,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 1: THE TAMOXIFEN PARADOX (SERM MECHANISM) */}
       {/* ========================================================================= */}
-      <section id="chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-1" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -239,7 +239,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 2: CASE RECORD & HISTOPATHOLOGY DECODER */}
       {/* ========================================================================= */}
-      <section id="chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-2" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -311,7 +311,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 3 (NEW): DEEP COMPARISON OF 4 UTERINE PATHOLOGIES */}
       {/* ========================================================================= */}
-      <section id="chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-3" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -460,7 +460,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 4: ROOT CAUSE OF CHRONIC MENORRHAGIA */}
       {/* ========================================================================= */}
-      <section id="chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-4" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -543,7 +543,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 5 (NEW): SCIENTIFIC EVIDENCE - UNTREATED HYPERPLASIA & RISK OVER TIME */}
       {/* ========================================================================= */}
-      <section id="chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-5" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="flex items-start justify-between gap-4">
           <div className="space-y-1">
@@ -684,7 +684,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 6: ALL 4 TREATMENT STRATEGIES (FULLY EXPANDED & CONTINUOUS) */}
       {/* ========================================================================= */}
-      <section id="chapter-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-6" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -812,7 +812,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 7: ONCOLOGY SAFETY CROSS-TALK MATRIX */}
       {/* ========================================================================= */}
-      <section id="chapter-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-7" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <span className="text-xs font-mono text-rose-400 uppercase font-bold tracking-wider">
@@ -834,7 +834,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 8: PERSONALIZED ROADMAP & DOCTOR QUESTIONS (FULLY OPEN & CONTINUOUS) */}
       {/* ========================================================================= */}
-      <section id="chapter-8" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-8" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -933,7 +933,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 9: CLINICAL MEDIA ATLAS & VIDEO SURGERY */}
       {/* ========================================================================= */}
-      <section id="chapter-9" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-9" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -995,7 +995,7 @@ export const BookLayoutArticle: React.FC<BookLayoutArticleProps> = ({ onOpenVide
       {/* ========================================================================= */}
       {/* CHAPTER 10: LIFESTYLE, RECOVERY & FOLLOW-UP SCHEDULE */}
       {/* ========================================================================= */}
-      <section id="chapter-10" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="chapter-10" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1">
           <div className="text-teal-400 font-mono text-xs font-bold uppercase tracking-wider">

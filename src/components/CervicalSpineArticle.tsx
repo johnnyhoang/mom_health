@@ -88,7 +88,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Cervical Spine Monograph */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
+      <header className="w-full max-w-4xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         {/* Series Badge */}
         <div className="flex items-center gap-2 text-amber-400 text-xs font-semibold tracking-wider uppercase">
           <Bone className="w-4 h-4" />
@@ -148,7 +148,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: Phân Tích 3 Bệnh Án Thực Tế (Interactive Case Viewer) */}
       {/* ========================================================================= */}
-      <section id="spine-ch-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-1" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 1
@@ -181,7 +181,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: Cơ Chế Bệnh Học CSM & Dấu Hiệu Cảnh Báo Sớm */}
       {/* ========================================================================= */}
-      <section id="spine-ch-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-2" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 2
@@ -231,7 +231,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: So Sánh 4 Phác Đồ Điều Trị & Phẫu Thuật ACDF Chuẩn Vàng */}
       {/* ========================================================================= */}
-      <section id="spine-ch-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-3" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 3
@@ -352,7 +352,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 4: Ma Trận An Toàn 4 Bệnh Lý Đi Kèm Tuổi 74 */}
       {/* ========================================================================= */}
-      <section id="spine-ch-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-4" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 4
@@ -372,7 +372,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 5: Video Atlas 3D & Minh Họa Quy Trình Mổ */}
       {/* ========================================================================= */}
-      <section id="spine-ch-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-5" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 5
@@ -443,7 +443,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 6: Cây Quyết Định Lâm Sàng Cá Thể Hóa Cho Bệnh Nhân */}
       {/* ========================================================================= */}
-      <section id="spine-ch-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-6" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 6
@@ -558,7 +558,7 @@ export const CervicalSpineArticle: React.FC<CervicalSpineArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 7: Lộ Trình Phục Hồi 6 Tuần & Lời Khuyên Tại Nhà */}
       {/* ========================================================================= */}
-      <section id="spine-ch-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="spine-ch-7" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1.5">
           <div className="text-xs font-mono font-bold text-amber-400 uppercase tracking-wider">
             Chương 7

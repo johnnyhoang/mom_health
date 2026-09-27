@@ -38,7 +38,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Breast Cancer Monograph */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
+      <header className="w-full max-w-4xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4 font-sans">
         
         {/* Series Badge */}
         <div className="text-rose-400 text-xs font-semibold tracking-wider uppercase font-mono">
@@ -50,19 +50,19 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
             Ung Thư Vú Thể Nội Tiết: Từ Tamoxifen Đến Các Đột Phá Mới Nhất
           </h1>
-          <p className="text-base md:text-sm text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
             Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua 5 năm, thử nghiệm kéo dài (EET), toàn cảnh các vũ khí điều trị mới (CDK4/6i, Oral SERD, PROTAC, ADCs) và chăm sóc sức khỏe toàn diện sau điều trị.
           </p>
 
-          {/* Preface Panel */}
-          <div className="border-l-2 border-rose-500 pl-4 py-2 space-y-2.5">
+          {/* Unified Preface & Status Panel */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3 font-sans">
             <div className="flex flex-wrap items-center justify-between gap-3">
               <ReadAloudButton
                 id="bc-hero"
                 title="Chuyên Khảo Ung Thư Vú Thể Nội Tiết"
                 text="Ung thư vú thể nội tiết: từ Tamoxifen đến các đột phá mới nhất. Nghiên cứu chuyên sâu về phân loại phân tử, cơ chế bảo vệ của Tamoxifen qua năm năm, thử nghiệm kéo dài và toàn cảnh các vũ khí điều trị mới như thuốc ức chế CDK4/6, SERD đường uống, PROTAC và kháng thể liên hợp thuốc ADCs. Hơn bảy mươi phần trăm bệnh nhân ung thư vú thuộc nhóm thụ thể nội tiết dương tính. Bước sang giai đoạn 2024 đến 2026, các liệu pháp nhắm trúng đích thế hệ mới mở ra kỷ nguyên kiểm soát triệt để và nâng cao chất lượng cuộc sống cho người bệnh."
                 variant="hero"
-                label="Nghe đọc cẩm nang K vú"
+                label="Bấm để nghe đọc chuyên khảo"
                 durationEstimate="~15 phút"
               />
               <div className="text-rose-300 font-medium text-xs font-mono">
@@ -70,15 +70,15 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
               </div>
             </div>
 
-            <div className="text-base md:text-sm text-slate-300 leading-relaxed">
+            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800 text-xs sm:text-sm text-slate-300 leading-relaxed">
               <p>
                 Hơn 70% bệnh nhân ung thư vú thuộc nhóm <strong className="text-white font-medium">thụ thể nội tiết dương tính (HR+ / HER2-)</strong>. Sau 5 năm hoàn thành Tamoxifen (2021 – 01/2026), cơ thể tiếp tục được bảo vệ bởi hiệu ứng kế thừa lâu dài. Các đột phá mới 2024–2026 mở ra kỷ nguyên kiểm soát tối ưu và ngăn chặn tái phát muộn.
               </p>
             </div>
 
-            <div className="pt-2 border-t border-slate-800/60 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+            <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
               <div className="flex items-center gap-3 font-mono">
-                <span>Thời gian đọc: ~15 phút</span>
+                <span>Thời lượng: ~15 phút</span>
                 <span>•</span>
                 <span>FDA cập nhật: 09/2024</span>
               </div>
@@ -98,7 +98,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: MOLECULAR SUBTYPES (ALL 5 SUBTYPES SEQUENTIALLY) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+      <section id="bc-chapter-1" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
         
         <div className="space-y-2">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -107,7 +107,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Toàn Cảnh 4 Phân Nhóm Phân Tử K Vú & Vai Trò Thụ Thể Nội Tiết
           </h2>
-          <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
             Ung thư vú không phải là một bệnh duy nhất mà gồm 4 phân nhóm sinh học khác nhau, quyết định độ nhạy với Tamoxifen và tiên lượng điều trị. Dưới đây là phân tích chi tiết từng phân nhóm.
           </p>
           <ReadAloudButton
@@ -120,7 +120,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
         </div>
 
         {/* Layman Analogy for Biomarkers */}
-        <div className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed py-2">
+        <div className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed py-2">
           <strong className="text-rose-300 block text-xs uppercase font-mono">
             Giải mã trực quan 3 nhóm chỉ số sinh học:
           </strong>
@@ -152,7 +152,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             {breastCancerSubtypesData.map((st, idx) => (
               <article
                 key={st.id}
-                className="space-y-2.5 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+                className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
                   <h4 className="font-bold text-white text-xs sm:text-sm">
@@ -203,7 +203,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: TAMOXIFEN 5-YEAR EVIDENCE & EXTENDED THERAPY */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+      <section id="bc-chapter-2" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
         
         <div className="space-y-2">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -212,7 +212,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Giải Mã 5 Năm Tamoxifen & Thử Nghiệm Kéo Dài 10 Năm (ATLAS/aTTom)
           </h2>
-          <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
             Tại sao 5 năm là mốc chuẩn vàng? Khi nào nên dừng (như trường hợp của chị) và khi nào cần kéo dài?
           </p>
           <ReadAloudButton
@@ -224,7 +224,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           />
         </div>
 
-        <div className="space-y-6 text-base md:text-sm text-slate-300 leading-relaxed">
+        <div className="space-y-6 text-xs sm:text-sm text-slate-300 leading-relaxed">
           <article className="space-y-2">
             <h3 className="font-bold text-white text-xs sm:text-sm">
               2.1. Lợi ích bảo vệ của 5 năm Tamoxifen
@@ -264,7 +264,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: CUTTING-EDGE TARGETED THERAPIES (ALL 7 SEQUENTIALLY) */}
       {/* ========================================================================= */}
-      <section id="bc-chapter-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+      <section id="bc-chapter-3" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
         
         <div className="space-y-2">
           <div className="text-rose-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -273,7 +273,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
           <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
             Kho Vũ Khí Nhắm Trúng Đích Mới Nhất Cho K Vú Thể Nội Tiết
           </h2>
-          <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
             Toàn bộ 7 nhóm thuốc tiên tiến nhất thế giới hiện nay được FDA và NCCN phê duyệt cho bệnh nhân ung thư vú thể nội tiết.
           </p>
           <ReadAloudButton
@@ -299,7 +299,7 @@ export const BreastCancerArticle: React.FC<BreastCancerArticleProps> = ({
             {advancedBreastTherapies.map((ther, idx) => (
               <article
                 key={ther.id}
-                className="space-y-2.5 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+                className="space-y-2.5 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
               >
                 <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
                   <h4 className="font-bold text-white text-xs sm:text-sm">

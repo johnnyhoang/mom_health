@@ -57,7 +57,7 @@ export const ReferencesSection: React.FC<ReferencesSectionProps> = ({ references
   })).filter(g => g.items.length > 0);
 
   return (
-    <section className="w-full max-w-5xl sm:max-w-6xl mx-auto px-4 sm:px-6 pb-12 pt-6">
+    <section className="w-full max-w-4xl mx-auto px-4 sm:px-6 pb-12 pt-6 font-sans">
       <div className="rounded-2xl border border-slate-800 bg-slate-900/60 ring-1 ring-slate-800/80 overflow-hidden">
 
         {/* HTMLWind Header with 3 dots & Trigger Button */}

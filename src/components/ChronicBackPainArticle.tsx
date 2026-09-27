@@ -97,7 +97,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* MONOGRAPH HEADER & CASE PROFILE */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
+      <header className="w-full max-w-4xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         
         {/* Series Badge */}
         <div className="flex items-center gap-2 text-indigo-400 text-xs font-semibold tracking-wider uppercase">
@@ -186,7 +186,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: SYMPTOMS DEEP-DIVE & NOTALGIA PARESTHETICA */}
       {/* ========================================================================= */}
-      <section id="bp-ch-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-1" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -248,7 +248,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: MULTI-DISCIPLINARY TRIAD CORRELATION */}
       {/* ========================================================================= */}
-      <section id="bp-ch-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-2" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -364,7 +364,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: SPINAL KINETIC CHAIN & SLEEP MECHANICS */}
       {/* ========================================================================= */}
-      <section id="bp-ch-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-3" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -425,7 +425,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 4: 3-PHASE REHABILITATION & MCGILL BIG 3 EXERCISES */}
       {/* ========================================================================= */}
-      <section id="bp-ch-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-4" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -544,7 +544,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 5: CLINICAL MEDIA ATLAS & 3D ANIMATIONS */}
       {/* ========================================================================= */}
-      <section id="bp-ch-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-5" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -605,7 +605,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 6: PERSONALIZED DECISION TOOL */}
       {/* ========================================================================= */}
-      <section id="bp-ch-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-6" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
@@ -726,7 +726,7 @@ export const ChronicBackPainArticle: React.FC<ChronicBackPainArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 7: SLEEP ERGONOMICS & ANTI-INFLAMMATORY NUTRITION */}
       {/* ========================================================================= */}
-      <section id="bp-ch-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
+      <section id="bp-ch-7" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-900">
         
         <div className="space-y-1.5">
           <div className="text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">

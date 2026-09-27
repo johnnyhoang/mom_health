@@ -94,7 +94,7 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
   const riskPercent = calculateProgressionRisk();
 
   return (
-    <article className="w-full bg-slate-950 text-slate-200 font-serif leading-relaxed pb-32">
+    <article className="w-full bg-slate-950 text-slate-200 font-sans leading-relaxed pb-32">
       
       {/* Medical Disclaimer Banner */}
       <MedicalDisclaimerBanner
@@ -106,65 +106,131 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
       {/* ========================================================================= */}
       {/* MONOGRAPH COVER & EDITORIAL HEADER (FLAT BOOK STYLE) */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-4xl mx-auto pt-8 pb-10 px-4 sm:px-6 space-y-6">
+      <header className="w-full max-w-4xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4 font-sans">
         
         {/* Book Series Label */}
-        <div className="flex items-center gap-2 text-cyan-400 font-sans text-xs font-semibold tracking-widest uppercase">
+        <div className="flex items-center gap-2 text-teal-400 text-xs font-semibold tracking-wider uppercase font-mono">
           <BookOpen className="w-4 h-4" />
-          <span>Chuyên Khảo Nhãn Khoa Nhi • Hồ Sơ Gia Đình • Tháng 09/2026</span>
+          <span>Chuyên Khảo Nhãn Khoa Nhi • Hồ Sơ Gia Đình • Cập Nhật 2026</span>
         </div>
 
         {/* Book Main Title */}
-        <div className="space-y-4">
-          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug font-sans">
+        <div className="space-y-3">
+          <h1 className="text-base sm:text-lg md:text-xl font-bold text-white tracking-tight leading-snug">
             Kiểm Soát Cận Thị & Loạn Thị Tiến Triển Tuổi Dậy Thì
           </h1>
           
-          <p className="text-base sm:text-lg text-slate-300 font-normal leading-relaxed italic border-l-2 border-cyan-500/60 pl-4 py-1">
+          <p className="text-xs sm:text-sm text-slate-300 font-normal leading-relaxed">
             Giải mã cơ chế sinh lý trục nhãn cầu, so sánh kính cận thường với kính kiểm soát độ cận, phân tích các nghiên cứu quốc tế về tròng kính Defocus và hướng dẫn theo dõi khúc xạ gia đình.
           </p>
-        </div>
 
-        {/* Family Member Selector Segmented Control */}
-        <div className="pt-2 font-sans space-y-2">
-          <div className="text-xs uppercase tracking-wider font-bold text-slate-400 flex items-center gap-1.5">
-            <Users className="w-4 h-4 text-cyan-400" />
-            <span>Hồ sơ thành viên gia đình:</span>
-          </div>
+          {/* Unified Preface & Metadata Panel */}
+          <div className="p-4 sm:p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-3">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+              <ReadAloudButton
+                id="vision-monograph-full"
+                title="Cẩm nang Kiểm Soát Cận Thị và Loạn Thị Tiến Triển"
+                text={`Chuyên khảo nhãn khoa: Hồ sơ khúc xạ bệnh nhân ${currentProfile.name}. Phân tích cơ chế trục nhãn cầu, so sánh kính cận thường với tròng kính Defocus thế hệ mới từ Essilor, Hoya, Zeiss.`}
+                variant="hero"
+                label="Bấm để nghe đọc chuyên khảo"
+                durationEstimate="~16 phút"
+              />
+              <div className="flex items-center gap-1.5 text-teal-300 font-medium text-xs">
+                <ShieldCheck className="w-4 h-4 text-teal-400" />
+                <span>IMI • AAO • JAMA Ophthalmology</span>
+              </div>
+            </div>
 
-          <div className="p-1 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-wrap gap-1 text-xs">
-            <button
-              onClick={() => setSelectedPatientId('minh-anh')}
-              className={`px-3.5 py-1.5 font-semibold rounded-xl transition-all cursor-pointer flex-1 sm:flex-initial text-center ${
-                selectedPatientId === 'minh-anh'
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-              }`}
-            >
-              Hoàng Ngọc Minh Anh (14t)
-            </button>
+            {/* Family Member Selector Segmented Control */}
+            <div className="pt-2 border-t border-slate-800/80 space-y-2">
+              <div className="text-xs uppercase tracking-wider font-bold text-slate-400 flex items-center gap-1.5">
+                <Users className="w-4 h-4 text-teal-400" />
+                <span>Hồ sơ thành viên gia đình:</span>
+              </div>
 
-            <button
-              onClick={() => setSelectedPatientId('thuy-nga')}
-              className={`px-3.5 py-1.5 font-semibold rounded-xl transition-all cursor-pointer flex-1 sm:flex-initial text-center ${
-                selectedPatientId === 'thuy-nga'
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-              }`}
-            >
-              Nguyễn Thị Thúy Nga (45t)
-            </button>
+              <div className="p-1 rounded-2xl bg-slate-950 border border-slate-800 flex flex-wrap gap-1 text-xs">
+                <button
+                  onClick={() => setSelectedPatientId('minh-anh')}
+                  className={`px-3 py-1.5 font-semibold rounded-xl transition-all cursor-pointer flex-1 sm:flex-initial text-center ${
+                    selectedPatientId === 'minh-anh'
+                      ? 'bg-teal-500 text-slate-950 font-bold shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  }`}
+                >
+                  Hoàng Ngọc Minh Anh (14t)
+                </button>
 
-            <button
-              onClick={() => setSelectedPatientId('trung-hoa')}
-              className={`px-3.5 py-1.5 font-semibold rounded-xl transition-all cursor-pointer flex-1 sm:flex-initial text-center ${
-                selectedPatientId === 'trung-hoa'
-                  ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
-              }`}
-            >
-              Hoàng Ngọc Trung Hòa (47t)
-            </button>
+                <button
+                  onClick={() => setSelectedPatientId('thuy-nga')}
+                  className={`px-3 py-1.5 font-semibold rounded-xl transition-all cursor-pointer flex-1 sm:flex-initial text-center ${
+                    selectedPatientId === 'thuy-nga'
+                      ? 'bg-teal-500 text-slate-950 font-bold shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  }`}
+                >
+                  Nguyễn Thị Thúy Nga (45t)
+                </button>
+
+                <button
+                  onClick={() => setSelectedPatientId('trung-hoa')}
+                  className={`px-3 py-1.5 font-semibold rounded-xl transition-all cursor-pointer flex-1 sm:flex-initial text-center ${
+                    selectedPatientId === 'trung-hoa'
+                      ? 'bg-teal-500 text-slate-950 font-bold shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/60'
+                  }`}
+                >
+                  Hoàng Ngọc Trung Hòa (47t)
+                </button>
+              </div>
+            </div>
+
+            {/* Metadata Bottom Strip */}
+            <div className="pt-2 border-t border-slate-800/80 flex flex-wrap items-center justify-between gap-y-2 gap-x-4 text-xs text-slate-400">
+              <div className="flex items-center gap-4">
+                <span className="flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-slate-500" />
+                  <span>Thời lượng: ~16 phút</span>
+                </span>
+                <span className="flex items-center gap-1.5">
+                  <ShieldCheck className="w-3.5 h-3.5 text-teal-400" />
+                  <span>Bệnh nhân {currentProfile.name} ({currentProfile.age} tuổi)</span>
+                </span>
+              </div>
+
+              {/* Quick Print links */}
+              <div className="flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => window.print()}
+                  className="px-2.5 py-1 bg-slate-950 hover:bg-slate-800 text-teal-300 text-[11px] font-bold rounded border border-slate-800 flex items-center gap-1 cursor-pointer transition-colors"
+                  title="In trang hiện tại"
+                >
+                  <Printer className="w-3.5 h-3.5 text-teal-400" />
+                  <span>In Nhanh</span>
+                </button>
+
+                <a
+                  href={printLinks.ktv}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-slate-950 hover:bg-slate-800 text-emerald-300 text-[11px] font-bold rounded border border-slate-800 flex items-center gap-1 cursor-pointer transition-colors"
+                  title="Mở phiếu nhỏ cho KTV / Bác sĩ"
+                >
+                  <FileText className="w-3.5 h-3.5 text-emerald-400" />
+                  <span>Phiếu KTV</span>
+                </a>
+
+                <a
+                  href={printLinks.a4}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-2.5 py-1 bg-slate-950 hover:bg-slate-800 text-amber-300 text-[11px] font-bold rounded border border-slate-800 flex items-center gap-1 cursor-pointer transition-colors"
+                  title="Mở file HTML A4 để in"
+                >
+                  <FileText className="w-3.5 h-3.5 text-amber-400" />
+                  <span>Hồ Sơ A4</span>
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -6,7 +6,7 @@ import {
 
 export const BreastCancerOutcomesSection: React.FC = () => {
   return (
-    <section id="bc-chapter-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+    <section id="bc-chapter-5" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
       {/* Chapter Title */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -15,7 +15,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
         <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Số Liệu Sống Sót & Hiệu Quả Điều Trị Thực Tế
         </h2>
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
           Dữ liệu từ các cơ sở y tế và tổ chức uy tín nhất thế giới và Việt Nam — để người bệnh hiểu đúng về tiên lượng và kết quả điều trị K vú hiện đại.
         </p>
       </div>
@@ -31,7 +31,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
           </p>
         </div>
 
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
           <strong className="text-slate-200">Xu hướng toàn cầu: </strong>
           Tỷ lệ tử vong do ung thư vú đã giảm liên tục 42% nhờ tầm soát nhũ ảnh sớm và các liệu pháp nội tiết, nhắm trúng đích thế hệ mới (ACS 2024).
         </p>
@@ -40,7 +40,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
           {globalOutcomeStats.map((stat, idx) => (
             <article
               key={stat.id}
-              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-400 font-mono">
                 <h4 className="font-bold text-white text-xs sm:text-sm">5.1.{idx + 1}. {stat.title}</h4>
@@ -78,7 +78,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
           </p>
         </div>
 
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
           <strong className="text-slate-200">Đặc điểm bệnh nhân Việt Nam: </strong>
           60–70% ca K vú tại Việt Nam thuộc nhóm HR+/HER2- (thể nội tiết dương tính) — đáp ứng rất tốt với Tamoxifen và các thuốc ức chế Aromatase.
         </p>
@@ -87,7 +87,7 @@ export const BreastCancerOutcomesSection: React.FC = () => {
           {vietnamBreastCancerStats.map((stat, idx) => (
             <article
               key={stat.id}
-              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs text-slate-400 font-mono">
                 <h4 className="font-bold text-white text-xs sm:text-sm">5.2.{idx + 1}. {stat.title}</h4>

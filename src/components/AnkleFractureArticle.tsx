@@ -90,7 +90,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* BOOK COVER & PREFACE: Ankle Trauma & Rehabilitation Monograph */}
       {/* ========================================================================= */}
-      <header className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
+      <header className="w-full max-w-4xl mx-auto pt-6 pb-6 px-4 sm:px-6 space-y-4">
         {/* Series Badge */}
         <div className="flex items-center gap-2 text-rose-400 text-xs font-semibold tracking-wider uppercase">
           <Footprints className="w-4 h-4" />
@@ -154,7 +154,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 1: Phân Tích Hồ Sơ Chấn Thương Mắt Cá & X-Quang / MRI */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-1" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-1" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 1
@@ -185,7 +185,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 2: Phân Loại Gãy Xương Mắt Cá & Đứt Dây Chằng */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-2" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-2" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 2
@@ -234,7 +234,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 3: So Sánh 4 Phác Đồ Điều Trị & Phẫu Thuật ORIF Chuẩn Vàng */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-3" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-3" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 3
@@ -355,7 +355,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 4: Ma Trận An Toàn Chu Phẫu Tuổi 74 & Phòng Ngừa DVT */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-4" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 4
@@ -375,7 +375,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 5: Video Atlas 3D & Minh Họa Mổ ORIF */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-5" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-5" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 5
@@ -446,7 +446,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 6: Cây Quyết Định Lâm Sàng: Từ Chấn Thương Đến Tỳ Đè */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-6" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 6
@@ -561,7 +561,7 @@ export const AnkleFractureArticle: React.FC<AnkleFractureArticleProps> = ({
       {/* ========================================================================= */}
       {/* CHAPTER 7: Cẩm Nang Phục Hồi Chức Năng 4 Giai Đoạn Từ A - Z */}
       {/* ========================================================================= */}
-      <section id="ankle-ch-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
+      <section id="ankle-ch-7" className="w-full max-w-4xl mx-auto py-6 px-4 sm:px-6 space-y-5 border-t border-slate-800/80">
         <div className="space-y-1">
           <div className="text-xs font-mono font-bold text-rose-400 uppercase tracking-wider">
             Chương 7

@@ -6,7 +6,7 @@ import {
 
 export const BreastCancerCommunitySection: React.FC = () => {
   return (
-    <section id="bc-chapter-6" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+    <section id="bc-chapter-6" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
       {/* Header */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -15,7 +15,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
         <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Kinh Nghiệm Thực Tiễn Từ Cộng Đồng Bệnh Nhân K Vú Việt Nam
         </h2>
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
           Tổng hợp những chia sẻ phổ biến nhất trong cộng đồng bệnh nhân K vú tại Việt Nam, kèm theo nhận định y khoa để người bệnh hiểu đúng và tránh tin đồn thất thiệt.
         </p>
       </div>
@@ -40,7 +40,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
           {communityInsights.map((insight, idx) => (
             <article
               key={insight.id}
-              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex flex-wrap gap-2 items-center justify-between text-xs text-slate-400 font-mono">
                 <h4 className="font-bold text-white text-xs sm:text-sm">6.1.{idx + 1}. {insight.categoryLabel}</h4>
@@ -75,7 +75,7 @@ export const BreastCancerCommunitySection: React.FC = () => {
           {vietnamBreastCancerGroups.map((group, idx) => (
             <article
               key={group.id}
-              className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-1 text-xs sm:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 text-xs">
                 <h4 className="font-bold text-white text-xs sm:text-sm">

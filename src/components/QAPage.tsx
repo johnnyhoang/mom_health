@@ -260,7 +260,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
       />
 
       {/* Header Banner */}
-      <div className="w-full max-w-5xl sm:max-w-6xl mx-auto pt-6 pb-4 px-4 sm:px-6 space-y-4">
+      <div className="w-full max-w-4xl mx-auto pt-6 pb-4 px-4 sm:px-6 space-y-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-indigo-400">
             <HelpCircle className="w-4 h-4" />
@@ -461,7 +461,7 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
       </div>
 
       {/* Main Q&A Content Area */}
-      <div className="w-full max-w-5xl sm:max-w-6xl mx-auto px-4 sm:px-6 space-y-3.5">
+      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 space-y-3.5">
         {activeTopic === 'vision' ? (
           // ==================== VISION QA LIST ====================
           filteredVisionQA.length > 0 ? (

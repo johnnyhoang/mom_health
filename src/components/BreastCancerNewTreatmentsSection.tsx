@@ -7,7 +7,7 @@ const TreatmentCard: React.FC<{
   indexStr: string;
 }> = ({ treatment, indexStr }) => {
   return (
-    <article className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0">
+    <article className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0">
       <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
         <h4 className="font-bold text-white text-xs sm:text-sm">
           {indexStr}. {treatment.name}
@@ -55,7 +55,7 @@ const TreatmentCard: React.FC<{
 
 export const BreastCancerNewTreatmentsSection: React.FC = () => {
   return (
-    <section id="bc-chapter-4" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+    <section id="bc-chapter-4" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
       {/* Chapter Title */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -64,7 +64,7 @@ export const BreastCancerNewTreatmentsSection: React.FC = () => {
         <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Kho Thuốc Mới FDA Phê Duyệt 2022–2026 Cho K Vú Nội Tiết
         </h2>
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
           Tổng hợp 10 thuốc và liệu pháp mới nhất từ các thử nghiệm lâm sàng quốc tế lớn (NEJM, Lancet, ASCO, NCCN) liên quan đến điều trị K vú thể nội tiết dương tính.
         </p>
       </div>

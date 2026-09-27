@@ -3,7 +3,7 @@ import { ReadAloudButton } from './ReadAloudButton';
 
 export const BreastCancerOrganComorbiditiesSection: React.FC = () => {
   return (
-    <section id="bc-chapter-9" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+    <section id="bc-chapter-9" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
       
       {/* Chapter Header */}
       <div className="space-y-2">
@@ -13,7 +13,7 @@ export const BreastCancerOrganComorbiditiesSection: React.FC = () => {
         <h2 className="text-sm sm:text-base font-bold text-white tracking-tight">
           Tác Động Hai Chiều: Hệ Tiêu Hóa, Gan Mật, Chuyển Hóa (Tiểu Đường, Béo Phì, Gout) & Nguy Cơ Ung Thư Vú
         </h2>
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
           Ung thư vú không tồn tại biệt lập. Các cơ quan tiêu hóa (ruột, gan, mật, dạ dày) và các bệnh chuyển hóa nền tương tác mật thiết với tế bào u và thuốc điều trị, quyết định nồng độ estrogen nội sinh và nguy cơ tái phát muộn.
         </p>
 
@@ -27,7 +27,7 @@ export const BreastCancerOrganComorbiditiesSection: React.FC = () => {
       </div>
 
       {/* 9.1. Trục Ruột - Tuyến Vú & Estrobolome */}
-      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-base md:text-sm text-slate-300 leading-relaxed">
+      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-xs sm:text-sm text-slate-300 leading-relaxed">
         <div className="space-y-1">
           <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
             <h3 className="text-xs sm:text-sm font-bold text-teal-300">
@@ -67,7 +67,7 @@ export const BreastCancerOrganComorbiditiesSection: React.FC = () => {
       </article>
 
       {/* 9.2. Gan & Túi Mật */}
-      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-base md:text-sm text-slate-300 leading-relaxed">
+      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-xs sm:text-sm text-slate-300 leading-relaxed">
         <div className="space-y-1">
           <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
             <h3 className="text-xs sm:text-sm font-bold text-amber-300">
@@ -100,7 +100,7 @@ export const BreastCancerOrganComorbiditiesSection: React.FC = () => {
       </article>
 
       {/* 9.3. Bao Tử & Tương Tác Thuốc PPI */}
-      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-base md:text-sm text-slate-300 leading-relaxed">
+      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-xs sm:text-sm text-slate-300 leading-relaxed">
         <div className="space-y-1">
           <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
             <h3 className="text-xs sm:text-sm font-bold text-indigo-300">
@@ -128,7 +128,7 @@ export const BreastCancerOrganComorbiditiesSection: React.FC = () => {
       </article>
 
       {/* 9.4. Bệnh Lý Chuyển Hóa Nền: Tiểu Đường, Béo Phì, Gout */}
-      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-base md:text-sm text-slate-300 leading-relaxed">
+      <article className="space-y-3 pt-4 border-t border-slate-800/40 text-xs sm:text-sm text-slate-300 leading-relaxed">
         <div className="space-y-1">
           <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
             <h3 className="text-xs sm:text-sm font-bold text-rose-300">

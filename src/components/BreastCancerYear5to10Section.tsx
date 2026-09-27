@@ -54,7 +54,7 @@ const groupNutritionByCategory = (items: NutritionGuideline[]) => {
 const ChecklistItem: React.FC<{ item: Year5To10CheckItem; indexStr: string }> = ({ item, indexStr }) => {
   const cfg = urgencyConfig[item.urgency];
   return (
-    <article className="space-y-1.5 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
+    <article className="space-y-1.5 text-xs sm:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
       <div className="flex items-start justify-between gap-2 flex-wrap text-xs">
         <h4 className="font-bold text-white text-xs sm:text-sm leading-snug">
           {indexStr}. {item.title}
@@ -86,7 +86,7 @@ const ChecklistItem: React.FC<{ item: Year5To10CheckItem; indexStr: string }> = 
 const NutritionItem: React.FC<{ item: NutritionGuideline; indexStr: string }> = ({ item, indexStr }) => {
   const cfg = nutritionCategoryConfig[item.category];
   return (
-    <article className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
+    <article className="space-y-1 text-xs sm:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
       <div className="flex items-center gap-2 justify-between flex-wrap text-xs">
         <h4 className="font-bold text-white text-xs sm:text-sm">{indexStr}. {item.food}</h4>
         <span className="text-slate-400 font-mono text-[11px]">{cfg.label}</span>
@@ -103,7 +103,7 @@ const NutritionItem: React.FC<{ item: NutritionGuideline; indexStr: string }> = 
 const LifestyleItem: React.FC<{ item: LifestyleGuideline; indexStr: string }> = ({ item, indexStr }) => {
   const cfg = lifestyleCategoryConfig[item.category] ?? { label: item.category };
   return (
-    <article className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
+    <article className="space-y-1 text-xs sm:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
       <div className="text-xs text-slate-400 font-mono text-[11px] uppercase">
         {cfg.label}
       </div>
@@ -118,7 +118,7 @@ const LifestyleItem: React.FC<{ item: LifestyleGuideline; indexStr: string }> = 
 
 const WarningItem: React.FC<{ item: WarningSigns; indexStr: string }> = ({ item, indexStr }) => {
   return (
-    <article className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
+    <article className="space-y-1 text-xs sm:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0">
       <h4 className="font-bold text-white text-xs sm:text-sm leading-snug">{indexStr}. {item.sign}</h4>
       <p>
         <strong className="text-slate-300">Có thể là: </strong>{item.possibleMeaning}
@@ -140,7 +140,7 @@ export const BreastCancerYear5to10Section: React.FC = () => {
   let warnCounter = 1;
 
   return (
-    <section id="bc-chapter-7" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+    <section id="bc-chapter-7" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
       {/* Header */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -149,13 +149,13 @@ export const BreastCancerYear5to10Section: React.FC = () => {
         <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Hướng Dẫn Toàn Diện Cho Giai Đoạn Sau Hoàn Thành Điều Trị (Năm 5–10)
         </h2>
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
           Sau khi hoàn thành 5 năm Tamoxifen (tháng 1/2026), đây là giai đoạn then chốt để theo dõi và ngăn ngừa tái phát muộn.
         </p>
       </div>
 
       {/* Late Relapse Notice */}
-      <div className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed">
+      <div className="space-y-1 text-xs sm:text-sm text-slate-300 leading-relaxed">
         <strong className="text-slate-200 block text-xs uppercase font-mono">
           Đặc điểm tái phát muộn (Late Relapse) của Luminal A:
         </strong>

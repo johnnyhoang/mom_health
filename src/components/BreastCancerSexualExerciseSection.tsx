@@ -9,7 +9,7 @@ import type { SexualHealthTopic, ExerciseType, SupplementForExercise } from '../
 
 export const BreastCancerSexualExerciseSection: React.FC = () => {
   return (
-    <section id="bc-chapter-8" className="w-full max-w-5xl sm:max-w-6xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900">
+    <section id="bc-chapter-8" className="w-full max-w-4xl mx-auto py-8 px-4 sm:px-6 space-y-6 border-t border-slate-900 font-sans">
       {/* Chapter Title */}
       <div className="space-y-2">
         <div className="text-slate-400 font-mono text-xs font-medium uppercase tracking-wider">
@@ -18,7 +18,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
         <h2 className="text-sm sm:text-base font-bold text-slate-100 tracking-tight">
           Quan Hệ Vợ Chồng & Thể Thao Sau Điều Trị K Vú — Bằng Chứng Y Khoa
         </h2>
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed max-w-3xl">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-3xl">
           Tổng hợp bằng chứng từ các hướng dẫn ASCO, NCCN, NEJM và JAMA về tác động của đời sống tình dục và vận động thể chất đến bệnh K vú Luminal A và nội mạc tử cung.
         </p>
       </div>
@@ -38,7 +38,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           {sexualHealthTopics.map((topic: SexualHealthTopic, idx: number) => (
             <article
               key={topic.id}
-              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex flex-wrap items-baseline justify-between gap-2 text-xs">
                 <h4 className="font-bold text-white text-xs sm:text-sm">
@@ -84,7 +84,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           {exerciseTypes.map((ex: ExerciseType, idx: number) => (
             <article
               key={ex.id}
-              className="space-y-2 text-base md:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-2 text-xs sm:text-sm text-slate-300 leading-relaxed pb-5 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 flex-wrap text-xs">
                 <h4 className="font-bold text-white text-xs sm:text-sm">
@@ -131,7 +131,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           </p>
         </div>
 
-        <p className="text-base md:text-sm text-slate-300 leading-relaxed">
+        <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
           <strong className="text-rose-300">Lưu ý an toàn: </strong>
           Tránh các sản phẩm bổ sung chứa DHEA, testosterone hoặc mầm đậu nành cô đặc liều cao do khả năng chuyển hóa thành estrogen nội sinh.
         </p>
@@ -140,7 +140,7 @@ export const BreastCancerSexualExerciseSection: React.FC = () => {
           {exerciseSupplements.map((sup: SupplementForExercise, idx: number) => (
             <article
               key={sup.id}
-              className="space-y-1 text-base md:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
+              className="space-y-1 text-xs sm:text-sm text-slate-300 leading-relaxed pb-4 border-b border-slate-800/40 last:border-b-0"
             >
               <div className="flex items-center justify-between gap-2 text-xs">
                 <h4 className="font-bold text-white text-xs sm:text-sm">
