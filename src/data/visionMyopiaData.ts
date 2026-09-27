@@ -129,6 +129,29 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
       progressionNote: "Thị lực không kính 10-/10. Chưa xuất hiện độ cận."
     },
     {
+      id: "milestone-2024-jan",
+      date: "27/01/2024",
+      facility: "Mắt Kính MINH ANH",
+      facilityAddress: "543B Minh Phụng, P.10, Q.11, TP.HCM - ĐT: 028 3963 3062",
+      patientAge: 12,
+      diagnosis: "Cận thị hai mắt, mắt trái có loạn thị",
+      rightEye: {
+        sphere: "-2.00 D",
+        correctedVA: "10/10"
+      },
+      leftEye: {
+        sphere: "-1.00 D",
+        cylinder: "-0.50 D",
+        axis: "170°",
+        correctedVA: "10/10"
+      },
+      pd: 60,
+      lensRecommendation: "Kính gọng nhìn xa",
+      lensTypeFitted: "Tròng kính 1.60 ASX",
+      doctorOrKtv: "KTV Khúc Xạ Vũ Đoán Thị Minh Thư",
+      progressionNote: "Toa kính: MP -2.00D -> 10/10; MT -1.00D / Cyl -0.50D x 170° -> 10/10; PD: 60mm. Tròng 1.60 ASX."
+    },
+    {
       id: "milestone-2024",
       date: "20/08/2024",
       facility: "Mắt Kính HMK",
@@ -177,8 +200,8 @@ export const minhAnhVisionProfile: PatientVisionProfile = {
   ],
   progressionSummary: {
     totalDurationMonths: 43,
-    rightEyeSphereChange: "Mắt phải: -1.25D (05/2022) -> Plano (10/2022) -> -2.50D (08/2024) -> -3.50D (12/2025)",
-    leftEyeSphereChange: "Mắt trái: -0.25D / Loạn -0.75D x 171° (05/2022) -> -1.50D / Loạn -0.75D (08/2024) -> -2.00D / Loạn -0.75D x 170° (12/2025)",
+    rightEyeSphereChange: "Mắt phải: -1.25D (05/2022) -> Plano (10/2022) -> -2.00D (01/2024) -> -2.50D (08/2024) -> -3.50D (12/2025)",
+    leftEyeSphereChange: "Mắt trái: -0.25D / Loạn -0.75D x 171° (05/2022) -> -1.00D / Loạn -0.50D x 170° (01/2024) -> -1.50D / Loạn -0.75D (08/2024) -> -2.00D / Loạn -0.75D x 170° (12/2025)",
     annualProgressionRate: "Mức thay đổi độ cận trung bình từ 0.67D đến 1.16D/năm trong giai đoạn 2022 - 2025.",
     pdProgression: "Khoảng cách đồng tử (PD): 58mm (05/2022) -> 59mm (10/2022) -> 60mm (2024) -> 62mm (2025).",
     riskCategory: "Cận thị tiến triển tuổi học đường",
@@ -328,44 +351,46 @@ export const trungHoaVisionProfile: PatientVisionProfile = {
   address: "621 Bình Thới, Phường 10, Quận 11, TP. Hồ Chí Minh",
   medicalRecordNo: "",
   detectedAge: 40,
-  currentStatus: "Khúc xạ người trưởng thành, theo dõi dấu hiệu lão thị khi nhìn gần.",
-  astigmatismNote: "Cần kiểm tra thị lực và độ loạn thị định kỳ.",
+  currentStatus: "Thị lực nhìn xa chính thị (Plano 10/10), có độ lão thị nhìn gần (Add +1.25D).",
+  astigmatismNote: "Chưa ghi nhận độ loạn thị.",
   screenTimeHabits: [
     "Làm việc với máy tính và điện thoại thông minh",
-    "Hoạt động sinh hoạt gia đình và lái xe"
+    "Đọc sách báo và lái xe sinh hoạt hàng ngày"
   ],
   keyRiskFactors: [
-    "Độ tuổi > 45 là giai đoạn xuất hiện lão thị sinh lý",
-    "Cần đo khúc xạ nhìn xa và nhìn gần để lựa chọn kính đa tròng hoặc kính đọc sách phù hợp"
+    "Độ tuổi > 45 là giai đoạn xuất hiện lão thị sinh lý nhìn gần",
+    "Cần sử dụng kính đọc sách Add +1.25D khi làm việc với tài liệu hoặc màn hình gần"
   ],
   growthPhase: "Trưởng thành & Trung niên (> 45 tuổi): Theo dõi khúc xạ và nhãn áp định kỳ hàng năm.",
   examHistory: [
     {
-      id: "milestone-hoa-2026",
-      date: "26/09/2026",
-      facility: "Hồ Sơ Gia Đình",
-      patientAge: 47,
-      diagnosis: "Khúc xạ người trưởng thành (Theo dõi định kỳ)",
+      id: "milestone-hoa-2023",
+      date: "28/08/2023",
+      facility: "Mắt Kính MINH ANH",
+      facilityAddress: "543B Minh Phụng, P.10, Q.11, TP.HCM - ĐT: 028 3963 3062",
+      patientAge: 44,
+      diagnosis: "Lão thị (Nhìn gần) / Thị lực nhìn xa chính thị (Plano)",
       rightEye: {
-        sphere: "Định kỳ",
+        sphere: "Plano (0.00D)",
         correctedVA: "10/10"
       },
       leftEye: {
-        sphere: "Định kỳ",
+        sphere: "Plano (0.00D)",
         correctedVA: "10/10"
       },
-      pd: 64,
-      lensRecommendation: "Khám kiểm tra khúc xạ nhìn xa và độ đọc sách nhìn gần",
-      progressionNote: "Hồ sơ lưu trữ cá nhân thuộc gia đình Hoàng Ngọc."
+      pd: 69,
+      lensRecommendation: "Kính đọc sách / nhìn gần (Add +1.25D)",
+      doctorOrKtv: "KTV Khúc Xạ Vũ Đoán Thị Minh Thư",
+      progressionNote: "MP & MT nhìn xa Plano 10/10. Đơn kính đọc sách / nhìn gần Add +1.25D -> 6/5. PD 69mm (xa) / 66mm (gần)."
     }
   ],
   progressionSummary: {
-    totalDurationMonths: 12,
-    rightEyeSphereChange: "Mắt phải: Theo dõi định kỳ",
-    leftEyeSphereChange: "Mắt trái: Theo dõi định kỳ",
-    annualProgressionRate: "Độ khúc xạ ổn định.",
-    pdProgression: "Khoảng cách đồng tử (PD): 64mm.",
-    riskCategory: "Khúc xạ người trưởng thành",
+    totalDurationMonths: 36,
+    rightEyeSphereChange: "Mắt phải: Plano (10/10) - Nhìn gần Add +1.25D (2023)",
+    leftEyeSphereChange: "Mắt trái: Plano (10/10) - Nhìn gần Add +1.25D (2023)",
+    annualProgressionRate: "Thị lực nhìn xa 10/10. Độ nhìn gần Add +1.25D.",
+    pdProgression: "Khoảng cách đồng tử (PD): 69mm (xa) / 66mm (gần).",
+    riskCategory: "Khúc xạ người trưởng thành & Lão thị",
     primaryHospitalRecommendation: "Dữ liệu lưu trữ phục vụ theo dõi khúc xạ định kỳ khi đi khám mắt."
   }
 };
