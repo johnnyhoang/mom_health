@@ -126,44 +126,44 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
         </div>
 
         {/* Family Member Selector Tabs */}
-        <div className="pt-2 border-t border-slate-800/80 font-sans space-y-2">
+        <div className="pt-2 font-sans space-y-2">
           <div className="text-xs uppercase tracking-wider font-bold text-slate-400 flex items-center gap-1.5">
             <Users className="w-4 h-4 text-cyan-400" />
-            <span>Chọn Hồ Sơ Thành Viên Gia Đình:</span>
+            <span>Hồ sơ thành viên gia đình:</span>
           </div>
 
-          <div className="flex flex-wrap gap-2 text-xs">
+          <div className="flex flex-wrap gap-1 border-b border-slate-800 text-xs">
             <button
               onClick={() => setSelectedPatientId('minh-anh')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border ${
+              className={`px-3.5 py-2 font-bold transition-all cursor-pointer border-b-2 -mb-[1px] ${
                 selectedPatientId === 'minh-anh'
-                  ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-950/40'
-                  : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white'
+                  ? 'border-cyan-400 text-cyan-300 bg-slate-900/50'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
               }`}
             >
-              👧 Hoàng Ngọc Minh Anh (14t)
+              Hoàng Ngọc Minh Anh (14t)
             </button>
 
             <button
               onClick={() => setSelectedPatientId('thuy-nga')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border ${
+              className={`px-3.5 py-2 font-bold transition-all cursor-pointer border-b-2 -mb-[1px] ${
                 selectedPatientId === 'thuy-nga'
-                  ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-950/40'
-                  : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white'
+                  ? 'border-cyan-400 text-cyan-300 bg-slate-900/50'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
               }`}
             >
-              👩 Nguyễn Thị Thúy Nga (45t)
+              Nguyễn Thị Thúy Nga (45t)
             </button>
 
             <button
               onClick={() => setSelectedPatientId('trung-hoa')}
-              className={`px-3 py-1.5 rounded-lg font-bold transition-all cursor-pointer border ${
+              className={`px-3.5 py-2 font-bold transition-all cursor-pointer border-b-2 -mb-[1px] ${
                 selectedPatientId === 'trung-hoa'
-                  ? 'bg-cyan-500 text-slate-950 border-cyan-400 shadow-md shadow-cyan-950/40'
-                  : 'bg-slate-900 text-slate-300 border-slate-800 hover:text-white'
+                  ? 'border-cyan-400 text-cyan-300 bg-slate-900/50'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
               }`}
             >
-              👨 Hoàng Ngọc Trung Hòa (47t)
+              Hoàng Ngọc Trung Hòa (47t)
             </button>
           </div>
         </div>
@@ -774,17 +774,17 @@ export const VisionMyopiaArticle: React.FC<VisionMyopiaArticleProps> = ({
         </div>
 
         {/* Minimalist Flat Brand Tabs */}
-        <div className="flex flex-wrap gap-2 font-sans text-xs">
+        <div className="flex flex-wrap gap-1 border-b border-slate-800 font-sans text-xs">
           {myopiaControlLensesList.map((lens) => {
             const isSelected = lens.id === selectedLensId;
             return (
               <button
                 key={lens.id}
                 onClick={() => setSelectedLensId(lens.id)}
-                className={`px-3 py-1.5 rounded-lg font-bold transition-colors cursor-pointer ${
+                className={`px-3.5 py-2 font-bold transition-colors cursor-pointer border-b-2 -mb-[1px] ${
                   isSelected
-                    ? 'bg-cyan-500 text-slate-950'
-                    : 'text-slate-400 hover:text-white bg-slate-900 border border-slate-800'
+                    ? 'border-cyan-400 text-cyan-300 bg-slate-900/50'
+                    : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
                 }`}
               >
                 {lens.name} ({lens.origin.split(' ')[0]})

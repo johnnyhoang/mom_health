@@ -20,21 +20,21 @@ export const InteractiveCaseViewer: React.FC = () => {
     <div className="w-full space-y-4">
       
       {/* Record Selector Tabs */}
-      <div className="flex flex-wrap gap-2 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-wrap gap-1 border-b border-slate-800">
         {patientCaseRecords.map((rec) => {
           const isSelected = rec.id === selectedRecordId;
           return (
             <button
               key={rec.id}
               onClick={() => setSelectedRecordId(rec.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3.5 py-2 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
                 isSelected
-                  ? 'bg-teal-500/20 text-teal-300 border border-teal-500/50'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                  ? 'border-teal-400 text-teal-300 bg-slate-900/50'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
               }`}
             >
               <FileText className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-teal-400' : 'text-slate-500'}`} />
-              <span className="truncate">{rec.title} ({rec.date.split(' ')[0]})</span>
+              <span className="truncate">{rec.title}</span>
             </button>
           );
         })}

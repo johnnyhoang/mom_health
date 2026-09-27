@@ -175,22 +175,22 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
           </p>
         </div>
 
-        {/* 3 Specialty Switcher Pills */}
-        <div className="grid grid-cols-3 gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+        {/* 3 Specialty Switcher Tabs */}
+        <div className="flex flex-wrap gap-1 border-b border-slate-800">
           <button
             onClick={() => {
               setActiveTopic('ankle');
               setSelectedHospital('all');
               setSearchQuery('');
             }}
-            className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'ankle'
-                ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-rose-400 text-rose-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
             <Footprints className="w-4 h-4" />
-            <span className="truncate">Chấn Thương CTCH (10)</span>
+            <span>Chấn Thương CTCH (10)</span>
           </button>
 
           <button
@@ -199,14 +199,14 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
               setSelectedHospital('all');
               setSearchQuery('');
             }}
-            className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'spine'
-                ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-amber-400 text-amber-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
             <Bone className="w-4 h-4" />
-            <span className="truncate">Cột Sống Cổ (10)</span>
+            <span>Cột Sống Cổ (10)</span>
           </button>
 
           <button
@@ -215,14 +215,14 @@ export const DoctorsDirectoryPage: React.FC<DoctorsDirectoryPageProps> = ({
               setSelectedHospital('all');
               setSearchQuery('');
             }}
-            className={`py-2.5 px-3 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'gynecology'
-                ? 'bg-purple-500 text-white shadow-md shadow-purple-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-purple-400 text-purple-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
             <Ribbon className="w-4 h-4" />
-            <span className="truncate">Sản Phụ Khoa (10)</span>
+            <span>Sản Phụ Khoa (10)</span>
           </button>
         </div>
 

@@ -284,21 +284,21 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
           </p>
         </div>
 
-        {/* 5 Topic Switcher Pills */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 p-1.5 bg-slate-900 border border-slate-800 rounded-2xl">
+        {/* 5 Topic Switcher Tabs */}
+        <div className="flex flex-wrap gap-1 border-b border-slate-800">
           <button
             onClick={() => {
               setActiveTopic('vision');
               setSearchQuery('');
             }}
-            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'vision'
-                ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 font-black shadow-md shadow-cyan-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-cyan-400 text-cyan-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
-            <Eye className="w-4 h-4 shrink-0 text-cyan-300" />
-            <span className="truncate">Thị Lực (6)</span>
+            <Eye className="w-4 h-4 shrink-0 text-cyan-400" />
+            <span>Thị Lực (6)</span>
           </button>
 
           <button
@@ -306,14 +306,14 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
               setActiveTopic('back_pain');
               setSearchQuery('');
             }}
-            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'back_pain'
-                ? 'bg-indigo-500 text-white shadow-md shadow-indigo-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-indigo-400 text-indigo-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
-            <Activity className="w-4 h-4 shrink-0" />
-            <span className="truncate">Đau Lưng (15)</span>
+            <Activity className="w-4 h-4 shrink-0 text-indigo-400" />
+            <span>Đau Lưng (15)</span>
           </button>
 
           <button
@@ -321,14 +321,14 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
               setActiveTopic('ankle');
               setSearchQuery('');
             }}
-            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'ankle'
-                ? 'bg-rose-500 text-white shadow-md shadow-rose-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-rose-400 text-rose-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
-            <Footprints className="w-4 h-4 shrink-0" />
-            <span className="truncate">Mắt Cá (12)</span>
+            <Footprints className="w-4 h-4 shrink-0 text-rose-400" />
+            <span>Mắt Cá (12)</span>
           </button>
 
           <button
@@ -336,14 +336,14 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
               setActiveTopic('spine');
               setSearchQuery('');
             }}
-            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'spine'
-                ? 'bg-amber-500 text-slate-950 shadow-md shadow-amber-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-amber-400 text-amber-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
-            <Bone className="w-4 h-4 shrink-0" />
-            <span className="truncate">Cổ ACDF (15)</span>
+            <Bone className="w-4 h-4 shrink-0 text-amber-400" />
+            <span>Cổ ACDF (15)</span>
           </button>
 
           <button
@@ -351,14 +351,14 @@ export const QAPage: React.FC<QAPageProps> = ({ onBackToBook, defaultTopic = 'vi
               setActiveTopic('gynecology');
               setSearchQuery('');
             }}
-            className={`py-2 px-2.5 rounded-xl text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer ${
+            className={`px-3.5 py-2 text-xs sm:text-sm font-bold transition-all flex items-center justify-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
               activeTopic === 'gynecology'
-                ? 'bg-teal-500 text-slate-950 shadow-md shadow-teal-500/20'
-                : 'text-slate-400 hover:text-slate-200'
+                ? 'border-teal-400 text-teal-300 bg-slate-900/50'
+                : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
             }`}
           >
-            <Ribbon className="w-4 h-4 shrink-0" />
-            <span className="truncate">Tử Cung (26)</span>
+            <Ribbon className="w-4 h-4 shrink-0 text-teal-400" />
+            <span>Tử Cung (26)</span>
           </button>
         </div>
 

@@ -20,21 +20,21 @@ export const CervicalSpineCaseViewer: React.FC = () => {
   return (
     <div className="w-full space-y-4">
       {/* Record Selector Tabs */}
-      <div className="flex flex-wrap gap-2 pb-2 border-b border-slate-800/80">
+      <div className="flex flex-wrap gap-1 border-b border-slate-800">
         {cervicalSpineCaseRecords.map((rec) => {
           const isSelected = rec.id === selectedRecordId;
           return (
             <button
               key={rec.id}
               onClick={() => setSelectedRecordId(rec.id)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all flex items-center gap-1.5 cursor-pointer ${
+              className={`px-3.5 py-2 text-xs font-bold transition-all flex items-center gap-1.5 cursor-pointer border-b-2 -mb-[1px] ${
                 isSelected
-                  ? 'bg-amber-500/20 text-amber-300 border border-amber-500/50'
-                  : 'text-slate-400 hover:text-slate-200 hover:bg-slate-800/50'
+                  ? 'border-amber-400 text-amber-300 bg-slate-900/50'
+                  : 'border-transparent text-slate-400 hover:text-slate-200 hover:bg-slate-900/30'
               }`}
             >
               <FileText className={`w-3.5 h-3.5 shrink-0 ${isSelected ? 'text-amber-400' : 'text-slate-500'}`} />
-              <span className="truncate">{rec.title} ({rec.date})</span>
+              <span className="truncate">{rec.title}</span>
             </button>
           );
         })}
